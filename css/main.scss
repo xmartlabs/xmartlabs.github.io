@@ -4,16 +4,23 @@
 @charset "utf-8";
 
 
+$font-family: 'Lato';
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-weight-black: 900;
 
 // Our variables
-$base-font-family: Helvetica, Arial, sans-serif;
 $base-font-size:   16px;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
 
 $spacing-unit:     30px;
 
-$text-color:       #111;
+$text-color:       #333;
+$text-size:        17px;
+$line-height:      1.7;
+
 $background-color: #fdfdfd;
 $brand-color:      #2a7ae2;
 
@@ -22,12 +29,10 @@ $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
 // Width of the content area
-$content-width:    800px;
+$content-width:    1000px;
 
 $on-palm:          600px;
 $on-laptop:        800px;
-
-
 
 // Using media queries with like this:
 // @include media-query($on-palm) {
@@ -42,10 +47,42 @@ $on-laptop:        800px;
     }
 }
 
+@mixin font_bold(){
+  font-weight: 700;
+  font-style: normal;
+}
 
+@mixin font_light(){
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin font_light_italic(){
+  font-weight: 300;
+  font-style: italic;
+}
+
+@mixin font_normal(){
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin font-normal_italic(){
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin font_black(){
+  font-weight: 900;
+  font-style: normal;
+}
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
+        "fonts",
+        "reset",
+        "bootstrap",
+        "icons",
         "base",
         "layout",
         "syntax-highlighting"

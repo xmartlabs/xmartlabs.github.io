@@ -1,23 +1,52 @@
 ---
 layout: default
 ---
+<div class="page-content">
+  <div class="wrapper">
+    <div class="home">
 
-<div class="home">
+      <h1 class="page-heading">
+      </h1>
+      <section>
+        <ul class="post-list">
+          {% for post in site.posts %}
+          {% assign author = site.data.authors[post.author_id] %}
+            <li>
+              <article class="post-item {{ post.author_id }}">
 
-  <h1 class="page-heading">Posts</h1>
+                <div class="post-author-info">
+                  <div class="post-author-image">
+                    <a href="https://github.com/{{author.github}}" target="_blank">
+                      <img class="post-author-avatar" src="/images/{{author.image}}" alt="{{author.display_name}}">
+                    </a>
+                  </div>
+                  <span class="post-author-name"><span class='visible-on-palm'>by </span><a href="{{author.profile_url}}" target="_blank">{{ author.display_name }}</a></span>
+                </div>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+                <div class="post-time-info">
+                  <time class="post-meta" datetime="{{ post.date }}">
+                    {{ post.date | date: "%b %-d, %Y" }}
+                  </time>
+                </div>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+                <div class="post-info">
+                  <h1 class="post-title">
+                    <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                  </h1>
+                  <h2>
+                    {{ post.description }}
+                  </h2>
+                </div>
+                <div class="clear">
+                </div>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
+              </article>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+      <p class="rss-subscribe text-center">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+    </div>
+  </div>
 </div>

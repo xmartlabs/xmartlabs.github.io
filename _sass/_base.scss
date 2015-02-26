@@ -14,10 +14,10 @@ dl, dd, ol, ul, figure {
  * Basic styling
  */
 body {
-    font-family: $base-font-family;
+    font-family: $font-family;
+    @include font_normal();
     font-size: $base-font-size;
     line-height: $base-line-height;
-    font-weight: 300;
     color: $text-color;
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
@@ -130,7 +130,7 @@ code {
     font-size: 15px;
     border: 1px solid $grey-color-light;
     border-radius: 3px;
-    background-color: #eef;
+    background-color: #F5F5F5;
 }
 
 code {
@@ -201,4 +201,36 @@ pre {
             fill: $grey-color;
         }
     }
+}
+
+.margin-top-3{
+  margin-top: 3px !important;
+}
+
+.margin-top-10{
+  margin-top: 10px !important;
+}
+
+.margin-top-30{
+  margin-top: 30px !important;
+}
+
+.margin-top-40{
+  margin-top: 40px !important;
+}
+
+.margin-top-60{
+  margin-top: 60px !important;
+}
+
+.margin-bottom-20{
+  margin-bottom: 20px !important;
+}
+
+.margin-bottom-40{
+  margin-bottom: 40px !important;
+}
+
+.clear {
+  clear: both;
 }

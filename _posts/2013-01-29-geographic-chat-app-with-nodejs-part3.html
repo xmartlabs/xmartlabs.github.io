@@ -1,0 +1,209 @@
+---
+layout: post
+title: Geographic chat app with Node.js, Socket.IO, and Google Maps - Part three
+date: '2013-01-29T11:43:00.000-02:00'
+author: Maximo Mussini
+tags:
+- javascript
+- socket.io
+- node.js
+modified_time: '2013-08-26T15:29:02.030-03:00'
+blogger_id: tag:blogger.com,1999:blog-9083268170465425808.post-908338574595640372
+blogger_orig_url: http://blog.xmartlabs.com/2013/01/geographic-chat-app-with-nodejs-part3.html
+author_id: maximo
+---
+
+In this series of posts we are going to show you how to use <a href="http://nodejs.org/">node.js</a>&nbsp;and&nbsp;<a href="http://socket.io/">Socket.IO</a>&nbsp;to build a simple chat application, and then mix it up with Google Maps and the Geolocation
+API to create a cool geographic app. We will use&nbsp;<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>&nbsp;with a modified css&nbsp;to get a nice look for the website.
+<br />
+<br />In the <a href="http://blog.xmartlabs.com/2012/12/geographic-chat-app-with-nodejs-part2.html">last post</a> we showed you how to use Socket.IO to create a simple chat room. In this post we will show you how to use Socket.IO combined with Google Maps to
+send geographic updates in real time.
+<br />
+<br />
+<div>We will build up on top of the Socket.IO server we created, telling the server to listen new events:</div>
+<ul>
+  <li><b><i>send location</i></b>: When the user's location changed.</li>
+  <li><b><i>request locations</i></b>: When a user wants to know every other connected user's location.</li>
+</ul>
+
+{% highlight js %}
+socket.on("send location", function(data) {
+  socket.get('userkey', function(err, key) {
+    var user = connectedUsers[key];
+    if(user) {
+      user.lat = data.lat;
+      user.lng = data.lng;
+      data.name = user.name
+      data.key = key;
+      socket.broadcast.emit("location update", data);
+    }
+  });
+});
+socket.on("request locations", function(sendData) {
+  sendData(connectedUsers);
+});
+{% endhighlight %}
+
+
+<p>
+  We also need to add a new event listener on the client side:
+</p>
+<ul>
+  <li><b><i>location update</i></b>: To receive updates of other users' location.</li>
+</ul>
+<p>
+To simplify this demo we will write the client from scratch, you can see how the whole thing is put together on&nbsp;<a href="https://github.com/xmartlabs/map-chat">github</a>.
+</p>
+<p>
+  We will store all the markers in a hash, creating one marker for each user that is connected to the server. Notice that you will need to include the <a href="https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps script</a>.
+</p>
+
+{% highlight js %}
+  var webSocket, myMap;
+var markers = {};
+
+function initialize(mapContainer) {
+  // Here we create a new connection, but you could reuse an existing one
+  webSocket = io.connect(window.location.hostname);
+
+  // Creating a google map
+  var mapOptions = {
+    // Example options for the Google Map
+    zoom: 8,
+    center: new google.maps.LatLng(-34.397, 150.644),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  myMap = new google.maps.Map(document.getElementById(mapContainer), mapOptions);
+
+  webSocket.on('location update', updateMarker);
+  webSocket.on('user disconnected', removeMarker);
+
+  webSocket.emit('request locations', loadMarkers);
+}
+
+function updateMarker(data) {
+  var marker = markers[data.key];
+  if(marker) {
+    marker.setPosition(new google.maps.LatLng(data.lat,data.lng));
+  } else {
+    markers[data.key] = getMarker(data.lat, data.lng, data.name);
+  }
+}
+
+function removeMarker(key){
+  var marker = markers[key];
+  if(marker){
+    marker.setMap(null);
+    delete markers[key];
+  }
+}
+
+{% endhighlight %}
+
+The client suscribes to <i>location update</i> in order to add markers to the map or update existing ones, and to <i>user disconnected</i> to remove markers from the map after a user is no longer connected.
+<br />Additionally, the client emits a <i>request locations</i> event to ask the server to send the locations of users that are already connected (and therefore will not send their location unless it changes), passing an acknowledgement function <i>loadMarkers</i>that will receive the data and add the corresponding markers.
+<br />
+
+
+{% highlight js %}
+
+function loadMarkers(data) {
+  for(key in data) {
+    var user = data[key];
+    markers[key] = getMarker(user.lat, user.lng, user.name);
+  }
+}
+
+function getMarker(lat, lng, label) {
+  return new google.maps.Marker({
+    title: label,
+    map: myMap,
+    position: new google.maps.LatLng(lat,lng)
+  });
+}
+
+{% endhighlight %}
+
+Now our client is ready to receive geographic updates in real time. But who is sending them?
+<br />Here we use the Geolocation API to get the user's location from the browser and send an update to the server, but we could use any client that supports Socket.IO.
+<br />
+
+
+{% highlight js %}
+
+function tryGeolocation(){
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(sendLocation, errorHandler);
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
+function sendLocation(position) {
+  var data = {
+    lat : position.coords.latitude,
+    lng : position.coords.longitude,
+  }
+  webSocket.emit("send location",data);
+}
+
+function errorHandler(error) {
+  alert("Error detecting your location");
+}
+
+{% endhighlight %}
+
+
+Now that we have a working application it would be nice to try it out with our friends, so we will upload it to <a href="http://www.heroku.com/">heroku</a>. They have written a <a href="https://devcenter.heroku.com/articles/nodejs">very complete article</a> on how to upload a Node.js app, below we will only go over the configuration files you need for this app.
+<br />
+<br />First we need to define our application dependencies in a 'package.json' file so that heroku prepares the required environment, locate it in your project's root folder. Here's an example of the file's content:
+<br />
+
+{% highlight js %}
+
+{
+  "dependencies": {
+    "mime": "1.2.x",
+    "socket.io": "0.9.x"
+  },
+  "main": "app.js",
+  "engines": {
+    "node": "0.8.x"
+  }
+}
+
+{% endhighlight %}
+
+<p>
+We need to tell heroku how to start our application, so create a file called 'Procfile' with the following content:
+</p>
+
+{% highlight js %}
+
+web: node app.js
+
+{% endhighlight %}
+
+The last thing we need is to configure Socket.IO to use long-polling, since at the time of writing heroku's Cedar stack still doesn't support the WebSockets protocol. Add the following to your 'app.js' file, which is the <a href="https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku">recommended configuration</a>:
+<br />
+
+
+{% highlight js %}
+
+// assuming webSocket is the Socket.IO server object
+webSocket.configure(function () {
+  webSocket.set("transports", ["xhr-polling"]);
+  webSocket.set("polling duration", 10);
+});
+
+{% endhighlight %}
+
+Done! You can check the full source code and <a href="https://github.com/xmartlabs/map-chat/fork">fork it on github</a>.
+<br />Wanna try? Go to&nbsp;<a href="http://xmart-chat.herokuapp.com/">our live demo</a>.
+
+<br />
+<br />
+Check out the next posts in this series:
+<br /><a href="/2012/12/21/geographic-chat-app-with-nodejs-part2/">Part two</a>
+<br /><a href="/2012/11/06/geographic-chat-app-with-nodejs/">Part one</a>

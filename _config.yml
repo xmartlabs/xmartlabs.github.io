@@ -1,14 +1,37 @@
 # Site settings
-title: Your awesome title
-email: your-email@domain.com
+title: Xmartlabs Blog
+email: getintouch@xmartlabs.com
+address: Dr Mario Cassinoni 1011 - 11200
+phone_eeuu: +16506141829
+phone_uruguay: (+598) 2408 7915
 description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "http://xmartlabs.com" # the base hostname & protocol for your site
+url_team: "http://xmartlabs.com/#our_team"
+url_blog: "http://blog.xmartlabs.com"
+twitter_username: xmartlabs
+github_username: xmartlabs
 
 # Build settings
 markdown: kramdown
+timezone: America/Montevideo
+permalink: /:year/:month/:day/:title/
+
+# sass:
+#   style: :compressed
+
+defaults:
+  # Default layout and language to everything
+  -
+    values:
+      layout: "default"
+  # Specify default pages’ layout
+  -
+    scope:
+      path: "_posts/martin"
+      type: "posts"
+    values:
+      author: "mtnBarreto"

@@ -1,0 +1,199 @@
+---
+layout: post
+title: Geographic chat app with Node.js, Socket.IO, and Google Maps - Part two
+date: '2012-12-21T16:27:00.000-02:00'
+author: Maximo Maximo
+tags:
+- javascript
+- socket.io
+- node.js
+modified_time: '2013-08-26T15:26:59.081-03:00'
+blogger_id: tag:blogger.com,1999:blog-9083268170465425808.post-6217172005684761304
+blogger_orig_url: http://blog.xmartlabs.com/2012/12/geographic-chat-app-with-nodejs-part2.html
+author_id: maximo
+---
+<span>
+  <a href="/2012/11/06/geographic-chat-app-with-nodejs/">Part one</a> | <a href="/2013/01/29/geographic-chat-app-with-nodejs-part3/">Part three</a>
+</span>
+<br />
+<br />In this series of posts we are going to show you how to use <a href="http://nodejs.org/">node.js</a>&nbsp;and&nbsp;<a href="http://socket.io/">Socket.IO</a>&nbsp;to build a simple chat application, and then mix it up with Google Maps and the Geolocation
+API to create a cool geographic app. We will use&nbsp;<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>&nbsp;with a modified css&nbsp;to get a nice look for the website.
+<br />
+<br />In the <a href="/2012/11/06/geographic-chat-app-with-nodejs/">last post</a> we showed you how to create a simple web server with Node.js. In this post we will show you how to use Socket.IO to send chat messages.
+<br />
+<br />Socket.IO is a framework for Node.js that allows the creation of real-time web based applications which, as we will show you next, lets you build something pretty neat in no time.
+<br />
+<br />As Node.js, Socket.IO is also event based. One great feature is that it allows you to easily define custom events. A socket owner can emit any events he wants, and listen to events that he is interested in.
+<br />
+<br />
+<p>Let's begin by defining the events we will use to communicate between the chat client and the server. First the events that the client will emit:
+</p>
+<ul>
+  <li><b><i>join</i></b>: To join the chat room.</li>
+  <li><b><i>message</i></b>: When sending a chat message.</li>
+</ul>
+
+<p>And now the events that the server will send to the clients:</p>
+<ul>
+  <li><b><i>user connected</i></b>: When a new user joins the chat room.</li>
+  <li><b><i>user disconnected</i></b>: When a user leaves the chat room.</li>
+  <li><b><i>new chat msg</i></b>: When a new chat message arrives.</li>
+</ul>
+<p>
+  The client will suscribe to these last three events in order to receive chat messages and update the number of users in the chat room.
+</p>
+
+<p>
+  Now that we have defined the events we can begin coding our Socket.IO-powered server. We will store the users information in a variable, so that we can broadcast the chat messages&nbsp;accordingly.
+</p>
+{% highlight js %}
+var connectedUsers = {};
+var io = require('socket.io');
+var webSocket = io.listen(httpServer);
+{% endhighlight %}
+
+<p>
+Here we are using Socket.IO with the Node HTTP server <a href="/2012/11/06/geographic-chat-app-with-nodejs/">we created</a>, but it can also be set to run standalone.
+</p>
+{% highlight js %}
+webSocket.sockets.on('connection', function(socket) {
+{% endhighlight %}
+
+<p>
+Inside this function we will add our event listeners. Setting a listener is really simple, just tell Socket.IO the name of the event and the callback function to handle it.
+</p>
+
+{% highlight js %}
+  socket.on('join', function(user, sendKey) {
+  user.key = Date.now();
+  connectedUsers[user.key] = user;
+  sendKey(user.key);
+  socket.set('userkey', user.key);
+{% endhighlight %}
+Here we take the data from the event, a user in this example, and stash it in a variable. The event callback can receive an arbitrary number of parameters.
+<br />There is a special case when the last parameter is a function, it will act as an acknowledgement. This acknowledgement can also contain data, in that way it resembles a remote function call.
+<br />
+<br />The socket object allows you to save data associated with the client session by using set, in this example we are saving a generated user id and passing it back to the client. This could be a nice way to set an authorization token.
+<br />
+<br />Finally, we want to notify users that are already in the chat room that another users has joined in.
+<br />
+{% highlight js %}
+socket.broadcast.emit("user connected", user);
+});
+{% endhighlight %}
+
+<p>
+The <i>broadcast</i> flag we use here tells Socket.IO to send the message to all the sockets that are connected to the server, except the one that triggered the event.
+</p>
+<p>
+  The other event is similar, we use <i>get</i> to retrieve the data we saved before.
+</p>
+
+{% highlight js %}
+socket.on('message', function(msg) {
+  socket.get('userkey', function(err, key) {
+    var user = connectedUsers[key];
+    if(user) {
+      var data = {
+        key : key,
+        sender : user.name,
+        message : msg
+      };
+      socket.broadcast.emit('new chat msg',data);
+    }
+  });
+});
+{% endhighlight %}
+
+<p>
+Socket.IO provides several default events, you might want to check the <a href="https://github.com/LearnBoost/socket.io/wiki/Exposed-events">docs</a>. Here we handle the disconnection of a client.
+</p>
+
+{% highlight js %}
+socket.on('disconnect', function() {
+  socket.get('userkey', function(err, key) {
+    var userInfo = connectedUsers[key];
+    if(userInfo) {
+      delete connectedUsers[key];
+      socket.broadcast.emit("user disconnected", key);
+    }
+  });
+});
+{% endhighlight %}
+
+<p>
+Now we need to work out the client side. In order to use Socket.IO from the browser you must add a reference to the client script. If you are using node.js as your web server then it will serve the file for you, just add the following reference to the
+HTML:
+</p>
+
+{% highlight html %}
+  <script src="/socket.io/socket.io.js"></script>
+{% endhighlight %}
+
+<p>
+Here we present a simplified version of the chat client, so that you don't get overwhelmed with presentation details and we can focus in the Socket.IO bits.
+</p>
+
+{% highlight js %}
+var user = {};
+var usersCount, messagesList, messageBox, sendButton, webSocket;
+
+function initialize(username) {
+ user.name = username;
+
+ webSocket = io.connect(window.location.hostname);
+ webSocket.on("user connected", addUser);
+ webSocket.on("user disconnected", removeUser);
+ webSocket.on('new chat msg', receiveChatMessage);
+
+ sendButton.on('click', sendChatMessage);
+
+ var userName = { name : user.name };
+
+ webSocket.emit('join', userName,
+ // Callback function
+ function(key){
+ user.key = key;
+ }
+ );
+}
+
+function addUser(user){
+ ++usersCount;
+}
+
+function removeUser(key){
+ --usersCount;
+}
+
+function receiveChatMessage(data) {
+ // Add the received message to the list
+ messagesList.append(data.message);
+}
+
+function sendChatMessage() {
+ // Obtain messsage from textarea
+ var messageVal = messageBox.val();
+ messagesList.append(messageVal);
+ // Empty textarea
+ messageBox.val('');
+ // Send the message
+ webSocket.send(messageVal);
+}
+
+{% endhighlight %}
+First we register listeners to each event, passing our event handlers. After that we emit a <i>join</i> message, which will allow us to enter the chat room and send messages. Notice that we use a callback function to receive a session key after connection,
+these acknowledgements come in real handy to return success or error messages.
+<br />
+<br />Here we use a shorthand version to emit the "messages" event, <i>socket.send</i>. This allows you to code against the WebSockets API leveraging Socket.IO cross-browser support.
+<br />
+<br />We hope that you have understood the basics on Socket.IO events, you can check and download the full source code from&nbsp;<a href="https://github.com/xmartlabs/map-chat">github</a>. In the next post we will use Socket.IO combined with Google Maps to
+send&nbsp;geographic updates in real time, and we will show you what you need to do to upload your Node app to <a href="http://www.heroku.com/">heroku</a>.
+<br />
+<br />Curious? You might want to give a try to&nbsp;<a href="http://xmart-chat.herokuapp.com/">our live demo</a>.
+<br />
+<p>
+Check out other posts in this series:
+</p>
+<br />Next - <a href="/2013/01/29/geographic-chat-app-with-nodejs-part3/">Part three</a>
+<br />Previous - <a href="/2012/11/06/geographic-chat-app-with-nodejs/">Part one</a>

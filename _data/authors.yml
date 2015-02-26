@@ -1,0 +1,30 @@
+mtnBarreto:
+  display_name: Martin Barreto
+  image: members/martin.jpg
+  twitter: mtnBarreto
+  github: mtnBarreto
+  profile_url: https://github.com/mtnBarreto
+agustin:
+  display_name: Agustin Hernandez
+  image: members/agustin.jpg
+  twitter: awstinh
+  github: agustinh17
+  profile_url: https://twitter.com/awstinh
+enrique:
+  display_name: Enrique Galindo
+  image: members/enrique.jpg
+  twitter: enrigalmig
+  github: enrigalmig
+  profile_url: https://github.com/enrigalmig
+alberto:
+  display_name: Alberto Attia
+  image: members/alberto.jpg
+  twitter: https://twitter.com/aattia
+  github: mtnBarreto
+  profile_url: https://twitter.com/aattia
+maximo:
+  display_name: Maximo Mussini
+  image: members/maximo.jpeg
+  twitter: maximomussini
+  github: ElMassimo
+  profile_url: https://github.com/ElMassimo
