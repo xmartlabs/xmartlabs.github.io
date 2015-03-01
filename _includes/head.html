@@ -1,8 +1,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>{% if page.title %}{{ page.title }} | Xmartlabs{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
@@ -14,6 +13,7 @@
   <link rel="shortcut icon" href="{{ "/images/favicon.ico" | prepend: site.baseurl }}" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fluidbox/1.4.3/jquery.fluidbox.min.js"></script>
+
   <script>
     $( document ).ready(function() {
       $('a.fluid-box').fluidbox();
