@@ -102,6 +102,11 @@ div.header{
     margin-bottom: 0px;
     top: 0px;
     text-align:center;
+
+    @include media-query($on-palm){
+      display: none;
+    }
+
     li {
       display: inline-block;
       text-align: left;
@@ -170,11 +175,11 @@ div.header{
     }
 }
 
-.site-nav {
+#site-nav {
     float: right;
     line-height: 56px;
 
-    .menu-icon {
+    #menu-icon {
         display: none;
     }
 
@@ -187,23 +192,25 @@ div.header{
             margin-left: 20px;
         }
     }
+    .trigger {
+        display: none;
+    }
 
     @include media-query($on-palm) {
         position: absolute;
         top: 9px;
         right: 30px;
         background-color: $background-color;
-        border: 1px solid $grey-color-light;
         border-radius: 5px;
         text-align: right;
 
-        .menu-icon {
+        #menu-icon {
             display: block;
             float: right;
             width: 36px;
-            height: 26px;
+            height: 30px;
             line-height: 0;
-            padding-top: 10px;
+            padding-top: 8px;
             text-align: center;
 
             > svg {
@@ -211,7 +218,7 @@ div.header{
                 height: 15px;
 
                 path {
-                    fill: $grey-color-dark;
+                    fill: $color_orange;
                 }
             }
         }
@@ -219,9 +226,30 @@ div.header{
         .trigger {
             clear: both;
             display: none;
+            a {
+              float: right;
+              clear: both;
+              color: $color_orange;
+              text-decoration: none;
+              @include font_black();
+              &::after {
+                position: relative;
+                bottom: 5px;
+                transition: 0.1s all linear;
+                background-color: $color_orange;
+                content: '';
+                display: block;
+                height: 4px;
+                opacity: 0;
+                margin-top: 6px;
+              }
+              &:hover::after {
+                opacity: 1;
+              }
+            }
         }
 
-        &:hover .trigger {
+        &.toggle-on .trigger {  /* &:hover .trigger { */
             display: block;
             padding-bottom: 5px;
         }
@@ -232,8 +260,6 @@ div.header{
         }
     }
 }
-
-
 
 /**
  * Site footer

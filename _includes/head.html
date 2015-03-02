@@ -16,6 +16,10 @@
 
   <script>
     $( document ).ready(function() {
+      $('#menu-icon').on( "touchend click", function( event ) {
+        $('#site-nav').toggleClass('toggle-on');
+        event.preventDefault();
+      });
       $('a.fluid-box').fluidbox();
     });
   </script>
