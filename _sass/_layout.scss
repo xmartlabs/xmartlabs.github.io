@@ -11,7 +11,7 @@ $media-width: 768px;
 /* orange */
 $color_blog_section_title: #EC7A31;
 $color_link: #EC7A31;
-$color_navbar: #00C3E6;
+$color_navbar: #3a3939;
 $color_navbar_text: #FFFFFF;
 $color_header: #3A3939;
 $color_orange: #EC7A31;
@@ -194,13 +194,14 @@ div.header{
     }
     .trigger {
         display: none;
+        padding-right: 5px;
     }
 
     @include media-query($on-palm) {
         position: absolute;
         top: 9px;
         right: 30px;
-        background-color: $background-color;
+        background-color: $color_navbar;
         border-radius: 5px;
         text-align: right;
 
@@ -218,7 +219,7 @@ div.header{
                 height: 15px;
 
                 path {
-                    fill: $color_orange;
+                    fill: $color_white;
                 }
             }
         }
@@ -229,14 +230,13 @@ div.header{
             a {
               float: right;
               clear: both;
-              color: $color_orange;
+              color: $color_white;
               text-decoration: none;
-              @include font_black();
+              @include font_normal();
               &::after {
                 position: relative;
                 bottom: 5px;
                 transition: 0.1s all linear;
-                background-color: $color_orange;
                 content: '';
                 display: block;
                 height: 4px;
