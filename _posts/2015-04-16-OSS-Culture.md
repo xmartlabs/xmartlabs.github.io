@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Xmartlabs Open Source Culture
-date: '2015-04-15T20:11:00.000-03:00'
+date: '2015-04-16T17:00:00.000-03:00'
 author: Martin Barreto
 categories: OSS
 author_id: mtnBarreto
@@ -30,6 +30,6 @@ There are two particular events that made me reflect on open source philosophy a
 
 2. About one month ago XLForm was selected to be included in [CocoaPods Testing Jam](http://blog.cocoapods.org/Test-Jammin/) because it is one of the [200 most popular](https://github.com/CocoaPods/search.cocoapods.org/blob/master/lib/models/pod.rb#L43-L56) CocoaPod libraries. The idea behind the Test Jam open source community event is to improve the quality of popular cocoaPods libraries adding test cases, making them less prone to error and more maintainable. CocoaPods Testing Jam will be taking part in April 18th & 19th, 2015 at SF, NY, London and other locations. We are really proud and extremely excited about this!
 
-Hopefully this post encourage you to join the amazing journey on the oss community if you're not already on board!
+Hopefully this post encourage you to join the amazing journey of the open source community if you're not already on board!
 
 Many thanks to [Santiago](https://twitter.com/bryant1410), [Helen](https://github.com/HelOlhausen) and [Agustin](https://twitter.com/awstinh) for reviewing this blog post!
