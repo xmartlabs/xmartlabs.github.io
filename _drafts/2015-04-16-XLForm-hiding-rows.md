@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "XLForm: Make rows invisible depending on other rows."
-date:   2015-04-16 10:38:56
+title:  "XLForm: Using NSPredicates to change form structure."
+date:   2015-04-17 15:38:56
 author: Mathias Claassen
 categories: XLForm
 author_id: mathias
@@ -13,7 +13,7 @@ Introduction
 ------------
 
 
-[XLForm] allows you to define dependencies between rows so that if the value of one row is changed, the behaviour of another one changes automatically.
+[XLForm] allows you to define dependencies between rows so that if the value of one row is changed, another row can be automatically set to invisible or disabled.
 
 The XLFormRowDescriptor and the XLFormSectionDescriptor both have a property called hidden which is an `id` object and which will define if the row or section should be shown or hidden. The property can be set with a NSPredicate, a NSString or a BOOL contained in a NSNumber.  When a NSString is set, a NSPredicate will be generated taking the string as format string. In order for this to work the string has to be sintactically correct.
 
@@ -41,13 +41,15 @@ An example predicate string could be the following:
 row.hidden = [NSString stringWithFormat:@"$%@ contains 'Music'", hobbyRow];
 {% endhighlight %}
 
-This string will insert the tag of the `hobbyRow` after the '$'. When the predicate is evaluated every tag variable gets substituted by the corresponding row descriptor. For this purpose the XLFormDescriptor has a dictionary which maps tags to rows. 
+This string will insert the tag of the `hobbyRow` after the '$'. When the predicate is evaluated every tag variable gets substituted by the corresponding row descriptor. For this purpose the XLFormDescriptor has a dictionary which maps tags to rows.
 
 When the argument is a NSString, a '.value' will be appended to every tag unless the tag is followed by '.isHidden' or '.isDisabled' (or '.value' obviously). This means that a row (or section) might depend on the `value` or the `hidden` or `disabled` properties of another row. This insertion has the consequence of shrinking the possible predicates that can be set with a NSString. If you have to set a complex predicate you may want to set NSPredicate directly as it will not be changed (or checked). Remember to append ".value" after each variable in this case.
 
 You can also set this property with a bool object which means the value of the property will not change unless manually set.
 
 The getter method will return the stored NSPredicate or whatever you assigned to it but to get the evaluated boolean value you there is the `isHidden` function. It will not re-evaluate the predicate each time it gets called but just when the value (or hidden/disabled status) of the rows it depends on changes. When this happens and the return value changes, it will automagically reflect that change on the form so that no other method must be called.
+
+When an incorrect predicate is set and it cannot be parsed then an exception will be thrown.
 
 ####Example
 
@@ -58,9 +60,11 @@ Suppose we have a form that questions the users hobbies. So we will have a multi
 So we need to define a section with the first question:
 {% highlight objc %}
 section = [XLFormSectionDescriptor formSectionWithTitle:@"Hobbies"];
-[form addFormSection:section];    
+[form addFormSection:section];
 
-XLFormRowDescriptor* hobbyRow = [XLFormRowDescriptor formRowDescriptorWithTag:kHobbies rowType:XLFormRowDescriptorTypeMultipleSelector title:@"Select Hobbies"];
+XLFormRowDescriptor* hobbyRow = [XLFormRowDescriptor formRowDescriptorWithTag:kHobbies
+                                                                      rowType:XLFormRowDescriptorTypeMultipleSelector
+                                                                        title:@"Select Hobbies"];
 hobbyRow.selectorOptions = @[@"Sport", @"Music", @"Films"];
 hobbyRow.value = @[];
 [section addFormRow:hobbyRow];
@@ -75,19 +79,27 @@ section.hidden = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"$
 
 Then we define some rows that depend on the value of the first row. They are just questions depending on the selected hobbies:
 {% highlight objc%}
-row = [XLFormRowDescriptor formRowDescriptorWithTag:kSport rowType:XLFormRowDescriptorTypeTextView title:@"Your favourite sportsman?"];
+row = [XLFormRowDescriptor formRowDescriptorWithTag:kSport
+                                            rowType:XLFormRowDescriptorTypeTextView
+                                              title:@"Your favourite sportsman?"];
 row.hidden = [NSString stringWithFormat:@"NOT $%@.value contains 'Sport'", hobbyRow];
 [section addFormRow:row];
-    
-row = [XLFormRowDescriptor formRowDescriptorWithTag:kFilm rowType:XLFormRowDescriptorTypeTextView title:@"Your favourite film?"];
+
+row = [XLFormRowDescriptor formRowDescriptorWithTag:kFilm
+                                            rowType:XLFormRowDescriptorTypeTextView
+                                              title:@"Your favourite film?"];
 row.hidden = [NSString stringWithFormat:@"NOT $%@ contains 'Films'", hobbyRow];
 [section addFormRow:row];
-    
-row = [XLFormRowDescriptor formRowDescriptorWithTag:kFilm2 rowType:XLFormRowDescriptorTypeTextView title:@"Your favourite actor?"];
+
+row = [XLFormRowDescriptor formRowDescriptorWithTag:kFilm2
+                                            rowType:XLFormRowDescriptorTypeTextView
+                                              title:@"Your favourite actor?"];
 row.hidden = [NSString stringWithFormat:@"NOT $%@ contains 'Films'", hobbyRow];
 [section addFormRow:row];
-    
-row = [XLFormRowDescriptor formRowDescriptorWithTag:kMusic rowType:XLFormRowDescriptorTypeTextView title:@"Your favourite singer?"];
+
+row = [XLFormRowDescriptor formRowDescriptorWithTag:kMusic
+                                            rowType:XLFormRowDescriptorTypeTextView
+                                              title:@"Your favourite singer?"];
 row.hidden = [NSString stringWithFormat:@"NOT $%@ contains 'Music'", hobbyRow];
 [section addFormRow:row];
 {% endhighlight %}
@@ -104,7 +116,7 @@ The XLFormDescriptor now has two collections of sections, one that contains all 
 
 As mentioned above, the form descriptor has a dictionary where all rows can be found by their tag. This means you should never have more than one row with the same tag. This dictionary is used mainly to substitute the variables of the NSPredicates, as these will just contain the tags of the wanted rows. It also makes searching for a row by tag faster than before.
 
-Additionally, the form descriptor will have another dictionary which stores the observers for each row in an array. If the observing object is a section descriptor then a reference to that section will be stored, but if it is a row then its tag will be stored in the dictionary. This dictionary does also store the dependencies for the `disabled` property in the XLFormRowDescriptor, but they will be stored in a separate key. These keys will be the concatenation of the referred rows tag with the corresponding string "-hidden" or "-disabled" depending on the property the dependency comes from (e.g. "switch-hidden" and/or "switch-disabled" for a row with tag = 'switch'). 
+Additionally, the form descriptor will have another dictionary which stores the observers for each row in an array. If the observing object is a section descriptor then a reference to that section will be stored, but if it is a row then its tag will be stored in the dictionary. This dictionary does also store the dependencies for the `disabled` property in the XLFormRowDescriptor, but they will be stored in a separate key. These keys will be the concatenation of the referred rows tag with the corresponding string "-hidden" or "-disabled" depending on the property the dependency comes from (e.g. "switch-hidden" and/or "switch-disabled" for a row with tag = 'switch').
 So the number of keys in the dictionary can rise up to 2 times the number of rows in the form.
 
 In order to avoid evaluating the predicate each time somebody checks if a row or section should be hidden, the last evaluated value will be stored in a cache. This cache is a simple private NSNumber property so that it will be initialized with nil but otherwise contain `@YES` or `@NO`.
