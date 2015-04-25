@@ -45,10 +45,10 @@ We stick to `NSPredicate` class to define conditions because NSPredicate provide
 
 ## How to use it
 
-This section will focus on the `hidden` property but `disabled` is analog. Both properties accept a `NSPredicate` value, a `NSString` value or a `NSNumber` boolean.
+This section will focus on the `hidden` property but the `disabled` one is analog. Both properties accept a `NSPredicate` value, a `NSString` value or a `NSNumber` boolean.
 
 
-By default the values of these properties is `@No` that means them will be visible and enabled all the time.
+By default the value of these properties is `@No` that means they will be visible and enabled all the time.
 
 To conditionally hide or disable a row we can set either a `NSPredicate` or a `NSString` that will be transformed internally to NSPredicate.
 
