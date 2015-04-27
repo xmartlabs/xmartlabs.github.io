@@ -17,20 +17,22 @@ Up to now, when you wanted a row to disappear when another row changes then you 
 
 # The New Way
 
-This post introduces a XLForm brand new feature to achieve the same and more with much less effort.
+This post introduces a brand new XLForm feature to achieve the same and more with much less effort.
 
-We started to dig deeper into a research process in order to find an elegant solution to declarative define when a row/section should be hidden or disabled (read-only mode).
+We started to dig deeper into a research process in order to find an elegant solution to declaratively define when a row/section should be hidden or disabled (read-only mode).
 
 We had many things in mind during this process:
 
 * XLForms needed to ensure backwards compatibility.
 * We wanted to define the conditions through an expressive language, to be able to support complex business logic.
 * We agreed that the best place to define a conditional state for a row is within that row, and not using another structure.
-* The order in which the rows and it's dependencies are declared will not affect the condition evaluation. This means that the developer can define these conditions even though the condition has dependencies over rows not added to DSL yet. 
-* Never re-evaluate `NSPredicates` conditions unless it's completely needed.
+* The order in which the rows and it's dependencies are declared will not affect the evaluation. This means that the developer can define these conditions even though the condition has dependencies over rows not added to DSL yet. 
+* Never re-evaluate conditions unless it's completely needed.
 
 
 ## Our solution
+
+We chose the `NSPredicate` class to define conditions because NSPredicate provides us with a powerful, expressive and standard language to do so. We could have taken another approach defining our own language and structure to express the conditions but the advantages of NSPredicate are clear and speak for themselves.
 
 We added `hidden` and `disabled` properties to `XLFormRowDescriptor` and `XLFormSectionDescriptor`. These properties can be set with an NSPredicate, a NSString or a NSNumber boolean.  When a NSString is set, a NSPredicate will be generated taking the string as the NSPredicate `format` parameter.
 
@@ -38,9 +40,6 @@ We added `hidden` and `disabled` properties to `XLFormRowDescriptor` and `XLForm
 @property id disabled;
 @property id hidden;
 {% endhighlight %}
-
-
-We stick to `NSPredicate` class to define conditions because NSPredicate provides us with a powerful, expressive and standard language to do so. We could have taken another approach defining our own language and structure to express the conditions but the advantages of NSPredicate are clear and speak for themselves.
 
 
 ## How to use it
@@ -64,7 +63,7 @@ the same predicate set up using a NSPredicate:
 row.hidden = [NSPredicate predicateWithFormat:@"$%@.value contains 'Music'", hobbyRow];
 {% endhighlight %}
 
-Notice that `%@` will be replaced by `hobbyRow` tag string (XLForm uses unique tags as an abstraction to identify rows). We can also get the same result writing the condition as (hobbyRowTag is the hobbyRow tag value):
+Notice that `%@` will be replaced by `hobbyRow`'s tag string (XLForm uses unique tags as an abstraction to identify rows). We can also get the same result writing the condition as (hobbyRowTag is the hobbyRow tag value):
 
 {% highlight objc %}
 row.hidden = [NSPredicate predicateWithFormat:@"$hobbyRowTag.value contains 'Music'"];
@@ -77,13 +76,7 @@ When the argument is a NSString, a `.value` will be appended to every tag unless
 
 When an incorrect predicate is set and it cannot be parsed then an exception will be thrown.
 
-<!-- This insertion has the consequence of shrinking the possible predicates that can be set with a NSString. If you have to set a complex predicate you may want to set NSPredicate directly as it will not be changed (or checked). Remember to append ".value" after each variable in this case. -->
-
-<!-- You can also set this property with a bool object which means the value of the property will not change unless manually set. -->
-
-<!-- The getter method ( `disabled` or `hidden`) will return the stored NSPredicate or whatever you assigned to it but  -->
-
-At any time you can get the `hidden` or `disabled` evaluated boolean value invoking `isHidden` or `isDisabled` methods respectively.
+At any time you can get the `hidden` or `disabled` evaluated boolean values invoking `isHidden` or `isDisabled` methods respectively.
 
 {% highlight objc %}
 -(BOOL)isDisabled;
@@ -154,25 +147,22 @@ You can find the full [source code][BlogExampleViewController] in the examples o
 
 Behind the scenes
 -----------------
-What does XLForm do to get this working?
+What does XLForm do to get this working? This section focuses a bit more on 
 
-The XLFormDescriptor now has two collections of sections, one that contains all sections and one that contains the visible sections. Similarly, the XLFormSectionDescriptor has a collection with all rows and one with shown rows. So when a predicate is evaluated and the result says that a row or section must be hidden (or shown) then that row or section will be removed (or added) from the corresponding collection of visible items.
+The XLFormDescriptor now has two collections of sections, one that contains all sections and one that contains the visible sections. Similarly, the XLFormSectionDescriptor has a collection with all rows and one with shown rows. So when a predicate is evaluated and the result says that a row or section must be hidden (or shown) then that row or section will be removed (or added) from the corresponding collection of visible items. A delegate method will be called to reflect the changes on the form.
 
 As mentioned above, the form descriptor has a dictionary where all rows can be found by their tag. This means you should never have more than one row with the same tag. This dictionary is used mainly to substitute the variables of the NSPredicates, as these will just contain the tags of the wanted rows. It also makes searching for a row by tag faster than before.
 
-Additionally, the form descriptor will have another dictionary which stores the observers for each row in an array. If the observing object is a section descriptor then a reference to that section will be stored, but if it is a row then its tag will be stored in the dictionary. This dictionary does also store the dependencies for the `disabled` property in the XLFormRowDescriptor, but they will be stored in a separate key. These keys will be the concatenation of the referred rows tag with the corresponding string "-hidden" or "-disabled" depending on the property the dependency comes from (e.g. "switch-hidden" and/or "switch-disabled" for a row with tag = 'switch').
-So the number of keys in the dictionary can rise up to 2 times the number of rows in the form.
+Additionally, the form descriptor will have another dictionary which stores the observers for each row in an array. This means we have all the dependencies in one place and they will update each time a predicate is updated. We will parse the predicate to get all the rows that it depends on and store this information in the dictionary. So that when a row changes we can re-evaluate all the predicates that depend on it just by getting the list of dependant objects from this dictionary. We do also separate those whose `disabled` predicate does depend on that row from those whose `hidden` predicate does.
 
-XLForm will not re-evaluate the predicate each time it gets called but just when the value (or hidden/disabled status) of the rows it depends on changes. When this happens and the return value changes, it will automatically reflect that change on the form.
+XLForm will not re-evaluate the predicates each time `isHidden` or `isDisabled` gets called but just when the value (or hidden/disabled status) of the rows it depends on changes. When this happens and the predicate's return value changes, it will automatically reflect that change on the form.
 
 In order to avoid evaluating the predicate each time somebody checks if a row or section should be hidden, the last evaluated value will be stored in a cache. This cache is a simple private NSNumber property so that it will be initialized with nil but otherwise contain `@YES` or `@NO`.
 
-To know when to reevaluate a predicate, there is a private boolean property that is true when one of the rows this object depends on has changed. So the next time the property is checked it will re-evaluate the predicate. In the case of the hidden property we immediately call the `isHidden` method because we want the form to update automatically and not just the next time somebody checks this hidden property. To make this automatic form update, the setter of the cache for the `hidden` value will immediately call a method to reflect that change.
+To know when to reevaluate a predicate, there is a private boolean property that is true when one of the rows this object depends on has changed. So the next time the property is checked it will re-evaluate the predicate. In the case of the hidden property we immediately call the `isHidden` method because we want the form to update automatically and not just the next time somebody checks this hidden property.
 
 
 That's it. I hope this post was helpful to you and that you will enjoy using this new feature!
-
-*******************In order for this to work the string has to be sintactically correct
 
 
 [XLForm]:      https://github.com/xmartlabs/XLForm
