@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "XLForm: Using NSPredicates to change form structure."
-date:   2015-04-17 15:38:56
+date:   2015-04-28 15:38:56
 author: Mathias Claassen
 categories: XLForm
 author_id: mathias
@@ -26,7 +26,7 @@ We had many things in mind during this process:
 * XLForms needed to ensure backwards compatibility.
 * We wanted to define the conditions through an expressive language, to be able to support complex business logic.
 * We agreed that the best place to define a conditional state for a row is within that row, and not using another structure.
-* The order in which the rows and it's dependencies are declared will not affect the evaluation. This means that the developer can define these conditions even though the condition has dependencies over rows not added to DSL yet. 
+* The order in which the rows and it's dependencies are declared will not affect the evaluation. This means that the developer can define these conditions even though the condition has dependencies over rows not added to DSL yet.
 * Never re-evaluate conditions unless it's completely needed.
 
 
@@ -147,7 +147,7 @@ You can find the full [source code][BlogExampleViewController] in the examples o
 
 Behind the scenes
 -----------------
-What does XLForm do to get this working? This section focuses a bit more on 
+What does XLForm do to get this working? This section focuses a bit more on
 
 The XLFormDescriptor now has two collections of sections, one that contains all sections and one that contains the visible sections. Similarly, the XLFormSectionDescriptor has a collection with all rows and one with shown rows. So when a predicate is evaluated and the result says that a row or section must be hidden (or shown) then that row or section will be removed (or added) from the corresponding collection of visible items. A delegate method will be called to reflect the changes on the form.
 
