@@ -8,7 +8,7 @@ author_id: mathias
 
 ---
 
-In almost every app that you build you will have a profile and settings view and they may also have many forms. Using [XLForm](https://github.com/xmartlabs/XLForm) we speed up the development time spent on these view controllers. XLForm allows us to define and manipulate forms dealing with a high level DSL abstraction (XLFormDescriptor, XLSectionDescriptor, XLRowDescriptor) to define any customized table view cell with a flexibility you might have never imagined before.
+In almost every app you might ever build you will have a profile and settings view and they may also have many forms. Using [XLForm](https://github.com/xmartlabs/XLForm) we speed up the development time spent on these view controllers. XLForm allows us to define and manipulate forms dealing with a high level DSL abstraction (XLFormDescriptor, XLSectionDescriptor, XLRowDescriptor) to define any customized table-view form with a flexibility you might have never imagined before.
 
 We have used XLForm in many apps and it's really worth it but at the same time we realized that we spent a considerable amount of time making a row visible or disabled depending on the value of another row or section.
 
@@ -147,7 +147,7 @@ You can find the full [source code][BlogExampleViewController] in the examples o
 
 Behind the scenes
 -----------------
-What does XLForm do to get this working? This section focuses a bit more on
+What does XLForm do to get this working?
 
 The XLFormDescriptor now has two collections of sections, one that contains all sections and one that contains the visible sections. Similarly, the XLFormSectionDescriptor has a collection with all rows and one with shown rows. So when a predicate is evaluated and the result says that a row or section must be hidden (or shown) then that row or section will be removed (or added) from the corresponding collection of visible items. A delegate method will be called to reflect the changes on the form.
 
