@@ -33,3 +33,9 @@ mathias:
   image: members/mathias.jpg
   github: mats-claassen
   profile_url: https://github.com/mats-claassen
+santiago:
+  display_name: Santiago Castro
+  image: members/santiago.jpg
+  twitter: https://twitter.com/bryant1410
+  github: bryant1410
+  profile_url: https://github.com/bryant1410
