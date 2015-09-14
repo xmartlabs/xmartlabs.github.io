@@ -13,28 +13,28 @@ We are incredibly excited to announce Eureka!, our first Swift open source proje
 
 April last year we released XLForm, an open source obj-c iOS library to build dynamic complex forms based on a DSL. Luckily it has been largely used by iOS community and in thousands of apps saving a lot of development time.
 
-After Swift release a huge part of the iOS community started to use XLForm from Swift projects. We added support for Swift but we were not able to use all of the Swift language benefits so we rethought XLForm and built something from scratch following the swift way and taking advantage of all Swift language capabilities.
+After Swift release a huge part of the iOS community started to use [XLForm] from Swift projects. We added support for Swift but we were not able to use all of the Swift language benefits so we rethought XLForm and built something from scratch following the swift way and taking advantage of all Swift language capabilities.
 
 #**About Eureka!**
 
-Eureka is a library that can be used to create dynamic table-view forms and which uses a high level DSL abstraction to define the forms. Sounds familiar? (hint: XLForm)
+Eureka is a library that can be used to create dynamic table-view forms and which uses a high level DSL abstraction to define the forms. Sounds familiar? (hint: [XLForm])
 
-##What's make Eureka so special?
+##What makes Eureka so special?
 
 Eureka was originally designed to be:
 
-* Elegant, concise syntax and super readable.
-* Fully customizable.
-* Safe.
-* Powerful and Flexible.
-* Extensible.
-* Support dynamic table-view forms
+* [*Elegant, concise syntax and super readable*](#elegant-concise-readable)
+* [*Support dynamic table-view forms*](#dynamic-forms)
+* [*Fully customizable*](#fully-customizable)
+* [*Safe*](#safe)
+* [*Powerful and Flexible*](#powerful-and-flexible)
+* [*Extensible*](#extensible)
 
-Eureka takes advantage of Swift language capabilities such as functional, generics and protocol oriented programming, operators, protocol extensions and much more to accomplish these design goals.  
+Eureka takes advantage of Swift language capabilities such as [generics], functional and protocol oriented programming, operators, protocol extensions and much more to accomplish these design goals.  
 
 Let's deep into what we mean by each of the listed points.
 
-### Elegant, concise syntax and super readable
+### Elegant, concise syntax and super readable <a name="elegant-concise-readable"></a>
 
 Eureka uses a chainable approach along with custom swift operators to declare a table-view form.
 
@@ -55,13 +55,13 @@ self.form +++=  DateRow("Date") {
            <<<  PhoneRow("Phone") { $0.placeholder = "Phone" }
 {% endhighlight %}
 
-###Support dynamic table-view forms
+###Support dynamic table-view forms <a name="dynamic-forms"></a>
 
-Eureka provides a very powerful DSL used to create a form, basically a form is represented by a `Form` instance that contains   `Section`s which finally contains rows. This data structure is identical to how table-view deals with the sections and cells.
-Typically any form we might build needs to make a form row or section visible/invisible depending on a certain condition or action. To address this problem Eureka keeps track of any change made on the `Form` and update the `FormViewController` table view accordingly and on the fly. This means that any change made through insertion, deletion or replacement of either a row or a section will be reflected on the `FormViewController` tableView.
-Based on that using Eureka you made changes working with the Eureka DSL and you don't need to deal with table-view dataSource and delegate any more.
+Eureka provides a very powerful DSL used to create a form, basically a form is represented by a `Form` instance that contains   Sections which finally contain Rows. This data structure is identical to how table-views deal with the sections and cells.
+Typically any form we might build needs to make a row or section visible/invisible depending on a certain condition or action. To address this problem Eureka keeps track of any change made on the `Form` and updates the `FormViewController` table view accordingly and on the fly. This means that any change made through insertion, deletion or replacement of either a row or a section will be reflected on the tableView of the `FormViewController`.
+Based on that, you do not have to use delegates and data sources for table views anymore, changing Eureka's DSL is enough.
 
-### Fully customizable
+###Fully customizable
 
 Typically there is no need to define a new `Row` to customize the appearance of a row or a cell.
 
@@ -96,7 +96,7 @@ let segmentedRow =  SegmentedRow<Emoji>("Emoji"){
                       $0.isDisabled = true // disable the row by default
                     }
 // Every Row has a cellSetup and cellUpdate method that receive a function as a parameter and
-// return the row concrete type instance.
+// return the concrete row instance.
 let nameRow =  NameRow("Name").cellSetup { cell, row in
                                 cell.textField.placeholder = "Your name ..."
                               }
@@ -109,9 +109,9 @@ Notice that the parameter function type is `(NameCell, NameRow) -> ()` for NameR
 
 ### Safe
 
-Each Eureka `Row` allocates a **strongly typed** value and any form definition and configuration is made over specific concrete objects types.
+Eureka uses Swift's [type safety] to help avoiding mistakes while developing. Each Eureka `Row` allocates a **strongly typed** value and any form definition and configuration is made over specific concrete object types.
 
-For example in the code example shown above `$0` is an instance of `DateRow`, `CheckRow` and `SegmentedRow<Emoji>` in the first, second and third row respectively. CheckRow's `value` property type is `Bool` whereas DateRow's `value` property type is `NSDate`. Similarly SegmentedRow<Emoji>'s `options` array property only stores `Emoji` objects and `options` is not available in `CheckRow` nor `DateRow`.
+For example in the code example shown above `$0` is an instance of `DateRow`, `CheckRow` and `SegmentedRow<Emoji>` in the first, second and third row respectively. CheckRow's 'value' property type is `Bool` whereas DateRow's 'value' property type is `NSDate`. Similarly SegmentedRow<Emoji>'s `options` array property only stores `Emoji` objects and 'options' is not available in `CheckRow` nor `DateRow`.
 
 Additionally Eureka makes sure that each new user defined `Row` has a specific value type and a specific TableViewCell type, this is possible combining Swift Generics and Type Constraints. By definition any `Row` must extend from `Row<T: Equatable, CellType: GenericCellProtocol where CellType: BaseCell, CellType.ValueType == T>` class ensuring that each `Row` has a defined value type `T` and works with a specific table view cell `CellType` which holds a row of type `T`.
 
@@ -130,11 +130,11 @@ let segmentedRow =  SegmentedRow<Emoji>("Emoji"){
                     .onCellSelection { cell, row in print("Cell was selected") }
 {% endhighlight %}
 
-#### Form and Section conforms to RangeReplaceableCollectionType, MutableCollectionType
+#### Form and Section conform to RangeReplaceableCollectionType, MutableCollectionType
 
-As you may know, Eureka `Forms` contains a list of `Section` and a section contains a list of rows. We made `Form` and `Section` conform to `RangeReplaceableCollectionType` and `MutableCollectionType`, both "extends" from the well known `CollectionType`.
+As mentioned before, Eureka `Forms` contain a list of `Sections` and a section contains a list of `Rows`. We made `Form` and `Section` conform to `RangeReplaceableCollectionType` and `MutableCollectionType`, which both "extend" from the well known [CollectionType] protocol.
 
-Doing that we gain for free a lot of helpers and behaviour and we are able to iterate over the collection, use subscript to access and modify a Section or a row, make use of some cool functions like map, filter, first, appendContentsOf, removeAtIndex, removeRange, replaceRange, reduce and much much more.
+Doing that we gain for free a lot of helpers and behaviour and we are able to iterate over the collection, use subscript to access and modify a Section or a Row, make use of some cool functions like map, filter, first, removeRange, reduce and much much more.
 
 Let's see this in action assuming form is an instance of Form:
 
@@ -142,7 +142,7 @@ Let's see this in action assuming form is an instance of Form:
 // let's get second form section and append a new DateRow
 let section_two = form[1] <<< DateRow("Date") { $0.value = NSDate() } // we can also use append instead of <<< operator
 
-// What about completle replace section two
+// What about replacing section two?
 form[1] = newSection // ;)
 
 // lets add a new button row to all sections
@@ -150,7 +150,7 @@ for (index, section) in form.enumerate() {
     section <<< ButtonRow("Button\(index)") { $0.title = "Some title" }
 }
 
-// replace rows from 3 to 7 by a checkRow
+// replace rows from 3 to 7 with a checkRow
 section_two.replaceRange(3..<7, with: [CheckRow("checkRow")])
 
 // we can also look up for CheckRows inside a section by..
@@ -166,10 +166,20 @@ section += [newRow1, newRow2, newRow3]
 
 ###Extensible
 
-Adding a new `Row` definition is super simple by extending `Row<Type, CellType>` and conforming to `RowProtocol`. The basic behaviour of the row is inherited either from the superclass or added through protocol extension. Based on that you should only provide the row definition and the UITableViewCell that the `Row` handles. Eureka provides many rows by default that actually has  no a conceptual difference from a user defined row.
+Adding a new `Row` definition is super simple by extending `Row<Type, CellType>` and conforming to `RowProtocol`. The basic behaviour of the row is inherited either from the superclass or added through protocol extension. Based on that you should only provide the row definition and the UITableViewCell that the `Row` handles. Eureka provides many rows by default that actually have no conceptual difference from a user defined row.
+
+###And we are planning more...
+
+We understand that Eureka's first version is very capable and powerful but we plan to enhance it even further. Among what we plan to improve is adding a way to hide and show rows more easily and adding some inline rows.
 
 
 This post is intended to briefly introduce Eureka and some of its architecture insights.
 If you are interested in how to use Eureka I would suggest you to take a look at github repository documentation.
 
 If you liked what you have read, want to suggest some feature, contribute to the project or you need some help on how to use it please let us know.
+
+
+[XLForm]: http://github.com/xmartlabs/XLForm
+[type safety]: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
+[CollectionType]: https://developer.apple.com/library/prerelease/ios/documentation/Swift/Reference/Swift_CollectionType_Protocol/index.html
+[generics]: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html
