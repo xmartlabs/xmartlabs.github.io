@@ -1,13 +1,13 @@
 ---
 layout: post
 title: Introducing Eureka! - Elegant iOS forms in Pure Swift 2
-date: '2015-09-14T17:00:00.000-03:00'
+date: '2015-09-29T10:00:00.000-03:00'
 author: Martin Barreto
 categories: Eureka,Forms
 author_id: mtnBarreto
 ---
 
-We are incredibly excited to announce Eureka!, our first Swift open source project designed to easily build dynamic table-view forms.
+We are incredibly excited to announce [Eureka!], our first Swift open source project designed to easily build dynamic table-view forms.
 
 #**Why we built Eureka!**
 
@@ -105,7 +105,7 @@ let nameRow =  NameRow("Name").cellSetup { cell, row in
                               }
 {% endhighlight %}
 
-Notice that the parameter function type is `(NameCell, NameRow) -> ()` for NameRow and is `(SegmentedRow<Emoji>, SegmentedCell<Emoji>) -> ()` for SegmentedRow<Emoji> row.
+Notice that the parameter function type is `(NameCell, NameRow) -> ()` for `NameRow` and is `(SegmentedCell<Emoji>, SegmentedRow<Emoji>) -> ()` for `SegmentedRow<Emoji>`.
 
 ### Safe
 
@@ -114,7 +114,7 @@ Eureka uses Swift's [type safety] to help avoiding mistakes while developing. Ea
 For example in the code example shown above `$0` is an instance of `SegmentedRow<Emoji>` and its `value` property type is `Emoji` whereas NameRow's `value` property type is `String`. Similarly `SegmentedRow<Emoji>`'s `options` array property only stores `Emoji` instances and `options` is not available in `NameRow`.
 The same applies to any chainable method we invoke to set up a row, for example `cell` and `row` parameters of `cellUpdate` and `cellSetup` closure are also strongly typed.
 
-Additionally Eureka makes sure that each new user defined `Row` has a specific value type and a specific TableViewCell type, this is possible combining Swift Generics and Type Constraints. By definition any `Row` must extend from `Row<T: Equatable, CellType: GenericCellProtocol where CellType: BaseCell, CellType.ValueType == T>` class ensuring that each `Row` has a defined value type `T` and works with a specific table view cell `CellType` which holds a row of type `T`.
+Additionally Eureka makes sure that each new user defined `Row` has a specific value type and a specific TableViewCell type, this is possible combining Swift Generics and Type Constraints. By definition any `Row` must extend from `Row<T: Equatable, Cell: CellType where Cell: BaseCell, Cell.Value == T>` class ensuring that each `Row` has a defined value type `T` and works with a specific table view cell `Cell` which holds a row of type `T`.
 
 I can ensure Eureka is super safe either during form creation or when defining new row and cell types.
 
@@ -167,21 +167,22 @@ section += [newRow1, newRow2, newRow3]
 
 ###Extensible
 
-Adding a new `Row` definition is super simple by extending `Row<Type, CellType>` and conforming to `RowProtocol`. The basic behaviour of the row is inherited either from the superclass or added through protocol extension. Based on that you should only provide the row definition and the UITableViewCell that the `Row` handles. Eureka provides many rows by default that actually have no conceptual difference from a user defined row.
+Adding a new `Row` definition is super simple by extending `Row<T, Cell>` and conforming to `RowType`. The basic behaviour of the row is inherited either from the superclass or added through protocol extension. Based on that you should only provide the row definition and the UITableViewCell that the `Row` handles. Eureka provides many rows by default that actually have no conceptual difference from a user defined row.
 
 ###And we are planning more...
 
-We understand that Eureka's first version is very capable and powerful but we plan to enhance it even further. Among what we plan to improve is adding a way to hide and show rows more easily and adding some inline rows.
-
+We understand that Eureka's first version is very capable and powerful but we plan to enhance it even further. Among what we plan to improve is adding more row types, inline row support and multivalued sections.
 
 This post is just intended to briefly introduce Eureka and some of its architecture insights.
-If you are interested in how to use Eureka I would suggest you to take a look at its github repository [readme].
+If you are interested in how to use Eureka I would suggest you to take a look at its [github repository readme], You can also run the example project and  play with Eureka playground that are contained in Eureka workspace.
 
-If you liked what you have read, want to suggest some feature, contribute to the project or you need some help on how to use it please let us know.
-
+If you liked what you have read, want to suggest some feature, contribute to the project or you need some help on how to use it please drop us a line on [twitter].
 
 [XLForm]: http://github.com/xmartlabs/XLForm
 [type safety]: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
 [CollectionType]: https://developer.apple.com/library/prerelease/ios/documentation/Swift/Reference/Swift_CollectionType_Protocol/index.html
 [generics]: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html
-[readme]: https://github.com/xmartlabs/Eureka
+[github repository readme]: https://github.com/xmartlabs/Eureka
+[Eureka!]: https://github.com/xmartlabs/Eureka
+[Eureka github repository and Examples]: https://github.com/xmartlabs/Eureka
+[twitter]: https://twitter.com/xmartlabs
