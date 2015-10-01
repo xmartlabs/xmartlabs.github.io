@@ -80,7 +80,7 @@ NameRow.defaultCellUpdate = { cell, row in cell.textField?.font =  UIFont.system
 CheckRow.defaultCellSetup = { cell, row in cell.tintColor = UIColor.orangeColor() }
 {% endhighlight %}
 
-Notice that the cell and row parameters are strongly typed and these 3 method are injected automatically through protocol extensions since all rows should conform to `RowProtocol`.
+Notice that the cell and row parameters are strongly typed and these 3 method are injected automatically through protocol extensions since all rows should conform to `RowType`.
 
 #### Individual customization
 
