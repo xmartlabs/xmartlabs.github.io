@@ -105,7 +105,7 @@ let nameRow =  NameRow("Name").cellSetup { cell, row in
                               }
 {% endhighlight %}
 
-Notice that the parameter function type is `(NameCell, NameRow) -> ()` for `NameRow` and is `(SegmentedCell<Emoji>, SegmentedRow<Emoji>) -> ()` for `SegmentedRow<Emoji>`.
+Notice that the parameter function type is `(NameCell, NameRow) -> ()` for `NameRow` and is (SegmentedCell<Emoji>, SegmentedRow<Emoji>) -> () for `SegmentedRow<Emoji>`.
 
 ### Safe
 
@@ -114,7 +114,7 @@ Eureka uses Swift's [type safety] to help avoiding mistakes while developing. Ea
 For example in the code example shown above `$0` is an instance of `SegmentedRow<Emoji>` and its `value` property type is `Emoji` whereas NameRow's `value` property type is `String`. Similarly `SegmentedRow<Emoji>`'s `options` array property only stores `Emoji` instances and `options` is not available in `NameRow`.
 The same applies to any chainable method we invoke to set up a row, for example `cell` and `row` parameters of `cellUpdate` and `cellSetup` closure are also strongly typed.
 
-Additionally Eureka makes sure that each new user defined `Row` has a specific value type and a specific TableViewCell type, this is possible combining Swift Generics and Type Constraints. By definition any `Row` must extend from `Row<T: Equatable, Cell: CellType where Cell: BaseCell, Cell.Value == T>` class ensuring that each `Row` has a defined value type `T` and works with a specific table view cell `Cell` which holds a row of type `T`.
+Additionally Eureka makes sure that each new user defined `Row` has a specific value type and a specific TableViewCell type, this is possible combining Swift Generics and Type Constraints. By definition any `Row` must extend from **Row<T: Equatable, Cell: CellType where Cell: BaseCell, Cell.Value == T>** class ensuring that each `Row` has a defined value type `T` and works with a specific table view cell `Cell` which holds a row of type `T`.
 
 I can ensure Eureka is super safe either during form creation or when defining new row and cell types.
 
@@ -165,11 +165,11 @@ section += [newRow1, newRow2, newRow3]
 {% endhighlight %}
 
 
-###Extensible
+### Extensible
 
 Adding a new `Row` definition is super simple by extending `Row<T, Cell>` and conforming to `RowType`. The basic behaviour of the row is inherited either from the superclass or added through protocol extension. Based on that you should only provide the row definition and the UITableViewCell that the `Row` handles. Eureka provides many rows by default that actually have no conceptual difference from a user defined row.
 
-###And we are planning more...
+### And we are planning more...
 
 We understand that Eureka's first version is very capable and powerful but we plan to enhance it even further. Among what we plan to improve is adding more row types, inline row support and multivalued sections.
 
