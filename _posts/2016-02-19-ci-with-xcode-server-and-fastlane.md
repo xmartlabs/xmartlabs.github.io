@@ -187,12 +187,11 @@ With the IPA generated and accessible from our after trigger, the next step is u
 {% highlight ruby %}
 require './libs/utils.rb'
 
-fastlane_version '1.49.0'
+fastlane_version '1.63.1'
 
 default_platform :ios
 
-platform :ios do
-  
+platform :ios do  
   before_all do
     ENV["SLACK_URL"] = "https://hooks.slack.com/services/#####/#####/#########"
   end
@@ -278,15 +277,17 @@ platform :ios do
       message: "Version bump to #{version_number} (#{build_number}) by CI Builder"
     )
 
-    ipa_folder = "#{ENV['XCS_DERIVED_DATA_DIR']}/deploy/#{version_number}.#{build_number}/"
-    ipa_path = "#{ipa_folder}/#{target}.ipa"
-    sh "mkdir -p #{ipa_folder}"
-    sh "xcrun xcodebuild -exportArchive -archivePath \"#{ENV['XCS_ARCHIVE']}\" -exportPath \"#{ipa_path}\" -IDEPostProgressNotifications=YES -DVTAllowServerCertificates=YES -DVTSigningCertificateSourceLogLevel=3 -DVTSigningCertificateManagerLogLevel=3 -DTDKProvisioningProfileExtraSearchPaths=/Library/Developer/XcodeServer/ProvisioningProfiles"
+    if deliver_flag != 0
+      ipa_folder = "#{ENV['XCS_DERIVED_DATA_DIR']}/deploy/#{version_number}.#{build_number}/"
+      ipa_path = "#{ipa_folder}/#{target}.ipa"
+      sh "mkdir -p #{ipa_folder}"
+      sh "xcrun xcodebuild -exportArchive -archivePath \"#{ENV['XCS_ARCHIVE']}\" -exportPath \"#{ipa_path}\" -IDEPostProgressNotifications=YES -DVTAllowServerCertificates=YES -DVTSigningCertificateSourceLogLevel=3 -DVTSigningCertificateManagerLogLevel=3 -DTDKProvisioningProfileExtraSearchPaths=/Library/Developer/XcodeServer/ProvisioningProfiles -exportOptionsPlist './ExportOptions.plist'"
 
-    deliver(
-      force: true,
-      ipa: ipa_path
-    ) if deliver_flag != 0
+      deliver(
+        force: true,
+        ipa: ipa_path
+      )
+    end
 
     add_git_tag(tag: tag_path)
     
@@ -302,7 +303,7 @@ platform :ios do
   desc "Deploy a new version of MyApp Staging to the App Store"
   lane :beta do
     ENV['XL_BRANCH'] = current_branch
-    ENV['XL_DELIVER_FLAG'] = '1'
+    ENV['XL_DELIVER_FLAG'] ||= '1'
     ENV['XL_TARGET_PLIST_FILE'] = './MyApp Staging-Info.plist'
     ENV['XL_TARGET'] = 'MyApp Staging'
     ENV['XL_TAG_LINK'] = 'https://bitbucket.org/xmartlabs/MyApp/src/?at='
@@ -313,7 +314,7 @@ platform :ios do
   desc "Deploy a new version of MyApp to the App Store"
   lane :production do
     ENV['XL_BRANCH'] = current_branch
-    ENV['XL_DELIVER_FLAG'] = '1'
+    ENV['XL_DELIVER_FLAG'] ||= '1'
     ENV['XL_TARGET_PLIST_FILE'] = './MyApp-Info.plist'
     ENV['XL_TARGET'] = 'MyApp'
     ENV['XL_TAG_LINK'] = 'https://bitbucket.org/xmartlabs/MyApp/src/?at='
@@ -330,8 +331,26 @@ Some additional notes to previous `Fastfile`:
 * Add two prebuild lanes for both production and staging environments.
 * Build, git, deploy stuff is encapsulated in the `build` lane. This allow as to have production and staging lanes that, basically, will setup some parameters and call to `build`
 * I added some Fastlane action to keep bot's working copy exactly the same to repository. `ensure_git_status_clean` will check if bot's working folder has changes and will fail in such case. As we are changing local files on our `deploy` lane, if something went wrong we'll want to reset all of them. So I added the action `reset_git_repo` on `error` block.
+* The command `xcrun xcodebuild --exportArchive` requires a configuration file specified with the option `-exportOptionsPlist`. I created ExportOptions.plist within fastlane folder and its content its similar to:
 
-Some settings are done in the `Appfile`:
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>teamID</key>
+        <string><TEAM_ID></string>
+        <key>method</key>
+        <string>app-store</string>
+        <key>uploadSymbols</key>
+        <true/>
+        <key>uploadBitcode</key>
+        <true/>
+</dict>
+</plist>
+{% endhighlight %}
+
+Some settings, like app's identifier, are done in the `Appfile`:
 
 {% highlight ruby %}
 apple_dev_portal_id "miguel@xmartlabs.com"
@@ -434,10 +453,18 @@ To commit changelog changes and build number bump we need to have access to the 
    echo 'ssh-add ~/.ssh/id_rsa_github' >> ~/.bash_login
    {% endhighlight %}
 4. Determine which key should be used to access git repo by changing `~/.ssh/config` file, for example add next lines:
-    ```    
+   {% highlight text %}
     Host github.com
        HostName github.com
      IdentityFile ~/.ssh/id_rsa_github
-    ```
+   {% endhighlight %}
 
 This will be helpful additionally to fetch git submodules.
+
+### Invalid Signature. A sealed resource is missing or invalid.
+
+If the upload to iTunes fails with an error similar "Invalid Signature. A sealed resource is missing or invalid." it may happen because the export archive command is not receiving the option `-exportOptionsPlist`. Make sure that you are setting it and the path to the file passed is OK. The full error message is:
+
+{% highlight text %}
+parameter ErrorMessage = ERROR ITMS-90035: "Invalid Signature. A sealed resource is missing or invalid. Make sure you have signed your application with a distribution certificate, not an ad hoc certificate or a development certificate. Verify that the code signing settings in Xcode are correct at the target level (which override any values at the project level). Additionally, make sure the bundle you are uploading was built using a Release target in Xcode, not a Simulator target. If you are certain your code signing settings are correct, choose "Clean All" in Xcode, delete the "build" directory in the Finder, and rebuild your release target. For more information, please consult https://developer.apple.com/library/ios/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html
+{% endhighlight %}
