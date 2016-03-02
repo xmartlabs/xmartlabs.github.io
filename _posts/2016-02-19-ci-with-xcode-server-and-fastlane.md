@@ -9,15 +9,15 @@ author_id: remer
 
 # CI with Xcode Server & Fastlane
 
-On this post I'm going to write about my experience and the problems I found when setting up Xcode Server for CI and automatic deployment to iTunnes in Xmartlabs. I'm going to let you know how I could solve some problems hoping it may help somebody on the same situation. There is a lot of blogs that explain on how to setup Xcode Server and get a bot building a project and running test. They will help with that stuff, which works out of the box, but I personally didn't find help on the errors happened when trying to make something more sophistcated.
+On this post I'm going to write about my experience and the problems I found when setting up Xcode Server for CI and automatic deployment to iTunes at Xmartlabs. I'm going to let you know how I could solve some problems hoping it may help somebody in the same situation. There are a lot of blogs that explain how to setting up Xcode Server, creating an integration bot and exploring the results on Xcode (issue tracking, tests code coverage, etc). Getting help on those points is useful when starting but at the same time it's pretty easy getting them working, and when you'll try to make something more sophisticated you may get some errors and won't not find many resources where to search for a solution.
 
-Why did we try to setup our CI server? Well, almost everybody knows the goodness of having a CI server: automatically build your project on changes in the code, perform tests, detect any issue on latest commits very quick, notify results only to interested people, and a long list of etc. Additionally, all of these loved features are now included within Xcode! We though that would be really nice give it a try... later we proved that not everything was going to be so easy. But finally, we got our bots running, building, testing, creating releases, commiting tags and **uploading builds to iTunnes**. A happy ending for this story.
+Why did we try to setup our CI server? Well, almost everybody knows the advantages of having a CI server; server can automatically build your project when somebody pushes some change, perform tests, detect any issue on latest commits very quick, notify results only to interested people, and a long list of etc. Additionally, all of these popular features are now included within Xcode! We though that would be really nice to give it a try... later we proved that not everything was going to be so easy. But finally, we got our bots running, building, testing, creating releases, commiting tags and **uploading builds to iTunes**. A happy ending for this story.
 
 ## Setting up the server
 
-The guide [Xcode Server and Continuous Integration Guide](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/xcode_guide-continuous_integration/) from Apple will give you a good introduction on how to setup Xcode Server and how it will work. I would recommend to read it first. I'm not going to deep into the basics of setting up Xcode Server because it is well done there and on many other blogs.
+The guide [Xcode Server and Continuous Integration Guide](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/xcode_guide-continuous_integration/) from Apple will give you a good introduction on how to setup and use Xcode Server. I recommend you read the guide first because I am not going to deep into the basics of setting up Xcode Server.
 
-After we have installed the Server app and enabled Xcode service, we have to install [Cocoapods](https://cocoapods.org/) and [Fastlane](https://fastlane.tools/), these are the tools that we usually use in Xmartlabs. To prevent permissions issues we will install all the gems just for the builder user using `gem install --user-install some_gem`. Additionally we need to create a symlink to Cocoapods and Fastlane binaries in order to access them when running a trigger from our bot.
+After we have installed the Server app and enabled Xcode service, we have to install [Cocoapods](https://cocoapods.org/) and [Fastlane](https://fastlane.tools/), these are the tools that we usually use at Xmartlabs. To prevent permissions issues we will install all the gems just for the builder user using `gem install --user-install some_gem`. Additionally we need to create a symlink to Cocoapods and Fastlane binaries in order to access them when running a trigger from our bot.
 
 Before start, add ruby bin folder to builder's path - depending on the ruby's version - add `export PATH="$PATH:/var/_xcsbuildd/.gem/ruby/2.0.0/bin"` to `~/.bashrc` and `~/.bash_login`. Now lets go to install these gems:
 
@@ -32,7 +32,7 @@ gem install --user-install fastlane
 ln -s `which fastlane` /Applications/Xcode.app/Contents/Developer/usr/bin/fastlane
 {% endhighlight %}
 
-An nice feature of Xcode Server is the hability to send an email to selected people depending on the integration result. For example, if the integration fails because the project is not compiling or some tests are not passing, the bot can send an email to the last commiters notifying that the build has been broken. If you are planning using a gmail account to send emails you have to change the settings on the Mail service on Server app. First enable the Mail service on Server. Then check the option *Relay outgoing mail through ISP*, on the Relay option dialog you have to put `smtp.gmail.com:587` in *Outgoing Mail Relay*, enable authentication and enter valid credentials. That's all, you have set up your Server to send email using your gmail account.
+A nice feature of Xcode Server is the ability to send an email to selected people depending on the integration result. For example, if the integration fails because the project is not compiling, or some tests are not passing, the bot can send an email to the last commiters notifying that the build has been broken. If you are planning to use a Gmail account to send emails, you have to change the settings on the Mail service on Server app. First enable the Mail service on Server. Then check the option *Relay outgoing mail through ISP*, on the Relay option dialog you have to put `smtp.gmail.com:587` in *Outgoing Mail Relay*, enable authentication and enter valid credentials. That's all, you have set up your Server to send email using your gmail account.
 
 ![Mail setup](/images/remer-xcode-server/mail-setup.png)
 
@@ -44,34 +44,34 @@ First we are going to make a *sanity* bot to see if the basics are working well.
 
 1. Open your project
 2. Select menu option Product > Create Bot
-3. Follow the creation wizzard, it is not so hard to complete. You may encount some difficult when setting git credentials. I opted to create a ssh key and use it for my bot. So I ended selecting *Existing SSH Keys* and using the same key for all my bots.
+3. Follow the creation wizzard, it is not too hard to complete. You may encounter some difficulties when setting git credentials. I opted to create a ssh key and use it for my bot. So I ended up selecting *Existing SSH Keys* and using the same key for all my bots.
 4. Integrate it and see if everything is OK
 
 ### Tester bot
 
-Now lets add more functionalities to this bot, If you didn't yet. Go to edit the previous bot, and make next changes:
+Now lets add more functionalities to this bot, if you haven't yet. Go to edit the previous bot, and make changes next:
 
-1. On the **Schedule** of the bot's settings, change the schedule to *On Commit*, this way the bot will automatically run when somebody push a commit to the selected remote/branch.
+1. On the **Schedule** of the bot's settings, change the schedule to *On Commit*, this way the bot will automatically run when somebody pushes a commit to the selected remote/branch.
 2. In this same tab, check the option to *Perform test action*
 3. In the *Devices* tab you can select on which specific devices run the tests or do it in all of them.
 3. Send an email with the result
 
 ![After trigger email](/images/remer-xcode-server/after-trigger-email.png)
 
-> Something cool is that email will be sent to all commiters that may introduced some issue and you can specify additionally receivers.
+> Something cool is that the email will be sent to all commiters that may introduced some issue and you can specify additional receivers.
 
-Now our bot is able to detect issues while we are working on the project, we'd like to receive an email notification just when something went wrong.
+Now that our bot is able to detect issues while we are working on the project, we'd like to receive an email notification just when something went wrong.
 
 ### Deployer bot
 
-Now we want that our bot be responsible for building and uploading the result of each build to iTunes Connect, so we're going to need to create an IPA file, we have to install required provisioning profiles and certificates in the correct place. Bots will search provisioning profiles in the folder `/Library/Developer/XcodeServer/ProvisioningProfiles`. As the bot runs on its own user `_xcsbuildd`, we have to ensure that distribution/development certificates and their associated private key are installed on the System keychain. 
+Now we want our bot to be responsible for building and uploading the result of each build to iTunes Connect, so we're going to need to create an IPA file. We have to install required provisioning profiles and certificates in the correct place. Bots will search provisioning profiles in the folder `/Library/Developer/XcodeServer/ProvisioningProfiles`. As the bot runs on its own user `_xcsbuildd`, we have to ensure that distribution/development certificates and their associated private key are installed on the System keychain. 
 
 ![Keychain](/images/remer-xcode-server/keychain.png)
 
-Additionally I want that that my bot update the build number and changelog, commit these changes and make a tag with the released code. To perform previous task we are going to run fastlane lanes from bot's triggers.
+Additionally I want my bot to update the build number and changelog, commit these changes and make a tag with the released code. To perform the previous task we are going to run Fastlane lanes from bot's triggers.
 
-We need to perform some task before bot can build our app, for example install correct pods versions. Here is where is start using fastlane to automatize these actions.
-We're going to using [sigh]() to download provisioning profiles and copy them to the correct place. It is really straightforward, just setting up the `Appfile` correctly and it will do the rest:
+We need to perform some tasks before the bot can build our app, for example install correct pods versions. Here is where we start using Fastlane to automatize these actions.
+We're going to use [sigh](https://github.com/fastlane/sigh) to download provisioning profiles and copy them to the correct place. It is really straightforward, just set up the `Appfile` correctly and it will do the rest:
 
 {% highlight ruby %}
 lane :prebuild do
@@ -100,12 +100,12 @@ $ security -v unlock-keychain -p `cat /Library/Developer/XcodeServer/SharedSecre
 $ fastlane prebuild
 {% endhighlight %}
 
-On the output log appear next messages:
+On the output log appears next messages:
 
     security: SecKeychainAddInternetPassword <NULL>: User interaction is not allowed.
     Could not store password in keychain
 
-I simple couldn't access to the keychain when running fastlane. I opted to simply save the password as a system environment variable.
+I simply couldn't access the keychain when running fastlane. I opted to simply save the password as a system environment variable.
 
 {% highlight shell %}
 export FASTLANE_PASSWORD="secret"
@@ -121,13 +121,13 @@ lane :prebuild do
 end
 {% endhighlight %}
 
-We will modify the deployer bot by adding a before trigger command that will call to `prebuild`. This is done by adding a before triggers in the *Triggers* tab
+We will modify the deployer bot by adding a before trigger command on the *Triggers* tab, that will call to `prebuild`.
 
 ![Before trigger](/images/remer-xcode-server/before-trigger.png)
 
-> Note that before calling `fastlane`, we are change current dir by entering to `myapp`. That is the name of the branch. **Triggers run in the parent project folder**.
+> Note that before calling `fastlane`, we are changing current dir by entering to `myapp`. That is the name of the branch. **Triggers run in the parent project folder**.
 
-OK we are ready to make our bot performing the archive action. Next steps are increase build number, make a tag and upload to iTunes Connect. We will use the built made by the bot to generate the IPA that finally we will upload to iTunes Connect. Later I'm going to let you know why we will export the archive instead of letting the bot generate it. As we are going to use the archive made by the bot we have to update the build number before start building. We want to set the build number to the number of commits that were made and let version number as it is. To increase the build numebr we can use the Fastlane action `number_of_commits` to retrieve the number of commits made on the current branch and update the target's plist file using other Fastlane action `set_info_plist_value`, so add to our prebuild lane next action:
+OK we are ready to make our bot perform the archive action. Next steps are to increase build number, make a tag and upload to iTunes Connect. We will use the build made by the bot to generate the IPA that finally we will upload to iTunes Connect. Later I'm going to let you know why we will export the archive instead of letting the bot generate it. As we are going to use the archive made by the bot we have to update the build number before start building. We want to set the build number to the number of commits that were made and let version number as it is. To increase the build numebr we can use the Fastlane action `number_of_commits` to retrieve the number of commits made on the current branch and update the target's plist file using other Fastlane action `set_info_plist_value`, so add to our prebuild lane next action:
 
 {% highlight ruby %}
 
@@ -145,7 +145,7 @@ end
 
 {% endhighlight %}
 
-Now we're going to create a new lane `:build` that will be ran after the bot successfully build the app. In this lane I want to commit changes made on the app's plist file, upload the build to iTunes Connect, make a tag and push those changes. Let start simple without taking care of the upload to iTunes Connect for now:
+Now we're going to create a new lane `:build` that will be ran after the bot successfully builds the app. In this lane I want to commit changes made on the app's plist file, upload the build to iTunes Connect, make a tag and push those changes. Let's start simple without taking care of the upload to iTunes Connect for now:
 
 {% highlight ruby %}
 lane :build do
@@ -178,11 +178,11 @@ end
 
 {% endhighlight %}
 
-Cool, we are almost done. But one of the most important part is missing, upload our build to iTunes Connect. One problem that make me spent a lot of time was regarding the location of the IPA file generated by Xcode bot. After the integration finishes, we can find the generated files (e.g.: IPA file among others) on the folder `/Library/Developer/XcodeServer/IntegrationAssets/$XCS_BOT_ID-$XCS_BOT_NAME/$TARGET_NAME.ipa`. The problem is that this folder is not available at the time after triggers commands are ran. I tried to solve this problem by making my own IPA file using the `gym` tool but if you remember, I couldn't make fastlane accesses the keychain, so inevitably `gym` will fail making the IPA because of this. The solution was export the IPA by executing `xcrun xcodebuild`, it can access to the keychain without troubles.
+Cool, we are almost done. But one of the most important parts is missing, upload our build to iTunes Connect. One problem that make me spend a lot of time was regarding the location of the IPA file generated by Xcode bot. After the integration finishes, we can find the generated files (e.g.: IPA file among others) on the folder `/Library/Developer/XcodeServer/IntegrationAssets/$XCS_BOT_ID-$XCS_BOT_NAME/$TARGET_NAME.ipa`. The problem is that this folder is not available at the time once the trigger(s) commands are ran. I tried to solve this problem by making my own IPA file using the `gym` tool but if you remember, I couldn't make Fastlane access the keychain, so inevitably `gym` will fail making the IPA because of this. The solution was export the IPA by executing `xcrun xcodebuild`, it can access to the keychain without troubles.
 
 > Note: $TARGET_NAME is not actually an environment variable available when running a bot trigger command. It can be defined as `basename "$XCS_ARCHIVE" .xcarchive`
 
-With the IPA generated and accessible from our after trigger, the next step is upload it to iTunes Connect. We're going to use the Fastlane tool `deliver` to achieve this. At the end, our `Fastfile` looks like this:
+With the IPA generated and accessible from our after trigger, the next step is to upload it to iTunes Connect. We're going to use the Fastlane tool [deliver](https://github.com/fastlane/deliver) to achieve this. At the end, our `Fastfile` looks like this:
 
 {% highlight ruby %}
 require './libs/utils.rb'
@@ -387,8 +387,7 @@ We have pending to call previous lane from our deployer bot, it is done by addin
 
 ## Troubleshoting
 
-When making our Xcode Server to run bots that were capable of upload the apps built to iTunes Connect I encounter myself with many problems or errors that weren't easy to solve. I couldn't find much information
-on the web related. I hope that this will help somebody in the same circumstances. Next is a list of the problem that I encountered in the process of making Xcode Server works as I expected.
+When making our Xcode Server run bots that were capable of uploading the apps built to iTunes Connect, I encountered myself with many problems or errors that weren't easy to solve. I couldn't find much information on the web related. I hope that this will help somebody in the same circumstances. Next is a list of the problem that I encountered in the process of making Xcode Server works as I expected.
 
 ### CocoaPods is not able to update dependencies
 
@@ -442,7 +441,7 @@ The env variable XCS_ARCHIVE is defined only when the bot is set to perform the 
 
 ### Using a custom ssh key
 
-To commit changelog changes and build number bump we need to have access to the repo from `_xcsbuildd`'s shell. If you prefer use SSH to access git server you will need to add a valid key in the builder user ssh folder. Note that this key cannot have a passphrase set, if it has then when the trigger will be stuck on asking you to enter the shh key password before continue.
+To commit changelog changes and build number bump we need to have access to the repo from `_xcsbuildd`'s shell. If you prefer use SSH to access git server you will need to add a valid key in the builder user `.ssh` folder. Note that this key cannot have a passphrase set. If it is set, then the trigger will ask you to enter the shh key password stopping its process until you enter it.
 
 1. Log in as `_xcsbuildd`
    `sudo su - _xcsbuildd`
@@ -463,7 +462,7 @@ This will be helpful additionally to fetch git submodules.
 
 ### Invalid Signature. A sealed resource is missing or invalid.
 
-If the upload to iTunes fails with an error similar "Invalid Signature. A sealed resource is missing or invalid." it may happen because the export archive command is not receiving the option `-exportOptionsPlist`. Make sure that you are setting it and the path to the file passed is OK. The full error message is:
+If the upload to iTunes fails with an error similar "Invalid Signature. A sealed resource is missing or invalid." it may happen because the export archive command is not receiving the option `-exportOptionsPlist`. Make sure that you are set it and the path to the file passed is OK. The full error message is:
 
 {% highlight text %}
 parameter ErrorMessage = ERROR ITMS-90035: "Invalid Signature. A sealed resource is missing or invalid. Make sure you have signed your application with a distribution certificate, not an ad hoc certificate or a development certificate. Verify that the code signing settings in Xcode are correct at the target level (which override any values at the project level). Additionally, make sure the bundle you are uploading was built using a Release target in Xcode, not a Simulator target. If you are certain your code signing settings are correct, choose "Clean All" in Xcode, delete the "build" directory in the Finder, and rebuild your release target. For more information, please consult https://developer.apple.com/library/ios/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html
