@@ -68,11 +68,11 @@ Now let's add more functionalities to this bot, if you haven't yet. Go to edit t
 
 Now we want our bot to be responsible for building and uploading the result of each build to iTunes Connect and for creating a git tag with the built time source code. We're going to use Fastlane to achieve this.
 
-Typically, we create an additional bot to upload the app IPA to iTunes Connect thats runs on demand or scheduled weekly. 
+Typically, we create an additional bot to upload the app IPA to iTunes Connect thats runs on demand or scheduled weekly.
 
 ![Schedule](/images/remer-xcode-server/schedule-setup.png)
 
-To build the IPA, we have to install required provisioning profiles and certificates in the correct place. Bots will search provisioning profiles in the folder `/Library/Developer/XcodeServer/ProvisioningProfiles`. As the bot runs on its own user `_xcsbuildd`, we have to ensure that distribution/development certificates and their associated private key are installed on the System Keychain. 
+To build the IPA, we have to install required provisioning profiles and certificates in the correct place. Bots will search provisioning profiles in the folder `/Library/Developer/XcodeServer/ProvisioningProfiles`. As the bot runs on its own user `_xcsbuildd`, we have to ensure that distribution/development certificates and their associated private key are installed on the System Keychain.
 
 ![Keychain](/images/remer-xcode-server/keychain.png)
 
@@ -104,8 +104,8 @@ The `prebuild` lane is defined in the `Fastfile` file as its shown below:
 lane :prebuild do
   # fetch the number of commits in the current branch
   build_number = number_of_commits
-  
-  # Set number of commits as the build number in the project's plist file before the bot actually start building the project. 
+
+  # Set number of commits as the build number in the project's plist file before the bot actually start building the project.
   # This way, the generated archive will have the correct build number.
   set_info_plist_value(
     path: './MyApp-Info.plist',
@@ -122,9 +122,7 @@ end
 
 {% endhighlight %}
 
-> `number_of_commits`, `cocoapods` and `cocoapods` are Fastlane actions.
-
-> Both `Appfile` and `Fastfile` files must be within a `fastlane` folder in the root directory of your project.
+> `number_of_commits`, `cocoapods` and `cocoapods` are Fastlane actions. Both `Appfile` and `Fastfile` files must be within a `fastlane` folder in the root directory of your project.
 
 If we run `fastlane ios prebuild`, it will connect to iOS Member Center and download the profiles for the app indicated by its bundle id in the `Appfile`. Additionally we have to pass the password to it, to make this work with Xcode bots we pass it through the environment variable `FASTLANE_PASSWORD`:
 
@@ -183,7 +181,7 @@ end
 Next we're going to taking account the upload to iTunes Connect. We will export the IPA from archive created by the bot on the build. In order to export the IPA file we will add the command `xcrun xcodebuild` to the `build` lane
 
 {% highlight ruby %}
- 
+
 lane :build do
   plistFile = './MyApp-Info.plist'
 
@@ -289,7 +287,7 @@ platform :ios do
       path: plist_file,
       key: 'CFBundleShortVersionString',
     )
-    
+
     ENV['XL_VERSION_NUMBER'] = "#{version_number}"
     ENV['XL_BUILD_NUMBER'] = "#{build_number}"
 
@@ -326,11 +324,11 @@ platform :ios do
     end
 
     add_git_tag(tag: tag_path)
-    
+
     push_to_git_remote(local_branch: branch)
 
     push_git_tags
-  
+
     slack(
       message: "#{ENV['XL_TARGET']} #{ENV['XL_VERSION_NUMBER']}.#{ENV['XL_BUILD_NUMBER']} successfully released and tagged to #{ENV['XL_TAG_LINK']}",
     )
@@ -400,7 +398,7 @@ for_platform :ios do
   for_lane :prebuild_beta do
       app_identifier "com.xmartlabs.myapp.staging"
   end
-  
+
   for_lane :beta do
     app_identifier "com.xmartlabs.myapp.staging"
   end
