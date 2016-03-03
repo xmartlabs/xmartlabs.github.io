@@ -66,9 +66,9 @@ Now let's add more functionalities to this bot, if you haven't yet. Go to edit t
 
 ### Deployer bot
 
-Now we want our bot to be responsible for building and uploading the result of each build to iTunes Connect and for creating a git tag with the built sources. We're going to use Fastlane to achieve this.
+Now we want our bot to be responsible for building and uploading the result of each build to iTunes Connect and for creating a git tag with the built time source code. We're going to use Fastlane to achieve this.
 
-Typically, we create an additional bot to upload the app IPA to iTunes Connect thats runs on demand or scheduled each weak. 
+Typically, we create an additional bot to upload the app IPA to iTunes Connect thats runs on demand or scheduled weekly. 
 
 ![Schedule](/images/remer-xcode-server/schedule-setup.png)
 
@@ -82,9 +82,9 @@ Before the bot start building the project we have to preform some additional tas
 
 * Increase build number.
 * Download provisioning profiles.
-* Install the correct versions of the libraries used by the project
+* Install the correct versions of the libraries used by the project.
 
-Fastlane will take needed metadata for the building app from the `Appfile` file. We can set on it our Apple Developer Portal id, our iTunes Connect id and the application identifier which may depend on the current lane.
+Fastlane will take needed metadata for the building app from the `Appfile` file such as Apple Developer Portal id, our iTunes Connect id and the application identifier.
 
 {% highlight ruby %}
 
@@ -95,17 +95,18 @@ team_id "<TEAM_ID>"
 
 {% endhighlight %}
 
-Downloading provisioning profiles is done by [sigh](https://github.com/fastlane/sigh), it is a tool that its part of Fastlane. It will download provisioning profiles and copy them to the correct place. Use it is really straightforward, just set up the `Appfile` correctly and with the Apple Developer Portal id and it will do the rest.
+Downloading and configuring provisioning profiles is done by Fastlane [sigh](https://github.com/fastlane/sigh). Use it's really straightforward, just set up the `Appfile` correctly and with the Apple Developer Portal id and it'll do the rest.
 
-The `prebuild` lane is defined in the `Fastfile` as its shown next:
+The `prebuild` lane is defined in the `Fastfile` file as its shown below:
 
 {% highlight ruby %}
 
 lane :prebuild do
-  # fetch the number of commits made in the current branch
+  # fetch the number of commits in the current branch
   build_number = number_of_commits
   
-  # set number of commits as the build number in the project's plist file
+  # Set number of commits as the build number in the project's plist file before the bot actually start building the project. 
+  # This way, the generated archive will have the correct build number.
   set_info_plist_value(
     path: './MyApp-Info.plist',
     key: 'CFBundleVersion',
@@ -121,32 +122,18 @@ end
 
 {% endhighlight %}
 
-> Some comments about previous code. `number_of_commits`, `cocoapods` and `cocoapods` are actions that come with Fastlane tool.
-> We have to modify the build number in the prebuild lane before the bot actually start building the project. This way, the generated archive will have the correct correct build number. 
+> `number_of_commits`, `cocoapods` and `cocoapods` are Fastlane actions.
 
-> Both `Appfile` and `Fastfile` must be within a `fastlane` folder in the root directory of your project.
+> Both `Appfile` and `Fastfile` files must be within a `fastlane` folder in the root directory of your project.
 
-If we run `fastlane ios prebuild`, it will connect to iOS Member Center and download the profiles for the app indicated by its bundle id in the `Appfile`. Additionally we have to pass the password to it, to make this work with Xcode bots we pass it through the environment variable `FASTLANE_PASSWORD`. `sigh` will attempt to store the password in the keychain and try to access it later if no password was provided, but this won't work when running from a bot's trigger. Triggers commands have no access to bot user's keychain, I tried by unlocking it before run sigh as shown below without luck:
-
-{% highlight shell %}
-# Try to unlock the keychain to be accessed by fastlane actions
-$ security -v unlock-keychain -p `cat /Library/Developer/XcodeServer/SharedSecrets/PortalKeychainSharedSecret` /Library/Developer/XcodeServer/Keychains/Portal.keychain
-
-# Will download profiles using sigh
-$ fastlane prebuild
-{% endhighlight %}
-
-On the output log appears next messages:
-
-    security: SecKeychainAddInternetPassword <NULL>: User interaction is not allowed.
-    Could not store password in keychain
-
-I simply couldn't access the keychain when running Fastlane. I opted to just save the password as a system environment variable.
+If we run `fastlane ios prebuild`, it will connect to iOS Member Center and download the profiles for the app indicated by its bundle id in the `Appfile`. Additionally we have to pass the password to it, to make this work with Xcode bots we pass it through the environment variable `FASTLANE_PASSWORD`:
 
 {% highlight shell %}
 $ export FASTLANE_PASSWORD="<APPLE_DEV_PORTAL_PASSWORD>"
 $ fastlane prebuild
 {% endhighlight %}
+
+> Initially we attempted to use Keychain to send passwords to Fastlane `sigh` but it doesn't work, for more information about this see [below](#attempting_to_developer_password_to_fastlane_tools)
 
 We will modify the deployer bot by adding a before trigger command on the *Triggers* tab, that will call to `prebuild`.
 
@@ -164,6 +151,7 @@ Let's start simple without taking care of the upload to iTunes Connect for now:
 lane :build do
   plistFile = './MyApp-Info.plist'
 
+  # Get the build and version numbers from the project's plist file
   build_number = get_info_plist_value(
     path: plist_file,
     key: 'CFBundleVersion',
@@ -173,6 +161,7 @@ lane :build do
     key: 'CFBundleShortVersionString',
   )
 
+  # Commit changes done in the plist file
   git_commit(
     path: ["#{plistFile}"],
     message: "Version bump to #{version_number} (#{build_number}) by CI Builder"
@@ -191,18 +180,44 @@ end
 
 {% endhighlight %}
 
-We will use the build made by the bot to generate the IPA that finally we will upload to iTunes Connect. 
+Next we're going to taking account the upload to iTunes Connect. We will export the IPA from archive created by the bot on the build. In order to export the IPA file we will add the command `xcrun xcodebuild` to the `build` lane
 
-Later I'm going to let you know why we will export the archive instead of letting the bot generate it. As we are going to use the archive made by the bot, we have to update the build number before start building. We want to set the build number to the number of commits that were made and let version number as it is. To increase the build number we can use the Fastlane action `number_of_commits` to retrieve the number of commits made on the current branch and update the target's plist file using other Fastlane action `set_info_plist_value`, so add to our prebuild lane next action:
+{% highlight ruby %}
+ 
+lane :build do
+  plistFile = './MyApp-Info.plist'
 
-Now we're going to create a new lane `:build` that will be run after the bot successfully builds the app. In this lane I want to commit changes made on the app's plist file, upload the build to iTunes Connect, create a git tag and push those changes. 
+  # ...
 
+  ipa_folder = "#{ENV['XCS_DERIVED_DATA_DIR']}/deploy/#{version_number}.#{build_number}/"
+  ipa_path = "#{ipa_folder}/#{target}.ipa"
+  sh "mkdir -p #{ipa_folder}"
 
+  # Export the IPA from the archive file created by the bot
+  sh "xcrun xcodebuild -exportArchive -archivePath \"#{ENV['XCS_ARCHIVE']}\" -exportPath \"#{ipa_path}\" -IDEPostProgressNotifications=YES -DVTAllowServerCertificates=YES -DVTSigningCertificateSourceLogLevel=3 -DVTSigningCertificateManagerLogLevel=3 -DTDKProvisioningProfileExtraSearchPaths=/Library/Developer/XcodeServer/ProvisioningProfiles -exportOptionsPlist './ExportOptions.plist'"
 
-Cool, we are almost done. But one of the most important parts is missing: upload our build to iTunes Connect. One problem that made me spend a lot of time was regarding the location of the IPA file generated by Xcode bot. After the integration finishes, we can find the generated files (e.g.: IPA file among others) on the folder `/Library/Developer/XcodeServer/IntegrationAssets/$XCS_BOT_ID-$XCS_BOT_NAME/$TARGET_NAME.ipa`. The problem is that this folder is not available at the time once the trigger(s) commands are ran. I tried to solve this problem by making my own IPA file using the `gym` tool but if you remember, I couldn't make Fastlane access the keychain, so inevitably `gym` will fail making the IPA because of this. We solve this by creating the IPA through `xcrun xcodebuild` which is able to successfully access the keychain.
+  # Upload the build to iTunes Connect, it won't submit this IPA for review.
+  deliver(
+    force: true,
+    ipa: ipa_path
+  )
+
+  # Keep committing and tagging actions after export to avoid perform them
+  add_git_tag(
+    tag: "beta/v#{version_number}_#{build_number}"
+  )
+
+  # ...
+
+end
+
+> One problem that made us spend a lot of time was regarding the location of the IPA file generated by Xcode bot. After the integration finishes, we can find the generated files (e.g. IPA file) on the folder `/Library/Developer/XcodeServer/IntegrationAssets/$XCS_BOT_ID-$XCS_BOT_NAME/$TARGET_NAME.ipa`. The problem is that this folder is not available at the time once the trigger(s) commands are ran. I tried to solve this problem by making my own IPA file using the `gym` tool but if you remember, I couldn't make Fastlane access the keychain, so inevitably `gym` will fail making the IPA because of this.
 
 > Note: $TARGET_NAME is not actually an environment variable available when running a bot trigger command. It can be defined as `basename "$XCS_ARCHIVE" .xcarchive`
- 
+
+
+{% endhighlight %}
+
 With the IPA generated and accessible from our after trigger, the next step is to upload it to iTunes Connect. We're going to use the Fastlane tool [deliver](https://github.com/fastlane/deliver) to achieve this. At the end, our `Fastfile` looks like this:
 
 {% highlight ruby %}
@@ -372,6 +387,7 @@ Some additional notes to previous `Fastfile`:
 {% endhighlight %}
 
 Some settings, like app's identifier, are provided in the `Appfile`:
+ which may depend on the current lanes
 
 {% highlight ruby %}
 apple_dev_portal_id "miguel@xmartlabs.com"
@@ -408,6 +424,25 @@ We have pending to run previous lane from our deployer bot, this is done by addi
 ## Troubleshooting
 
 When making our Xcode Server run bots that were capable of uploading the apps built to iTunes Connect, I encountered myself with many problems or errors that weren't easy to solve. I couldn't find much information on the web related. I hope that this will help somebody in the same circumstances. Next is a list of the problem that I encountered in the process of making Xcode Server works as I expected.
+
+### Attempting to Developer password to Fastlane tools
+
+`sigh` will attempt to store the password in the keychain and try to access it later if no password was provided, but this won't work when running from a bot's trigger. Triggers commands have no access to bot user's keychain, I tried by unlocking it before run sigh as shown below without luck:
+
+{% highlight shell %}
+# Try to unlock the keychain to be accessed by fastlane actions
+$ security -v unlock-keychain -p `cat /Library/Developer/XcodeServer/SharedSecrets/PortalKeychainSharedSecret` /Library/Developer/XcodeServer/Keychains/Portal.keychain
+
+# Will download profiles using sigh
+$ fastlane prebuild
+{% endhighlight %}
+
+On the output log appears next messages:
+
+    security: SecKeychainAddInternetPassword <NULL>: User interaction is not allowed.
+    Could not store password in keychain
+
+We simply couldn't access the keychain when running Fastlane. I opted to just save the password as a system environment variable.
 
 ### CocoaPods is not able to update dependencies
 
