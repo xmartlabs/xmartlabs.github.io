@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "CI & automatic deployment to iTunes with Xcode Server"
-date:   2016-02-19 17:22:12
+title:  "CI & automatic deployment to iTunes Connect with Xcode Server"
+date:   2016-03-07 10:00:00
 author: Miguel Revetria
-categories: Server,CI
+categories: Server,CI,Fastlane,Server
 author_id: remer
 ---
 
-In this post I'm going to write about my experience and the problems I found when setting up Xcode Server for CI and automatic deployment to iTunes at Xmartlabs. I'm going to let you know how I could solve some problems hoping it may help somebody in the same situation.
+In this post I'm going to write about my experience and the problems I found when setting up Xcode Server for CI and automatic deployment to iTunes Connect at Xmartlabs. I'm going to let you know how I could solve some problems hoping it may help somebody in the same situation.
 
 There are a lot of blogs that explain how to set up Xcode Server, create an integration bot and explore the results on Xcode (issue tracking, tests code coverage, etc) but when you try to make something more sophisticated, you may get some errors and won't be able to find many resources for a solution.
 
@@ -34,6 +34,7 @@ To prevent permissions issues we will install all the gems only for the builder 
 Before start, add ruby bin folder to builder's path - depending on the ruby's version - add `export PATH="$PATH:/var/_xcsbuildd/.gem/ruby/2.0.0/bin"` to `~/.bashrc` and `~/.bash_login`. Now let's install these gems:
 
 {% highlight shell %}
+
 $ sudo su - _xcsbuildd
 
 $ gem install --user-install cocoapods
@@ -75,7 +76,7 @@ We can create the bot by following these simple steps:
 
 ### Deployer bot
 
-Second bot we usually set up is on charge of building and uploading the app IPA to iTunes Connect. It will also be responsible for creating and pushing a new git tag using the most recently code base. We're going to use Fastlane to achieve this.
+Second bot is in charge of building and uploading the app IPA to iTunes Connect. It will also be responsible for creating and pushing a new git tag using the most recently code base. We're going to use Fastlane to achieve this.
 
 Normally we configure it to run on demand or weekly scheduled since we usually need to release beta versions once a week.
 
@@ -87,11 +88,11 @@ We have to ensure that distribution/development certificates and their associate
 
 ![Keychain](/images/remer-xcode-server/keychain.png)
 
-To build the IPA, we have to put required provisioning profiles in the folder `/Library/Developer/XcodeServer/ProvisioningProfiles` since bots run on its own user `_xcsbuildd` and search provisioning profiles in the folder .
+To build the IPA, we have to put required provisioning profiles in the folder `/Library/Developer/XcodeServer/ProvisioningProfiles` since bots run on its own user `_xcsbuildd` and search provisioning profiles in this folder.
 
 ### Before integration script
 
-XCode integration allows us to provide a before and a after integration script.
+Xcode integration allows us to provide a before and a after integration script.
 
 Before our Deployer Bot start integrating we have to preform some tasks which will be run from a triggered command:
 
@@ -100,7 +101,7 @@ Before our Deployer Bot start integrating we have to preform some tasks which wi
 * Install the correct versions of the libraries used by the project.
 
 
-Fastlane tools will look for useful information at `Appfile` file to deploy the lines such as **Apple ID** and **application Bundle Identifier**. Code snippet below illustrates how `Appfile` could looks like:
+Fastlane tools will look for useful information at `Appfile` file to deploy the lanes such as **Apple ID** and **application Bundle Identifier**. Code snippet below illustrates how `Appfile` could looks like:
 
 {% highlight ruby %}
 
@@ -131,7 +132,7 @@ lane :before_integration do
   build_number = number_of_commits
 
   # Set number of commits as the build number in the project's plist file before the bot actually start building the project.
-  # This way, the generated archive will have the correct build number.
+  # This way, the generated archive will have an auto-incremented build number.
   set_info_plist_value(
     path: './MyApp-Info.plist',
     key: 'CFBundleVersion',
@@ -152,8 +153,10 @@ end
 If we run `fastlane before_integration`, it will connect to iOS Member Center and download the profiles for the app indicated by its bundle id in the `Appfile`. Additionally we have to pass the password to it, to make this work with Xcode bots we pass it through the environment variable `FASTLANE_PASSWORD`:
 
 {% highlight shell %}
-$ export FASTLANE_PASSWORD="<APPLE_DEV_PORTAL_PASSWORD>"
+
+$ export FASTLANE_PASSWORD="<APPLE_ID_PASSWORD>"
 $ fastlane before_integration
+
 {% endhighlight %}
 
 > Initially we attempted to use Keychain to pass the passwords to Fastlane `sigh` but it doesn't work, for further info about this see [here](#attempting_to_developer_password_to_fastlane_tools).
@@ -166,11 +169,12 @@ We will modify the deployer bot by adding a before trigger command on the *Trigg
 
 ### After integration script
 
-After the bot finishes integrating the project we will be able to access the created archive file, export it as an IPA file and upload it to iTunes. We're going to create an additional lane which be in charge of uploading the IPA to iTunes and also creating a git tag.
+After the bot finishes integrating the project we will be able to access the created archive file, export it as an IPA file and upload it to iTunes Connect. We're going to create an additional lane which be in charge of uploading the IPA to iTunes Connect and also creating a git tag.
 
 Let's start simple without taking care of the upload to iTunes Connect for now:
 
 {% highlight ruby %}
+
 lane :after_integration do
   plistFile = './MyApp-Info.plist'
 
@@ -203,7 +207,7 @@ end
 
 {% endhighlight %}
 
-Now we're going to export the IPA from the archive created by the bot during the integration by running the command `xcrun xcodebuild` to the `build` lane. Additionally, we're going to upload the IPA to iTunes Connect using Fastlane [deliver](https://github.com/fastlane/deliver) tool. See details below:
+Now we're going to export the IPA from the archive file created by the bot during the integration by running the command `xcrun xcodebuild` in the `after_integration` lane. Additionally, we're going to upload the IPA to iTunes Connect using Fastlane [deliver](https://github.com/fastlane/deliver) tool. See details below:
 
 {% highlight ruby %}
 
@@ -225,7 +229,7 @@ lane :after_integration do
     ipa: ipa_path
   )
 
-  # Keep committing and tagging actions after export to avoid perform them
+  # Keep committing and tagging actions after export & upload to prevent confirm the changes to the repo if something went wrong
   add_git_tag(
     tag: "beta/v#{version_number}_#{build_number}"
   )
@@ -240,7 +244,7 @@ end
 
 #### Supporting multiples targets
 
-Typically our projects have a `production` and `staging` application targets. `Fastfile` file will require different lanes for each target that we want to upload to iTunes. We need to  modify the `Appfile` file to set up the correct app identifier depending on each lane:
+Typically our projects have a `production` and `staging` application targets. `Fastfile` file will require different lanes for each target that we want to upload to iTunes Connect. We need to  modify the `Appfile` file to set up the correct app identifier depending on each lane:
 
 {% highlight ruby %}
 
@@ -275,6 +279,7 @@ itunes_connect_id "<itunes_connect_email@server.com>"
 Finally, after some refactor, the `Fastfile` file may looks like as shown below:
 
 {% highlight ruby %}
+
 require './libs/utils.rb'
 
 fastlane_version '1.63.1'
@@ -283,7 +288,7 @@ default_platform :ios
 
 platform :ios do  
   before_all do
-    ENV["SLACK_URL"] = "https://hooks.slack.com/services/#####/#####/#########"
+    ENV["SLACK_URL"] ||= "https://hooks.slack.com/services/#####/#####/#########"
   end
 
   after_all do |lane|
@@ -305,12 +310,8 @@ platform :ios do
 
     plist_file = ENV['XL_TARGET_PLIST_FILE']
 
-    build_number = number_of_commits
-    set_info_plist_value(
-    path: plist_file,
-    key: 'CFBundleVersion',
-    value: "#{build_number}"
-  )
+    # This is a custom action that could be find in the libs/utils.rb
+    increase_build_number(plist_file)
 
     cocoapods
     sigh(output_path: '/Library/Developer/XcodeServer/ProvisioningProfiles', skip_install: true)
@@ -324,7 +325,7 @@ platform :ios do
 
   desc 'Required tasks before build the production app.'
   lane :before_integration_production do
-    ENV['XL_TARGET_PLIST_FILE'] = './MyAppStaging-Info.plist'
+    ENV['XL_TARGET_PLIST_FILE'] = './MyApp-Info.plist'
     before_integration
   end
 
@@ -338,7 +339,10 @@ platform :ios do
     tag_link = ENV['XL_TAG_LINK']
     target = ENV['XL_TARGET']
 
-    build_number = increase_build_number(plist_file)
+    build_number = get_info_plist_value(
+      path: plist_file,
+      key: 'CFBundleVersion',
+    )
     version_number = get_info_plist_value(
       path: plist_file,
       key: 'CFBundleShortVersionString',
@@ -394,9 +398,10 @@ platform :ios do
   lane :after_integration_staging do
     ENV['XL_BRANCH'] = current_branch
     ENV['XL_DELIVER_FLAG'] ||= '1'
+    ENV['XL_TAG_BASE_PATH'] = 'beta'
     ENV['XL_TARGET_PLIST_FILE'] = './MyApp Staging-Info.plist'
     ENV['XL_TARGET'] = 'MyApp Staging'
-    ENV['XL_TAG_LINK'] = 'https://bitbucket.org/xmartlabs/MyApp/src/?at='
+    ENV['XL_TAG_LINK'] = 'https://github.com/xmartlabs/MyApp/releases/tag/'
 
     after_integration
   end
@@ -407,7 +412,7 @@ platform :ios do
     ENV['XL_DELIVER_FLAG'] ||= '1'
     ENV['XL_TARGET_PLIST_FILE'] = './MyApp-Info.plist'
     ENV['XL_TARGET'] = 'MyApp'
-    ENV['XL_TAG_LINK'] = 'https://bitbucket.org/xmartlabs/MyApp/src/?at='
+    ENV['XL_TAG_LINK'] = 'https://github.com/company/MyApp/releases/tag/'
 
     after_integration
   end
@@ -417,12 +422,13 @@ end
 
 Notes about previous `Fastfile` file:
 
-* Defines two before_integration lanes for both production and staging environments in order to setup correct apps identifier using the `Appfile`.
-* Build, git and deploy actions are encapsulated in the `after_integration` lane. This allow as to have production and staging lanes that, basically, will setup some parameters and invoke the internal `after_integration` lane.
-* `ensure_git_status_clean` will check if bot's working folder has changes and will fail in such case. This will ensure that the bot’s working copy is exactly the same to the remote repository files. As we are changing local files on our `deploy` lane, if something went wrong we'll want to reset all of them. So we added the action `reset_git_repo` on `error` block.
-* The command `xcrun xcodebuild -exportArchive` requires a configuration file specified with the option `-exportOptionsPlist`. We created ExportOptions.plist within `fastlane` folder and its content its similar to:
+* Defines two `before_integration` lanes for both production and staging environments in order to setup correct apps identifier using the `Appfile`.
+* Build, git and deploy actions are encapsulated in the `after_integration` lane. This allow us to have production and staging lanes that, basically, will setup some parameters and invoke the internal `after_integration` lane.
+* `ensure_git_status_clean` will check if bot's working folder has changes and will fail in such case. This will ensure that the bot’s working copy is exactly the same to the remote repository files. As we are changing local files on our `after_integration` lane, if something went wrong we'll want to reset all of them. So we added the action `reset_git_repo` in the `error` block.
+* The command `xcrun xcodebuild -exportArchive` requires a configuration file specified with the option `-exportOptionsPlist`. We created the file `ExportOptions.plist` within `fastlane` folder and its content its similar to:
 
 {% highlight xml %}
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -437,11 +443,14 @@ Notes about previous `Fastfile` file:
         <true/>
 </dict>
 </plist>
+
 {% endhighlight %}
 
 As the last step, add a new after integration trigger that executes our `after_integration_staging` lane:
 
 ![After trigger deploy](/images/remer-xcode-server/after-trigger-deploy.png)
+
+You can find a template for the Fastlane files shown before in this github repo [Fastlane CI files](https://github.com/xmartlabs/Fastlane-CI-Files)
 
 ## Troubleshooting
 
@@ -454,11 +463,13 @@ During our process of setting up Xcode Server to work properly, we faced many dr
 We tried by unlocking it before running `sigh` as shown below without luck:
 
 {% highlight shell %}
+
 # Try to unlock the keychain to be accessed by fastlane actions
 $ security -v unlock-keychain -p `cat /Library/Developer/XcodeServer/SharedSecrets/PortalKeychainSharedSecret` /Library/Developer/XcodeServer/Keychains/Portal.keychain
 
 # Will download profiles using sigh
 $ fastlane before_integration_staging
+
 {% endhighlight %}
 
 On the output log appears next messages:
@@ -480,12 +491,14 @@ We simply couldn't access the keychain when running Fastlane. We opted to just s
 We ended up deleting CocoaPods and installing it as a described above:
 
 {% highlight shell %}
+
 $ sudo rm -fr /var/_xcsbuildd/.cocoapods
 
 $ sudo su - _xcsbuildd
 $ gem install --user-install cocoapods
 $ pod setup
 $ ln -s `which pod` /Applications/Xcode.app/Contents/Developer/usr/bin/pod
+
 {% endhighlight %}
 
 #### Fastlane - Sigh & Gym cannot access to keychain
@@ -507,7 +520,9 @@ Ensure that:
 After updating Xcode to version 7.2.1 we were able to select it on Server app, then Xcode service was disabled. When we tried to select the correct Xcode app there a dialog saying *"You must agree to the terms of the xcode software license agreement"* was shown. We found the solution on an Apple Forum thread [Can not choose Xcode in Server App - "You must agree to the terms..."](https://forums.developer.apple.com/thread/34683), running next command will allow you to select Xcode on Server app:
 
 {% highlight shell %}
+
 $ sudo /Applications/Xcode.app/Contents/Developer/usr/bin/xcscontrol --initialize
+
 {% endhighlight %}
 
 #### IPA not available
@@ -522,15 +537,15 @@ The env variable XCS_ARCHIVE is defined only when the bot is set to perform the 
 
 To commit changelog changes and build number bump we need to have access to the repo from `_xcsbuildd`'s shell. If you prefer use SSH to access git server you will need to add a valid key in the builder user `.ssh` folder. Note that this key should not have a passphrase set. Otherwise, the trigger will ask you to enter the shh key password stopping its process until you enter it.
 
-1. Log in as `_xcsbuildd`:
+* Log in as `_xcsbuildd`:
    `$ sudo su - _xcsbuildd`
-2. Copy a valid ssh key to `~/.ssh`.
-3. Modify `~/.bash_login` in order to automatically add your custom key to ssh agent:
+* Copy a valid ssh key to `~/.ssh`.
+* Modify `~/.bash_login` in order to automatically add your custom key to ssh agent:
    {% highlight shell %}
    $ echo 'eval "$(ssh-agent -s)"' >> ~/.bash_login
    $ echo 'ssh-add ~/.ssh/id_rsa_github' >> ~/.bash_login
    {% endhighlight %}
-4. Determine which key should be used to access git repo by changing `~/.ssh/config` file, for example add next lines:
+* Determine which key should be used to access git repo by changing `~/.ssh/config` file, for example add next lines:
    {% highlight text %}
     Host github.com
        HostName github.com
@@ -541,8 +556,10 @@ This will also be helpful to fetch git submodules.
 
 #### Invalid Signature. A sealed resource is missing or invalid.
 
-If the upload to iTunes fails with an error similar to "Invalid Signature. A sealed resource is missing or invalid.", it may happen because the export archive command (xcodebuild command) is not receiving the option `-exportOptionsPlist`. Make sure that you have set up it and the path to the file is OK. The full error message is:
+If the upload to iTunes Connect fails with an error similar to "Invalid Signature. A sealed resource is missing or invalid.", it may happen because the export archive command (xcodebuild command) is not receiving the option `-exportOptionsPlist`. Make sure that you have set up it and the path to the file is OK. The full error message is:
 
 {% highlight text %}
+
 parameter ErrorMessage = ERROR ITMS-90035: "Invalid Signature. A sealed resource is missing or invalid. Make sure you have signed your application with a distribution certificate, not an ad hoc certificate or a development certificate. Verify that the code signing settings in Xcode are correct at the target level (which override any values at the project level). Additionally, make sure the bundle you are uploading was built using a Release target in Xcode, not a Simulator target. If you are certain your code signing settings are correct, choose "Clean All" in Xcode, delete the "build" directory in the Finder, and rebuild your release target. For more information, please consult https://developer.apple.com/library/ios/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html
+
 {% endhighlight %}
