@@ -9,16 +9,14 @@ author_id: remer
 
 In this post I'm going to write about my experience and the problems I found when setting up Xcode Server for CI and automatic deployment to iTunes Connect at Xmartlabs. I'm going to let you know how I could solve some problems hoping it may help somebody in the same situation.
 
-There are a lot of blogs that explain how to set up Xcode Server, create an integration bot and explore the results on Xcode (issue tracking, tests code coverage, etc) but when you try to make something more sophisticated, you may get some errors and won't be able to find many resources for a solution.
+There are a lot of blogs that explain how to set up Xcode Server, create an integration bot and explore the results on Xcode (issue tracking, tests code coverage, etc) but when you try to make something more sophisticated, you may get into some errors and won't be able to find many resources for a solution.
 
 
-#### Why did we try to setup our CI server?
+#### Why did we have our own CI server?
 
-Well, almost everybody knows the benefits of having a CI server; server can automatically analyze our code, run unit and UI tests, build your project and some other tasks of interest. If something went wrong, it can notify the results only to interested people. This is gong to help into maintaining our project's code quality high, detecting any issue with tests as soon as possible. Xcode bot will track all the issues on the integration; it will detect and remark new issues as solved ones. For new issues, the bot will display a range of commits where we can take a look for the reason. Automatically integrating on each change pushed to the repository will help shorting this range.
+Well, almost everybody knows the benefits of having a CI server; it can automatically analyze our code, runs unit and UI tests, builds your project among some other valuable tasks. If something went wrong, it can notify the results to people that may have introduced the issue. Xcode bot tracks all new issues of each integration as well as solved ones. For new issues, the bot will display a range of commits where the issue may have introduced. Apart of that we no longer need to deal with deployment provisioning profiles and certificates allowing anyone in the team to easily release a new version of the app.    
 
-Having a CI server set up will save us a lot of time that would be spent into building and archiving our projects in order to upload to iTunes Connect. That's a dead time, we cannot continue programming while building. In some projects, just archiving the project, could take a least 10 minutes! We also would have to deal with provisioning profiles and certificates! Other problem making the project manually is that someone has to be in charge of uploading the build, if for some reason that person is not present or able to upload the build, the release will be delayed, probably to next day. Using Xcode Server to perform this task (uploading to iTunes Connect) allows to everybody with access to the server (all people at Xmartlabs) to release a version.
-
-Luckily, all of these features are now included within Xcode! We though that would be really nice to give it a try... later we proved that not everything was going to be so easy. But finally, we got our bots running, building, testing, creating releases, committing tags and **uploading builds to iTunes Connect**. A happy ending for this story.
+In short, this allows to spend more time on app development and less on app integration and deployment doing more in less time and ensuring our code has certain minimum quality level.
 
 ## Setting up Xcode server
 
