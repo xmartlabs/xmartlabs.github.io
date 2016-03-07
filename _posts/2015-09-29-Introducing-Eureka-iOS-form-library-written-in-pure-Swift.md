@@ -178,7 +178,7 @@ If you are interested in how to use Eureka I would suggest you to take a look at
 
 If you liked what you have read, want to suggest some feature, contribute to the project or you need some help on how to use it please drop us a line on [twitter].
 
-[XLForm]: http://github.com/xmartlabs/XLForm
+[XLForm]: https://github.com/xmartlabs/XLForm
 [type safety]: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html
 [CollectionType]: https://developer.apple.com/library/prerelease/ios/documentation/Swift/Reference/Swift_CollectionType_Protocol/index.html
 [generics]: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html
