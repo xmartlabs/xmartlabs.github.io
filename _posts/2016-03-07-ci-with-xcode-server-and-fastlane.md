@@ -27,7 +27,16 @@ The guide [Xcode Server and Continuous Integration Guide](https://developer.appl
 Once we have installed the Server app and enabled Xcode service, we have to install [Cocoapods](https://cocoapods.org/) and [Fastlane](https://fastlane.tools/). Fastlane will help us with many common tasks that are necessary for building a project and uploading the app to iTunes Connect.
 To prevent permissions issues we will install all the gems only for the builder user using `gem install --user-install some_gem`. Additionally we need to create a symlink to access the Cocoapods and Fastlane binaries in order to access them when our bot is running.
 
-Before starting, add the ruby bin folder to builder's path - depending on the ruby's version - add `export PATH="$PATH:/var/_xcsbuildd/.gem/ruby/2.0.0/bin"` to `~/.bashrc` and `~/.bash_login`. Now let's install these gems:
+Before starting, include the ruby bin folder to builder's path by adding the line below to the files `~/.bashrc` and `~/.bash_login`:
+
+{% highlight shell %}
+
+# It may change depending on the ruby's version on your system
+export PATH="$PATH:/var/_xcsbuildd/.gem/ruby/2.0.0/bin"
+
+{% endhighlight %}
+
+Now let's install these gems: 
 
 {% highlight shell %}
 
@@ -84,7 +93,10 @@ We have to ensure that distribution/development certificates and their associate
 
 ![Keychain](/images/remer-xcode-server/keychain.png)
 
-To build the IPA, we have to put required provisioning profiles in the folder `/Library/Developer/XcodeServer/ProvisioningProfiles` since bots run on its own user `_xcsbuildd` and search provisioning profiles in this folder.
+To build the IPA, we have to put required provisioning profiles in the folder below since bots run on its own user `_xcsbuildd` and search provisioning profiles in this folder:
+
+    /Library/Developer/XcodeServer/ProvisioningProfiles
+
 
 ### Before integration script
 
@@ -499,7 +511,9 @@ $ ln -s `which pod` /Applications/Xcode.app/Contents/Developer/usr/bin/pod
 
 #### Fastlane - Sigh & Gym cannot access to keychain
 
-That's all, they cannot access to keychain. Seeing this message (or similar) `security: SecKeychainAddInternetPassword <NULL>: User interaction is not allowed.` when running `gym`or `sigh` is the symptom, later:
+That's all, they cannot access to keychain. Seeing this message (or similar) when running `gym`or `sigh` is the symptom:
+
+    security: SecKeychainAddInternetPassword <NULL>: User interaction is not allowed.
 
 * They cannot access stored login password, you must pass the password through env variables to `sigh` using `FASTLANE_PASSWORD`.
 * `gym` cannot access to distribution certificates installed in keychain, so make the IPA using `xcrun xcodebuild` instead of `gym`.
@@ -523,7 +537,11 @@ $ sudo /Applications/Xcode.app/Contents/Developer/usr/bin/xcscontrol --initializ
 
 #### IPA not available
 
-The IPA built by the bot is copied to this path after the build finishes `/Library/Developer/XcodeServer/IntegrationAssets/$XCS_BOT_ID-$XCS_BOT_NAME/$XCS_INTEGRATION_NUMBER/$TARGET_NAME.ipa`, but it's not available at the time that bot's after integration trigger is running.
+The IPA built by the bot is copied to this path after the build finishes:
+
+    /Library/Developer/XcodeServer/IntegrationAssets/$XCS_BOT_ID-$XCS_BOT_NAME/$XCS_INTEGRATION_NUMBER/$TARGET_NAME.ipa
+
+But it's not available at the time that bot's after integration trigger is running.
 
 #### XCS_ARCHIVE not defined
 
