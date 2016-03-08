@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "CI & automatic deployment to iTunes Connect with Xcode Server"
+title: "CI and automatic deployment to iTunes Connect with Xcode Server"
 date:   2016-03-07 10:00:00
 author: Miguel Revetria
 categories: Server,CI,Fastlane
