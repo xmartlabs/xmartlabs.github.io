@@ -9,17 +9,17 @@ author_id: mtnBarreto
 
 We are incredibly excited to announce [Eureka!], our first Swift open source project designed to easily build dynamic table-view forms.
 
-#**Why we built Eureka!**
+**Why we built Eureka!**
 
 April last year we released XLForm, an open source obj-c iOS library to build dynamic complex forms based on a DSL. Luckily it has been largely used by iOS community and in thousands of apps saving a lot of development time.
 
 After Swift release a huge part of the iOS community started to use [XLForm] from Swift projects. We added support for Swift but we were not able to use all of the Swift language benefits so we rethought XLForm and built something from scratch following the swift way and taking advantage of all Swift language capabilities.
 
-#**About Eureka!**
+**About Eureka!**
 
 Eureka is a library that can be used to create dynamic table-view forms and which uses a high level DSL abstraction to specify the forms. Sounds familiar? (hint: [XLForm])
 
-##What makes Eureka so special?
+## What makes Eureka so special?
 
 Eureka was originally designed to be:
 
