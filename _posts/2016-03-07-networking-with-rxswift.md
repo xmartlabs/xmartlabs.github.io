@@ -1,124 +1,42 @@
 ---
 layout: post
 title:  "Networking Architecture with RxSwift"
-date:   2016-03-01 10:00:00
+date:   2016-03-01 12:00:00
 author: Miguel Revetria
-categories: Swift,ReactiveX,RxSwift,Alamofire,ObjectMapper,Argo,Decodable
+categories: Swift,RxSwift,Alamofire,Argo,ReactiveX,Networking
 author_id: remer
 ---
 
-## ~~Motivation~~
+## Motivation
 
-A short time ago I was working on a couple of Android projects together Xmartlabs' droid gurus [Santiago Castro]() and [Matias Irland](). I had some basic understanding on how this platform works but nothing too advanced. In this context I started working on relatively complex projects with tons of libraries like [Butterknife](), [Dart](), [Henson](), [Lombok]() - just to mention some of them - that I didn't have idea of what theirs purpose were. When I deep and work more and more on these projects quickly I noticed the tedious tasks that Android developers would do - and I did a time ago - if they don't use these utilities.
+Networking could be really a mess in big projects. If we don't take care of it we can finish with tons of networking calls made in every class of our project, accessing directly to the networking library. This may be a real problem when we try to add common behavior to every call, like logging errors, handling authentication, retries, etc. Also, we will end up by doing a lot of repetitive code as parsing the service's response and checking errors. Composing a few services in order to get a final and more complex result could be a hard task. Later, if we read again our code it could be not so easy to understand what is doing.
 
-Among these libraries I found a few of them working "al unísono" to make networking really too easy. I loved how networking is done in Android projects here at Xmartlabs. Combining [okhttp]() with [okio]() we get a flexible HTTP client to make networking calls. In an abstraction layer, [Retrofit]() using its JSON converter make consuming REST service clear and concise. At the end, adding the RxJava adapter for Retrofit everything looks like a masterpiece of software engineer.
+We wanted to improve the networking access layer in our projects. Our objectives are:
 
-Putting all previous libraries together we simply can implement our REST networking layer in this way:
+* Define a single coupling point between our own code and the networking library used.
+* Allow us to define common behavior attached to all or some of the networking calls.
+* Allow us to compose services in an easy and understandable way.
+* Avoid repetitive code.
 
-{% highlight java %}
-public interface RepositoryService {
-    @GET("repositories")
-    @Headers({
-        "Accept: application/vnd.github.v3+json"
-    })
-    Observable<List<Repository>> repositories();
-}
-{% endhighlight %}
+By accomplishing previous objectives, we will be also improving our code's properties, like its readability, maintainability and modularity.
 
-> The class Repository is part of the entity model, is just POJO with the fields returned by the service endpoint and decorated with lombok annotations.
+## Designing our networking layer
 
-{% highlight java %}
-public class RepositoryController extends ServiceController {
-    @Inject
-    RepositoryService service;
+The *de facto* networking library used on Swift projects is, without any doubt, [Alamofire](https://github.com/Alamofire/Alamofire). On the other hand, the implementation of ReactiveX on Swift is [RxSwift](https://github.com/ReactiveX/RxSwift) which also has an external helper library that make easy integrate it with Alamofire. So the bases for our REST networking layer is solved. 
 
-    @NonNull
-    public Observable<List<DemoRepo>> getPublicRepositoriesFilteredBy(@Nullable String filter) {
-        return service.repositories()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(getGeneralErrorHelper().getGeneralErrorAction())
-                .flatMap(Observable::from)
-                .filter(repo -> repo.match(filter))
-                .toList();
-    }
-}
-{% endhighlight %}
+As JSON parsing library we are going to use [Argo](https://github.com/thoughtbot/Argo). It has some nice features that make it a better choice than other available libraries like [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper) and [Decodable](https://github.com/Anviking/Decodable). Some of its features are:
 
-> ServiceController is a base class that add some helper to controller that perform service calls, for example it defines a general error handler that will log the error to Fabric.
+* It works with both classes and structs.
+* It allows us to define optional properties.
+* It is statically typed and secure. Any error that may happens in the parsing chain will be returned with a descriptive and helpful message.
+* Adding custom transformations is quite simple.
 
-{% highlight java %}
-public class ReposListFragment extends RxFragment {
-    @Inject
-    RepositoryController controller;
+### 1. Alamofire wrapper
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
-
-        controller.getPublicRepositoriesFilteredBy(filter)
-                .<List<DemoRepo>>compose(RxLifecycle.bindUntilFragmentEvent(lifecycle(), FragmentEvent.DESTROY_VIEW))
-                .subscribe(
-                        listAdapter::setItems,
-                        error -> showAlertError(R.string.message_error_service_call)
-                );
-
-        return view;
-    }
-}
-{% endhighlight %}
-
-> Note that previous code is also using [Retrolambda]() to bring lambdas to Android code.
-
-That's really cool, but is too much of Java code for a Swift post.
-
-## Swift
-
-Later, after I finished working on Android and when I come back to iOS development I started missing it. So I wanted to bring these programming patterns or paradigm, or whatever you want calling it, to Swift projects and I started researching available frameworks. The *de facto* networking library used on Swift projects is, without any doubt, [Alamofire](). On the other hand, the implementation of ReactiveX on Swift is [RxSwift]() which also has an external helper library that make easy integrate it with Alamofire. So the bases for our REST networking layer is solved. 
-
-Next we have to find a way to map JSON objects into Swift classes (or structs) and viceversa. Some of the features that I would expect to find in the chosen library are:
-
-* **Both directional mapping**: this will allow us to decode JSON data received from server and also to map our objects to JSON in order to be sent in the request body.
-* **Works with classes and structs**: I'd like to use the same classes defined as server's responses as [Core Data]() entities to store them in the database without making any additional transformation.
-* **Keep model separated from the library code**: this is a nice-to-have feature in order to keep our project's classes (or structs) clean and independent of the parsing library used.
-* **Easily define optionals and non-optionals fields**: this is also desired, defining everything as optional or setting up default values doesn't make sense in general.
-
-### JSON parser libraries
-
-I tried a few libraries that provide JSON mapping
-
-#### ObjectMapper
-My first try was [ObjectMapper](), it is one of the most popular JSON mappers in GitHub and it's really easy to use. It works in both directions parsing JSON structures into objects and viceversa. Also, it works fine with classes and with structs. Additionally there is an integration with Alamofire on GitHub: [AlamofireObjectMapper](https://github.com/tristanhimmelman/AlamofireObjectMapper).
-
-ObjectMapper has some undesired properties:
-
-* All class' (struct's) properties must be optionals or with default values. It doesn't make sense in many scenarios.
-* You have to implement a constructor receiving a mapping object. This couple our models with the library used for parsing. Additionally there is a `mapping` function which receive this map object too.
-* Error handling is up to you.
-
-#### Argo
-
-The second option I tried was [Argo](). It's an amazing library. Its statically typed and secure, any error that may happens in the parsing chain will be returned with a descriptive and helpful message. This will make development easier helping to quickly find issues on the code or on the JSON data. 
-
-Additionally Argo works with both classes and structs letting them independent of the library itself. We have to implement a simple protocol named `Decodable` to allow parsing our types. You can define your type's properties as non-optionals if makes sense.
-
-Adding a custom transformation function is an easy tasks. You can pass a closure where you make a transformation from a JSON value to the final type.
-
-I opted to use Argo as my JSON parser library because of the previous advantages.
-
-#### Decodable
-
->> // TODO
-
-As they say, it is conceptually similar to Argo but simplifying the operators involved. 
-
-### Application's networking layer
-
-With all necessary libraries on hand, it's moment to start putting all together and define the architecture of our project's networking layer.
-
-We're going to start with `NetworkManager` a class that encapsulates all the access to Alamofire. Its main purpose is to encapsulate all calls to Alamofire and adding specific behavior reused in all networking calls. It also defines its own Alamofire.Manager instance with custom configurations.
+We are going to start by creating the class `NetworkManager` that encapsulates all the access to Alamofire. Its main purpose is to keep all calls to Alamofire in a single place and adding generic behavior that will be reused in all networking calls. It also defines its own Alamofire.Manager instance with custom configurations.
 
 {% highlight swift %}
+
 import Alamofire
 import Argo
 import Crashlytics
@@ -133,7 +51,6 @@ public class NetworkManager {
     
     static func request(URLRequest: URLRequestConvertible) -> Alamofire.Request {
         let request = networkManager.request(URLRequest)
-        debugPrint(request)
         return request
     }
     
@@ -144,37 +61,21 @@ public class NetworkManager {
         encoding: ParameterEncoding = .URL,
         headers: [String: String]? = nil) -> Alamofire.Request {
             let request = networkManager.request(method, URLString, parameters: parameters, encoding: encoding, headers: headers)
-            debugPrint(request)
             return request
     }
-    
-    public static func handleResponse<T: Decodable where T == T.DecodedType>(response: Response<T, NSError>, onSuccess: ((T) -> Void)? = nil, onFailure: ((NSError, NSHTTPURLResponse?, AnyObject?) -> Void)? = nil) {
-        switch response.result {
-        case .Success(let value):
-            onSuccess?(value)
-        case .Failure(let error):
-            onFailure?(error, response.response, response.data?.toJSON())
-        }
-    }
-    
-    public static func handleResponse<T: Decodable where T == T.DecodedType>(response: Response<[T], NSError>, onSuccess: (([T]) -> Void)? = nil, onFailure: ((NSError, NSHTTPURLResponse?, AnyObject?) -> Void)? = nil) {
-        switch response.result {
-        case .Success(let value):
-            onSuccess?(value)
-        case .Failure(let error):
-            onFailure?(error, response.response, response.data?.toJSON())
-        }
-    }
-    
+        
     public static func generalErrorHandler(error: ErrorType) {
         Crashlytics.sharedInstance().recordError(error)
         CLSNSLogv("Service call failed with error: %@", getVaList([error]))
     }
     
 }
+
 {% endhighlight %}
 
-Next, we are going to define our service endpoints. As Alamofire's documentation suggests we are going to make an `Enum` that implements `URLRequestConvertible` protocol but we are going to create a base implementation that will save us some time:
+### 2. URLRequestConvertible instances
+
+Next, we are going to define our service endpoints. As Alamofire's documentation suggests we are going to make an `Enum` that implements `URLRequestConvertible` protocol but first, we are going to create some generic types that will save us some time later:
 
 {% highlight swift %}
 
@@ -223,6 +124,8 @@ extension NetworkRouteType {
 
 {% endhighlight %}
 
+With the previous helper types, we just need to implement 3 functions in order to conform to `URLRequestConvertible` protocol. See how it may be done below:
+
 {% highlight swift %}
 
 enum Repositories: NetworkRouteType {
@@ -265,9 +168,97 @@ enum Repositories: NetworkRouteType {
 
 > We're using the public GitHub's API as an example
 
-Additionally we're going to create an extension to `Alamofire.Request` in order to get our own model classes from the result of executing a service call.
+### 3. Parsing services response with Argo
 
-Now we're going to define a class that ecanpsulates the services call through our NetworkManager.
+Alamofire's responses are parsed easily from JSON to dictionaries, but we want to go further and use swift objects in our code. In order to parse JSON to our data models we will implement a custom `response` method that will return a `Decodable` type.
+
+{% highlight swift %}
+
+import Alamofire
+import Argo
+
+extension Request {   
+    public func responseObject<T: Decodable where T == T.DecodedType>(completionHandler: Response<T, NSError> -> Void) -> Self {
+        let responseSerializer = ResponseSerializer<T, NSError> { request, response, data, error in
+            guard error == nil else { return .Failure(error!) }
+            let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
+            let result = JSONResponseSerializer.serializeResponse(request, response, data, error)
+            switch result {
+            case .Success(let value):
+                if let _ = response {
+                    let json = JSONStringify(value)
+                    let decodedData = T.decode(result.value != nil ? JSON.parse(result.value!) : JSON.Null)
+                    switch decodedData {
+                    case let .Failure(argoError):
+                        let nsError = Error.errorWithCode(.JSONSerializationFailed, failureReason: argoError.description)
+                        return .Failure(nsError)
+                    case let .Success(object):
+                        return .Success(object)                        
+                    }
+                } else {
+                    let failureReason = "JSON could not be serialized into response object: \(value)"
+                    let error = Error.errorWithCode(.JSONSerializationFailed, failureReason: failureReason)
+                    return .Failure(error)
+                }
+            case .Failure(let error):
+                return .Failure(error)
+            }
+        }
+        return response(responseSerializer: responseSerializer, completionHandler: completionHandler)
+    }
+}
+
+{% endhighlight %}
+
+### 4. RxSwift integration
+
+In order to work with Rx API we have to craete an Observable instance that will perform the networking call. We can make an extension to `Alamofire.Request` that will create an observable instance. This observable will call to our `NetworkManager`.
+
+{% highlight swift %}
+
+import Alamofire
+import RxSwift
+
+extension Alamofire.Request {
+    
+    public func rx_object<T: Decodable where T == T.DecodedType>() -> Observable<T> {
+        return Observable.create { subscriber in
+            self.responseObject() { (response: Response<T, NSError>) in
+                switch response.result {
+                case .Failure(let error):
+                    subscriber.onError(error)
+                case .Success(let entity):
+                    subscriber.onNext(entity)
+                    subscriber.onCompleted()
+                }
+            }
+            return NopDisposable.instance
+        }
+    }
+    
+    public func rx_objectCollection<T: Decodable where T == T.DecodedType>() -> Observable<[T]> {
+        return Observable.create { subscriber in
+            self.responseCollection() { (response: Response<[T], NSError>) in
+                switch response.result {
+                case .Failure(let error):
+                    subscriber.onError(error)
+                case .Success(let entity):
+                    subscriber.onNext(entity)
+                    subscriber.onCompleted()
+                    break
+                }
+            }
+            return NopDisposable.instance
+        }
+    }
+
+}
+
+{% endhighlight %}
+
+### 5. Service classes
+
+Now we are going to define a class that encapsulates the services call through our NetworkManager.
 
 {% highlight swift %}
 
@@ -302,7 +293,7 @@ public class RepositoriesService {
 {% endhighlight %}
 
 
-#### Invoking our networking layer from a client view controller
+### 6. Invoking our networking layer from a client view controller
 
 {% highlight swift %}
 
@@ -377,3 +368,14 @@ extension ReposTableViewController: UITableViewDataSource, UITableViewDelegate {
 
 {% endhighlight %}
 
+## Conclusions
+
+Alamofire is the best networking library available for Swift, but this doesn't mean that a new one and better appear in the future. Because we encapsulated all accesses to Alamofire in our `NetworkManager` class, replacing Alamofire with other networking library wouldn't be a hard task. We also have to replace the returning values for our `NetworkRouteType` implementations.
+
+By using RxSwift we found an easy way to combine functions and compose differences services in order to get a final result. Also, with its methods `doOn`, `doOnError`, `doOnNext` it helps us to add common behaviors to all networking calls.
+
+We have defined a common error handler for all the networking calls. There we can do simple tasks like logging errors and more sophisticated tasks like refreshing the authentication token and retrying the failed request for 401 errors. Additionally, we are available to define a global function called on each success request.
+
+We moved all the code associated to parsing the services response from JSON to Swift objects in generic helper functions thanks to Argo. This code is not repeated any more on each service call.
+
+At the end, the code related to networking is simpler and easier to understand. Our project is now more maintainable.
