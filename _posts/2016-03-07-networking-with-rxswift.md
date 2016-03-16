@@ -9,7 +9,7 @@ author_id: remer
 
 ## Motivation
 
-Networking could be really a mess in big projects. If we don't take care of it we can finish with tons of networking calls made in every class of our project, accessing directly to the networking library. This may be a real problem when we try to add common behavior to every call, like logging errors, handling authentication, retries, etc. Also, we will end up by doing a lot of repetitive code as parsing the service's response and checking errors. Composing a few services in order to get a final and more complex result could be a hard task. Later, if we read again our code it could be not so easy to understand what is doing.
+Networking could be really a mess in big projects. If we don't take care of it we can finish with tons of networking calls made in every class of our project, accessing directly to the networking library. This may be a real problem when we try to add common behavior to every call, like logging errors, handling authentication, retries, etc. Also, we will end up by doing a lot of repetitive code as parsing services' response and checking errors. Composing a few services in order to get a final and more complex result could be a hard task. Later, understand what the code is doing won't be so easy even when reading our own code.
 
 We wanted to improve the networking access layer in our projects. Our objectives are:
 
@@ -28,12 +28,12 @@ As JSON parsing library we are going to use [Argo](https://github.com/thoughtbot
 
 * It works with both classes and structs.
 * It allows us to define optional properties.
-* It is statically typed and secure. Any error that may happens in the parsing chain will be returned with a descriptive and helpful message.
+* It is statically typed and secure. Any error that may happen in the parsing chain will be returned with a descriptive and helpful message.
 * Adding custom transformations is quite simple.
 
-### 1. Alamofire wrapper
+### 1. Networking library wrapper
 
-We are going to start by creating the class `NetworkManager` that encapsulates all the access to Alamofire. Its main purpose is to keep all calls to Alamofire in a single place and adding generic behavior that will be reused in all networking calls. It also defines its own Alamofire.Manager instance with custom configurations.
+We are going to start by creating the class `NetworkManager` which will encapsulate all the access to Alamofire. Its main purpose is to keep all calls to Alamofire in a single place and adding generic behavior that will be reused in all networking calls. It also defines its own Alamofire.Manager instance with custom configurations.
 
 {% highlight swift %}
 
@@ -51,6 +51,7 @@ public class NetworkManager {
     
     static func request(URLRequest: URLRequestConvertible) -> Alamofire.Request {
         let request = networkManager.request(URLRequest)
+        DBLog(request.debugDescription)
         return request
     }
     
@@ -61,6 +62,7 @@ public class NetworkManager {
         encoding: ParameterEncoding = .URL,
         headers: [String: String]? = nil) -> Alamofire.Request {
             let request = networkManager.request(method, URLString, parameters: parameters, encoding: encoding, headers: headers)
+            DBLog(request.debugDescription)
             return request
     }
         
@@ -73,7 +75,9 @@ public class NetworkManager {
 
 {% endhighlight %}
 
-### 2. URLRequestConvertible instances
+> `DBLog` is a custom function that we use to include in our projects to log to the console just when debugging.
+
+### 2. Service endpoints specification
 
 Next, we are going to define our service endpoints. As Alamofire's documentation suggests we are going to make an `Enum` that implements `URLRequestConvertible` protocol but first, we are going to create some generic types that will save us some time later:
 
@@ -92,6 +96,9 @@ protocol NetworkRouteType: URLRequestConvertible {
 
 protocol CustomUrlRequestSetup {
 
+    // By conforming to this protocol, a concrete `NetworkRouteType` instance will be able 
+    // to add specific configurations to the url request before it's performed. As an example,
+    // some endpoints may (not) require an authentication header, it could be added (removed) here.
     func customUrlRequestSetup(urlRequest: NSMutableURLRequest)
 
 }
@@ -104,6 +111,7 @@ extension NetworkRouteType {
         
         let urlRequest = encoding.encode(mutableURLRequest, parameters: parameters).0
         (self as? CustomUrlRequestSetup)?.customUrlRequestSetup(urlRequest)
+        
         return urlRequest
     }
     
@@ -128,7 +136,7 @@ With the previous helper types, we just need to implement 3 functions in order t
 
 {% highlight swift %}
 
-enum Repositories: NetworkRouteType {
+enum NetworkRepository: NetworkRouteType {
 
     case FetchAll
     case Get(ownerId: Int, repoId: Int)
@@ -152,7 +160,7 @@ enum Repositories: NetworkRouteType {
             path = "search/repositories"
         }
         
-        return "\(Repositories.basePath)\(path)"
+        return "\(NetworkRepository.basePath)\(path)"
     }
     
     var parameters: [String: AnyObject]? {
@@ -168,16 +176,17 @@ enum Repositories: NetworkRouteType {
 
 > We're using the public GitHub's API as an example
 
-### 3. Parsing services response with Argo
+### 3. Parsing services response
 
-Alamofire's responses are parsed easily from JSON to dictionaries, but we want to go further and use swift objects in our code. In order to parse JSON to our data models we will implement a custom `response` method that will return a `Decodable` type.
+Alamofire's responses are parsed easily from JSON to dictionaries, but we want to go further and use swift objects in our code. In order to parse JSON to our data models we will implement a custom `response` method that will return an `Argo.Decodable` instance.
 
 {% highlight swift %}
 
 import Alamofire
 import Argo
 
-extension Request {   
+extension Request {
+
     public func responseObject<T: Decodable where T == T.DecodedType>(completionHandler: Response<T, NSError> -> Void) -> Self {
         let responseSerializer = ResponseSerializer<T, NSError> { request, response, data, error in
             guard error == nil else { return .Failure(error!) }
@@ -206,9 +215,12 @@ extension Request {
         }
         return response(responseSerializer: responseSerializer, completionHandler: completionHandler)
     }
+
 }
 
 {% endhighlight %}
+
+> Note that we will need an additional function in order to get an Array response from the service. Its implementation is quite similar to previous declaration.
 
 ### 4. RxSwift integration
 
@@ -256,44 +268,35 @@ extension Alamofire.Request {
 
 {% endhighlight %}
 
-### 5. Service classes
-
-Now we are going to define a class that encapsulates the services call through our NetworkManager.
+To simplify the code that will invoke our services we are going to add a helper function to our type `NetworkRouteType` as shown below:
 
 {% highlight swift %}
 
-public class RepositoriesService {
- 
-    func fetchAll() -> Observable<[Repository]> {
-        return Observable.create() { observer in
-            NetworkManager.request(Repositories.FetchAll)
-                .validate()
-                # `rx_objectCollection` will return an Observable instance of a collection of repositories. Repositories are decoded by Argo.
-                .rx_objectCollection()
-                # Whenever a service returns an error we want to log it. We are adding a generic handler that will do that and other tasks if needed
-                # `doOnError` is an extension to RxSwift that allow us to easily add an action that will be executed if the sequence fails
-                .doOnError(NetworkManager.generalErrorHandler)
-                .subscribe(observer)
-        }
+extension NetworkRouteType {
+
+    func observe<T: Decodable where T == T.DecodedType>(scheduler: ImmediateSchedulerType = MainScheduler.instance) -> Observable<T> {
+        return NetworkManager.request(self)
+            .validate()
+            .rx_object()
+            .observeOn(scheduler)
+            .doOnError(NetworkManager.generalErrorHandler)
     }
 
-    func get(ownerId: Int, repoId: Int) -> Observable<Repository> {
-        return Observable.create() { observer in
-            NetworkManager.request(Repositories.Get(ownerId: ownerId, repoId: repoId))
-                .validate()
-                # `rx_object` will return an Observable instance of a single repository.
-                .rx_object()
-                .doOnError(NetworkManager.generalErrorHandler)
-                .subscribe(observer)
-        }
+    func observe<T: Decodable where T == T.DecodedType>(scheduler: ImmediateSchedulerType = MainScheduler.instance) -> Observable<[T]> {
+        return NetworkManager.request(self)
+            .validate()
+            .rx_objectCollection()
+            .observeOn(scheduler)
+            .doOnError(NetworkManager.generalErrorHandler)
     }
 
 }
 
 {% endhighlight %}
 
+### 5. Invoking our networking layer
 
-### 6. Invoking our networking layer from a client view controller
+With our networking layer implemented, we are in conditions to start performing networking requests in an simple way. Take a look to the code snippet belown:
 
 {% highlight swift %}
 
@@ -316,9 +319,8 @@ class ReposTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let service = RepositoriesService()
-        service.fetchAll()
-            .observeOn(MainScheduler.instance)
+        NetworkRepository.FetchAll)
+            .observe()
             .doOnError() { [weak self] error in
                 self?.showError(error)
             }
@@ -370,12 +372,12 @@ extension ReposTableViewController: UITableViewDataSource, UITableViewDelegate {
 
 ## Conclusions
 
-Alamofire is the best networking library available for Swift, but this doesn't mean that a new one and better appear in the future. Because we encapsulated all accesses to Alamofire in our `NetworkManager` class, replacing Alamofire with other networking library wouldn't be a hard task. We also have to replace the returning values for our `NetworkRouteType` implementations.
+Alamofire is the best networking library available for Swift, but this doesn't mean that a new one and better could appear in the future. Because we encapsulated all accesses to Alamofire in our `NetworkManager` and in our NetworkRouteType types, replacing Alamofire with other networking library wouldn't be a hard task.
 
-By using RxSwift we found an easy way to combine functions and compose differences services in order to get a final result. Also, with its methods `doOn`, `doOnError`, `doOnNext` it helps us to add common behaviors to all networking calls.
+By using RxSwift we found an easy way to combine functions and compose differences services in order to get a final result. Also, its functions `doOn`, `doOnError`, `doOnNext` help us to add common behaviors to all networking calls.
 
 We have defined a common error handler for all the networking calls. There we can do simple tasks like logging errors and more sophisticated tasks like refreshing the authentication token and retrying the failed request for 401 errors. Additionally, we are available to define a global function called on each success request.
 
-We moved all the code associated to parsing the services response from JSON to Swift objects in generic helper functions thanks to Argo. This code is not repeated any more on each service call.
+We moved all the code associated to parsing the services response from JSON to Swift objects in generic helper functions by using Argo. This code is not repeated any more on each service call.
 
-At the end, the code related to networking is simpler and easier to understand. Our project is now more maintainable.
+At the end, the code related to networking is simpler and easier to understand. Our project is now much more maintainable.
