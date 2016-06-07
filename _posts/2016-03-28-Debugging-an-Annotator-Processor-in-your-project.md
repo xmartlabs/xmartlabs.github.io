@@ -39,9 +39,9 @@ Then, after syncing Gradle, you will find its symbols within the IDE.
 
 ## Debugging
 
-So, how we debug the annotation processing steps? This is not natively supported by the IDE.
+So, how do we debug the annotation processing steps? This is not natively supported by the IDE.
 
-Remember that annotation processing occurs during the compilation phase. However, normal debugging uses The Java Debugger (`jdb`), which works once the code was compiled and generated. So we need to debug the compile phase. How can we do this? We need to handle it with the build tool we are using. In the case of Gradle, we can set the options in the `GRADLE_OPTS` environment variable, or simpler with the flag `-Dorg.gradle.debug=true`. This option enables the remote debugging in the port 5005 and will suspend the process until a debugger is attached (see [the docs](https://docs.gradle.org/current/userguide/build_environment.html) for more info). With Maven we can do this with `mvnDebug`.
+Remember that annotation processing occurs during the compilation phase. However, normal debugging uses The Java Debugger (`jdb`), which works once the code is compiled and generated. So we need to debug the compile phase. How can we do this? We need to handle it with the build tool we are using. In the case of Gradle, we can set the options in the `GRADLE_OPTS` environment variable, or simpler with the flag `-Dorg.gradle.debug=true`. This option enables the remote debugging in the port 5005 and will suspend the process until a debugger is attached (see [the docs](https://docs.gradle.org/current/userguide/build_environment.html) for more info). With Maven we can do this with `mvnDebug`.
 
 The task we aim to debug is usually named `compileDebugJavaWithJavac`. If you use flavors, the name is something like `compileFlavorDebugJavaWithJavac`. Remember to do a clean run to ensure the task is carried out, and not skipped due to the fact of being up to date. Also, be sure not to use the Gradle Daemon, otherwise this won't work. The command you have to run is more or less the following:
 
@@ -53,7 +53,7 @@ Next we need to connect the IDE to the debugger. To do this, we need to create a
 
 ![Remote Run/Debug Configuration](/images/debug-annotator-processor/remote-configuration.png)
 
-Then you can debug this configuration with the IDE and it will automatically connect to the Gradle task, which will start running. After that it will work as an usual debugger, stopping in the set breakpoints and suspending the execution there.
+Then you can debug this configuration with the IDE and it will automatically connect to the Gradle task, which will start running. Afterwards, it will work as an usual debugger, stopping in the set breakpoints and suspending the execution there.
 
 ![Example of Annotation Processor being debugged](/images/debug-annotator-processor/example.png)
 
