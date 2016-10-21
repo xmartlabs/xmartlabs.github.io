@@ -15,6 +15,11 @@ dernst:
   image: members/dernst.jpg
   github: dernster
   profile_url: https://github.com/dernster
+esanchez:
+  display_name: Ezequiel Santiago Sanchez
+  image: members/esanchez.jpg
+  github: squiel91
+  profile_url: https://twitter.com/squiel91
 enrique:
   display_name: Enrique Galindo
   image: members/enrique.jpg
