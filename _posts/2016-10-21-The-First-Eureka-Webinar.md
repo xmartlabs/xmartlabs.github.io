@@ -17,7 +17,7 @@ markdown: redcarpet
 
 There are over 14k apps currently using Eureka, including Dropbox, Amazon Kindle, SoundCloud, and Foursquare.
 
-**On Tuesday, October 1st, 11 a.m. PST`, [Xmartlabs] will be hosting the first Eureka Webinar!**
+**On Tuesday, October 1st, 11 a.m. PST, [Xmartlabs] will be hosting the first Eureka Webinar!**
 
 If you are starting a new iOS project, or using Eureka and want to learn more about its capabilities and newest features, then this webinar is perfect for you!
 
