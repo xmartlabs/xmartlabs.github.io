@@ -9,16 +9,17 @@ markdown: redcarpet
 
 ---
 
-### TODO: Write welcome message and motivation of this work
+# Analysis of 2016 Github commits, messages, stars and more
 
-
+Welcome to Xmartlabs's first data analysis blog. Data analysis and machine learning are hot topics nowadays and we wanted to have a try at them. We thought it would be interesting to study the use of one of the tools we use each day which is Github. Xmartlabs has several open source projects so it seemed interesting to see some statistics about open source projects on Github. Luckily there is the [Github archive] which records all the public activity on Github and can be accessed for free.
+On the other hand we wanted to try and use some new technologies like Apache Spark on Databricks and Zeppelin. So we started a process in which we came to grips with these technologies and found out some interesting things.
 
 
 <!-- what this is about and what we used to get the results -->
 
 ### What did we study and how
 
-[Github archive](https://www.githubarchive.org/) records all the public activity on Github. This archive can be accessed from [Google BigQuery](https://developers.google.com/bigquery/) as a public dataset. 
+The [Github archive] can be accessed from [Google BigQuery](https://developers.google.com/bigquery/) as a public dataset. It can also be queried from Github API directly.
 
 We decided to study these data to get some interesting information. The archive consists of a series of events happening on Github like pushes, stars, comments, pull requests and much more. So we decided to analyse the commits and see from where they come, mapping them to the location of the committer. This work was inspired by a similar previous work by [Ramiro Gómez](http://geeksta.net/visualizations/github-commit-map/). We plotted the commits of a country scaled by the country's population and area. We also plotted the percentage of open source developers per million inhabitants for each country.
 
@@ -61,10 +62,16 @@ And there were in fact some interesting results:
 | Total messages | 6096 | 2464 | 67 | 131207466 | 
 | Messages with 'fix' | 42% | 17% | 8% | 10% |
 | Messages with link to issue or pull request | 2% | 37% | 16% | 8% |
-| Messages shorter than 15 characters | <0.01% | 5% | 26% | 17% |
+| Messages shorter than 15 characters | <1% | 5% | 26% | 17% |
 | Average message length | 664.7 | 82.4 | 37.5 | 60.3 |
 
-### TODO Conclusions
+##### What did we learn from this
+
+The first thing that catched my eye was the high standards linux keep for their commit messages as not even 1 in 100 is shorter than 15 characters and that the average length exceeds 664 characters.This completely contrasts to the relatively high percentage of short commits in JSON-Server but also in general.
+
+Not surprising is the fact that almost halve of the commits in Linux do `fix` something and that `fix` appears in those long and complete commit messages. 
+
+There is also a  great difference between Bootstrap and Linux in terms of linking to issues and pull request as the Linux repo has issue reporting disabled on Github and does merge commits that do not always come from Github pull request but SCM. If that was not the case then low amount of links to issues or pull requests would mean a lot of direct pushes to master branch (as pull request merges would be caught by this rule).
 
 ### TODO: Stars per repo analysis (extra blog?)
 	* Present results in tables
@@ -73,5 +80,4 @@ And there were in fact some interesting results:
 		* Others
 		
 
-
-[Ecno]:        https://github.com/xmartlabs/Ecno
+[Github archive]: https://www.githubarchive.org/
