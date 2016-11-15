@@ -1,0 +1,14 @@
+{
+  "URY": {
+          "fillKey": "L5",
+          "value": 5
+      },
+  "ARG": {
+          "fillKey": "L1",
+          "value": 3
+      },
+  "BRA": {
+          "fillKey": "L1",
+          "value": 1
+      }
+}

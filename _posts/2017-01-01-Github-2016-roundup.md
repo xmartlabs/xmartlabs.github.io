@@ -3,15 +3,16 @@ layout: post
 title:  GitHub 2016 round up
 date:   2017-01-01 08:00:00
 author: Mathias Claassen
-categories: Github, Data Analysis
+categories: GitHub, Data Analysis
 author_id: mathias
 markdown: redcarpet
 
 ---
 
-# Analysis of 2016 Github commits, messages, stars and more
 
-Welcome to the first Xmartlabs' data analysis post. We thought it would be interesting to study the use of one of the tools we use everyday which is Github. Xmartlabs has several open source projects so it seemed interesting to see some statistics about open source projects on Github. Luckily there is the [GitHub Archive] which records all the public activity on Github and can be accessed for free.
+# Analysis of 2016 GitHub commits, messages, stars and more
+
+Welcome to the first Xmartlabs' data analysis post. We thought it would be interesting to study the use of one of the tools we use everyday which is GitHub. Xmartlabs has several open source projects so it seemed interesting to see some statistics about open source projects on GitHub. Luckily there is the [GitHub Archive] which records all the public activity on GitHub and can be accessed for free.
 On the other hand we wanted to try and use some new technologies like Apache Spark on Databricks and Zeppelin. So we started a process in which we came to grips with these technologies and found out some interesting things.
 
 
@@ -19,9 +20,9 @@ On the other hand we wanted to try and use some new technologies like Apache Spa
 
 ### What did we study and how
 
-[GitHub Archive] can be accessed from GitHub's API directly. From there you can grab historical data of the activity registered on Github since 2/12/2011. This files are partitioned by hour and each of them has a size of 20-30 Mb when unzipped so that for one year this is a lot of data if you want to store and process it yourself (600Gb+). The archive is also published on [Google BigQuery](https://developers.google.com/bigquery/) as a public dataset, you just have to pay for the bytes you process.
+[GitHub Archive] can be accessed from GitHub directly. From there you can grab historical data of the activity registered on GitHub since 2/12/2011. This files are partitioned by hour, each with an average size of over 80 Mb when unzipped, so that for one year this is a lot of data if you want to store and process it yourself (700Gb+). The archive is also published on [Google BigQuery](https://developers.google.com/bigquery/) as a public dataset, you just have to pay for the bytes you process.
 
-We decided to study this data to get some interesting information. The archive consists of a series of events happening on GitHub like pushes, stars, comments, pull requests and much more. So we decided to analyse the commits and see where they come from, mapping them to the location of the committer. This work was inspired by a similar previous work by [Ramiro Gómez](http://geeksta.net/visualizations/github-commit-map/). We plotted the commits of a country scaled by the country's population and area. We also plotted the percentage of open source developers per million inhabitants for each country.
+We decided to study this data to get some interesting information. The archive consists of a series of events happening on GitHub like pushes, stars, comments, pull requests and much more. So we decided to analyse the commits and see where they come from, mapping them to the location of the committer. This work was inspired by a similar previous work by [Ramiro Gómez](http://geeksta.net/visualizations/GitHub-commit-map/). We plotted the commits of a country scaled by the country's population and area. We also plotted the percentage of open source developers per million inhabitants for each country.
 
 We also queried the messages of these commits to extract some interesting statistics for certain repositories.
 
@@ -33,12 +34,20 @@ To get hold of and study this data we used several platforms like running [Apach
 	* Show maps with dropdown to switch between them
 
 	* Analyse results?
-	
+
+<select id="dropdownselect" onchange="selectedMapType();">
+  <option value="commitsPop">Commits per 100k inhabitants</option>
+  <option value="commitsArea">Commits per 1000 square km</option>
+  <option value="devPerMil">Developers per Million inhabitants</option>
+</select>
+
 <div id="container" style="width:100%;height:500px"></div>
-<script src="/js/datamaps/d3.min.js"></script>
-<script src="/js/datamaps/topojson.min.js"></script>
-<script src="/js/datamaps/datamaps.world.hires.min.js"></script>
-<script src="/js/datamaps/main.js"></script>
+
+<script src="/datamaps/js/d3.min.js"></script>
+<script src="/datamaps/js/topojson.min.js"></script>
+<script src="/datamaps/js/datamaps.world.hires.min.js"></script>
+<script src="/datamaps/js/main.js"></script>
+<link rel="stylesheet" href="/datamaps/css/styles.css">
 
 ### TODO: Commit message analysis
 	* Motivation
@@ -65,6 +74,7 @@ We then chose some repositories with a lot of stars, from different programming 
 | Messages shorter than 15 characters | <1% | 5% | 26% | 17% |
 | Average message length | 664.7 | 82.4 | 37.5 | 60.3 |
 
+
 ##### What did we learn from this
 
 The first thing that catched my eye was the high standards linux keep for their commit messages as not even 1 in 100 is shorter than 15 characters and that the average length exceeds 664 characters.This completely contrasts to the relatively high percentage of short commits in JSON-Server but also in general.
@@ -80,4 +90,4 @@ There is also a  great difference between Bootstrap and Linux in terms of linkin
 		* Others
 		
 
-[GitHub Archive]: https://www.githubarchive.org/
+[GitHub Archive]: https://www.GitHubarchive.org/
