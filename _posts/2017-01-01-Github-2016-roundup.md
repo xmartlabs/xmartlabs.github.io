@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Github 2016 round up
+title:  GitHub 2016 round up
 date:   2017-01-01 08:00:00
 author: Mathias Claassen
 categories: Github, Data Analysis
@@ -11,7 +11,7 @@ markdown: redcarpet
 
 # Analysis of 2016 Github commits, messages, stars and more
 
-Welcome to Xmartlabs's first data analysis blog. Data analysis and machine learning are hot topics nowadays and we wanted to have a try at them. We thought it would be interesting to study the use of one of the tools we use each day which is Github. Xmartlabs has several open source projects so it seemed interesting to see some statistics about open source projects on Github. Luckily there is the [Github archive] which records all the public activity on Github and can be accessed for free.
+Welcome to the first Xmartlabs' data analysis post. We thought it would be interesting to study the use of one of the tools we use everyday which is Github. Xmartlabs has several open source projects so it seemed interesting to see some statistics about open source projects on Github. Luckily there is the [GitHub Archive] which records all the public activity on Github and can be accessed for free.
 On the other hand we wanted to try and use some new technologies like Apache Spark on Databricks and Zeppelin. So we started a process in which we came to grips with these technologies and found out some interesting things.
 
 
@@ -19,9 +19,9 @@ On the other hand we wanted to try and use some new technologies like Apache Spa
 
 ### What did we study and how
 
-The [Github archive] can be accessed from [Google BigQuery](https://developers.google.com/bigquery/) as a public dataset. It can also be queried from Github API directly.
+[GitHub Archive] can be accessed from GitHub's API directly. From there you can grab historical data of the activity registered on Github since 2/12/2011. This files are partitioned by hour and each of them has a size of 20-30 Mb when unzipped so that for one year this is a lot of data if you want to store and process it yourself (600Gb+). The archive is also published on [Google BigQuery](https://developers.google.com/bigquery/) as a public dataset, you just have to pay for the bytes you process.
 
-We decided to study these data to get some interesting information. The archive consists of a series of events happening on Github like pushes, stars, comments, pull requests and much more. So we decided to analyse the commits and see from where they come, mapping them to the location of the committer. This work was inspired by a similar previous work by [Ramiro Gómez](http://geeksta.net/visualizations/github-commit-map/). We plotted the commits of a country scaled by the country's population and area. We also plotted the percentage of open source developers per million inhabitants for each country.
+We decided to study this data to get some interesting information. The archive consists of a series of events happening on GitHub like pushes, stars, comments, pull requests and much more. So we decided to analyse the commits and see where they come from, mapping them to the location of the committer. This work was inspired by a similar previous work by [Ramiro Gómez](http://geeksta.net/visualizations/github-commit-map/). We plotted the commits of a country scaled by the country's population and area. We also plotted the percentage of open source developers per million inhabitants for each country.
 
 We also queried the messages of these commits to extract some interesting statistics for certain repositories.
 
@@ -50,11 +50,11 @@ We also wanted to study the commit messages. For this we defined some metrics an
 The metrics we took were the following:
 
 * **Messages with 'fix'**: Messages that include the string `fix`. This commits should be a representation of bug fixing commits and not commits that change documentation or add a new feature.
-* **Messages with link to issue or pull request**: These are messages containing references to Github's issues or pull request like `#xxx`. 
-* **Messages shorter than 15 characters**: Following the good practices for commit messages posted on several sites like [OpenStack](https://wiki.openstack.org/wiki/GitCommitMessages#Information_in_commit_messages) we searched the commit message length to see how many are too short. It is not easy to specify a number of characters for which we say this is to short but in general commit messages should be descriptive of the solved problem or the new feature so that a message with less then 15 characters should not be a good message. We could also have tried a higher number than 15.
+* **Messages with link to an issue or pull request**: These are messages containing references to GitHub's issues or pull request like `#xxx`. 
+* **Messages shorter than 15 characters**: Following the good practices for commit messages posted on several sites like [OpenStack](https://wiki.openstack.org/wiki/GitCommitMessages#Information_in_commit_messages) we searched the commit message length to see how many are too short. It is not easy to specify a number of characters for which we say this is too short but in general commit messages should be descriptive of the solved problem or the new feature so that a message with less then 15 characters should not be a good message. We could also have tried a higher number than 15.
 * **Average message length**: The average length of commit messages. To get an insight to how messages are structured for a repo in general.
 
-And there were in fact some interesting results:
+We then chose some repositories with a lot of stars, from different programming languages and communities. So we chose Linux as one of the biggest repos as well as Bootstrap and JSON-Server which share a language but are maintained quite differently. We also compared this to the results of all the commit messages with some interesting results:
 
 
 |   | Linux| Bootstrap | JSON-Server | Global |
@@ -71,7 +71,7 @@ The first thing that catched my eye was the high standards linux keep for their 
 
 Not surprising is the fact that almost halve of the commits in Linux do `fix` something and that `fix` appears in those long and complete commit messages. 
 
-There is also a  great difference between Bootstrap and Linux in terms of linking to issues and pull request as the Linux repo has issue reporting disabled on Github and does merge commits that do not always come from Github pull request but SCM. If that was not the case then low amount of links to issues or pull requests would mean a lot of direct pushes to master branch (as pull request merges would be caught by this rule).
+There is also a  great difference between Bootstrap and Linux in terms of linking to issues and pull request as the Linux repo has issue reporting disabled on GitHub and does merge commits that do not always come from GitHub pull request but SCM. If that was not the case then low amount of links to issues or pull requests would mean a lot of direct pushes to master branch (as pull request merges would be caught by this rule).
 
 ### TODO: Stars per repo analysis (extra blog?)
 	* Present results in tables
@@ -80,4 +80,4 @@ There is also a  great difference between Bootstrap and Linux in terms of linkin
 		* Others
 		
 
-[Github archive]: https://www.githubarchive.org/
+[GitHub Archive]: https://www.githubarchive.org/
