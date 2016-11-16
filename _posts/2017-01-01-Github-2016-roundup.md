@@ -18,7 +18,7 @@ On the other hand we wanted to try and use some new technologies like Apache Spa
 
 <!-- what this is about and what we used to get the results -->
 
-### What did we study
+## What did we study
 
 [GitHub Archive] can be accessed from its website directly. From there you can grab historical data of the activity registered on GitHub since 2/12/2011. This files are partitioned by hour, each with an average size of over 80 Mb when unzipped, so that for one year this is a lot of data if you want to store and process it yourself (700Gb+). The archive is also published on [Google BigQuery](https://developers.google.com/bigquery/) as a public dataset, you just have to pay for the bytes you process.
 
@@ -29,7 +29,7 @@ We also queried the messages of these commits to extract some interesting statis
 Last but not least we studied the most starred repositories and mapped these repositories to their languages comparing the average count of stars for each language.
 
 
-### TODO: Commit maps: 
+## TODO: Commit maps: 
 	* Show maps with dropdown to switch between them
 
 	* Analyse results?
@@ -48,7 +48,7 @@ Last but not least we studied the most starred repositories and mapped these rep
 <script src="/datamaps/js/main.js"></script>
 <link rel="stylesheet" href="/datamaps/css/styles.css">
 
-### TODO: Commit message analysis
+## TODO: Commit message analysis
 	* Motivation
 	* Show results table
 	* Some Conclusions
@@ -74,7 +74,7 @@ We then chose some repositories with a lot of stars, from different programming 
 | Average message length | 664.7 | 82.4 | 37.5 | 60.3 |
 
 
-#### What did we learn from this
+### What did we learn from this
 
 The first thing that caught my eye was the high standards linux keep for their commit messages as not even 1 in 100 is shorter than 15 characters and that the average length exceeds 664 characters.This completely contrasts to the relatively high percentage of short commits in JSON-Server but also in general.
 
@@ -82,25 +82,26 @@ Not surprising is the fact that almost half of the commits in Linux do `fix` som
 
 There is also a  great difference between Bootstrap and Linux in terms of linking to issues and pull request as the Linux repo has issue reporting disabled on GitHub and does merge commits that do not always come from GitHub pull request but SCM. If that was not the case then low amount of links to issues or pull requests would mean a lot of direct pushes to master branch (as pull request merges would be caught by this rule).
 
-### TODO: Stars per repo analysis (extra blog?)
+## TODO: Stars per repo analysis (extra blog?)
 	* Present results in tables
 		* Top starred repos
 		* Average stars per language
 		* Others
 		
 
-### The platforms we used
+## The platforms we used
 To get hold of and study this data we used several platforms like running [Apache Zeppelin](https://zeppelin.apache.org/) on Amazon EMR querying data from S3 as well as querying Google BigQuery's data directly and processing it with a local Zeppelin instance.
 
-We wanted to use Spark as a tool to make distributed computations on our data. There are several ways to use it but it is common to use Spark through Databricks or Apache Zeppelin as they provide a graphic interface in the form of notebooks similar to iPython or Jupiter notebooks. 
+We wanted to use Spark as a tool to make distributed computations on our data. There are several ways to use it but it is common to use Spark through Databricks or Apache Zeppelin as they provide a graphic interface in the form of notebooks similar to Jupyter notebooks. 
 Databricks and Apache Zeppelin are quite similar but there are some minor differences as Databricks is more straightforward and lets you start working immediately while Zeppelin requires a bit more configuration but this does also mean that it is more flexible.
 Another big difference is that while Databricks is a proprietary online platform, Zeppelin is open source and you can run it on your own machine. Zeppelin is also available to use on Amazon EMR and many other cloud platforms.
 
 At first we considered using Databricks which has some nice UI features and you can use it for free if you use the community edition. The main disadvantage with Databricks was that it allows no Javascript or HTML code, which Zeppelin does.
-
 So we then decided to go with Zeppelin on Amazon EMR getting data from S3. The transfer between S3 and a cluster on EMR in the same region of Amazon is free but you have to pay for storage and the hours of the clusters you use.
 
-As there is a lot of data to store we decided that in the long term the best form to analyse GitHub data is to query it from Google BigQuery as we don't have to pay for its storage. We just needed to store some extra tables to map each user to his country.
+To get the data from the GitHub Archive we used [Scrapy](https://github.com/scrapy/scrapy), which is a Python crawler that allows us to throttle the request rate to stay inside GitHub's rate limits. The code that does this can be found at [this GitHub repo](https://github.com/xmartlabs/gh2s3).
+
+As there is a lot of data to store we decided that in the long term the best form to analyse GitHub data is to query it from Google BigQuery as we don't have to pay for its storage. We just needed to store some extra tables to map each user to his country. 
 
 ### Mapping GitHub user locations to countries
 

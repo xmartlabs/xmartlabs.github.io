@@ -45,7 +45,14 @@ function initMap(jsondata) {
               L1: '#ffffcc',
               defaultFill: '#eaeaea'
           },
-          data: jsondata,
+          data: jsondata, 
+          done: function(datamap) {
+             datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
+
+             function redraw() {
+                  datamap.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+             }
+          },
           geographyConfig: {
               hideAntarctica: true,
               borderWidth: 0.5,
@@ -67,16 +74,13 @@ function selectedMapType() {
     let type = document.getElementById("dropdownselect").value;
     if (type == COMMITSPOP) {
       map.updateChoropleth(commitsPop);
-      console.log(commitsPop['URY']);
-      console.log('update pop commits');
     } else if (type == COMMITSAREA) {
       map.updateChoropleth(commitsArea);
-      console.log(commitsArea['URY']);
-      console.log('update area commits');
     } else if (type == DEVSMILLION) {
       map.updateChoropleth(devsPop);
-      console.log('update dev million');
     }
+    // map.svg.call(d3.behavior.zoom().scale(1));
+    // map.svg.call(d3.behavior.zoom().translate([0, 0]));
 };
 
 initMap({});
