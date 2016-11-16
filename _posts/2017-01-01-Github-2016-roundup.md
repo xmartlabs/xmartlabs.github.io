@@ -18,9 +18,9 @@ On the other hand we wanted to try and use some new technologies like Apache Spa
 
 <!-- what this is about and what we used to get the results -->
 
-### What did we study and how
+### What did we study
 
-[GitHub Archive] can be accessed from GitHub directly. From there you can grab historical data of the activity registered on GitHub since 2/12/2011. This files are partitioned by hour, each with an average size of over 80 Mb when unzipped, so that for one year this is a lot of data if you want to store and process it yourself (700Gb+). The archive is also published on [Google BigQuery](https://developers.google.com/bigquery/) as a public dataset, you just have to pay for the bytes you process.
+[GitHub Archive] can be accessed from its website directly. From there you can grab historical data of the activity registered on GitHub since 2/12/2011. This files are partitioned by hour, each with an average size of over 80 Mb when unzipped, so that for one year this is a lot of data if you want to store and process it yourself (700Gb+). The archive is also published on [Google BigQuery](https://developers.google.com/bigquery/) as a public dataset, you just have to pay for the bytes you process.
 
 We decided to study this data to get some interesting information. The archive consists of a series of events happening on GitHub like pushes, stars, comments, pull requests and much more. So we decided to analyse the commits and see where they come from, mapping them to the location of the committer. This work was inspired by a similar previous work by [Ramiro Gómez](http://geeksta.net/visualizations/GitHub-commit-map/). We plotted the commits of a country scaled by the country's population and area. We also plotted the percentage of open source developers per million inhabitants for each country.
 
@@ -28,7 +28,6 @@ We also queried the messages of these commits to extract some interesting statis
 
 Last but not least we studied the most starred repositories and mapped these repositories to their languages comparing the average count of stars for each language.
 
-To get hold of and study this data we used several platforms like running [Apache Zeppelin](https://zeppelin.apache.org/) on Amazon EMR querying data from S3 as well as querying Google BigQuery's data directly and processing it with a local Zeppelin instance.
 
 ### TODO: Commit maps: 
 	* Show maps with dropdown to switch between them
@@ -75,11 +74,11 @@ We then chose some repositories with a lot of stars, from different programming 
 | Average message length | 664.7 | 82.4 | 37.5 | 60.3 |
 
 
-##### What did we learn from this
+#### What did we learn from this
 
-The first thing that catched my eye was the high standards linux keep for their commit messages as not even 1 in 100 is shorter than 15 characters and that the average length exceeds 664 characters.This completely contrasts to the relatively high percentage of short commits in JSON-Server but also in general.
+The first thing that caught my eye was the high standards linux keep for their commit messages as not even 1 in 100 is shorter than 15 characters and that the average length exceeds 664 characters.This completely contrasts to the relatively high percentage of short commits in JSON-Server but also in general.
 
-Not surprising is the fact that almost halve of the commits in Linux do `fix` something and that `fix` appears in those long and complete commit messages. 
+Not surprising is the fact that almost half of the commits in Linux do `fix` something and that `fix` appears in those long and complete commit messages. 
 
 There is also a  great difference between Bootstrap and Linux in terms of linking to issues and pull request as the Linux repo has issue reporting disabled on GitHub and does merge commits that do not always come from GitHub pull request but SCM. If that was not the case then low amount of links to issues or pull requests would mean a lot of direct pushes to master branch (as pull request merges would be caught by this rule).
 
@@ -90,4 +89,22 @@ There is also a  great difference between Bootstrap and Linux in terms of linkin
 		* Others
 		
 
-[GitHub Archive]: https://www.GitHubarchive.org/
+### The platforms we used
+To get hold of and study this data we used several platforms like running [Apache Zeppelin](https://zeppelin.apache.org/) on Amazon EMR querying data from S3 as well as querying Google BigQuery's data directly and processing it with a local Zeppelin instance.
+
+We wanted to use Spark as a tool to make distributed computations on our data. There are several ways to use it but it is common to use Spark through Databricks or Apache Zeppelin as they provide a graphic interface in the form of notebooks similar to iPython or Jupiter notebooks. 
+Databricks and Apache Zeppelin are quite similar but there are some minor differences as Databricks is more straightforward and lets you start working immediately while Zeppelin requires a bit more configuration but this does also mean that it is more flexible.
+Another big difference is that while Databricks is a proprietary online platform, Zeppelin is open source and you can run it on your own machine. Zeppelin is also available to use on Amazon EMR and many other cloud platforms.
+
+At first we considered using Databricks which has some nice UI features and you can use it for free if you use the community edition. The main disadvantage with Databricks was that it allows no Javascript or HTML code, which Zeppelin does.
+
+So we then decided to go with Zeppelin on Amazon EMR getting data from S3. The transfer between S3 and a cluster on EMR in the same region of Amazon is free but you have to pay for storage and the hours of the clusters you use.
+
+As there is a lot of data to store we decided that in the long term the best form to analyse GitHub data is to query it from Google BigQuery as we don't have to pay for its storage. We just needed to store some extra tables to map each user to his country.
+
+### Mapping GitHub user locations to countries
+
+For this task we used a script that is based on the work of [Ramiro Gómez] with some minor [modifications](https://github.com/xmartlabs/gh-commit-locations). This script basically reads JSON files with the user information from GitHub, takes the users location string and tries to map it to a country. As this location is just a string and can be anything (like 'Earth', 'localhost' or 'Milky Way' for example) it is not always mappable to a country. The script tries to find the name of a country or city in the location string and can map this to a country in more than 96% of the cases where the location is not empty. This is a pretty impressive result.
+
+[Ramiro Gómez]: (http://geeksta.net/visualizations/github-commit-map/)
+[GitHub Archive]: https://www.githubarchive.org/
