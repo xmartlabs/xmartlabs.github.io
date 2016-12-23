@@ -109,13 +109,16 @@ And this is the top 20 repos in stars received in 2016:
 | open-guides/og-aws                        |  15,512 |
 | github/gitignore                          |  15,137 |
 
-We can see that Free Code Camp still gains lots of attraction! It currently has 211,340 stars, so most of them (86%!) were achieved this year. This outlier can be explained taking into account that the number of programmers increase [en gran cantidad] every year, Free Code Camp is the mainstream entry point and that one of the first tasks asks for starring their repo.
+We can see that Free Code Camp still gains lots of attraction! It currently has 211,340 stars, so most of them (86%!) were achieved this year. However this outlier can be explained taking into account that the number of people interested in programming increase in large quantities every year, that Free Code Camp is the mainstream entry point for it and that one of the first tasks asks for starring their repo.
 
-## TODO: Stars per repo analysis (extra blog?)
-	* Present results in tables
+Incredibly the second place is for google-interview-university that reached this position even though it's way younger that the others. It's interesting to see how certain repos that have been around for some time are still among the most attracted, like Twitter Boostrap, gitignore from GitHub and free-programming-books.
+
+Additionally, there are repos related to JavaScript and Web Development such as vue, react, You-Dont-Know-JS, yarn, react-native, boostrap, a JavaScript style guide from Airbnb, HEAD, create-react-app,
+
+
+TODO
 		* Top starred repos
 		* Average stars per language
-		* Others
 
 
 ## The platforms we used
@@ -128,7 +131,7 @@ Another big difference is that while Databricks is a proprietary online platform
 At first we considered using Databricks which has some nice UI features and you can use it for free if you use the community edition. The main disadvantage with Databricks was that it allows no Javascript or HTML code, which Zeppelin does.
 So we then decided to go with Zeppelin on Amazon EMR getting data from S3. The transfer between S3 and a cluster on EMR in the same region of Amazon is free but you have to pay for storage and the hours of the clusters you use.
 
-To get the data from the GitHub Archive we used [Scrapy](https://github.com/scrapy/scrapy), which is a Python crawler that allows us to throttle the request rate to stay inside GitHub's rate limits. The code that does this can be found at [this GitHub repo](https://github.com/xmartlabs/gh2s3).
+To get the data from the GitHub Archive we used [Scrapy](https://github.com/scrapy/scrapy), which is a Python crawler that allows us to throttle the request rate to stay inside GitHub's rate limits, among many other things. The code that does this can be found at [this GitHub repo](https://github.com/xmartlabs/gh2s3).
 
 As there is a lot of data to store we decided that in the long term the best form to analyse GitHub data is to query it from Google BigQuery as we don't have to pay for its storage. We just needed to store some extra tables to map each user to his country.
 
