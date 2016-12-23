@@ -29,7 +29,7 @@ We also queried the messages of these commits to extract some interesting statis
 Last but not least we studied the most starred repositories and mapped these repositories to their languages comparing the average count of stars for each language.
 
 
-## TODO: Commit maps: 
+## TODO: Commit maps:
 	* Show maps with dropdown to switch between them
 
 	* Analyse results?
@@ -52,47 +52,76 @@ Last but not least we studied the most starred repositories and mapped these rep
 	* Motivation
 	* Show results table
 	* Some Conclusions
-	
+
 We also wanted to study the commit messages. For this we defined some metrics and compared the global values to those of some pretty much used repositories.
 
 The metrics we took were the following:
 
 * **Messages with 'fix'**: Messages that include the string `fix`. This commits should be a representation of bug fixing commits and not commits that change documentation or add a new feature.
-* **Messages with link to an issue or pull request**: These are messages containing references to GitHub's issues or pull request like `#xxx`. 
+* **Messages with link to an issue or pull request**: These are messages containing references to GitHub's issues or pull request like `#xxx`.
 * **Messages shorter than 15 characters**: Following the good practices for commit messages posted on several sites like [OpenStack](https://wiki.openstack.org/wiki/GitCommitMessages#Information_in_commit_messages) we searched the commit message length to see how many are too short. It is not easy to specify a number of characters for which we say this is too short but in general commit messages should be descriptive of the solved problem or the new feature so that a message with less then 15 characters should not be a good message. We could also have tried a higher number than 15.
 * **Average message length**: The average length of commit messages. To get an insight to how messages are structured for a repo in general.
 
 We then chose some repositories with a lot of stars, from different programming languages and communities. So we chose Linux as one of the biggest repos as well as Bootstrap and JSON-Server which share a language but are maintained quite differently. We also compared this to the results of all the commit messages with some interesting results:
 
 
-|   | Linux| Bootstrap | JSON-Server | Global |
-|---|------|-----------|-------------|--------|
-| Total messages | 6096 | 2464 | 67 | 131207466 | 
-| Messages with 'fix' | 42% | 17% | 8% | 10% |
-| Messages with link to issue or pull request | 2% | 37% | 16% | 8% |
-| Messages shorter than 15 characters | <1% | 5% | 26% | 17% |
-| Average message length | 664.7 | 82.4 | 37.5 | 60.3 |
+|                                                |  Linux  |  Bootstrap  |  JSON-Server  |   Global    |
+| ---------------------------------------------- | ------- | ----------- | ------------- | ----------- |
+|  Total messages                                |  6096   |  2464       |  67           |  131207466  |
+|  Messages with 'fix'                           |  42%    |  17%        |  8%           |  10%        |
+|  Messages with link to issue or pull request   |  2%     |  37%        |  16%          |  8%         |
+|  Messages shorter than 15 characters           |  <1%    |  5%         |  26%          |  17%        |
+|  Average message length                        |  664.7  |  82.4       |  37.5         |  60.3       |
 
 
 ### What did we learn from this
 
-The first thing that caught my eye was the high standards linux keep for their commit messages as not even 1 in 100 is shorter than 15 characters and that the average length exceeds 664 characters.This completely contrasts to the relatively high percentage of short commits in JSON-Server but also in general.
+The first thing that caught my eye was the high standards Linux keep for their commit messages as not even 1 in 100 is shorter than 15 characters and that the average length exceeds 664 characters.This completely contrasts to the relatively high percentage of short commits in JSON-Server but also in general.
 
-Not surprising is the fact that almost half of the commits in Linux do `fix` something and that `fix` appears in those long and complete commit messages. 
+Not surprising is the fact that almost half of the commits in Linux do `fix` something and that `fix` appears in those long and complete commit messages.
 
 There is also a  great difference between Bootstrap and Linux in terms of linking to issues and pull request as the Linux repo has issue reporting disabled on GitHub and does merge commits that do not always come from GitHub pull request but SCM. If that was not the case then low amount of links to issues or pull requests would mean a lot of direct pushes to master branch (as pull request merges would be caught by this rule).
+
+## Stars per repo analysis
+
+And this is the top 20 repos in stars received in 2016:
+
+|                   repo                    |  stars  |
+| ----------------------------------------- | ------- |
+| FreeCodeCamp/FreeCodeCamp                 | 181,529 |
+| jwasham/google-interview-university       |  28,824 |
+| vuejs/vue                                 |  28,231 |
+| tensorflow/tensorflow                     |  27,857 |
+| vhf/free-programming-books                |  27,239 |
+| facebook/react                            |  25,814 |
+| getify/You-Dont-Know-JS                   |  24,517 |
+| sindresorhus/awesome                      |  24,441 |
+| chrislgarry/Apollo-11                     |  23,553 |
+| yarnpkg/yarn                              |  21,202 |
+| facebook/react-native                     |  19,787 |
+| twbs/bootstrap                            |  19,232 |
+| airbnb/javascript                         |  19,008 |
+| joshbuchea/HEAD                           |  18,804 |
+| firehol/netdata                           |  18,562 |
+| facebookincubator/create-react-app        |  17,738 |
+| robbyrussell/oh-my-zsh                    |  17,200 |
+| FallibleInc/security-guide-for-developers	|  15,843 |
+| open-guides/og-aws                        |  15,512 |
+| github/gitignore                          |  15,137 |
+
+We can see that Free Code Camp still gains lots of attraction! It currently has 211,340 stars, so most of them (86%!) were achieved this year. This outlier can be explained taking into account that the number of programmers increase [en gran cantidad] every year, Free Code Camp is the mainstream entry point and that one of the first tasks asks for starring their repo.
 
 ## TODO: Stars per repo analysis (extra blog?)
 	* Present results in tables
 		* Top starred repos
 		* Average stars per language
 		* Others
-		
+
 
 ## The platforms we used
 To get hold of and study this data we used several platforms like running [Apache Zeppelin](https://zeppelin.apache.org/) on Amazon EMR querying data from S3 as well as querying Google BigQuery's data directly and processing it with a local Zeppelin instance.
 
-We wanted to use Spark as a tool to make distributed computations on our data. There are several ways to use it but it is common to use Spark through Databricks or Apache Zeppelin as they provide a graphic interface in the form of notebooks similar to Jupyter notebooks. 
+We wanted to use Spark as a tool to make distributed computations on our data. There are several ways to use it but it is common to use Spark through Databricks or Apache Zeppelin as they provide a graphic interface in the form of notebooks similar to Jupyter notebooks.
 Databricks and Apache Zeppelin are quite similar but there are some minor differences as Databricks is more straightforward and lets you start working immediately while Zeppelin requires a bit more configuration but this does also mean that it is more flexible.
 Another big difference is that while Databricks is a proprietary online platform, Zeppelin is open source and you can run it on your own machine. Zeppelin is also available to use on Amazon EMR and many other cloud platforms.
 
@@ -101,7 +130,7 @@ So we then decided to go with Zeppelin on Amazon EMR getting data from S3. The t
 
 To get the data from the GitHub Archive we used [Scrapy](https://github.com/scrapy/scrapy), which is a Python crawler that allows us to throttle the request rate to stay inside GitHub's rate limits. The code that does this can be found at [this GitHub repo](https://github.com/xmartlabs/gh2s3).
 
-As there is a lot of data to store we decided that in the long term the best form to analyse GitHub data is to query it from Google BigQuery as we don't have to pay for its storage. We just needed to store some extra tables to map each user to his country. 
+As there is a lot of data to store we decided that in the long term the best form to analyse GitHub data is to query it from Google BigQuery as we don't have to pay for its storage. We just needed to store some extra tables to map each user to his country.
 
 ### Mapping GitHub user locations to countries
 
