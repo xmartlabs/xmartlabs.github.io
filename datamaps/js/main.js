@@ -2,30 +2,46 @@
 
 const COMMITSAREA = "commitsArea";
 const COMMITSPOP = "commitsPop";
+const COMMITSPOPHDI = "commitsPopHdi";
 const DEVSMILLION = "devPerMil";
+const COMMITSANDDEVS = "commitsAndDevs";
 
 var commitsPop = null;
+var commitsPopHdi = null;
 var commitsArea = null;
 var devsPop = null;
+var commitsAndDevs = null;
 var map = null;
 
 $(function(){
     $.getJSON('/datamaps/data/commitsPerPop.json',function(data){
-         commitsPop = data
-         console.log('loading pop commits');
-         map.updateChoropleth(commitsPop);
+        commitsPop = data
+        console.log('loading pop commits');
+        map.updateChoropleth(commitsPop);
+    }).error(function(){
+        console.log('error reading map data');
+    });
+    $.getJSON('/datamaps/data/commitsPerPopAndHdi.json',function(data){
+        commitsPopHdi = data
+        console.log('loading pop/hdi commits');
     }).error(function(){
         console.log('error reading map data');
     });
     $.getJSON('/datamaps/data/commitsPerArea.json',function(data){
-         commitsArea = data
-         console.log('loading area commits');
+        commitsArea = data
+        console.log('loading area commits');
     }).error(function(){
         console.log('error reading map data');
     });
     $.getJSON('/datamaps/data/devsPerMillion.json',function(data){
-         devsPop = data
-         console.log('loading devs');
+        devsPop = data
+        console.log('loading devs');
+    }).error(function(){
+        console.log('error reading map data');
+    });
+    $.getJSON('/datamaps/data/commitsAndDevsPerPop.json',function(data){
+        commitsAndDevs = data
+        console.log('loading pop commits and devs');
     }).error(function(){
         console.log('error reading map data');
     });
@@ -45,7 +61,7 @@ function initMap(jsondata) {
               L1: '#ffffcc',
               defaultFill: '#eaeaea'
           },
-          data: jsondata, 
+          data: jsondata,
           done: function(datamap) {
              datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
 
@@ -74,10 +90,14 @@ function selectedMapType() {
     let type = document.getElementById("dropdownselect").value;
     if (type == COMMITSPOP) {
       map.updateChoropleth(commitsPop);
+    } else if (type == COMMITSPOPHDI) {
+      map.updateChoropleth(commitsPopHdi);
     } else if (type == COMMITSAREA) {
       map.updateChoropleth(commitsArea);
     } else if (type == DEVSMILLION) {
       map.updateChoropleth(devsPop);
+    } else if (type == COMMITSANDDEVS) {
+      map.updateChoropleth(commitsAndDevs);
     }
     // map.svg.call(d3.behavior.zoom().scale(1));
     // map.svg.call(d3.behavior.zoom().translate([0, 0]));
