@@ -1,0 +1,45 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+/* map */
+#container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* table **/
+#xaxis .domain {
+	fill:none;
+	stroke:#000;
+}
+#xaxis text, #yaxis text {
+	font-size: 12px;
+}
+
+/* timeline */
+path {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+/* pie */
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}

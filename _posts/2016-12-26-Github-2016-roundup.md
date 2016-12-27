@@ -9,50 +9,64 @@ markdown: redcarpet
 
 ---
 
-# Analysis of 2016 GitHub commits, messages, stars and more
+Welcome to the first Xmartlabs' data analysis post! Xmartlabs has several open source projects so we thought it would be interesting to study the use of **GitHub**. We use this tool every day from Uruguay to collaborate, but where do people are from in general? To what extent do people in the different places of the world collaborate?. How are commit messages from open source projects like? Or even a simpler question: what were the most preferred repos of the year?
 
-Welcome to the first Xmartlabs' data analysis post. We thought it would be interesting to study one of the tools we use everyday: GitHub. Xmartlabs has several open source projects so it seemed interesting to see some statistics about open source projects on GitHub. Luckily there is the [GitHub Archive] which records all the public activity on GitHub and can be accessed for free.
-On the other hand we wanted to try and use some new technologies like Apache Spark on Databricks and Zeppelin. So we started a process in which we came to grips with these technologies and found out some interesting things.
+Secondly we wanted to feel the power of first class tools such as Spark and Databricks. So we started a process in which we came to grips with these technologies and found out some interesting things.
 
-<!-- what this is about and what we used to get the results -->
+## The Stack Used
 
-## What we studied
+Before reaching the data insights, let's talk a little bit about where it came from and the tools we tried out. There is the [GitHub Archive], which records all the public activity on GitHub and can be accessed for free. From its website you can grab historical data of the activity registered on GitHub since 2/12/2011. It has an endpoint that lets you request the historical data files by hour, each of which has an average size of over 80MB when unzipped. So for one year this is a lot of data provided you want to store it and process it yourself (700GB+)! This is a job for [Spark]!
 
-[GitHub Archive] can be accessed from its website directly. From there you can grab historical data of the activity registered on GitHub since 2/12/2011. These files are partitioned by hour, each with an average size of over 80Mb when unzipped, so that for one year this is a lot of data if you want to store and process it yourself (700Gb+). The archive is also published on [Google BigQuery](https://developers.google.com/bigquery/) as a public dataset, you just have to pay for the bytes you process.
+Spark let us process data in a cluster of machines in a fast and efficient manner. There are several ways to use it but we aimed at [Databricks] owing to the high level of abstraction it provides, by using web notebooks very similar to [Jupyter Notebook]'s and by exploiting Amazon EC2 instances with ease. And it let's you load files from S3 out of the box, so we crafted a script called [gh2s3](https://github.com/xmartlabs/gh2s3) to transfer the GitHub Archive's 2016 data to S3. As we also needed more data like the users' locations, we made use of [Scrapy](https://github.com/scrapy/scrapy) to extract more data, which is a Python library to build crawlers allowing to throttle the request rate to stay inside GitHub's rate limits, among many other things.
 
-We decided to study this data to get some interesting information. The archive consists of a series of events happening on GitHub like pushes, stars, comments, pull requests and much more. Then we first decided to analyze the commits and see where they come from, mapping them to the location of the committer. This work was inspired by a similar previous work by [Ramiro Gómez](http://geeksta.net/visualizations/GitHub-commit-map/). We plotted the commits from the users of a country scaled by the country's population and area. We also plotted the percentage of open source developers per million inhabitants for each country.
+<div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/databricks.png" alt="Databricks Architecture" /></div>
 
-We also queried the messages of these commits to extract some interesting statistics for certain repositories.
+There is also [Apache Zeppelin] which is an amazing open source alternative. Databricks is much more straightforward to use, letting you to start working immediately while Zeppelin requires a bit more configuration. On the other hand, Zeppelin is more flexible and allowed us to embed JavaScript code more easily in the notebook, so we ended up using it instead. We set it up to work on top of [Amazon EMR], with EC2 instances and with the same S3 data. But then we found that [the GitHub Archive is published on Google BigQuery](https://cloud.google.com/bigquery/public-data/github) as a public dataset, paying for the bytes you process after the first 1 TB in a month. This was the simplest by far for this particular case. Epic win!
 
-Last but not least we studied the most starred repositories and mapped these repositories to their languages comparing the average count of stars for each language.
+<div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/ftw.gif" alt="for the win!" /></div>
 
 ## Maps
 
+We first decided to analyze the commits and see where they come from, mapping them to the location that the committers declare in their own profile. This work was inspired by [a similar previous work by Ramiro Gómez](http://geeksta.net/visualizations/github-commit-map/). We used a [script that is based on his work with some minor modifications](https://github.com/xmartlabs/gh-commit-locations). This script basically reads JSON files with the user information from GitHub, takes the users location string and tries to map it to a country. As this location is just a string and can be anything (like 'Earth', 'localhost' or 'Milky Way' for example) it's not always mappable to a country. The script tries to find the name of a country or city in the location string and can map this to a country in more than 96% of the cases where the location is not empty. This is a pretty impressive result. In this case we plotted the commits from the users by country, then comparing them with population and area. We also take a look at the amount of committers in addition to the commits. To plot the data into the map, we segmented it accordingly in 8 levels.
+
 <select id="dropdownselect" onchange="selectedMapType();">
+  <option value="commits">Commits</option>
   <option value="commitsPop">Commits per 100k inhabitants</option>
   <option value="commitsPopHdi">Commits per inhabitants and HDI</option>
   <option value="commitsArea">Commits per 1000 square km</option>
   <option value="devPerMil">Developers per Million inhabitants</option>
-  <option value="commitsAndDevs">Commits per Developer and population</option>
+  <option value="commitsAndDevs">Commits per Developer</option>
 </select>
 
 <div id="container" style="width:100%;height:500px"></div>
 
-<script src="/datamaps/js/d3.min.js"></script>
-<script src="/datamaps/js/topojson.min.js"></script>
-<script src="/datamaps/js/datamaps.world.hires.min.js"></script>
-<script src="/datamaps/js/main.js"></script>
-<link rel="stylesheet" href="/datamaps/css/styles.css">
+### Commits
 
-The map that shows the commits per inhabitants more or less show the degree of development of the countries, so in the second map we contrast it linearly with the HDI from [the last report](http://hdr.undp.org/sites/default/files/2015_human_development_report.pdf) (even though it doesn't grow linearly, it would be hard to measure it fairly anyway). We get that North America, Europe, Costa Rica, Chile, Argentina, Uruguay, Brazil, Southern Africa, Oceania, Western Asia, Islael, Sri Lanka, United Arab Emirates and Malaysia have great commit indices! We could argue that these countries move the open source world. At Xmartlabs we are glad to be part of this stats :D
+The first map shows the commits with respect to the countries. It comes as no surprise that **US** is the largest source by far. Is then followed by **Germany**, **China** and the **United Kingdom**. It was expected to see highly developed countries among the top such as countries from **Western Europe** along with **Australia** and **Oceania**, as well as others as **India** and **Brazil**. All these are the countries that most shake the open source world! But what if we compare this data with the countries' population? China for instance has a clear advantage over the rest.
 
-In contrast, more contributions from countries such as Colombia, Peru and India could be expected. Also, there are some outliers due to the high number of countries with little population, such as [Cocos Islands](https://en.wikipedia.org/wiki/Cocos_%28Keeling%29_Islands) which is a country located in Oceania with approximately 600 inhabitants! And other more known countries fall here such as Monaco and Vatican City. For example, [Zeke](https://github.com/EZ3CHI3L) is a user who claims to be from Vatican City.
+<div id="commits-table-wrapper"></div>
 
-Up to now we have seen the amount of commits, but how many committers do we have with respect to the population? By taking a look a the corresponding map we see some differences. This time Mexico, Chile, Argentina, Brazil, Southern Africa, the United Arab Emirates, Sri Lanka and Western Asia don't highlight. We also provide a map that compares the number of commits with the amount of committers, with respect to the population.
+So there's a map that takes into account the inhabitants. Here **Switzerland**, **Netherlands**, **Sweden** and **Canada** stand out. Still, it roughly shows the degree of development of the countries, so we added a another map to contrast it with the countries' HDI from [the last report](http://hdr.undp.org/sites/default/files/2015_human_development_report.pdf). We get that countries such as **Greece**, **New Zealand** and **Finland** do very well! The big surprises: **Namibia**, **Costa Rica**, **Uruguay**, **Puerto Rico** and **Brazil**. At Xmartlabs we are glad to contribute to this stats :D.
 
-Oh, and there's a map showing the commits per country area.
+#### The Biggest Surprise of All: Cocos Islands
 
-## Commit message analysis
+The country is located in Oceania and has a population of approximately 600 inhabitants, 14 km2 a HDI of 0.829 and 11,036 commits!
+
+<div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/cocos.gif" alt="WHAT!?" /></div>
+
+Is it true? This and other outliers happen to be countries with little population, in which small amounts, very few data and the presence of errors in the users' stated locations can make them show up. More known countries fall here such as **Monaco** and **Vatican City**. For example, [Zeke](https://github.com/EZ3CHI3L) is a user who claims to be from the latter. Also take into account this countries use to have higher HDI. Moreover, Monaco has a HDI greater than 1!
+
+### Committers
+
+Up to now we have seen the amount of commits, but how many committers do we have with respect to the population? By taking a look a the corresponding map we see some differences. This time **Chile**, **Argentina**, **South Africa**, the **United Arab Emirates**, **Sri Lanka** and **Taiwan** fare better. We also provide a map that compares the number of commits with the amount of committers, with respect to the population.
+
+#### Newcomers
+
+Developers from African countries, such as **Guinea-Bissau**, **The Democratic Republic of the Congo**, **Botswana** and **Algeria**, seem to have a great number of commits. They have 1, 5, 6 and 6 committers respectively, so they seem to be few but good! Examples of them are: [ivandrofly](https://github.com/ivandrofly), [jniles](https://github.com/jniles), [tsetsiba](https://github.com/tsetsiba) and [assem-ch](https://github.com/assem-ch).
+
+Oh, btw, there's also a map showing the commits per country area.
+
+## Commit Messages Analysis
 
 We also wanted to study the commit messages. For this we defined some metrics and compared the global values to those of some pretty much used repositories.
 
@@ -73,22 +87,20 @@ We then chose some repositories with a lot of stars, from different programming 
 | Messages shorter than 15 characters           | <1%    | 5%         | 26%          | 17%         |
 | Average message length                        | 664.7  | 82.4       | 37.5         | 60.3        |
 
-### What we learn from this
-
 The first thing that caught my eye was the high standards Linux keep for their commit messages as not even 1 in 100 is shorter than 15 characters and that the average length exceeds 664 characters. This completely contrasts with the relatively high percentage of short commits in JSON-Server, but also in general.
 
-Not surprising is the fact that almost half of the commits in Linux do `fix` something and that `fix` appears in those long and complete commit messages.
+Not surprising is the fact that almost half of the commits in Linux do `fix` something and that `fix` appears in those long and complete commit messages. This makes sense with the fact that Linux receives more bug fixes than new features.
 
-There is also a  great difference between Bootstrap and Linux in terms of linking to issues and pull request as the Linux repo has issue reporting disabled on GitHub and does merge commits that do not always come from GitHub pull request but SCM. If that was not the case then low amount of links to issues or pull requests would mean a lot of direct pushes to master branch (as pull request merges would be caught by this rule).
+There is also a great difference between Bootstrap and Linux in terms of linking to issues and pull request as the Linux repo has issue reporting disabled on GitHub and does merge commits that do not always come from GitHub pull request but SCM. If that was not the case then low amount of links to issues or pull requests would mean a lot of direct pushes to master branch (as pull request merges would be caught by this rule).
 
-## Stars analysis
+## Stars Analysis
 
-And this is the top 20 repos in stars received in 2016:
+This is the top 20 repos in stars received in 2016:
 
 |                   Repo                    |  Stars  |
 | ----------------------------------------- | ------- |
 | FreeCodeCamp/FreeCodeCamp                 | 181,529 |
-| jwasham/google-interview-university       |  28,824 |
+| jwasham/google-interview-university       |  30,252 |
 | vuejs/vue                                 |  28,231 |
 | tensorflow/tensorflow                     |  27,857 |
 | vhf/free-programming-books                |  27,239 |
@@ -108,45 +120,92 @@ And this is the top 20 repos in stars received in 2016:
 | open-guides/og-aws                        |  15,512 |
 | github/gitignore                          |  15,137 |
 
-We can see that Free Code Camp still gains lots of attraction! It currently has 211,340 stars, so most of them (86%!) were achieved this year. However this outlier can be explained taking into account that the number of people interested in programming increase in large quantities every year, that Free Code Camp is the mainstream entry point for it and that one of their first tasks asks for starring the repo.
+We can see that **Free Code Camp** still gains lots of attraction! It currently has 216,340 stars, so most of them (86%!) were achieved this year. I mean, that's an average of 577 stars per day! However this outlier can be explained taking into account that the number of people interested in programming increase in large quantities every year, that Free Code Camp is the mainstream entry point for it and that one of their first tasks asks for starring the repo.
 
-Incredibly the second place is for google-interview-university that reached this position even though it's way younger that the others. It's interesting to see how certain repos that have been around for some time are still among the most attracted, like Twitter Boostrap, gitignore from GitHub and free-programming-books.
+It's interesting to see how certain repos that have been around for some time are still among the most attracted, like **Twitter Bootstrap**, **gitignore from GitHub** and **free-programming-books**.
+But incredibly the second place is for **google-interview-university** that reached this position even though it's way younger that the others. As a result, one can wonder how well new repos perform.
 
-This repos roughly fall into one of the following categories: they are related to JavaScript or Web Development, they come from a big tech company or they are general guides. Regarding the first category, we have: vue, react, You-Dont-Know-JS, yarn, react-native, boostrap, a JavaScript style guide from Airbnb, HEAD and create-react-app. So is JavaScript more popular in general? Take a look at this table, that shows the stars received with respect to the language involved in each repo:
+### Top Rookies
 
-| Language   | Sum of stars  |
-| ---------- | ------------- |
-|	JavaScript | 186,219       |
-|	Shell      | 121,161       |
-| HTML       | 120,659       |
-| CSS        | 115,067       |
-| Python     | 104,823       |
-| Ruby       |  66,218       |
-| Java       |  61,409       |
-| C          |  60,201       |
-| Makefile   |  54,238       |
-| C++        |  53,854	     |
+This is the Top 20 in stars for the repos created in 2016:
 
-Yeah, Javascript is by far the most popular, as it has also been shown by the [Stack Overflow Developer Surveys](https://stackoverflow.com/research/developer-survey-2016#technology). They really have a large community. Notably, Shell takes the second place. The rest of the table is not surprising except for the absence of Swift and Objective-C.
+|                      Repo                      | Stars  |
+| ---------------------------------------------- | ------ |
+| jwasham/google-interview-university            | 30,252 |
+| yarnpkg/yarn                                   | 21,202 |
+| joshbuchea/HEAD                                | 18,804 |
+| facebookincubator/create-react-app             | 17,738 |
+| FallibleInc/security-guide-for-developers      | 15,843 |
+| open-guides/og-aws                             | 15,512 |
+| jgthms/bulma                                   | 12,141 |
+| toddmotto/public-apis                          | 11,749 |
+| tensorflow/models                              | 10,855 |
+| songrotek/Deep-Learning-Papers-Reading-Roadmap | 8,640  |
+| FormidableLabs/webpack-dashboard               | 8,124  |
+| Blankj/AndroidUtilCode                         | 7,826  |
+| dthree/cash                                    | 7,719  |
+| gztchan/awesome-design                         | 7,681  |
+| alexjc/neural-doodle                           | 7,470  |
+| expressjs/express                              | 7,372  |
+| FreeCodeCampChina/freecodecamp.cn              | 7,274  |
+| NamPNQ/You-Dont-Need-Javascript                | 7,118  |
+| huluoyang/freecodecamp.cn                      | 6,960  |
+| angular/material2                              | 6,900  |
 
-## The platforms we used
+3 of them are in the Top 20 and the rest have a good amount of stars with respect to it. There are several repos related to **JavaScript and Web Development**: yarn, create-react-app, bulma, public-apis, webpack-dashboard, cash, awesome-design, express, You-Dont-Need-Javascript and material2. Also, a tendency seems to be mirrored here: **Deep Learning**, via TensorFlow models, Deep-Learning-Papers-Reading-Roadmap and neural-doodle.
 
-To get hold of and study this data we used several platforms like running [Apache Zeppelin](https://zeppelin.apache.org/) on Amazon EMR querying data from S3 as well as querying Google BigQuery's data directly and processing it with a local Zeppelin instance.
+So 2016 let amazing repos appear such as the new dependency manager **yarn**, **public-apis** that has a list of open JSON APIs for web development and **neural-doodle** that generates masterpiece art images from very simple doodles!
 
-We wanted to use Spark as a tool to make distributed computations on our data. There are several ways to use it but it is common to use Spark through Databricks or Apache Zeppelin as they provide a graphic interface in the form of notebooks similar to Jupyter notebooks.
-Databricks and Apache Zeppelin are quite similar but there are some minor differences as Databricks is more straightforward and lets you start working immediately while Zeppelin requires a bit more configuration but this does also mean that it is more flexible.
-Another big difference is that while Databricks is a proprietary online platform, Zeppelin is open source and you can run it on your own machine. Zeppelin is also available to use on Amazon EMR and many other cloud platforms.
+### Top Languages
 
-At first we considered using Databricks which has some nice UI features and you can use it for free if you use the community edition. The main disadvantage with Databricks was that it allows no Javascript or HTML code, which Zeppelin does.
-So we then decided to go with Zeppelin on Amazon EMR getting data from S3. The transfer between S3 and a cluster on EMR in the same region of Amazon is free but you have to pay for storage and the hours of the clusters you use.
+Analyzing the Top Repos again, they roughly fall into one of the following categories: they are related to **JavaScript or Web Development**, they **come from a big tech company** or they are **general guides**. Regarding the first category, we have: vue, react, You-Dont-Know-JS, yarn, react-native, boostrap, a JavaScript style guide from Airbnb, HEAD and create-react-app. So, is JavaScript the most popular language? Take a look at this table, that shows the stars received with respect to the language involved in each repo:
 
-To get the data from the GitHub Archive we used [Scrapy](https://github.com/scrapy/scrapy), which is a Python library to build crawlers that allows us to throttle the request rate to stay inside GitHub's rate limits, among many other things. The code that does this can be found at [this GitHub repo](https://github.com/xmartlabs/gh2s3).
+| Language   | Sum of stars |
+| ---------- | ------------ |
+|	JavaScript | 186,219      |
+|	Shell      | 121,161      |
+| HTML       | 120,659      |
+| CSS        | 115,067      |
+| Python     | 104,823      |
+| Ruby       |  66,218      |
+| Java       |  61,409      |
+| C          |  60,201      |
+| Makefile   |  54,238      |
+| C++        |  53,854	    |
 
-As there is a lot of data to store we decided that in the long term the best form to analyze GitHub data is to query it from Google BigQuery as we don't have to pay for its storage. We just needed to store some extra tables to map each user to his country.
+Yeah, **Javascript** is by far the most popular, as it has also been shown by the [Stack Overflow Developer Surveys](https://stackoverflow.com/research/developer-survey-2016#technology). They really have a large community. **HTML** and **CSS** are among the top too. Notably, Shell takes the second place. And makes sense to see **C**, **Makefile** and **C++** next to each other, as they are commonly used together. The rest of the table is not surprising except for the absence of **Swift** and **Objective-C**. There's a more complete pie chart here:
 
-### Mapping GitHub user locations to countries
+<div id="languages-pie-wrapper"></div>
 
-For this task we used a script that is based on the work of [Ramiro Gómez] with some minor [modifications](https://github.com/xmartlabs/gh-commit-locations). This script basically reads JSON files with the user information from GitHub, takes the users location string and tries to map it to a country. As this location is just a string and can be anything (like 'Earth', 'localhost' or 'Milky Way' for example) it is not always mappable to a country. The script tries to find the name of a country or city in the location string and can map this to a country in more than 96% of the cases where the location is not empty. This is a pretty impressive result.
+### Stars timeline
 
-[Ramiro Gómez]: (http://geeksta.net/visualizations/github-commit-map/)
+For example, take a look at the stars timeline of **google-interview-university**:
+
+<div id="stars-timeline-wrapper"></div>
+
+The repos' star events tend to happen with big spikes, as they spread virally like rumors in social media. The day it got reached the apex was the same day that [it was shared on HackerNews](https://news.ycombinator.com/item?id=12649740) and from there [shared on Reddit](https://www.reddit.com/r/cscareerquestions/comments/565ors/google_interview_university/). And [according to the author](https://googleyasheck.com/my-github-project-is-trending/#backstory), it all started on October 4th when [Amit Agarwal shared it on Twitter](https://twitter.com/labnol/status/783203765113524224).
+
+What we learn from this and from other cases? There is nothing new under the sun: if you have something that's interesting for people in general or for a niche and you are able to make someone influential share it, you will surely get in the trending. Chances are that your repo will stay among the top for some time because the GitHub trending repos are a showcase too :D
+
+## Summary
+
+2016 was a great year for GitHub. Even though **developed countries** are the ones that most contribute, there is a commitment with Open Source from all over the world, including **islands with very few population**! And there are countries such as **Greece and Namibia** that exploit their potential at best.
+
+Few **commits** seem to be **fixes** whereas in projects such as **The Linux Kernel** there are plenty of them. Besides, **new projects** seem to be **less structured** but some of them take it to the other end, having **meaningless commit messages**.
+
+New cool repos such as **yarn** appeared in 2016 as well as relics such as **Linux**, **Twitter Bootstrap** and the not-so-new **React** keep gaining attention. **JavaScript** still is the trending language.
+
+Hope you liked this post! If you have any doubt, comment or complain, don't hesitate in leaving a comment below or dropping us a line at <a href="mailto:getintouch@xmartlabs.com">getintouch@xmartlabs.com</a>.
+
+<script src="/githubdata/js/d3.min.js"></script>
+<script src="/githubdata/js/topojson.min.js"></script>
+<script src="/githubdata/js/datamaps.world.hires.min.js"></script>
+<script src="/githubdata/js/main.js"></script>
+<link rel="stylesheet" href="/githubdata/css/styles.css">
+
+[Amazon EMR]: https://aws.amazon.com/es/emr/
+[Apache Zeppelin]: https://zeppelin.apache.org/
+[Databricks]: https://databricks.com/
 [GitHub Archive]: https://www.githubarchive.org/
+[Jupyter Notebook]: https://jupyter.org/
+[Spark]: https://spark.apache.org/

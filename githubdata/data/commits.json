@@ -1,0 +1,946 @@
+{
+  "UKR": {
+    "value": 2135259,
+    "fillKey": "L4"
+  },
+  "IDN": {
+    "value": 760639,
+    "fillKey": "L3"
+  },
+  "KEN": {
+    "value": 154985,
+    "fillKey": "L3"
+  },
+  "CHL": {
+    "value": 443597,
+    "fillKey": "L3"
+  },
+  "JOR": {
+    "value": 76842,
+    "fillKey": "L2"
+  },
+  "PRY": {
+    "value": 33337,
+    "fillKey": "L2"
+  },
+  "ESH": {
+    "value": 1922,
+    "fillKey": "L1"
+  },
+  "GGY": {
+    "value": 3565,
+    "fillKey": "L1"
+  },
+  "FRO": {
+    "value": 1159,
+    "fillKey": "L1"
+  },
+  "WSM": {
+    "value": 157,
+    "fillKey": "L1"
+  },
+  "PCN": {
+    "value": 114,
+    "fillKey": "L1"
+  },
+  "SSD": {
+    "value": 4078,
+    "fillKey": "L1"
+  },
+  "ISR": {
+    "value": 789839,
+    "fillKey": "L3"
+  },
+  "FRA": {
+    "value": 10295446,
+    "fillKey": "L7"
+  },
+  "DNK": {
+    "value": 1298003,
+    "fillKey": "L4"
+  },
+  "TUR": {
+    "value": 1047445,
+    "fillKey": "L4"
+  },
+  "SVN": {
+    "value": 303502,
+    "fillKey": "L3"
+  },
+  "FIN": {
+    "value": 1526892,
+    "fillKey": "L4"
+  },
+  "EGY": {
+    "value": 165364,
+    "fillKey": "L3"
+  },
+  "GEO": {
+    "value": 158750,
+    "fillKey": "L3"
+  },
+  "HTI": {
+    "value": 984,
+    "fillKey": "L1"
+  },
+  "CIV": {
+    "value": 2278,
+    "fillKey": "L1"
+  },
+  "MAR": {
+    "value": 98156,
+    "fillKey": "L2"
+  },
+  "GHA": {
+    "value": 49092,
+    "fillKey": "L2"
+  },
+  "LBN": {
+    "value": 18808,
+    "fillKey": "L2"
+  },
+  "KHM": {
+    "value": 24534,
+    "fillKey": "L2"
+  },
+  "NIC": {
+    "value": 21089,
+    "fillKey": "L2"
+  },
+  "GUM": {
+    "value": 167,
+    "fillKey": "L1"
+  },
+  "BRN": {
+    "value": 545,
+    "fillKey": "L1"
+  },
+  "AFG": {
+    "value": 17121,
+    "fillKey": "L2"
+  },
+  "IMN": {
+    "value": 5006,
+    "fillKey": "L1"
+  },
+  "MOZ": {
+    "value": 3700,
+    "fillKey": "L1"
+  },
+  "VCT": {
+    "value": 53,
+    "fillKey": "L1"
+  },
+  "LAO": {
+    "value": 730,
+    "fillKey": "L1"
+  },
+  "BVT": {
+    "value": 56,
+    "fillKey": "L1"
+  },
+  "MCO": {
+    "value": 1403,
+    "fillKey": "L1"
+  },
+  "BTN": {
+    "value": 2087,
+    "fillKey": "L1"
+  },
+  "DMA": {
+    "value": 361,
+    "fillKey": "L1"
+  },
+  "UMI": {
+    "value": 196,
+    "fillKey": "L1"
+  },
+  "GUF": {
+    "value": 13,
+    "fillKey": "L1"
+  },
+  "PLW": {
+    "value": 678,
+    "fillKey": "L1"
+  },
+  "GBR": {
+    "value": 15316503,
+    "fillKey": "L7"
+  },
+  "CAN": {
+    "value": 10343840,
+    "fillKey": "L7"
+  },
+  "BEL": {
+    "value": 1765025,
+    "fillKey": "L4"
+  },
+  "TWN": {
+    "value": 2315771,
+    "fillKey": "L4"
+  },
+  "IRN": {
+    "value": 343896,
+    "fillKey": "L3"
+  },
+  "BRA": {
+    "value": 4062690,
+    "fillKey": "L5"
+  },
+  "MEX": {
+    "value": 1755911,
+    "fillKey": "L4"
+  },
+  "GRC": {
+    "value": 3160643,
+    "fillKey": "L5"
+  },
+  "ARG": {
+    "value": 1115663,
+    "fillKey": "L4"
+  },
+  "BIH": {
+    "value": 58922,
+    "fillKey": "L2"
+  },
+  "LTU": {
+    "value": 299106,
+    "fillKey": "L3"
+  },
+  "GRD": {
+    "value": 3059,
+    "fillKey": "L1"
+  },
+  "MNG": {
+    "value": 4954,
+    "fillKey": "L1"
+  },
+  "OMN": {
+    "value": 17542,
+    "fillKey": "L2"
+  },
+  "ALA": {
+    "value": 1309,
+    "fillKey": "L1"
+  },
+  "TZA": {
+    "value": 25024,
+    "fillKey": "L2"
+  },
+  "GAB": {
+    "value": 374,
+    "fillKey": "L1"
+  },
+  "TJK": {
+    "value": 5357,
+    "fillKey": "L1"
+  },
+  "BLZ": {
+    "value": 1617,
+    "fillKey": "L1"
+  },
+  "MRT": {
+    "value": 496,
+    "fillKey": "L1"
+  },
+  "PNG": {
+    "value": 117,
+    "fillKey": "L1"
+  },
+  "COK": {
+    "value": 339,
+    "fillKey": "L1"
+  },
+  "LCA": {
+    "value": 1210,
+    "fillKey": "L1"
+  },
+  "IND": {
+    "value": 6856128,
+    "fillKey": "L6"
+  },
+  "ESP": {
+    "value": 5466626,
+    "fillKey": "L6"
+  },
+  "NGA": {
+    "value": 107794,
+    "fillKey": "L3"
+  },
+  "AUT": {
+    "value": 2048534,
+    "fillKey": "L4"
+  },
+  "PER": {
+    "value": 218719,
+    "fillKey": "L3"
+  },
+  "BLR": {
+    "value": 452665,
+    "fillKey": "L3"
+  },
+  "SRB": {
+    "value": 269803,
+    "fillKey": "L3"
+  },
+  "CUB": {
+    "value": 73690,
+    "fillKey": "L2"
+  },
+  "PYF": {
+    "value": 458,
+    "fillKey": "L1"
+  },
+  "MDG": {
+    "value": 47072,
+    "fillKey": "L2"
+  },
+  "PAN": {
+    "value": 11642,
+    "fillKey": "L2"
+  },
+  "ZMB": {
+    "value": 3994,
+    "fillKey": "L1"
+  },
+  "CYP": {
+    "value": 37333,
+    "fillKey": "L2"
+  },
+  "BWA": {
+    "value": 24588,
+    "fillKey": "L2"
+  },
+  "LBY": {
+    "value": 1129,
+    "fillKey": "L1"
+  },
+  "GRL": {
+    "value": 1512,
+    "fillKey": "L1"
+  },
+  "SOM": {
+    "value": 2639,
+    "fillKey": "L1"
+  },
+  "TGO": {
+    "value": 286,
+    "fillKey": "L1"
+  },
+  "SUR": {
+    "value": 1372,
+    "fillKey": "L1"
+  },
+  "VIR": {
+    "value": 1559,
+    "fillKey": "L1"
+  },
+  "NRU": {
+    "value": 29,
+    "fillKey": "L1"
+  },
+  "SYC": {
+    "value": 164,
+    "fillKey": "L1"
+  },
+  "ABW": {
+    "value": 17,
+    "fillKey": "L1"
+  },
+  "CHN": {
+    "value": 16489205,
+    "fillKey": "L7"
+  },
+  "CHE": {
+    "value": 3110874,
+    "fillKey": "L5"
+  },
+  "USA": {
+    "value": 83435128,
+    "fillKey": "L8"
+  },
+  "MLI": {
+    "value": 67794,
+    "fillKey": "L2"
+  },
+  "LUX": {
+    "value": 106026,
+    "fillKey": "L3"
+  },
+  "HKG": {
+    "value": 700210,
+    "fillKey": "L3"
+  },
+  "DOM": {
+    "value": 62279,
+    "fillKey": "L2"
+  },
+  "JAM": {
+    "value": 20435,
+    "fillKey": "L2"
+  },
+  "MDA": {
+    "value": 62652,
+    "fillKey": "L2"
+  },
+  "SAU": {
+    "value": 33438,
+    "fillKey": "L2"
+  },
+  "GLP": {
+    "value": 342,
+    "fillKey": "L1"
+  },
+  "RWA": {
+    "value": 9914,
+    "fillKey": "L1"
+  },
+  "PRK": {
+    "value": 4984,
+    "fillKey": "L1"
+  },
+  "AIA": {
+    "value": 488,
+    "fillKey": "L1"
+  },
+  "AGO": {
+    "value": 2532,
+    "fillKey": "L1"
+  },
+  "IOT": {
+    "value": 4200,
+    "fillKey": "L1"
+  },
+  "BDI": {
+    "value": 293,
+    "fillKey": "L1"
+  },
+  "BFA": {
+    "value": 1036,
+    "fillKey": "L1"
+  },
+  "FJI": {
+    "value": 935,
+    "fillKey": "L1"
+  },
+  "JPN": {
+    "value": 6039780,
+    "fillKey": "L6"
+  },
+  "THA": {
+    "value": 389122,
+    "fillKey": "L3"
+  },
+  "SWE": {
+    "value": 3096998,
+    "fillKey": "L5"
+  },
+  "BGD": {
+    "value": 176756,
+    "fillKey": "L3"
+  },
+  "BOL": {
+    "value": 39104,
+    "fillKey": "L2"
+  },
+  "ECU": {
+    "value": 78792,
+    "fillKey": "L2"
+  },
+  "EST": {
+    "value": 261350,
+    "fillKey": "L3"
+  },
+  "NCL": {
+    "value": 25448,
+    "fillKey": "L2"
+  },
+  "PRT": {
+    "value": 936164,
+    "fillKey": "L3"
+  },
+  "VEN": {
+    "value": 288382,
+    "fillKey": "L3"
+  },
+  "BHR": {
+    "value": 3079,
+    "fillKey": "L1"
+  },
+  "DZA": {
+    "value": 147714,
+    "fillKey": "L3"
+  },
+  "GIB": {
+    "value": 2640,
+    "fillKey": "L1"
+  },
+  "QAT": {
+    "value": 2898,
+    "fillKey": "L1"
+  },
+  "CAF": {
+    "value": 1774,
+    "fillKey": "L1"
+  },
+  "MMR": {
+    "value": 6803,
+    "fillKey": "L1"
+  },
+  "SDN": {
+    "value": 1935,
+    "fillKey": "L1"
+  },
+  "VGB": {
+    "value": 429,
+    "fillKey": "L1"
+  },
+  "COD": {
+    "value": 86634,
+    "fillKey": "L2"
+  },
+  "SWZ": {
+    "value": 9326,
+    "fillKey": "L1"
+  },
+  "NAM": {
+    "value": 61641,
+    "fillKey": "L2"
+  },
+  "MAF": {
+    "value": 31,
+    "fillKey": "L1"
+  },
+  "MNP": {
+    "value": 330,
+    "fillKey": "L1"
+  },
+  "MSR": {
+    "value": 2218,
+    "fillKey": "L1"
+  },
+  "LIE": {
+    "value": 527,
+    "fillKey": "L1"
+  },
+  "AND": {
+    "value": 2027,
+    "fillKey": "L1"
+  },
+  "NER": {
+    "value": 14,
+    "fillKey": "L1"
+  },
+  "SGP": {
+    "value": 777979,
+    "fillKey": "L3"
+  },
+  "AUS": {
+    "value": 4618172,
+    "fillKey": "L5"
+  },
+  "ROU": {
+    "value": 879196,
+    "fillKey": "L3"
+  },
+  "MYS": {
+    "value": 451198,
+    "fillKey": "L3"
+  },
+  "PRI": {
+    "value": 127546,
+    "fillKey": "L3"
+  },
+  "KGZ": {
+    "value": 18804,
+    "fillKey": "L2"
+  },
+  "BEN": {
+    "value": 30240,
+    "fillKey": "L2"
+  },
+  "STP": {
+    "value": 116462,
+    "fillKey": "L3"
+  },
+  "NPL": {
+    "value": 80723,
+    "fillKey": "L2"
+  },
+  "UZB": {
+    "value": 28556,
+    "fillKey": "L2"
+  },
+  "CCK": {
+    "value": 11036,
+    "fillKey": "L2"
+  },
+  "GTM": {
+    "value": 29360,
+    "fillKey": "L2"
+  },
+  "ERI": {
+    "value": 1478,
+    "fillKey": "L1"
+  },
+  "SLV": {
+    "value": 37070,
+    "fillKey": "L2"
+  },
+  "YEM": {
+    "value": 3925,
+    "fillKey": "L1"
+  },
+  "ASM": {
+    "value": 6239,
+    "fillKey": "L1"
+  },
+  "GUY": {
+    "value": 361,
+    "fillKey": "L1"
+  },
+  "MWI": {
+    "value": 2782,
+    "fillKey": "L1"
+  },
+  "NIU": {
+    "value": 810,
+    "fillKey": "L1"
+  },
+  "COM": {
+    "value": 1036,
+    "fillKey": "L1"
+  },
+  "TCD": {
+    "value": 14,
+    "fillKey": "L1"
+  },
+  "CXR": {
+    "value": 60,
+    "fillKey": "L1"
+  },
+  "ITA": {
+    "value": 2827544,
+    "fillKey": "L5"
+  },
+  "VNM": {
+    "value": 711473,
+    "fillKey": "L3"
+  },
+  "NOR": {
+    "value": 1533405,
+    "fillKey": "L4"
+  },
+  "NZL": {
+    "value": 1704280,
+    "fillKey": "L4"
+  },
+  "LVA": {
+    "value": 100564,
+    "fillKey": "L3"
+  },
+  "COL": {
+    "value": 352211,
+    "fillKey": "L3"
+  },
+  "ZAF": {
+    "value": 619736,
+    "fillKey": "L3"
+  },
+  "HUN": {
+    "value": 1340384,
+    "fillKey": "L4"
+  },
+  "PHL": {
+    "value": 1238189,
+    "fillKey": "L4"
+  },
+  "PAK": {
+    "value": 115605,
+    "fillKey": "L3"
+  },
+  "MKD": {
+    "value": 37874,
+    "fillKey": "L2"
+  },
+  "MUS": {
+    "value": 5216,
+    "fillKey": "L1"
+  },
+  "PSE": {
+    "value": 3312,
+    "fillKey": "L1"
+  },
+  "SEN": {
+    "value": 5653,
+    "fillKey": "L1"
+  },
+  "TKM": {
+    "value": 232,
+    "fillKey": "L1"
+  },
+  "IRQ": {
+    "value": 2536,
+    "fillKey": "L1"
+  },
+  "REU": {
+    "value": 4089,
+    "fillKey": "L1"
+  },
+  "XKX": {
+    "value": 5292,
+    "fillKey": "L1"
+  },
+  "ALB": {
+    "value": 5737,
+    "fillKey": "L1"
+  },
+  "SYR": {
+    "value": 8203,
+    "fillKey": "L1"
+  },
+  "BMU": {
+    "value": 2814,
+    "fillKey": "L1"
+  },
+  "SCG": {
+    "value": 505,
+    "fillKey": "L1"
+  },
+  "SMR": {
+    "value": 211,
+    "fillKey": "L1"
+  },
+  "SLB": {
+    "value": 541,
+    "fillKey": "L1"
+  },
+  "BHS": {
+    "value": 748,
+    "fillKey": "L1"
+  },
+  "CUW": {
+    "value": 198,
+    "fillKey": "L1"
+  },
+  "GNB": {
+    "value": 4744,
+    "fillKey": "L1"
+  },
+  "KIR": {
+    "value": 265,
+    "fillKey": "L1"
+  },
+  "SPM": {
+    "value": 682,
+    "fillKey": "L1"
+  },
+  "RUS": {
+    "value": 5710194,
+    "fillKey": "L6"
+  },
+  "DEU": {
+    "value": 16607241,
+    "fillKey": "L7"
+  },
+  "KOR": {
+    "value": 2372913,
+    "fillKey": "L4"
+  },
+  "TON": {
+    "value": 23146,
+    "fillKey": "L2"
+  },
+  "ISL": {
+    "value": 62202,
+    "fillKey": "L2"
+  },
+  "ARE": {
+    "value": 120968,
+    "fillKey": "L3"
+  },
+  "TUN": {
+    "value": 31395,
+    "fillKey": "L2"
+  },
+  "AZE": {
+    "value": 5443,
+    "fillKey": "L1"
+  },
+  "URY": {
+    "value": 126474,
+    "fillKey": "L3"
+  },
+  "CMR": {
+    "value": 32097,
+    "fillKey": "L2"
+  },
+  "SHN": {
+    "value": 9234,
+    "fillKey": "L1"
+  },
+  "ANT": {
+    "value": 4089,
+    "fillKey": "L1"
+  },
+  "MAC": {
+    "value": 27448,
+    "fillKey": "L2"
+  },
+  "GMB": {
+    "value": 177,
+    "fillKey": "L1"
+  },
+  "VAT": {
+    "value": 2124,
+    "fillKey": "L1"
+  },
+  "LBR": {
+    "value": 82,
+    "fillKey": "L1"
+  },
+  "KWT": {
+    "value": 8896,
+    "fillKey": "L1"
+  },
+  "TLS": {
+    "value": 318,
+    "fillKey": "L1"
+  },
+  "TUV": {
+    "value": 170,
+    "fillKey": "L1"
+  },
+  "MHL": {
+    "value": 717,
+    "fillKey": "L1"
+  },
+  "ATG": {
+    "value": 382,
+    "fillKey": "L1"
+  },
+  "LSO": {
+    "value": 81,
+    "fillKey": "L1"
+  },
+  "MTQ": {
+    "value": 1908,
+    "fillKey": "L1"
+  },
+  "KNA": {
+    "value": 262,
+    "fillKey": "L1"
+  },
+  "COG": {
+    "value": 880,
+    "fillKey": "L1"
+  },
+  "NLD": {
+    "value": 5334352,
+    "fillKey": "L6"
+  },
+  "IRL": {
+    "value": 1121109,
+    "fillKey": "L4"
+  },
+  "POL": {
+    "value": 3287600,
+    "fillKey": "L5"
+  },
+  "CZE": {
+    "value": 1947527,
+    "fillKey": "L4"
+  },
+  "BGR": {
+    "value": 518426,
+    "fillKey": "L3"
+  },
+  "CRI": {
+    "value": 147591,
+    "fillKey": "L3"
+  },
+  "ARM": {
+    "value": 68568,
+    "fillKey": "L2"
+  },
+  "KAZ": {
+    "value": 38645,
+    "fillKey": "L2"
+  },
+  "UGA": {
+    "value": 22233,
+    "fillKey": "L2"
+  },
+  "SVK": {
+    "value": 359697,
+    "fillKey": "L3"
+  },
+  "JEY": {
+    "value": 9895,
+    "fillKey": "L1"
+  },
+  "HRV": {
+    "value": 379773,
+    "fillKey": "L3"
+  },
+  "LKA": {
+    "value": 438252,
+    "fillKey": "L3"
+  },
+  "ZWE": {
+    "value": 3897,
+    "fillKey": "L1"
+  },
+  "MLT": {
+    "value": 32265,
+    "fillKey": "L2"
+  },
+  "ETH": {
+    "value": 39790,
+    "fillKey": "L2"
+  },
+  "MDV": {
+    "value": 2969,
+    "fillKey": "L1"
+  },
+  "ATA": {
+    "value": 8363,
+    "fillKey": "L1"
+  },
+  "HND": {
+    "value": 10799,
+    "fillKey": "L2"
+  },
+  "MNE": {
+    "value": 7942,
+    "fillKey": "L1"
+  },
+  "BRB": {
+    "value": 1127,
+    "fillKey": "L1"
+  },
+  "GIN": {
+    "value": 243,
+    "fillKey": "L1"
+  },
+  "CPV": {
+    "value": 652,
+    "fillKey": "L1"
+  },
+  "CYM": {
+    "value": 46,
+    "fillKey": "L1"
+  },
+  "BLM": {
+    "value": 68,
+    "fillKey": "L1"
+  },
+  "SLE": {
+    "value": 868,
+    "fillKey": "L1"
+  },
+  "MYT": {
+    "value": 199,
+    "fillKey": "L1"
+  }
+}
