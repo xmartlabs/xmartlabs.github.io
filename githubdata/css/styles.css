@@ -3,6 +3,10 @@ html, body {
   width: 100%;
 }
 
+th {
+  font-weight: bold;
+}
+
 /* map */
 #container {
   height: 100%;

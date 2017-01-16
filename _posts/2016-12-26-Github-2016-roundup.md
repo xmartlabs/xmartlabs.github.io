@@ -9,30 +9,39 @@ markdown: redcarpet
 
 ---
 
-Welcome to the first Xmartlabs' data analysis post! Xmartlabs has several open source projects so we thought it would be interesting to study the use of **GitHub**.
-We use this tool every day from Uruguay to collaborate, but where are people from in general? To what extent do people in the different places of the world collaborate?.
+A new year just arrived and we started to see yearly summaries here and there about how much post in Facebook are or how much tweets were made, etcetera.
+At Xmartlabs we were working for a while in data analysis but we have never shared anything yet, our plan was to work on something we find interesting and share it to the world to see if you find it interesting too.
+
+As you may know one of our passions is the Open Source, we try to share as much as we can (and we will keep doing it).
+We have been working on many open source tools that helps developers to improve development speed and providing tested, cleaner & extensible code that is used by many people in the whole world.
+We use GitHub to share this passion and since we love this tool, we thought it would be interesting to study the use of GitHub for open source projects.
+
+We use this tool every day from Uruguay to collaborate, but from where are people from in general?
+To what extent do people in the different places of the world collaborate?.
 What are commit messages from open source projects like? Or even a simpler question: what were the most preferred repos of the year?
 
-Secondly we wanted to feel the power of first class tools such as Spark and Databricks. So we started a process in which we came to grips with these technologies and found out some interesting things.
+Secondly as scientists that we are we wanted to feel the power of first class tools such as Spark and Databricks.
+So we started a process in which we came to grips with these technologies and found out some interesting things.
 
 ## The Stack Used
 
 Before reaching the data insights, let's talk a little bit about where it came from and the tools we tried out. There is the [GitHub Archive], which records all the public activity on GitHub and can be accessed for free.
 From its website you can grab historical data of the activity registered on GitHub since 2/12/2011.
 It has an endpoint that lets you request the historical data files by hour, each of which has an average size of over 80MB when unzipped.
-So for one year this is a lot of data provided you want to store it and process it yourself (700GB+)! This is a job for [Spark]!
+So for one year this is a lot of data provided you want to store it and process it yourself (700GB+)! This was a job for [Spark]!
 
 Spark let us process data in a cluster of machines in a fast and efficient manner.
 There are several ways to use it but we aimed at [Databricks] owing to the high level of abstraction it provides, by using web notebooks very similar to [Jupyter Notebook]'s and by exploiting Amazon EC2 instances with ease.
 And it let's you load files from S3 out of the box, so we crafted a script called [gh2s3](https://github.com/xmartlabs/gh2s3) to transfer the GitHub Archive's 2016 data to S3.
-As we also needed more data like the users' locations, we made use of [Scrapy](https://github.com/scrapy/scrapy), which is a Python library to build crawlers, to extract this data from GitHub's API.
+As we also needed more data like the users' locations, we made use of [Scrapy](https://github.com/scrapy/scrapy), a Python library to build crawlers, to extract this data from GitHub's API.
 Scrapy allows to throttle the request rate to stay inside GitHub's rate limits, among many other things.
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/databricks.png" alt="Databricks Architecture" /></div>
 
-There is also [Apache Zeppelin] which is an amazing open source alternative. Databricks is much more straightforward to use, letting you to start working immediately while Zeppelin requires a bit more configuration.
+There is also [Apache Zeppelin] which is an amazing open source alternative for doing this. Databricks is much more straightforward to use, letting you to start working immediately while Zeppelin requires a bit more configuration.
 On the other hand, Zeppelin is more flexible and allowed us to embed JavaScript code more easily in the notebook, so we ended up using it instead.
-We set it up to work on top of [Amazon EMR], with EC2 instances and with the same S3 data. But then we found that [the GitHub Archive is published on Google BigQuery](https://cloud.google.com/bigquery/public-data/github) as a public dataset, paying for the bytes you process after the first 1 TB in a month.
+We set it up to work on top of [Amazon EMR], with EC2 instances and with the same S3 data. But then we found that [the GitHub Archive is published on Google BigQuery](https://cloud.google.com/bigquery/public-data/github) as a public dataset, so paying for the processed bytes was smarter.
+
 This was the simplest by far for this particular case. Epic win!
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/ftw.gif" alt="for the win!" /></div>
