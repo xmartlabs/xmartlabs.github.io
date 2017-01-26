@@ -1,0 +1,1412 @@
+[
+  {
+    "code": "ABW",
+    "hdi": 0.839,
+    "cpi": 23.7542967330855,
+    "name": "Aruba"
+  },
+  {
+    "code": "AFG",
+    "hdi": 0.465,
+    "cpi": 38.08210942332,
+    "name": "Afghanistan"
+  },
+  {
+    "code": "AGO",
+    "hdi": 0.532,
+    "cpi": 19.3447264691643,
+    "name": "Angola"
+  },
+  {
+    "code": "AIA",
+    "hdi": 0.809,
+    "cpi": 3681.90734872491,
+    "name": "Anguilla"
+  },
+  {
+    "code": "ALA",
+    "hdi": 0.967,
+    "cpi": 4900.60274793156,
+    "name": "Aland Islands"
+  },
+  {
+    "code": "ALB",
+    "hdi": 0.733,
+    "cpi": 191.231730540029,
+    "name": "Albania"
+  },
+  {
+    "code": "AND",
+    "hdi": 0.845,
+    "cpi": 2410.71428571429,
+    "name": "Andorra"
+  },
+  {
+    "code": "ARE",
+    "hdi": 0.835,
+    "cpi": 2424.87679358018,
+    "name": "United Arab Emirates"
+  },
+  {
+    "code": "ARG",
+    "hdi": 0.836,
+    "cpi": 2684.88160846568,
+    "name": "Argentina"
+  },
+  {
+    "code": "ARM",
+    "hdi": 0.733,
+    "cpi": 2299.89892183288,
+    "name": "Armenia"
+  },
+  {
+    "code": "ASM",
+    "hdi": 0.734,
+    "cpi": 10734.09236191,
+    "name": "American Samoa"
+  },
+  {
+    "code": "ATG",
+    "hdi": 0.783,
+    "cpi": 440.325518131729,
+    "name": "Antigua and Barbuda"
+  },
+  {
+    "code": "AUS",
+    "hdi": 0.935,
+    "cpi": 21362.3189779917,
+    "name": "Australia"
+  },
+  {
+    "code": "AUT",
+    "hdi": 0.885,
+    "cpi": 24813.8939670932,
+    "name": "Austria"
+  },
+  {
+    "code": "AZE",
+    "hdi": 0.751,
+    "cpi": 65.24949924802,
+    "name": "Azerbaijan"
+  },
+  {
+    "code": "BDI",
+    "hdi": 0.4,
+    "cpi": 2.97066333087197,
+    "name": "Burundi"
+  },
+  {
+    "code": "BEL",
+    "hdi": 0.89,
+    "cpi": 16895.3955589734,
+    "name": "Belgium"
+  },
+  {
+    "code": "BEN",
+    "hdi": 0.48,
+    "cpi": 332.309703721617,
+    "name": "Benin"
+  },
+  {
+    "code": "BFA",
+    "hdi": 0.402,
+    "cpi": 6.37859903676998,
+    "name": "Burkina Faso"
+  },
+  {
+    "code": "BGD",
+    "hdi": 0.57,
+    "cpi": 112.334566653179,
+    "name": "Bangladesh"
+  },
+  {
+    "code": "BGR",
+    "hdi": 0.782,
+    "cpi": 7212.98794130751,
+    "name": "Bulgaria"
+  },
+  {
+    "code": "BHR",
+    "hdi": 0.824,
+    "cpi": 416.528907702397,
+    "name": "Bahrain"
+  },
+  {
+    "code": "BHS",
+    "hdi": 0.79,
+    "cpi": 246.197687133437,
+    "name": "Bahamas"
+  },
+  {
+    "code": "BIH",
+    "hdi": 0.733,
+    "cpi": 1271.76470588235,
+    "name": "Bosnia and Herzegovina"
+  },
+  {
+    "code": "BLM",
+    "hdi": 0.876,
+    "cpi": 804.733727810651,
+    "name": "Saint Barthelemy"
+  },
+  {
+    "code": "BLR",
+    "hdi": 0.798,
+    "cpi": 4647.68198244708,
+    "name": "Belarus"
+  },
+  {
+    "code": "BLZ",
+    "hdi": 0.715,
+    "cpi": 514.113480138114,
+    "name": "Belize"
+  },
+  {
+    "code": "BMU",
+    "hdi": 0.901,
+    "cpi": 4289.75751548994,
+    "name": "Bermuda"
+  },
+  {
+    "code": "BOL",
+    "hdi": 0.662,
+    "cpi": 386.834050805948,
+    "name": "Bolivia"
+  },
+  {
+    "code": "BRA",
+    "hdi": 0.755,
+    "cpi": 2008.32278610205,
+    "name": "Brazil"
+  },
+  {
+    "code": "BRB",
+    "hdi": 0.785,
+    "cpi": 384.7325251266,
+    "name": "Barbados"
+  },
+  {
+    "code": "BRN",
+    "hdi": 0.856,
+    "cpi": 137.965253008022,
+    "name": "Brunei"
+  },
+  {
+    "code": "BTN",
+    "hdi": 0.605,
+    "cpi": 298.208036899494,
+    "name": "Bhutan"
+  },
+  {
+    "code": "BWA",
+    "hdi": 0.698,
+    "cpi": 1210.90598908889,
+    "name": "Botswana"
+  },
+  {
+    "code": "CAF",
+    "hdi": 0.35,
+    "cpi": 36.5949786240329,
+    "name": "Central African Republic"
+  },
+  {
+    "code": "CAN",
+    "hdi": 0.913,
+    "cpi": 30529.3150034146,
+    "name": "Canada"
+  },
+  {
+    "code": "CCK",
+    "hdi": 0.829,
+    "cpi": 1720859.87261147,
+    "name": "Cocos Islands"
+  },
+  {
+    "code": "CHE",
+    "hdi": 0.93,
+    "cpi": 40500.2374356945,
+    "name": "Switzerland"
+  },
+  {
+    "code": "CHL",
+    "hdi": 0.832,
+    "cpi": 2639.47832414564,
+    "name": "Chile"
+  },
+  {
+    "code": "CHN",
+    "hdi": 0.727,
+    "cpi": 1229.32481932929,
+    "name": "China"
+  },
+  {
+    "code": "CIV",
+    "hdi": 0.462,
+    "cpi": 10.7935885039592,
+    "name": "Ivory Coast"
+  },
+  {
+    "code": "CMR",
+    "hdi": 0.512,
+    "cpi": 165.236621734392,
+    "name": "Cameroon"
+  },
+  {
+    "code": "COD",
+    "hdi": 0.433,
+    "cpi": 122.087348463732,
+    "name": "Democratic Republic of the Congo"
+  },
+  {
+    "code": "COG",
+    "hdi": 0.591,
+    "cpi": 28.9556931828427,
+    "name": "Republic of the Congo"
+  },
+  {
+    "code": "COK",
+    "hdi": 0.742,
+    "cpi": 1585.000935103,
+    "name": "Cook Islands"
+  },
+  {
+    "code": "COL",
+    "hdi": 0.72,
+    "cpi": 731.684452814396,
+    "name": "Colombia"
+  },
+  {
+    "code": "COM",
+    "hdi": 0.503,
+    "cpi": 133.952757086502,
+    "name": "Comoros"
+  },
+  {
+    "code": "CPV",
+    "hdi": 0.646,
+    "cpi": 127.197198909289,
+    "name": "Cape Verde"
+  },
+  {
+    "code": "CRI",
+    "hdi": 0.766,
+    "cpi": 3236.33481097024,
+    "name": "Costa Rica"
+  },
+  {
+    "code": "CUB",
+    "hdi": 0.769,
+    "cpi": 643.053488575681,
+    "name": "Cuba"
+  },
+  {
+    "code": "CUW",
+    "hdi": 0.825,
+    "cpi": 139.666774826122,
+    "name": "Curacao"
+  },
+  {
+    "code": "CXR",
+    "hdi": 0.797,
+    "cpi": 4000,
+    "name": "Christmas Island"
+  },
+  {
+    "code": "CYM",
+    "hdi": 0.887,
+    "cpi": 103.907838265191,
+    "name": "Cayman Islands"
+  },
+  {
+    "code": "CYP",
+    "hdi": 0.85,
+    "cpi": 3378.50521957019,
+    "name": "Cyprus"
+  },
+  {
+    "code": "CZE",
+    "hdi": 0.87,
+    "cpi": 18192.9553264605,
+    "name": "Czech Republic"
+  },
+  {
+    "code": "DEU",
+    "hdi": 0.916,
+    "cpi": 20172.8370404254,
+    "name": "Germany"
+  },
+  {
+    "code": "DJI",
+    "hdi": 0.47,
+    "cpi": 0,
+    "name": "Djibouti"
+  },
+  {
+    "code": "DMA",
+    "hdi": 0.724,
+    "cpi": 495.790586845756,
+    "name": "Dominica"
+  },
+  {
+    "code": "DNK",
+    "hdi": 0.923,
+    "cpi": 23587.34500364,
+    "name": "Denmark"
+  },
+  {
+    "code": "DOM",
+    "hdi": 0.715,
+    "cpi": 630.823790457908,
+    "name": "Dominican Republic"
+  },
+  {
+    "code": "DZA",
+    "hdi": 0.736,
+    "cpi": 413.749027646415,
+    "name": "Algeria"
+  },
+  {
+    "code": "ECU",
+    "hdi": 0.732,
+    "cpi": 529.1263212438,
+    "name": "Ecuador"
+  },
+  {
+    "code": "EGY",
+    "hdi": 0.69,
+    "cpi": 204.6827071954,
+    "name": "Egypt"
+  },
+  {
+    "code": "ERI",
+    "hdi": 0.391,
+    "cpi": 25.4273100012015,
+    "name": "Eritrea"
+  },
+  {
+    "code": "ESH",
+    "hdi": 0.508,
+    "cpi": 697.4154603528,
+    "name": "Western Sahara"
+  },
+  {
+    "code": "ESP",
+    "hdi": 0.876,
+    "cpi": 11708.1588010553,
+    "name": "Spain"
+  },
+  {
+    "code": "EST",
+    "hdi": 0.861,
+    "cpi": 20151.1032629321,
+    "name": "Estonia"
+  },
+  {
+    "code": "ETH",
+    "hdi": 0.442,
+    "cpi": 45.1839820783839,
+    "name": "Ethiopia"
+  },
+  {
+    "code": "FIN",
+    "hdi": 0.883,
+    "cpi": 28884.3249427918,
+    "name": "Finland"
+  },
+  {
+    "code": "FJI",
+    "hdi": 0.727,
+    "cpi": 106.623073735449,
+    "name": "Fiji"
+  },
+  {
+    "code": "FRA",
+    "hdi": 0.888,
+    "cpi": 15788.9769344116,
+    "name": "France"
+  },
+  {
+    "code": "FRO",
+    "hdi": 0.872,
+    "cpi": 2403.16828398441,
+    "name": "Faroe Islands"
+  },
+  {
+    "code": "FSM",
+    "hdi": 0.64,
+    "cpi": 0,
+    "name": "Micronesia"
+  },
+  {
+    "code": "GAB",
+    "hdi": 0.684,
+    "cpi": 23.2971257171146,
+    "name": "Gabon"
+  },
+  {
+    "code": "GBR",
+    "hdi": 0.907,
+    "cpi": 24312.2126201475,
+    "name": "United Kingdom"
+  },
+  {
+    "code": "GEO",
+    "hdi": 0.754,
+    "cpi": 3359.11447084233,
+    "name": "Georgia"
+  },
+  {
+    "code": "GGY",
+    "hdi": 0.896,
+    "cpi": 5463.91120377752,
+    "name": "Guernsey"
+  },
+  {
+    "code": "GHA",
+    "hdi": 0.579,
+    "cpi": 200.662798166528,
+    "name": "Ghana"
+  },
+  {
+    "code": "GIB",
+    "hdi": 0.873,
+    "cpi": 9439.10486300387,
+    "name": "Gibraltar"
+  },
+  {
+    "code": "GIN",
+    "hdi": 0.411,
+    "cpi": 2.32467472715341,
+    "name": "Guinea"
+  },
+  {
+    "code": "GLP",
+    "hdi": 0.841,
+    "cpi": 77.2009029345373,
+    "name": "Guadeloupe"
+  },
+  {
+    "code": "GMB",
+    "hdi": 0.441,
+    "cpi": 11.0465612556927,
+    "name": "Gambia"
+  },
+  {
+    "code": "GNB",
+    "hdi": 0.42,
+    "cpi": 302.9788017067,
+    "name": "Guinea-Bissau"
+  },
+  {
+    "code": "GNQ",
+    "hdi": 0.587,
+    "cpi": 0,
+    "name": "Equatorial Guinea"
+  },
+  {
+    "code": "GRC",
+    "hdi": 0.865,
+    "cpi": 28377.4181818182,
+    "name": "Greece"
+  },
+  {
+    "code": "GRD",
+    "hdi": 0.75,
+    "cpi": 2815.85635051661,
+    "name": "Grenada"
+  },
+  {
+    "code": "GRL",
+    "hdi": 0.808,
+    "cpi": 2678.49223946785,
+    "name": "Greenland"
+  },
+  {
+    "code": "GTM",
+    "hdi": 0.627,
+    "cpi": 215.808490351605,
+    "name": "Guatemala"
+  },
+  {
+    "code": "GUF",
+    "hdi": 0.816,
+    "cpi": 6.64941229425184,
+    "name": "French Guiana"
+  },
+  {
+    "code": "GUM",
+    "hdi": 0.849,
+    "cpi": 104.795491911294,
+    "name": "Guam"
+  },
+  {
+    "code": "GUY",
+    "hdi": 0.636,
+    "cpi": 48.230695029,
+    "name": "Guyana"
+  },
+  {
+    "code": "HKG",
+    "hdi": 0.91,
+    "cpi": 10100.8076030711,
+    "name": "Hong Kong"
+  },
+  {
+    "code": "HND",
+    "hdi": 0.606,
+    "cpi": 134.928527307694,
+    "name": "Honduras"
+  },
+  {
+    "code": "HRV",
+    "hdi": 0.818,
+    "cpi": 8383.56713426854,
+    "name": "Croatia"
+  },
+  {
+    "code": "HTI",
+    "hdi": 0.483,
+    "cpi": 10.1980282982849,
+    "name": "Haiti"
+  },
+  {
+    "code": "HUN",
+    "hdi": 0.828,
+    "cpi": 13384.7124824684,
+    "name": "Hungary"
+  },
+  {
+    "code": "IDN",
+    "hdi": 0.684,
+    "cpi": 311.179223505587,
+    "name": "Indonesia"
+  },
+  {
+    "code": "IMN",
+    "hdi": 0.893,
+    "cpi": 6670.30873162867,
+    "name": "Isle of Man"
+  },
+  {
+    "code": "IND",
+    "hdi": 0.609,
+    "cpi": 579.286723449878,
+    "name": "India"
+  },
+  {
+    "code": "IRL",
+    "hdi": 0.916,
+    "cpi": 23959.6125130518,
+    "name": "Ireland"
+  },
+  {
+    "code": "IRN",
+    "hdi": 0.766,
+    "cpi": 440.031823907711,
+    "name": "Iran"
+  },
+  {
+    "code": "IRQ",
+    "hdi": 0.654,
+    "cpi": 8.52667053231532,
+    "name": "Iraq"
+  },
+  {
+    "code": "ISL",
+    "hdi": 0.899,
+    "cpi": 20086.75666051,
+    "name": "Iceland"
+  },
+  {
+    "code": "ISR",
+    "hdi": 0.894,
+    "cpi": 10672.6081165518,
+    "name": "Israel"
+  },
+  {
+    "code": "ITA",
+    "hdi": 0.873,
+    "cpi": 4649.91340451447,
+    "name": "Italy"
+  },
+  {
+    "code": "JAM",
+    "hdi": 0.719,
+    "cpi": 703.209292393454,
+    "name": "Jamaica"
+  },
+  {
+    "code": "JEY",
+    "hdi": 0.9,
+    "cpi": 10842.1794476501,
+    "name": "Jersey"
+  },
+  {
+    "code": "JOR",
+    "hdi": 0.748,
+    "cpi": 1176.29155848565,
+    "name": "Jordan"
+  },
+  {
+    "code": "JPN",
+    "hdi": 0.891,
+    "cpi": 4680.28957953617,
+    "name": "Japan"
+  },
+  {
+    "code": "KAZ",
+    "hdi": 0.788,
+    "cpi": 244.876140808344,
+    "name": "Kazakhstan"
+  },
+  {
+    "code": "KEN",
+    "hdi": 0.548,
+    "cpi": 384.714634458295,
+    "name": "Kenya"
+  },
+  {
+    "code": "KGZ",
+    "hdi": 0.655,
+    "cpi": 324.677572924781,
+    "name": "Kyrgyzstan"
+  },
+  {
+    "code": "KHM",
+    "hdi": 0.555,
+    "cpi": 168.123273796016,
+    "name": "Cambodia"
+  },
+  {
+    "code": "KIR",
+    "hdi": 0.59,
+    "cpi": 286.384316946387,
+    "name": "Kiribati"
+  },
+  {
+    "code": "KNA",
+    "hdi": 0.752,
+    "cpi": 512.379238862596,
+    "name": "Saint Kitts and Nevis"
+  },
+  {
+    "code": "KOR",
+    "hdi": 0.898,
+    "cpi": 4672.512306432,
+    "name": "South Korea"
+  },
+  {
+    "code": "KWT",
+    "hdi": 0.816,
+    "cpi": 316.299121016861,
+    "name": "Kuwait"
+  },
+  {
+    "code": "LAO",
+    "hdi": 0.575,
+    "cpi": 11.4632762169053,
+    "name": "Laos"
+  },
+  {
+    "code": "LBN",
+    "hdi": 0.769,
+    "cpi": 454.9060941078,
+    "name": "Lebanon"
+  },
+  {
+    "code": "LBR",
+    "hdi": 0.43,
+    "cpi": 2.22519155642923,
+    "name": "Liberia"
+  },
+  {
+    "code": "LBY",
+    "hdi": 0.724,
+    "cpi": 17.4728474426963,
+    "name": "Libya"
+  },
+  {
+    "code": "LCA",
+    "hdi": 0.729,
+    "cpi": 751.917077838953,
+    "name": "Saint Lucia"
+  },
+  {
+    "code": "LIE",
+    "hdi": 0.908,
+    "cpi": 1502.85714285714,
+    "name": "Liechtenstein"
+  },
+  {
+    "code": "LKA",
+    "hdi": 0.757,
+    "cpi": 2029.74901447849,
+    "name": "Sri Lanka"
+  },
+  {
+    "code": "LSO",
+    "hdi": 0.497,
+    "cpi": 4.21973460474111,
+    "name": "Lesotho"
+  },
+  {
+    "code": "LTU",
+    "hdi": 0.839,
+    "cpi": 10122.0631701783,
+    "name": "Lithuania"
+  },
+  {
+    "code": "LUX",
+    "hdi": 0.892,
+    "cpi": 21232.95105097,
+    "name": "Luxembourg"
+  },
+  {
+    "code": "LVA",
+    "hdi": 0.819,
+    "cpi": 4432.92940523515,
+    "name": "Latvia"
+  },
+  {
+    "code": "MAC",
+    "hdi": 0.894,
+    "cpi": 6003.36599895814,
+    "name": "Macao"
+  },
+  {
+    "code": "MAF",
+    "hdi": 0.821,
+    "cpi": 86.2908837856646,
+    "name": "Saint Martin"
+  },
+  {
+    "code": "MAR",
+    "hdi": 0.628,
+    "cpi": 309.566746938765,
+    "name": "Morocco"
+  },
+  {
+    "code": "MCO",
+    "hdi": 1.074,
+    "cpi": 4256.02912179584,
+    "name": "Monaco"
+  },
+  {
+    "code": "MDA",
+    "hdi": 0.693,
+    "cpi": 1441.67437557817,
+    "name": "Moldova"
+  },
+  {
+    "code": "MDG",
+    "hdi": 0.51,
+    "cpi": 220.549497496552,
+    "name": "Madagascar"
+  },
+  {
+    "code": "MDV",
+    "hdi": 0.706,
+    "cpi": 747.630481486162,
+    "name": "Maldives"
+  },
+  {
+    "code": "MEX",
+    "hdi": 0.756,
+    "cpi": 1557.61077144424,
+    "name": "Mexico"
+  },
+  {
+    "code": "MHL",
+    "hdi": 0.645,
+    "cpi": 1087.17107760519,
+    "name": "Marshall Islands"
+  },
+  {
+    "code": "MKD",
+    "hdi": 0.747,
+    "cpi": 1829.27361472225,
+    "name": "Macedonia"
+  },
+  {
+    "code": "MLI",
+    "hdi": 0.419,
+    "cpi": 484.207639206706,
+    "name": "Mali"
+  },
+  {
+    "code": "MLT",
+    "hdi": 0.839,
+    "cpi": 7947.64267990074,
+    "name": "Malta"
+  },
+  {
+    "code": "MMR",
+    "hdi": 0.536,
+    "cpi": 12.0866342082377,
+    "name": "Myanmar"
+  },
+  {
+    "code": "MNE",
+    "hdi": 0.802,
+    "cpi": 1187.43719346662,
+    "name": "Montenegro"
+  },
+  {
+    "code": "MNG",
+    "hdi": 0.727,
+    "cpi": 158.248453635633,
+    "name": "Mongolia"
+  },
+  {
+    "code": "MNP",
+    "hdi": 0.796,
+    "cpi": 612.438060241635,
+    "name": "Northern Mariana Islands"
+  },
+  {
+    "code": "MOZ",
+    "hdi": 0.416,
+    "cpi": 16.7396061120368,
+    "name": "Mozambique"
+  },
+  {
+    "code": "MRT",
+    "hdi": 0.506,
+    "cpi": 15.4755293192639,
+    "name": "Mauritania"
+  },
+  {
+    "code": "MSR",
+    "hdi": 0.731,
+    "cpi": 23744.7810726903,
+    "name": "Montserrat"
+  },
+  {
+    "code": "MTQ",
+    "hdi": 0.884,
+    "cpi": 440.748440748441,
+    "name": "Martinique"
+  },
+  {
+    "code": "MUS",
+    "hdi": 0.777,
+    "cpi": 402.826975266285,
+    "name": "Mauritius"
+  },
+  {
+    "code": "MWI",
+    "hdi": 0.445,
+    "cpi": 18.0093866321411,
+    "name": "Malawi"
+  },
+  {
+    "code": "MYS",
+    "hdi": 0.779,
+    "cpi": 1582.08766563245,
+    "name": "Malaysia"
+  },
+  {
+    "code": "MYT",
+    "hdi": 0.715,
+    "cpi": 125.124181033941,
+    "name": "Mayotte"
+  },
+  {
+    "code": "NAM",
+    "hdi": 0.628,
+    "cpi": 2876.57196175095,
+    "name": "Namibia"
+  },
+  {
+    "code": "NCL",
+    "hdi": 0.861,
+    "cpi": 11749.9792142046,
+    "name": "New Caledonia"
+  },
+  {
+    "code": "NER",
+    "hdi": 0.348,
+    "cpi": 0.08817080902574,
+    "name": "Niger"
+  },
+  {
+    "code": "NGA",
+    "hdi": 0.514,
+    "cpi": 69.4448051948052,
+    "name": "Nigeria"
+  },
+  {
+    "code": "NIC",
+    "hdi": 0.631,
+    "cpi": 350.988203994444,
+    "name": "Nicaragua"
+  },
+  {
+    "code": "NIU",
+    "hdi": 0.666,
+    "cpi": 36795.9372114497,
+    "name": "Niue"
+  },
+  {
+    "code": "NLD",
+    "hdi": 0.922,
+    "cpi": 31849.5524181436,
+    "name": "Netherlands"
+  },
+  {
+    "code": "NOR",
+    "hdi": 0.944,
+    "cpi": 30338.4606170708,
+    "name": "Norway"
+  },
+  {
+    "code": "NPL",
+    "hdi": 0.548,
+    "cpi": 242.875654379554,
+    "name": "Nepal"
+  },
+  {
+    "code": "NRU",
+    "hdi": 0.704,
+    "cpi": 288.127173373075,
+    "name": "Nauru"
+  },
+  {
+    "code": "NZL",
+    "hdi": 0.913,
+    "cpi": 39994.1960507276,
+    "name": "New Zealand"
+  },
+  {
+    "code": "OMN",
+    "hdi": 0.793,
+    "cpi": 586.679929386798,
+    "name": "Oman"
+  },
+  {
+    "code": "PAK",
+    "hdi": 0.538,
+    "cpi": 62.44685909489,
+    "name": "Pakistan"
+  },
+  {
+    "code": "PAN",
+    "hdi": 0.78,
+    "cpi": 340.401726813101,
+    "name": "Panama"
+  },
+  {
+    "code": "PCN",
+    "hdi": 0.661,
+    "cpi": 247826.086956522,
+    "name": "Pitcairn"
+  },
+  {
+    "code": "PER",
+    "hdi": 0.734,
+    "cpi": 727.0103259761,
+    "name": "Peru"
+  },
+  {
+    "code": "PHL",
+    "hdi": 0.668,
+    "cpi": 1234.38319834008,
+    "name": "Philippines"
+  },
+  {
+    "code": "PLW",
+    "hdi": 0.78,
+    "cpi": 3405.83714271362,
+    "name": "Palau"
+  },
+  {
+    "code": "PNG",
+    "hdi": 0.505,
+    "cpi": 1.92925567831888,
+    "name": "Papua New Guinea"
+  },
+  {
+    "code": "POL",
+    "hdi": 0.843,
+    "cpi": 8435.13246753247,
+    "name": "Poland"
+  },
+  {
+    "code": "PRI",
+    "hdi": 0.838,
+    "cpi": 3189.11758878547,
+    "name": "Puerto Rico"
+  },
+  {
+    "code": "PRK",
+    "hdi": 0.564,
+    "cpi": 21.7308027953869,
+    "name": "North Korea"
+  },
+  {
+    "code": "PRT",
+    "hdi": 0.83,
+    "cpi": 8732.00636942675,
+    "name": "Portugal"
+  },
+  {
+    "code": "PRY",
+    "hdi": 0.679,
+    "cpi": 521.061571591463,
+    "name": "Paraguay"
+  },
+  {
+    "code": "PSE",
+    "hdi": 0.677,
+    "cpi": 86.4473684210526,
+    "name": "Palestinian Territory"
+  },
+  {
+    "code": "PYF",
+    "hdi": 0.797,
+    "cpi": 169.325470913359,
+    "name": "French Polynesia"
+  },
+  {
+    "code": "QAT",
+    "hdi": 0.85,
+    "cpi": 344.0255147301,
+    "name": "Qatar"
+  },
+  {
+    "code": "REU",
+    "hdi": 0.818,
+    "cpi": 524.101999104187,
+    "name": "Reunion"
+  },
+  {
+    "code": "ROU",
+    "hdi": 0.793,
+    "cpi": 3740.78328076178,
+    "name": "Romania"
+  },
+  {
+    "code": "RUS",
+    "hdi": 0.798,
+    "cpi": 4009.03682961152,
+    "name": "Russia"
+  },
+  {
+    "code": "RWA",
+    "hdi": 0.483,
+    "cpi": 87.9343442858414,
+    "name": "Rwanda"
+  },
+  {
+    "code": "SAU",
+    "hdi": 0.837,
+    "cpi": 129.256527027128,
+    "name": "Saudi Arabia"
+  },
+  {
+    "code": "SDN",
+    "hdi": 0.479,
+    "cpi": 5.48571428571429,
+    "name": "Sudan"
+  },
+  {
+    "code": "SEN",
+    "hdi": 0.466,
+    "cpi": 45.8401727076587,
+    "name": "Senegal"
+  },
+  {
+    "code": "SGP",
+    "hdi": 0.912,
+    "cpi": 16454.8744126,
+    "name": "Singapore"
+  },
+  {
+    "code": "SHN",
+    "hdi": 0.719,
+    "cpi": 123190.348525469,
+    "name": "Saint Helena"
+  },
+  {
+    "code": "SLB",
+    "hdi": 0.506,
+    "cpi": 96.7456965153666,
+    "name": "Solomon Islands"
+  },
+  {
+    "code": "SLE",
+    "hdi": 0.413,
+    "cpi": 16.5469017928034,
+    "name": "Sierra Leone"
+  },
+  {
+    "code": "SLV",
+    "hdi": 0.666,
+    "cpi": 604.735838880752,
+    "name": "El Salvador"
+  },
+  {
+    "code": "SMR",
+    "hdi": 0.921,
+    "cpi": 667.153794834323,
+    "name": "San Marino"
+  },
+  {
+    "code": "SOM",
+    "hdi": 0.349,
+    "cpi": 25.7899838941155,
+    "name": "Somalia"
+  },
+  {
+    "code": "SPM",
+    "hdi": 0.861,
+    "cpi": 9455.21962350257,
+    "name": "Saint Pierre and Miquelon"
+  },
+  {
+    "code": "SRB",
+    "hdi": 0.771,
+    "cpi": 3647.65937261865,
+    "name": "Serbia"
+  },
+  {
+    "code": "SSD",
+    "hdi": 0.467,
+    "cpi": 49.2222616333898,
+    "name": "South Sudan"
+  },
+  {
+    "code": "STP",
+    "hdi": 0.555,
+    "cpi": 65907.6947579177,
+    "name": "Sao Tome and Principe"
+  },
+  {
+    "code": "SUR",
+    "hdi": 0.714,
+    "cpi": 273.522864928809,
+    "name": "Suriname"
+  },
+  {
+    "code": "SVK",
+    "hdi": 0.844,
+    "cpi": 6557.03024747938,
+    "name": "Slovakia"
+  },
+  {
+    "code": "SVN",
+    "hdi": 0.88,
+    "cpi": 14996.163428,
+    "name": "Slovenia"
+  },
+  {
+    "code": "SWE",
+    "hdi": 0.907,
+    "cpi": 31298.36177991,
+    "name": "Sweden"
+  },
+  {
+    "code": "SWZ",
+    "hdi": 0.531,
+    "cpi": 681.215109327492,
+    "name": "Swaziland"
+  },
+  {
+    "code": "SYC",
+    "hdi": 0.772,
+    "cpi": 185.646366311976,
+    "name": "Seychelles"
+  },
+  {
+    "code": "SYR",
+    "hdi": 0.594,
+    "cpi": 36.4265246005178,
+    "name": "Syria"
+  },
+  {
+    "code": "TCD",
+    "hdi": 0.392,
+    "cpi": 0.13278368475484,
+    "name": "Chad"
+  },
+  {
+    "code": "TGO",
+    "hdi": 0.484,
+    "cpi": 4.34172799863494,
+    "name": "Togo"
+  },
+  {
+    "code": "THA",
+    "hdi": 0.726,
+    "cpi": 571.9479203154,
+    "name": "Thailand"
+  },
+  {
+    "code": "TJK",
+    "hdi": 0.624,
+    "cpi": 70.75803383484,
+    "name": "Tajikistan"
+  },
+  {
+    "code": "TKM",
+    "hdi": 0.688,
+    "cpi": 4.69548561440834,
+    "name": "Turkmenistan"
+  },
+  {
+    "code": "TLS",
+    "hdi": 0.595,
+    "cpi": 27.5414095485547,
+    "name": "East Timor"
+  },
+  {
+    "code": "TON",
+    "hdi": 0.717,
+    "cpi": 18782.0199053679,
+    "name": "Tonga"
+  },
+  {
+    "code": "TTO",
+    "hdi": 0.772,
+    "cpi": 0,
+    "name": "Trinidad and Tobago"
+  },
+  {
+    "code": "TUN",
+    "hdi": 0.721,
+    "cpi": 294.918559546323,
+    "name": "Tunisia"
+  },
+  {
+    "code": "TUR",
+    "hdi": 0.761,
+    "cpi": 1340.08324134806,
+    "name": "Turkey"
+  },
+  {
+    "code": "TUV",
+    "hdi": 0.581,
+    "cpi": 1613.82734912147,
+    "name": "Tuvalu"
+  },
+  {
+    "code": "TWN",
+    "hdi": 0.882,
+    "cpi": 9961.99766720083,
+    "name": "Taiwan"
+  },
+  {
+    "code": "TZA",
+    "hdi": 0.521,
+    "cpi": 59.42296420431,
+    "name": "Tanzania"
+  },
+  {
+    "code": "UGA",
+    "hdi": 0.483,
+    "cpi": 66.3978297107652,
+    "name": "Uganda"
+  },
+  {
+    "code": "UKR",
+    "hdi": 0.747,
+    "cpi": 4662.18917395689,
+    "name": "Ukraine"
+  },
+  {
+    "code": "URY",
+    "hdi": 0.793,
+    "cpi": 3595.77221742882,
+    "name": "Uruguay"
+  },
+  {
+    "code": "USA",
+    "hdi": 0.915,
+    "cpi": 26764.6458202592,
+    "name": "United States"
+  },
+  {
+    "code": "UZB",
+    "hdi": 0.675,
+    "cpi": 102.319199297718,
+    "name": "Uzbekistan"
+  },
+  {
+    "code": "VAT",
+    "hdi": 0.864,
+    "cpi": 230618.892508143,
+    "name": "Vatican"
+  },
+  {
+    "code": "VCT",
+    "hdi": 0.72,
+    "cpi": 47.0172812497001,
+    "name": "Saint Vincent and the Grenadines"
+  },
+  {
+    "code": "VEN",
+    "hdi": 0.762,
+    "cpi": 1057.44623672108,
+    "name": "Venezuela"
+  },
+  {
+    "code": "VGB",
+    "hdi": 0.808,
+    "cpi": 1932.811780948,
+    "name": "British Virgin Islands"
+  },
+  {
+    "code": "VIR",
+    "hdi": 0.851,
+    "cpi": 1434.11708429922,
+    "name": "U.S. Virgin Islands"
+  },
+  {
+    "code": "VNM",
+    "hdi": 0.666,
+    "cpi": 788.996409892339,
+    "name": "Vietnam"
+  },
+  {
+    "code": "VUT",
+    "hdi": 0.594,
+    "cpi": 0,
+    "name": "Vanuatu"
+  },
+  {
+    "code": "WSM",
+    "hdi": 0.702,
+    "cpi": 81.7704074457945,
+    "name": "Samoa"
+  },
+  {
+    "code": "XKX",
+    "hdi": 0.714,
+    "cpi": 293.166666666667,
+    "name": "Kosovo"
+  },
+  {
+    "code": "YEM",
+    "hdi": 0.498,
+    "cpi": 15.3051489611077,
+    "name": "Yemen"
+  },
+  {
+    "code": "ZAF",
+    "hdi": 0.666,
+    "cpi": 1258.47959183673,
+    "name": "South Africa"
+  },
+  {
+    "code": "ZMB",
+    "hdi": 0.586,
+    "cpi": 29.4792725722,
+    "name": "Zambia"
+  },
+  {
+    "code": "ZWE",
+    "hdi": 0.509,
+    "cpi": 33.2908279520743,
+    "name": "Zimbabwe"
+  }
+]
