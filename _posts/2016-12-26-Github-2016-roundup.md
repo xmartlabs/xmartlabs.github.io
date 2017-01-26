@@ -9,109 +9,85 @@ markdown: redcarpet
 
 ---
 
-A new year just arrived and we started to see yearly summaries here and there about how much post in Facebook are or how much tweets were made, etcetera.
-At Xmartlabs we were working for a while in data analysis but we have never shared anything yet, our plan was to work on something we find interesting and share it to the world to see if you find it interesting too.
+Almost a month into the new year, the yearly summaries and annual resolutions posts season is definitely over.
 
-As you may know one of our passions is the Open Source, we try to share as much as we can (and we will keep doing it).
-We have been working on many open source tools that helps developers to improve development speed and providing tested, cleaner & extensible code that is used by many people in the whole world.
-We use GitHub to share this passion and since we love this tool, we thought it would be interesting to study the use of GitHub for open source projects.
+We have been working in Data Analysis for a while (in stealth mode for the most part, shame on us!) but we felt this was a good time to give you a sneak peek on what we have been up to. A bit late for a 2016 recap? Maybe! One thing is granted, the [Last Mover Advantage](https://techcrunch.com/2015/06/17/the-last-mover-advantage/) is on our side!
 
-We use this tool every day from Uruguay to collaborate, but from where are people from in general?
-To what extent do people in the different places of the world collaborate?.
-What are commit messages from open source projects like? Or even a simpler question: what were the most preferred repos of the year?
+As you may already know, [we are really passionate](https://blog.xmartlabs.com/2015/04/16/OSS-Culture/) about all things Open Source. We have been working on many [open source tools](https://github.com/xmartlabs) to improve developers' life by providing well-tested, clean & extensible components, which are used by a thriving community of users and contributors.
 
-Secondly as scientists that we are we wanted to feel the power of first class tools such as Spark and Databricks.
-So we started a process in which we came to grips with these technologies and found out some interesting things.
+[GitHub](https://github.com/) has been a great tool to share this passion as it enables seamless collaboration with fellow developers, so we thought it would be interesting to study the use of GitHub for open source projects during 2016. In this post we wanted to share our findings to give you insight about trends and fun facts in the OSS ecosystem, and pay a deserved tribute to some of the OSS heroes out there!
 
-## The Stack Used
+We will also discuss the tech stack and techniques we used and walk you through some of the challenges we faced - this may come in handy if you want to perform this type of Data Analysis. Hint: we played around with first-class Data Analysis tools such as [Apache Spark](http://spark.apache.org/), [Databricks](https://databricks.com/), [Apache Zeppelin](https://zeppelin.apache.org/) and [Google BigQuery](https://cloud.google.com/bigquery/).
 
-Before reaching the data insights, let's talk a little bit about where it came from and the tools we tried out. There is the [GitHub Archive], which records all the public activity on GitHub and can be accessed for free.
-From its website you can grab historical data of the activity registered on GitHub since 2/12/2011.
-It has an endpoint that lets you request the historical data files by hour, each of which has an average size of over 80MB when unzipped.
-So for one year this is a lot of data provided you want to store it and process it yourself (700GB+)! This was a job for [Spark]!
 
-Spark let us process data in a cluster of machines in a fast and efficient manner.
-There are several ways to use it but we aimed at [Databricks] owing to the high level of abstraction it provides, by using web notebooks very similar to [Jupyter Notebook]'s and by exploiting Amazon EC2 instances with ease.
-And it let's you load files from S3 out of the box, so we crafted a script called [gh2s3](https://github.com/xmartlabs/gh2s3) to transfer the GitHub Archive's 2016 data to S3.
-As we also needed more data like the users' locations, we made use of [Scrapy](https://github.com/scrapy/scrapy), a Python library to build crawlers, to extract this data from GitHub's API.
-Scrapy allows to throttle the request rate to stay inside GitHub's rate limits, among many other things.
+## The Tech Stack
+
+Before going deep into the data insights, let us walk you through the steps that got us there and the tools we tried out in the process. The [GitHub Archive] records all the public activity on GitHub and can be accessed for free. You can grab historical data of the activity registered on GitHub since 2/12/2011 on its website. For that purpose, it provides an endpoint that lets you request the historical data files by hour, each of which has an average size of over 80MB when unzipped. So for one year this is a lot of data provided you want to store it and process it yourself (700GB+)! This was a job for [Spark]!
+
+
+Spark lets us process data in a computer cluster in a fast and efficient manner. 
+There are several ways to use it but we aimed at [Databricks] owing to the high level of abstraction it provides, by using web notebooks (very similar to [Jupyter Notebook]’s) and by exploiting Amazon EC2 instances with ease. It also lets you load files from S3 out of the box, so we crafted a script called [gh2s3](https://github.com/xmartlabs/gh2s3) to transfer the GitHub Archive’s 2016 data to S3. In order to get the users’ locations, we made use of [Scrapy](https://github.com/scrapy/scrapy) (a Python library to build crawlers) to extract this data from GitHub’s API. Scrapy allows to throttle the request rate to stay inside GitHub’s rate limits, among many other things. So our initial setup using Databricks is represented in the diagram below. 
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/databricks.png" alt="Databricks Architecture" /></div>
 
-There is also [Apache Zeppelin] which is an amazing open source alternative for doing this. Databricks is much more straightforward to use, letting you to start working immediately while Zeppelin requires a bit more configuration.
-On the other hand, Zeppelin is more flexible and allowed us to embed JavaScript code more easily in the notebook, so we ended up using it instead.
-We set it up to work on top of [Amazon EMR], with EC2 instances and with the same S3 data. But then we found that [the GitHub Archive is published on Google BigQuery](https://cloud.google.com/bigquery/public-data/github) as a public dataset, so paying for the processed bytes was smarter.
 
-This was the simplest by far for this particular case. Epic win!
+[Apache Zeppelin] is an amazing open source alternative to DataBricks. In spite of Databricks' simpler setup, Zeppelin is more flexible and allowed us to embed JavaScript code more easily in the notebook - which in our case ended up being the tiebreaker. So we switched gears and set it up to work on top of Amazon EMR, with EC2 instances and with the same S3 data. 
+
+But then we found out that [the GitHub Archive is published on Google BigQuery](https://cloud.google.com/bigquery/public-data/github) as a public dataset, which made us realize that using Google BigQuery as an end-to-end solution for data storage, analysis and visualization was smarter.
+
+So we got exposed to different top-tier tools but ended up finding a great shortcut that saved us time and effort. Epic win!
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/ftw.gif" alt="for the win!" /></div>
 
 ## Maps
 
-We first decided to analyze the commits and see where they come from, mapping them to the location that the committers declare in their own profile.
+We started off analyzing the commits based on their geographic location by mapping them to the location that the committers declare in their own profile. 
 This work was inspired by [a similar previous work by Ramiro Gómez](http://geeksta.net/visualizations/github-commit-map/).
 We used a [script that is based on his work with some minor modifications](https://github.com/xmartlabs/gh-commit-locations).
-This script basically reads JSON files with the user information from GitHub, takes the users location string and tries to map it to a country.
-As this location is just a string and can be anything (like 'Earth', 'localhost' or 'Milky Way' for example) it's not always mappable to a country.
-The script tries to find the name of a country or city in the location string and can map this to a country in more than 96% of the cases where the location is not empty. This is a pretty impressive result.
-In this case we plotted the commits from the users by country, then comparing them with population and area.
-We also took a look at the amount of committers in addition to the commits. To plot the data into the map, we segmented it accordingly in 8 levels.
+This script reads JSON files with the user information from GitHub, takes the users location string and tries to map it to a country. Since the location field on GitHub is a regular string with no restrictions (for instance, it could be ‘Earth’, ‘localhost’ or ‘Milky Way’) it’s not always mappable to a country. The script tries to find the name of a country or city in the location string and can map this to a country in more than 96% of the cases where the location is not empty. This is a pretty impressive result but we need to take into account that the location string is a user generated data point so even in cases in which it's mappable, its accuracy is not granted. In this case we plotted the commits from the users by country, then compared them with population and area. We also took a look at the amount of committers in addition to the commits. To plot the data into the map, we segmented it accordingly in 8 levels.
+
 
 <select id="dropdownselect" onchange="selectedMapType();">
   <option value="commits">Commits</option>
   <option value="commitsPop">Commits per 100k inhabitants</option>
   <option value="commitsPopHdi">Commits per inhabitants and HDI</option>
-  <option value="commitsArea">Commits per 1000 square km</option>
   <option value="devPerMil">Developers per Million inhabitants</option>
   <option value="commitsAndDevs">Commits per Developer</option>
 </select>
 
 <div id="container" style="width:100%;height:500px"></div>
 
-### Commits
+### Commits - the usual suspects and a big surprise!
 
-The first map shows the commits with respect to the countries.
-It comes as no surprise that **US** is the largest source by far.
-Is then followed by **Germany**, **China** and the **United Kingdom**.
-It was expected to see highly developed countries among the top: countries from **Western Europe**, **Australia**, **New Zealand**, among others, as well as **India** and **Brazil**.
-All these are the countries that most shake the open source world!
-But what if we compare this data with the countries' population? China for instance has a clear advantage over the rest.
+The first map shows the total amount of commits by country. It comes as no surprise that the **US** has the first place by a big margin - it has more commits than the rest of the countries in the top 8 combined! The second country with the most commits in 2016 is **Germany**, closely followed by **China** and the **United Kingdom**, with **Canada** completing the top 5. Congratulations to the 2016 winners!
 
 <div id="commits-table-wrapper"></div>
 
-So there's a map that takes into account the inhabitants. Here **Switzerland**, **Netherlands**, **Sweden** and **Canada** stand out.
-Still, it roughly shows the degree of development of the countries, so we added a another map to contrast it with the countries' HDI (Human Development Index) from [the last report](http://hdr.undp.org/sites/default/files/2015_human_development_report.pdf).
-We got that countries such as **Greece**, **New Zealand** and **Finland** do very well! The big surprises are **Namibia**, **Costa Rica**, **Uruguay**, **Puerto Rico** and **Brazil**.
-At Xmartlabs we are glad to contribute to this stats :D.
+**China**, **India** and the **US**, among other countries with huge populations have a clear advantage over the rest when talking about total amount of commits. When we consider their populations, we can have a better sense of the relative performance of different countries. What happens when we compare the number of commits per capita? Doubt no more! We went on and created a new map that displays the commits per capita of every country. Here **Switzerland**, **Netherlands**, **Sweden** and **Canada** stand out among the rest - well done!
 
-#### The Biggest Surprise of All: Cocos Islands
+Not surprisingly, most of the countries leading the total commits and commits per capita charts are highly developed countries. These are countries with a big impact in the technology industry that also attract technical talent from abroad. Will the 2016 data reflect a relationship between the amount of commits per capita and a country HDI?
 
-The country is located in the Indian Ocean and has a population of approximately 600 inhabitants, 14 km2, a HDI of 0.829 and 11,036 commits!
+For that purpose we created yet another graph, that compares commits per capita against countries’ HDI (Human Development Index) from [the last report](http://hdr.undp.org/sites/default/files/2015_human_development_report.pdf). The data seem to confirm our initial perception but we also found out that countries such as **Greece**, **New Zealand** and **Finland** do very well on this one! Other outliers in this graph are **Namibia**, **Costa Rica**, **Uruguay**,**Puerto Rico** and **Brazil**, who perform way better than expected. At [Xmartlabs](https://xmartlabs.com) we are glad to contribute to this stats from our engineering HQ in Montevideo, Uruguay :D.
+
+#### 2016 Biggest Surprise: Cocos Islands
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/cocos.gif" alt="WHAT!?" /></div>
 
-Is it true? This and other outliers happen to be countries with little population, in which small amounts, very few data and the presence of errors in the users' stated locations can make them show up.
-More known countries fall here such as **Monaco** and **Vatican City**.
-For example, [Zeke](https://github.com/EZ3CHI3L) is a user who claims to be from the latter. Also take into account this countries use to have higher HDI. Moreover, Monaco has a HDI greater than 1!
+Yes, Cocos Island. This tiny country of only 14m2 and 600 inhabitants, located in the Indian Ocean has a HDI of 0.829 and 11,036 commits during 2016! Woah. Are we in presence of a programming heaven? We don't really know :) This and other outliers happen to be countries with very little population, in which very few data and the presence of errors in the users’ stated locations can explain the high deviation of their stats. More recognizable countries such as **Monaco** and **Vatican City** display a similar pattern.
+
+<div style="text-align:center;margin-top:20px;margin-bottom:50px"><img src="/images/cocos-island-flag.png" alt="Cocos Island flag" /></div>
 
 ### Committers
 
-Up to now we have seen the amount of commits, but how many committers do we have with respect to the population?
-By taking a look a the corresponding map we see some differences.
-This time **Chile**, **Argentina**, **South Africa**, the **United Arab Emirates**, **Sri Lanka** and **Taiwan** fare better.
-We also provide a map that compares the number of committers, with respect to the population.
+Up to now we have seen the amount of commits, but how many committers do they have with respect to their population? By taking a look a the corresponding map we see some differences. This time **Iceland**, **Norway**, **Denmark** and **Ireland** fare better - can you spot a trend?
 
 #### Newcomers
 
-Developers from African countries, such as **Guinea-Bissau**, **The Democratic Republic of the Congo**, **Botswana** and **Algeria**, seem to have a great number of commits.
-They have 1, 5, 6 and 6 committers respectively, so they seem to be few but good!
-Examples of them are: [ivandrofly](https://github.com/ivandrofly), [jniles](https://github.com/jniles), [tsetsiba](https://github.com/tsetsiba) and [assem-ch](https://github.com/assem-ch).
-
-Oh, btw, there's also a map showing the commits per country area.
+Developers from African countries, such as **Guinea-Bissau**, **The Democratic Republic of the Congo**, **Botswana and Algeria**, have a significant number of commits. However, we have only found 1, 5, 6 and 6 committers respectively, so they are clearly few but good! Big shout-out to [ivandrofly](https://github.com/ivandrofly), [jniles](https://github.com/jniles), [tsetsiba](https://github.com/tsetsiba) and [assem-ch](https://github.com/assem-ch) who are great examples of this.
 
 ## Commit Messages Analysis
 
-We also wanted to study the commit messages. For this we defined some metrics and compared the global values to those of some pretty much used repositories.
+The dataset available included commit messages so we wanted to get some insights out of them. In that regards, we defined some metrics and compared the global values to those of some popular repositories.
 
 The metrics we took were the following:
 
@@ -168,8 +144,8 @@ This is the top 20 repos in stars received in 2016:
 | open-guides/og-aws                        |  15,512 |
 | github/gitignore                          |  15,137 |
 
-We can see that **Free Code Camp** still gains lots of attraction! It currently has 216,340 stars, so most of them (86%!) were achieved this year.
-I mean, that's an average of 577 stars per day! However this outlier can be explained taking into account that the number of people interested in programming increase in large quantities every year, that Free Code Camp is the mainstream entry point for it and that one of their first tasks asks for starring the repo.
+We can see that Free Code Camp still gains lots of attraction! It currently has 216,340 stars, so most of them (86%!) were achieved this year. I mean, that’s an average of 577 stars per day! However this outlier can be explained taking into account that the number of people interested in programming increase in large quantities every year, that Free Code Camp is the mainstream entry point for it and that one of their first tasks asks for starring the repo.
+
 
 It's interesting to see how certain repos that have been around for some time are still among the most attracted, like **Twitter Bootstrap**, **gitignore from GitHub** and **free-programming-books**.
 But incredibly the second place is for **google-interview-university** that reached this position even though it's way younger that the others. As a result, one can wonder how well new repos perform.
@@ -203,7 +179,7 @@ This is the Top 20 in stars for the repos created in 2016:
 
 3 of them are in the Top 20 and the rest have a good amount of stars with respect to it.
 There are several repos related to **JavaScript and Web Development**: yarn, create-react-app, bulma, public-apis, webpack-dashboard, cash, awesome-design, express, You-Dont-Need-Javascript and material2.
-Also, a tendency seems to be mirrored here: **Deep Learning**, via TensorFlow models, Deep-Learning-Papers-Reading-Roadmap and neural-doodle.
+**Deep Learning** was one of the big themes in the development community during 2016, and this is reflected by the fact that TensorFlow models, Deep-Learning-Papers-Reading-Roadmap and neural-doodle made it to the top of the charts.
 
 So 2016 let amazing repos appear such as the new dependency manager **yarn**, **public-apis** that has a list of open JSON APIs for web development and **neural-doodle** that generates masterpiece art images from very simple doodles!
 
