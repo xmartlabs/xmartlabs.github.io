@@ -80,7 +80,7 @@ Yes! **Cocos Island**. This tiny country of only 14m2 and 600 inhabitants, locat
 
 ### Committers
 
-Up to now we have seen the amount of commits, but how many committers do they have with respect to their population? By taking a look a the corresponding map we see some differences. This time **Iceland**, **Norway**, **Denmark** and **Ireland** fare better – can you spot a trend?
+Up to now we have seen the amount of commits, but how many committers do they have with respect to their population? By taking a look a the <a href="#dropdownselect" onclick="$('#dropdownselect').value = 'commitsAndDevs';">corresponding map</a> we see some differences. This time **Iceland**, **Norway**, **Denmark** and **Ireland** fare better – can you spot a trend?
 
 #### Newcomers
 
