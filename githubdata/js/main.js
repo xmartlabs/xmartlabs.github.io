@@ -2,13 +2,11 @@
 
 const COMMITS = "commits";
 const COMMITSPOP = "commitsPop";
-const COMMITSPOPHDI = "commitsPopHdi";
 const DEVSMILLION = "devPerMil";
 const COMMITSANDDEVS = "commitsAndDevs";
 
 var commits = null;
 var commitsPop = null;
-var commitsPopHdi = null;
 var devsPop = null;
 var commitsAndDevs = null;
 var map = null;
@@ -24,12 +22,6 @@ $(function(){
     $.getJSON('/githubdata/data/commitsPerPop.json',function(data){
         commitsPop = data
         console.log('loading pop commits');
-    }).error(function(){
-        console.log('error reading map data');
-    });
-    $.getJSON('/githubdata/data/commitsPerPopAndHdi.json',function(data){
-        commitsPopHdi = data
-        console.log('loading pop/hdi commits');
     }).error(function(){
         console.log('error reading map data');
     });
@@ -96,8 +88,6 @@ function selectedMapType() {
       map.updateChoropleth(commits);
     } else if (type == COMMITSPOP) {
       map.updateChoropleth(commitsPop);
-    } else if (type == COMMITSPOPHDI) {
-      map.updateChoropleth(commitsPopHdi);
     } else if (type == DEVSMILLION) {
       map.updateChoropleth(devsPop);
     } else if (type == COMMITSANDDEVS) {

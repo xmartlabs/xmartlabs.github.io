@@ -17,7 +17,7 @@ As you may already know, [we are really passionate](https://blog.xmartlabs.com/2
 
 [GitHub](https://github.com/) has been a great tool to share this passion as it enables seamless collaboration with fellow developers, so we thought it would be interesting to study the use of GitHub for open source projects during 2016. In this post we wanted to share our findings to give you insight about trends and fun facts in the OSS ecosystem, and pay a deserved tribute to some of the OSS heroes out there!
 
-We will also discuss the tech stack and techniques we used and walk you through some of the challenges we faced - this may come in handy if you want to perform this type of Data Analysis. Hint: we played around with first-class Data Analysis tools such as [Apache Spark](http://spark.apache.org/), [Databricks](https://databricks.com/), [Apache Zeppelin](https://zeppelin.apache.org/) and [Google BigQuery](https://cloud.google.com/bigquery/).
+We will also discuss the tech stack and techniques we used and walk you through some of the challenges we faced – this may come in handy if you want to perform this type of Data Analysis. Hint: we played around with first-class Data Analysis tools such as [Apache Spark](http://spark.apache.org/), [Databricks](https://databricks.com/), [Apache Zeppelin](https://zeppelin.apache.org/) and [Google BigQuery](https://cloud.google.com/bigquery/).
 
 
 ## The Tech Stack
@@ -25,13 +25,13 @@ We will also discuss the tech stack and techniques we used and walk you through 
 Before going deep into the data insights, let us walk you through the steps that got us there and the tools we tried out in the process. The [GitHub Archive] records all the public activity on GitHub and can be accessed for free. You can grab historical data of the activity registered on GitHub since 2/12/2011 on its website. For that purpose, it provides an endpoint that lets you request the historical data files by hour, each of which has an average size of over 80MB when unzipped. So for one year this is a lot of data provided you want to store it and process it yourself (700GB+)! This was a job for [Spark]!
 
 
-Spark lets us process data in a computer cluster in a fast and efficient manner. 
-There are several ways to use it but we aimed at [Databricks] owing to the high level of abstraction it provides, by using web notebooks (very similar to [Jupyter Notebook]’s) and by exploiting Amazon EC2 instances with ease. It also lets you load files from S3 out of the box, so we crafted a script called [gh2s3](https://github.com/xmartlabs/gh2s3) to transfer the GitHub Archive’s 2016 data to S3. In order to get the users’ locations, we made use of [Scrapy](https://github.com/scrapy/scrapy) (a Python library to build crawlers) to extract this data from GitHub’s API. Scrapy allows to throttle the request rate to stay inside GitHub’s rate limits, among many other things. So our initial setup using Databricks is represented in the diagram below. 
+Spark lets us process data in a computer cluster in a fast and efficient manner.
+There are several ways to use it but we aimed at [Databricks] owing to the high level of abstraction it provides, by using web notebooks (very similar to [Jupyter Notebook]’s) and by exploiting Amazon EC2 instances with ease. It also lets you load files from S3 out of the box, so we crafted a script called [gh2s3](https://github.com/xmartlabs/gh2s3) to transfer the GitHub Archive’s 2016 data to S3. In order to get the users’ locations, we made use of [Scrapy](https://github.com/scrapy/scrapy) (a Python library to build crawlers) to extract this data from GitHub’s API. Scrapy allows to throttle the request rate to stay inside GitHub’s rate limits, among many other things. So our initial setup using Databricks is represented in the diagram below.
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/databricks.png" alt="Databricks Architecture" /></div>
 
 
-[Apache Zeppelin] is an amazing open source alternative to DataBricks. In spite of Databricks' simpler setup, Zeppelin is more flexible and allowed us to embed JavaScript code more easily in the notebook - which in our case ended up being the tiebreaker. So we switched gears and set it up to work on top of Amazon EMR, with EC2 instances and with the same S3 data. 
+[Apache Zeppelin] is an amazing open source alternative to DataBricks. In spite of Databricks' simpler setup, Zeppelin is more flexible and allowed us to embed JavaScript code more easily in the notebook – which in our case ended up being the tiebreaker. So we switched gears and set it up to work on top of Amazon EMR, with EC2 instances and with the same S3 data.
 
 But then we found out that [the GitHub Archive is published on Google BigQuery](https://cloud.google.com/bigquery/public-data/github) as a public dataset, which made us realize that using Google BigQuery as an end-to-end solution for data storage, analysis and visualization was smarter.
 
@@ -39,47 +39,48 @@ So we got exposed to different top-tier tools but ended up finding a great short
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/ftw.gif" alt="for the win!" /></div>
 
-## Maps
+## GitHub 2016 Topographical Depiction
 
-We started off analyzing the commits based on their geographic location by mapping them to the location that the committers declare in their own profile. 
+We started off analyzing the commits based on their geographic location by mapping them to the location that the committers declare in their own profile.
 This work was inspired by [a similar previous work by Ramiro Gómez](http://geeksta.net/visualizations/github-commit-map/).
 We used a [script that is based on his work with some minor modifications](https://github.com/xmartlabs/gh-commit-locations).
-This script reads JSON files with the user information from GitHub, takes the users location string and tries to map it to a country. Since the location field on GitHub is a regular string with no restrictions (for instance, it could be ‘Earth’, ‘localhost’ or ‘Milky Way’) it’s not always mappable to a country. The script tries to find the name of a country or city in the location string and can map this to a country in more than 96% of the cases where the location is not empty. This is a pretty impressive result but we need to take into account that the location string is a user generated data point so even in cases in which it's mappable, its accuracy is not granted. In this case we plotted the commits from the users by country, then compared them with population and area. We also took a look at the amount of committers in addition to the commits. To plot the data into the map, we segmented it accordingly in 8 levels.
+This script reads JSON files with the user information from GitHub, takes the users location string and tries to map it to a country. Since the location field on GitHub is a regular string with no restrictions (for instance, it could be ‘Earth’, ‘localhost’ or ‘Milky Way’) it’s not always mappable to a country. The script tries to find the name of a country or city in the location string and can map this to a country in more than 96% of the cases where the location is not empty. This is a pretty impressive result but we need to take into account that the location string is a user generated data point so even in cases in which it's mappable, its accuracy is not granted. In this case we plotted the commits from the users by country, then compared them with their population. We also took a look at the amount of committers in addition to the commits. To plot the data into the map, we segmented it accordingly in 8 levels.
 
 
 <select id="dropdownselect" onchange="selectedMapType();">
   <option value="commits">Commits</option>
   <option value="commitsPop">Commits per 100k inhabitants</option>
-  <option value="commitsPopHdi">Commits per inhabitants and HDI</option>
   <option value="devPerMil">Developers per Million inhabitants</option>
   <option value="commitsAndDevs">Commits per Developer</option>
 </select>
 
 <div id="container" style="width:100%;height:500px"></div>
 
-### Commits - the usual suspects and a big surprise!
+### Commits: the usual suspects and a big surprise!
 
-The first map shows the total amount of commits by country. It comes as no surprise that the **US** has the first place by a big margin - it has more commits than the rest of the countries in the top 8 combined! The second country with the most commits in 2016 is **Germany**, closely followed by **China** and the **United Kingdom**, with **Canada** completing the top 5. Congratulations to the 2016 winners!
+The first map shows the total amount of commits by country. It comes as no surprise that the **US** has the first place by a big margin – it has more commits than the rest of the countries in the top 8 combined! The second country with the most commits in 2016 is **Germany**, closely followed by **China** and the **United Kingdom**, with **Canada** completing the top 5. Congratulations to the 2016 winners!
 
 <div id="commits-table-wrapper"></div>
 
-**China**, **India** and the **US**, among other countries with huge populations have a clear advantage over the rest when talking about total amount of commits. When we consider their populations, we can have a better sense of the relative performance of different countries. What happens when we compare the number of commits per capita? Doubt no more! We went on and created a new map that displays the commits per capita of every country. Here **Switzerland**, **Netherlands**, **Sweden** and **Canada** stand out among the rest - well done!
+**China**, **India** and the **US**, among other countries with huge populations have a clear advantage over the rest when talking about total amount of commits. When we consider their populations, we can have a better sense of the relative performance of different countries. What happens when we compare the number of commits per capita? Doubt no more! We went on and created a new map that displays the commits per capita of every country. Here **Switzerland**, **Netherlands**, **Sweden** and **Canada** stand out among the rest – well done!
 
 Not surprisingly, most of the countries leading the total commits and commits per capita charts are highly developed countries. These are countries with a big impact in the technology industry that also attract technical talent from abroad. Will the 2016 data reflect a relationship between the amount of commits per capita and a country HDI?
 
 For that purpose we created yet another graph, that compares commits per capita against countries’ HDI (Human Development Index) from [the last report](http://hdr.undp.org/sites/default/files/2015_human_development_report.pdf). The data seem to confirm our initial perception but we also found out that countries such as **Greece**, **New Zealand** and **Finland** do very well on this one! Other outliers in this graph are **Namibia**, **Costa Rica**, **Uruguay**,**Puerto Rico** and **Brazil**, who perform way better than expected. At [Xmartlabs](https://xmartlabs.com) we are glad to contribute to this stats from our engineering HQ in Montevideo, Uruguay :D.
 
+TODO: new cpi vs hdi graph
+
 #### 2016 Biggest Surprise: Cocos Islands
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/cocos.gif" alt="WHAT!?" /></div>
 
-Yes, Cocos Island. This tiny country of only 14m2 and 600 inhabitants, located in the Indian Ocean has a HDI of 0.829 and 11,036 commits during 2016! Woah. Are we in presence of a programming heaven? We don't really know :) This and other outliers happen to be countries with very little population, in which very few data and the presence of errors in the users’ stated locations can explain the high deviation of their stats. More recognizable countries such as **Monaco** and **Vatican City** display a similar pattern.
+Yes! **Cocos Island**. This tiny country of only 14m2 and 600 inhabitants, located in the Indian Ocean has a HDI of 0.829 and 11,036 commits during 2016! Woah. Are we in presence of a programming heaven? We don't really know :) This and other outliers happen to be countries with very little population, in which very few data and the presence of errors in the users’ stated locations can explain the high deviation of their stats. More recognizable countries such as **Monaco** and **Vatican City** display a similar pattern.
 
 <div style="text-align:center;margin-top:20px;margin-bottom:50px"><img src="/images/cocos-island-flag.png" alt="Cocos Island flag" /></div>
 
 ### Committers
 
-Up to now we have seen the amount of commits, but how many committers do they have with respect to their population? By taking a look a the corresponding map we see some differences. This time **Iceland**, **Norway**, **Denmark** and **Ireland** fare better - can you spot a trend?
+Up to now we have seen the amount of commits, but how many committers do they have with respect to their population? By taking a look a the corresponding map we see some differences. This time **Iceland**, **Norway**, **Denmark** and **Ireland** fare better – can you spot a trend?
 
 #### Newcomers
 
