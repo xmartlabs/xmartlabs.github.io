@@ -9,6 +9,9 @@ markdown: redcarpet
 
 ---
 
+<div id="scatter-plot" style="width:100%;height:500px;"></div>
+
+
 Almost a month into the new year, the yearly summaries and annual resolutions posts season is definitely over.
 
 We have been working in Data Analysis for a while (in stealth mode for the most part, shame on us!) but we felt this was a good time to give you a sneak peek on what we have been up to. A bit late for a 2016 recap? Maybe! One thing is granted, the [Last Mover Advantage](https://techcrunch.com/2015/06/17/the-last-mover-advantage/) is on our side!

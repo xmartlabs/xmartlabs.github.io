@@ -310,7 +310,91 @@ function initPie() {
     }
 }
 
+var scatterPlot = function () {
+
+  var margin = {top: 20, right: 20, bottom: 30, left: 40},
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
+
+  var z = d3.scale.category10();
+
+  var paddingAxis = 20;
+  // Define the div for the tooltip
+  var svg = d3.select("#scatter-plot").append("svg")
+      .attr("width", width + margin.left + margin.right + paddingAxis)
+      .attr("height", height + margin.top + margin.bottom + paddingAxis)
+    .append("g")
+      .attr("transform", "translate(" + margin.left * 2 + "," + margin.top + ")");
+
+  var div = d3.select("#scatter-plot").append("div")
+  .attr("class", "tooltip")
+  .style("opacity", 0);
+
+    d3.csv("/githubdata/data/commitsPerPopAndHdi.csv", function(error, data) {
+
+      // Filter data
+      data = data.filter(d => d.y <= 2.5 * 1000);
+
+      var x = d3.scale.linear().range([0, width]);
+      var y = d3.scale.linear().range([height, 0]);
+
+      // Compute the scales’ domains.
+      x.domain([d3.min(data, d => parseFloat(d.x)), d3.max(data, d => parseFloat(d.x))])
+      y.domain([d3.min(data, d => parseFloat(d.y)), d3.max(data, d => parseFloat(d.y))])
+
+      // Add the x-axis.
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.svg.axis().scale(x).orient("bottom"))
+          .append("text")
+            .attr("text-anchor", "start")
+            .attr("transform", `translate(-60, ${-height/2})rotate(-90)`)
+            .text("Commits per population")
+
+      // Add the y-axis.
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(d3.svg.axis().scale(y).orient("left"))
+          .append("text")
+            .attr("transform", `translate(${height},${(width/2) + 40})`)
+            .text("HDI");
+
+      // Add the points!
+      svg.selectAll(".series")
+          .data([data])
+        .enter().append("g")
+          .attr("class", "series")
+          .style("fill", function(d, i) { return z(i); })
+        .selectAll(".point")
+          .data(function(d) { return d; })
+        .enter().append("circle")
+          .attr("class", "point")
+          .attr("r", 4.5)
+          .attr("cx", function(d) { return x(d.x); })
+          .attr("cy", function(d) { return y(d.y); })
+          .on("mouseover", function(d) {
+            div
+              .transition()
+              .duration(200)
+              .style("opacity", .9);
+            div
+              .html(`${d.name} - ${d.code} - ${d.x} - ${d.y}`)
+              .style("left", (d3.event.pageX) + "px")
+              .style("top", (d3.event.pageY - 28) + "px");
+          })
+          .on("mouseout", function(d) {
+            div.transition()
+            .duration(500)
+            .style("opacity", 0);
+          });
+    });
+};
+
+
+
 initMap({});
 initCommitsTable();
 initStarsTimeline();
 initPie();
+scatterPlot();
