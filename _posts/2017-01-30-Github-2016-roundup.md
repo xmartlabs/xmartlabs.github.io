@@ -145,7 +145,7 @@ This is the top 20 repos in stars received in 2016:
 | open-guides/og-aws                        |  15,512 |
 | github/gitignore                          |  15,137 |
 
-We can see that Free Code Camp still gains lots of attraction! It currently has 216,340 stars, so most of them (86%!) were achieved this year. I mean, that’s an average of 577 stars per day! However this outlier can be explained taking into account that the number of people interested in programming increase in large quantities every year, that Free Code Camp is the mainstream entry point for it and that one of their first tasks asks for starring the repo.
+We can see that Free Code Camp still gains lots of attraction! It currently has 216,340 stars, so most of them (86%!) were achieved in 2016. I mean, that’s an average of 577 stars per day! However this outlier can be explained taking into account that the number of people interested in programming increase in large quantities every year, that Free Code Camp is the mainstream entry point for it and that one of their first tasks asks for starring the repo.
 
 
 It's interesting to see how certain repos that have been around for some time are still among the most attracted, like **Twitter Bootstrap**, **gitignore from GitHub** and **free-programming-books**.
