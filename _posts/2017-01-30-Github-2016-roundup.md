@@ -1,16 +1,13 @@
 ---
 layout: post
 title:  GitHub 2016 round up
-date:   2016-12-26 12:23:24
+date:   2017-01-30 10:23:24
 author: Mathias Claassen
 categories: GitHub, Data Analysis
 author_id: mathias
 markdown: redcarpet
 
 ---
-
-<div id="scatter-plot" style="width:100%;height:500px;"></div>
-
 
 Almost a month into the new year, the yearly summaries and annual resolutions posts season is definitely over.
 
@@ -69,9 +66,9 @@ The first map shows the total amount of commits by country. It comes as no surpr
 
 Not surprisingly, most of the countries leading the total commits and commits per capita charts are highly developed countries. These are countries with a big impact in the technology industry that also attract technical talent from abroad. Will the 2016 data reflect a relationship between the amount of commits per capita and a country HDI?
 
-For that purpose we created yet another graph, that compares commits per capita against countries’ HDI (Human Development Index) from [the last report](http://hdr.undp.org/sites/default/files/2015_human_development_report.pdf). The data seem to confirm our initial perception but we also found out that countries such as **Greece**, **New Zealand** and **Finland** do very well on this one! Other outliers in this graph are **Namibia**, **Costa Rica**, **Uruguay**,**Puerto Rico** and **Brazil**, who perform way better than expected. At [Xmartlabs](https://xmartlabs.com) we are glad to contribute to this stats from our engineering HQ in Montevideo, Uruguay :D.
+For that purpose we created yet another graph, that compares commits per capita against countries’ HDI (Human Development Index) from [the last report](http://hdr.undp.org/sites/default/files/2015_human_development_report.pdf). The data seem to confirm our initial perception but we also found out that countries such as **Greece**, **New Zealand** and **Finland** do very well on this one! Other outliers in this graph are **Namibia**, **Costa Rica**, **Uruguay**, **Puerto Rico** and **Brazil**, who perform way better than expected when taking a deeper look at the numbers. At [Xmartlabs](https://xmartlabs.com) we are glad to contribute to this stats from our engineering HQ in Montevideo, Uruguay :D.
 
-TODO: new cpi vs hdi graph
+<div id="scatter-plot" style="width:100%;height:500px;"></div>
 
 #### 2016 Biggest Surprise: Cocos Islands
 

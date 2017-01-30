@@ -313,7 +313,7 @@ function initPie() {
 var scatterPlot = function () {
 
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
-      width = 960 - margin.left - margin.right,
+      width = 840 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;
 
   var z = d3.scale.category10();
@@ -333,14 +333,14 @@ var scatterPlot = function () {
     d3.csv("/githubdata/data/commitsPerPopAndHdi.csv", function(error, data) {
 
       // Filter data
-      data = data.filter(d => d.y <= 2.5 * 1000);
+      data = data.filter(d => d.y <= 45000);
 
       var x = d3.scale.linear().range([0, width]);
       var y = d3.scale.linear().range([height, 0]);
 
       // Compute the scales’ domains.
-      x.domain([d3.min(data, d => parseFloat(d.x)), d3.max(data, d => parseFloat(d.x))])
-      y.domain([d3.min(data, d => parseFloat(d.y)), d3.max(data, d => parseFloat(d.y))])
+      x.domain([d3.min(data, d => parseFloat(d.x)), d3.max(data, d => parseFloat(d.x))]);
+      y.domain([d3.min(data, d => parseFloat(d.y)), d3.max(data, d => parseFloat(d.y))]);
 
       // Add the x-axis.
       svg.append("g")
@@ -349,15 +349,15 @@ var scatterPlot = function () {
           .call(d3.svg.axis().scale(x).orient("bottom"))
           .append("text")
             .attr("text-anchor", "start")
-            .attr("transform", `translate(-60, ${-height/2})rotate(-90)`)
-            .text("Commits per population")
+            .attr("transform", `translate(-65, ${-height/2})rotate(-90)`)
+            .text("Commits per 100k inhabitants")
 
       // Add the y-axis.
       svg.append("g")
           .attr("class", "y axis")
           .call(d3.svg.axis().scale(y).orient("left"))
           .append("text")
-            .attr("transform", `translate(${height},${(width/2) + 40})`)
+            .attr("transform", `translate(${height},${(width/2) + 100})`)
             .text("HDI");
 
       // Add the points!
