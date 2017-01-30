@@ -61,4 +61,8 @@ remer:
   image: members/remer.jpg
   github: m-revetria
   profile_url: https://github.com/m-revetria
-
+xl:
+  display_name: XL Team
+  image: members/xl.jpg
+  github: xmartlabs
+  profile_url: https://github.com/xmartlabs
