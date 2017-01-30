@@ -55,7 +55,7 @@ function initMap(jsondata) {
           },
           data: jsondata,
           done: function(datamap) {
-             datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
+              datamap.svg.call(d3.behavior.zoom().scaleExtent([1, 50]).on("zoom", redraw));
 
              function redraw() {
                   datamap.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
