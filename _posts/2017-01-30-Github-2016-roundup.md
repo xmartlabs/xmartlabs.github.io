@@ -211,7 +211,7 @@ There's a more complete pie chart here:
 
 <div id="languages-pie-wrapper"></div>
 
-**Update (April 11, 2017):** Stackify posted an engaging analysis about the [Trediest Programming Languages](https://stackify.com/trendiest-programming-languages-hottest-sought-programming-languages-2017/) which concludes pretty similar statements.
+**Update (April 11, 2017):** Stackify posted an engaging analysis about the [Trendiest Programming Languages](https://stackify.com/trendiest-programming-languages-hottest-sought-programming-languages-2017/) which concludes pretty similar statements.
 
 ### Stars timeline
 
