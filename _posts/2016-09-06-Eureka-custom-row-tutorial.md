@@ -23,7 +23,7 @@ One thing that we realized is that many developers struggle when creating custom
 
 We will create a `UserInfoRow` which will display an image and some labels representing user profile data. Sometimes we have a two-or-more-step registration process in which the user enters some basic information at first and then goes to a new screen to enter advanced information. In these cases we sometimes show a summary of the previously entered profile data. We will create a row to show such information.
 
-This example uses Swift 2 syntax, which means it will not work in Swift 3 nor with an Eureka version for Swift 3.
+This example has been updated for Swift 3 syntax.
 
 In this example we will use a simple struct `User` defined like the following:
 
@@ -31,8 +31,8 @@ In this example we will use a simple struct `User` defined like the following:
 struct User: Equatable {
     var name: String
     var email: String
-    var dateOfBirth: NSDate
-    var pictureUrl: NSURL?
+    var dateOfBirth: Date
+    var pictureUrl: URL?
 }
 
 func ==(lhs: User, rhs: User) -> Bool {
@@ -60,9 +60,13 @@ final class UserInfoCell: Cell<User>, CellType {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
+
     required init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 ```
 
@@ -71,7 +75,7 @@ We have already added the outlets for our nib file which we have to connect. Now
 > Note: Eureka rows also have to be final and they must conform to RowType protocol
 
 ```swift
-final class UserInfoRow: Row<User, UserInfoCell>, RowType {
+final class UserInfoRow: Row<UserInfoCell>, RowType {
     required init(tag: String?) {
         super.init(tag: tag)
         cellProvider = CellProvider<UserInfoCell>(nibName: "UserInfoCell")
@@ -79,7 +83,7 @@ final class UserInfoRow: Row<User, UserInfoCell>, RowType {
 }
 ```
 
-In the first line we say that our row will have a value of type `User` and its cell will be a `UserInfoCell`. It is important to note that the type of the value (User) must be the same that we defined for the cell (the generic parameter of our cell).
+In the first line we say that our row will have a value of type `User` and its cell will be a `UserInfoCell`.
 
 Then we defined the required init method, which we have to implement to conform to the `RowType` protocol, and we specify that we want our cell to be created by loading it from the nib file named "UserInfoCell". If our cell did not rely on a nib file and we wanted to create it programmatically then we do not have to specify a `cellProvider`.
 
@@ -91,29 +95,29 @@ Our `UserInfoRow` is ready. But the `UserInfoCell` still needs some customizatio
 ```swift
 override func setup() {
     super.setup()
-    // we do not want our cell to be selected in this case. 
-    // If you use such a cell in a list then you might want to change this.
-    selectionStyle = .None
+    // we do not want our cell to be selected in this case. If you use such a cell in a list then you might want to change this.
+    selectionStyle = .none
 
     // configure our profile picture imageView
-    userImageView.contentMode = .ScaleAspectFill
+    userImageView.contentMode = .scaleAspectFill
     userImageView.clipsToBounds = true
 
     // define fonts for our labels
-    nameLabel.font = .systemFontOfSize(18)
-    emailLabel.font = .systemFontOfSize(13.3)
-    dateLabel.font = .systemFontOfSize(13.3)
+
+    nameLabel.font = .systemFont(ofSize: 18)
+    emailLabel.font = .systemFont(ofSize: 13.3)
+    dateLabel.font = .systemFont(ofSize: 13.3)
 
     // set the textColor for our labels
     for label in [emailLabel, dateLabel, nameLabel] {
-        label.textColor = .grayColor()
+        label?.textColor = .gray
     }
 
     // specify the desired height for our cell
     height = { return 94 }
 
     // set a light background color for our cell
-    backgroundColor = UIColor(red:0.984, green:0.988, blue:0.976, alpha:1.00)                    
+    backgroundColor = UIColor(red:0.984, green:0.988, blue:0.976, alpha:1.00)
 }
 ```
 
@@ -126,7 +130,7 @@ So let's add an `update` method:
 ```swift
 override func update() {
     super.update()
-    
+
     // we do not want to show the default UITableViewCell's textLabel
     textLabel?.text = nil
 
@@ -134,7 +138,7 @@ override func update() {
     guard let user = row.value else { return }
 
     // set the image to the userImageView. You might want to do this with AlamofireImage or another similar framework in a real project
-    if let url = user.pictureUrl, let data = NSData(contentsOfURL: url) {
+    if let url = user.pictureUrl, let data = try? Data(contentsOf: url) {
         userImageView.image = UIImage(data: data)
     } else {
         userImageView.image = UIImage(named: "placeholder")
@@ -143,7 +147,7 @@ override func update() {
     // set the texts to the labels
     emailLabel.text = user.email
     nameLabel.text = user.name
-    dateLabel.text = NSDateFormatter().stringFromDate(user.dateOfBirth)
+    dateLabel.text = UserInfoCell.dateFormatter.string(from: user.dateOfBirth)
 }
 ```
 
@@ -156,18 +160,18 @@ class UserRegistrationViewController: FormViewController {
         super.viewDidLoad()
 
         form +++ Section()
-            <<< UserInfoRow() { row in
+            <<< UserInfoRow { row in
                 row.value = User(name: "Mathias",
-                                email: "mathias@xmartlabs.com",
-                                dateOfBirth: NSDate(timeIntervalSince1970: 712119600),
-                                pictureUrl: NSURL(string: "http://lh4.ggpht.com/VpeucXbRtK2pmVY6At76vU45Q7YWXB6kz25Sm_JKW1tgfmJDP3gSAlDwowjGEORSM-EW=w300"))
-            }
+                                 email: "mathias@xmartlabs.com",
+                                 dateOfBirth: Date(timeIntervalSince1970: 712119600),
+                                 pictureUrl: URL(string: "http://lh4.ggpht.com/VpeucXbRtK2pmVY6At76vU45Q7YWXB6kz25Sm_JKW1tgfmJDP3gSAlDwowjGEORSM-EW=w300"))
+        }
 
         +++ Section("Other information")
-            <<< LocationRow() {
+            <<< LocationRow {
                 $0.title = "Where do you live?"
             }
-            <<< PhoneRow() {
+            <<< PhoneRow {
                 $0.title = "Your phone number"
         }
     }
@@ -179,7 +183,7 @@ And this is the result:
 ![Nib file example](/images/eureka-custom-row/user-info-cell.png)
 
 
-You can see the source files [in this gist](https://gist.github.com/mats-claassen/7add73434216ee9cd70309c7e8deba31). The code is in Swift 2 syntax so it will break if you are on Swift 3.
+You can see the source files [in this gist](https://gist.github.com/mats-claassen/7add73434216ee9cd70309c7e8deba31). The code has recently been updated to Swift 3.
 
 ## Where to go from here
 
