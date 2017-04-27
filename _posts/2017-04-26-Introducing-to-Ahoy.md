@@ -8,14 +8,17 @@ markdown: redcarpet
 
 ---
 
-Is quite common that today's app includes a tutorial or onboarding screens that introduce features or advantages for the user. This simple feature (from the user perspective) sometimes is complex that we think given the variety of things we can display (directly related with the designer/marketing inspiration), so thinking in the future and following our well-known culture of sharing code & knowledge we created [Ahoy](https://github.com/xmartlabs/Ahoy).
+Is quite common that today's apps include a tutorial or onboarding screens that introduce features or advantages for the user.
+This simple feature (from the user perspective) sometimes is more complex that we think given the variety of things we can display (directly related with the designer/marketing inspiration), so thinking in the future and following our well-known culture of sharing code & knowledge we created [Ahoy](https://github.com/xmartlabs/Ahoy).
 So for know on, you can avoid reinventing the wheel and start focusing on delivering the best user experience, Ahoy will help you get this within a few steps that we are going to introduce bellow.
 
 #### Alternatives
-Most of the times, the design requested was too complex to implement because most frameworks provide really rigid UI layouts. Moreover, sometimes we had to do some cool transitions between slides and the frameworks didn't provide any way to do this in a clean way.
+Most of the times, the design requested was too complex to implement because most frameworks provide really rigid UI layouts.
+Moreover, sometimes we had to do some cool transitions between slides and the frameworks didn't provide any way to do this in a clean way.
 
 ## Why should you use Ahoy?
-- The easy usage and speed to create what you need, are the first things to spotlight, and the flexibility to customize it the way you want is the next! The number of pages, the text label, the images and the button to skip or continue are all customizable. Also, if you feel like it, you can redo the whole UI and just plug it in.
+- The easy usage and speed to create what you need, are the first things to spotlight, and the flexibility to customize it the way you want is the next! The number of pages, the text label, the images and the button to skip or continue are all customizable.
+Also, if you feel like it, you can redo the whole UI and just plug it in.
 - To allow transitioning to the next page in the onboarding when the user presses the dots.
 - You want to do some awesome transition between steps, you can do this via the `visibilityChanged` callback.
 - Some common actions that we always use are handled too.
@@ -78,4 +81,4 @@ github "xmartlabs/Ahoy" ~> 1.0
 ## Where to go from here
 So… know that you meet Ahoy, you will be able to create incredible onboarding experiences, following just a few and easy steps, letting you focus in the real core app functionalities.
 
-We hope you find this post as a good introduction to the Ahoy library. On GitHub you will find an everything to get started or if you want to collaborate, feel free to contribute to this little but helpful [library](https://github.com/xmartlabs/Ahoy).
+We hope you find this post as a good introduction to the Ahoy library. On GitHub you will find everything to get started or if you want to collaborate, feel free to contribute to this little but helpful [library](https://github.com/xmartlabs/Ahoy).
