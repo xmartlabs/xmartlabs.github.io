@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  Introducing Ahoy!
+title:  Introducing Ahoy! The faster way to create onboardings in iOS!
 date:   2017-04-26 14:01:56
 author: XL
-categories: Swift, iOS
+categories: Swift, iOS, Onboarding, Tutorial
 markdown: redcarpet
 
 ---
