@@ -6,6 +6,7 @@ author: Ezequiel Santiago Sanchez
 categories: Swift, iOS, Eureka, Form
 author_id: esanchez
 markdown: redcarpet
+description: Join us in the first Eureka Webinar!
 
 ---
 

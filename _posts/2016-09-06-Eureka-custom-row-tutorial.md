@@ -6,6 +6,8 @@ author: Mathias Claassen
 categories: Swift, iOS, Eureka
 author_id: mathias
 markdown: redcarpet
+description: One thing that we realized is that many developers struggle when creating custom rows in Eureka, but doing this easily was one of the main factors behind Eureka's design. That is why we decided to provide a guide on how to do this with a simple example to help you get started.
+
 
 ---
 
@@ -15,7 +17,7 @@ If you are not familiar with what Eureka is and how to create forms with it then
 
 Eureka includes many rows that can be used to create forms but we will almost always need a row that has not been implemented yet. Eureka was designed so that you can add your own rows the same way the default rows were created. You just have to define a row and its cell and start using it.
 
-Some of the custom rows we have created include a [GooglePlacesRow] which uses the Google Places API to suggest a location to the user and a [SuggestionRow] which is a generic abstraction of the previous row. These rows are published at [EurekaCommunity] which is a GitHub organization for Eureka's custom rows. You can also see some custom rows in the [Examples project](https://github.com/xmartlabs/Eureka#example-project) of Eureka like a `WeekDayRow`, a `FloatLabelRow` and a `LocationRow` which lets the user select a location from a Map. 
+Some of the custom rows we have created include a [GooglePlacesRow] which uses the Google Places API to suggest a location to the user and a [SuggestionRow] which is a generic abstraction of the previous row. These rows are published at [EurekaCommunity] which is a GitHub organization for Eureka's custom rows. You can also see some custom rows in the [Examples project](https://github.com/xmartlabs/Eureka#example-project) of Eureka like a `WeekDayRow`, a `FloatLabelRow` and a `LocationRow` which lets the user select a location from a Map.
 
 > Sometimes we just want to add or change the functionality of an already existing row. In that case we normally subclass that row to implement our features.
 
@@ -27,7 +29,7 @@ This example has been updated for Swift 3 syntax.
 
 In this example we will use a simple struct `User` defined like the following:
 
-```swift 
+```swift
 struct User: Equatable {
     var name: String
     var email: String
@@ -44,7 +46,7 @@ We will create the `UserInfoCell` using interface builder and designing the tabl
 
 So, we created the following nib file containing an `UITableViewCell`. Then we added an UIImageView and three UILabels to cell's `contentView`. The cell will show the picture of the user and the user's name, email and date of birth.
 
-After adding the necessary constraint the cell looks like this: 
+After adding the necessary constraint the cell looks like this:
 
 ![Nib file example](/images/eureka-custom-row/nib-file-example.png)
 
@@ -55,7 +57,7 @@ Now we have to create two classes: `UserInfoRow` and `UserInfoCell`. Let's see t
 
 ```swift
 final class UserInfoCell: Cell<User>, CellType {
-    
+
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -121,7 +123,7 @@ override func setup() {
 }
 ```
 
-But we also have to set the user information to our labels. This will be done in the `update` method as this is information that could change. 
+But we also have to set the user information to our labels. This will be done in the `update` method as this is information that could change.
 
 > In this case, the user information will not change but in general it is good practice to update the labels of the cell on each update as the value of the row could possibly change
 

@@ -5,6 +5,8 @@ date: '2015-09-29T10:00:00.000-03:00'
 author: Martin Barreto
 categories: Eureka,Forms
 author_id: mtnBarreto
+description: We are incredibly excited to announce Eureka!, our first Swift open source project designed to easily build dynamic table-view forms.
+
 ---
 
 We are incredibly excited to announce [Eureka!], our first Swift open source project designed to easily build dynamic table-view forms.
@@ -30,7 +32,7 @@ Eureka was originally designed to be:
 * [*Powerful and Flexible*](#powerful-and-flexible)
 * [*Extensible*](#extensible)
 
-Eureka takes advantage of Swift language capabilities such as [generics], functional and protocol oriented programming, operators, protocol extensions and much more to accomplish these design goals.  
+Eureka takes advantage of Swift language capabilities such as [generics], functional and protocol oriented programming, operators, protocol extensions and much more to accomplish these design goals.
 
 Let's deep into what we mean by each of the listed points.
 
@@ -76,7 +78,7 @@ General customization allows us to make changes to all rows or cells of a specif
 DateRow.defaultRowInitializer = { row in row.minimumDate = NSDate() }
 // modify all NameRow cell textField font to UIFont.systemFontOfSize(fontSize: 12.0)
 NameRow.defaultCellUpdate = { cell, row in cell.textField?.font =  UIFont.systemFontOfSize(fontSize: 12.0)  }
-// Modify all CheckRow cells in order to show a orange check mark.  
+// Modify all CheckRow cells in order to show a orange check mark.
 CheckRow.defaultCellSetup = { cell, row in cell.tintColor = UIColor.orangeColor() }
 {% endhighlight %}
 

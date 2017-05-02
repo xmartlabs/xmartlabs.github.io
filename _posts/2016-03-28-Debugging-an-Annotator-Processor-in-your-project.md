@@ -6,6 +6,7 @@ author: Santiago Castro
 categories: Android, Annotation Processing, Android Studio, Debug
 author_id: santiago
 markdown: redcarpet
+description: The purpose of this post is to explain how to debug an annotation processor in the context of any Android Studio (or IntelliJ) project.
 
 ---
 

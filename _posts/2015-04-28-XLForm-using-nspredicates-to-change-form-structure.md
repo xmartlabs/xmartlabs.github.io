@@ -5,6 +5,7 @@ date:   2015-04-28 15:38:56
 author: Mathias Claassen
 categories: XLForm
 author_id: mathias
+description: In almost every app you might ever build you will have a profile and settings view and they may also have many forms. Using XLForm we speed up the development time spent on these view controllers.
 
 ---
 
