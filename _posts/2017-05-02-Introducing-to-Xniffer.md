@@ -2,7 +2,8 @@
 layout: post
 title:  Introducing Xniffer, the swift network profiler built on top of URLSession!
 date:   2017-04-26 11:20:56
-author: XL
+author: XL Team
+author_id: xl
 categories: Swift, iOS, Tutorial, network
 markdown: redcarpet
 
