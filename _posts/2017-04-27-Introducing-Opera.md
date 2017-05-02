@@ -2,7 +2,8 @@
 layout: post
 title:  Introducing Opera!
 date:   2017-04-27 16:58:00
-author: XL
+author: XL Team
+author_id: xl
 categories: Swift, iOS, Network, Tutorial
 markdown: redcarpet
 
