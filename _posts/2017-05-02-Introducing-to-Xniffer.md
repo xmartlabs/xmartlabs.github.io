@@ -15,7 +15,7 @@ That is way we created [Xniffer](https://github.com/xmartlabs/Xniffer) a non-int
 Xniffer not only returns the responses' result, it also has a UI component that shows you those responses in real time, which other libraries don't have. It displays the latency of HTTP messages, and you can set up your own delegate to do whatever you want with the returned data.
 All you have to do in order to use it is really easy, just setup some configurations, choose the way that you want to see the request and that's it!
 
-![](https://github.com/xmartlabs/Xniffer/blob/master/Example/curl.gif)
+![](https://raw.githubusercontent.com/xmartlabs/Xniffer/master/Example/curl.gif)
 
 ## How to use it?
 To start working with Xniffer, it needs to be added as a middleware between your URLSession and the Internet. After the initial setup, a window will be displayed on top of the UI that will show all the current requests and their latency.
