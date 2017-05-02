@@ -15,15 +15,17 @@ This framework is built on top of [Alamofire](https://github.com/Alamofire/Alamo
 One of the points to highlight is that working with [Opera](https://github.com/xmartlabs/Opera) is really easy.
 This library automatically handles the response flow, decoding the objects into ready-to-use objects using your JSON parsing library of choice.
 So you will not need to worry anymore about parsing the JSON each time, now you will start working with the decoded object directly.
-Furthermore, Opera provides helpers that integrate with RxSwift, returning Observables of JSON serialized types so you receive the object ready to use, or in case that the networking or the object parsing fails,  an OperaError is returned so you can handle it in the best way possible.
-Log story short, you define the service, the object decoding and then you are ready to subscribe to the requests and work on the events emitted.
+Furthermore, Opera provides helpers that integrate with RxSwift, returning Observables of JSON serialized types so you receive the object ready to use, or in case that the networking or the object parsing fails, an `OperaError` is returned so you can handle it in the best way possible.
+Long story short, you define the service, the object decoding and then you are ready to subscribe to the requests and work on the events emitted.
 
 ## Features
 - API abstraction through `RouteType` conformance.
 -  Pagination support through `PaginationRequestType` conformance.
 - Supports for any JSON parsing library such as [Decodable](https://github.com/Anviking/Decodable) and [Argo](https://github.com/thoughtbot/Argo) through `OperaDecodable` protocol conformance.
-- Networking errors abstraction through `OperaError` type. - OperaSwift `OperaError` indicates either an `NSURLSession` error, `Alamofire` error, or your JSON parsing library error.
-- RxSwift wrappers around `Alamofire.Request` that returns an Observable of a JSON serialized type or an array if it. - NetworkError is passed when error event happens.
+- Networking errors abstraction through `OperaError` type.
+- Opera `OperaError` indicates either an `NSURLSession` error, `Alamofire` error, or your JSON parsing library error.
+- RxSwift wrappers around `Alamofire.Request` that returns an Observable of a JSON serialized type or an array if it.
+- NetworkError is passed when error event happens.
 - RxSwift wrappers around `PaginationRequestType` that returns an Observable of a `PaginationRensponseType` which contains the serialized elements and information about the current, next and previous page.
 - Ability to easily mock services through `RouteType.sampleData`.
 
@@ -85,7 +87,7 @@ extension RouteType {
 > Now, by default, all RouteTypes we define will provide https://api.github.com as baseUrl and Manager.singleton as mananger. It's up to you to customize it within a specific RouteType protocol conformance.
 
 #### Default RouteTypes
-To avoid having to implement the `method` property in every `RouteType` Opera provides A protocol for each HTTPMethod so you can implement those:
+To avoid having to implement the `method` property in every `RouteType` Opera provides a protocol for each HTTPMethod so you can implement those:
 
 ``` Swift
 protocol GetRouteType: RouteType {}
@@ -128,22 +130,22 @@ request
 
   ``` Swift
   getInfoRequest
-  .rx.object()
-  .subscribe(
-    onNext: { (repositories: [Repository]) in
-      // do something when networking and Json parsing completes successfully
-    },
-    onError: {(error: Error) in
-      guard let error = error as? OperaError else {
-          //do something when it's not an OperaError
+    .rx.object()
+    .subscribe(
+      onNext: { (repositories: [Repository]) in
+        // do something when networking and Json parsing completes successfully
+      },
+      onError: {(error: Error) in
+        guard let error = error as? OperaError else {
+            //do something when it's not an OperaError
+        }
+        // do something with the OperaError
       }
-      // do something with the OperaError
-    }
-  )
-  .addDisposableTo(disposeBag)
+    )
+    .addDisposableTo(disposeBag)
 ```
 
-> If you are not interested in decode your JSON response into a Model you can invoke `request.rx.anyObject()` which returns an `Observable` of `AnyObject` for the current request and propagates a `OperaError` error through the result sequence if something goes wrong.
+> If you are not interested in decode your JSON response into a Model you can invoke `request.rx.any()` which returns a *`Single`* of *`Any`* for the current request and propagates a `OperaError` error through the result sequence if something goes wrong.
 
 
 #### Decoding
@@ -177,7 +179,7 @@ public protocol OperaDecodable {
 }
 ```
 
-Since `OperaDecodabl`e and `Decodable.Decodable` require us to implement the same method, we only have to declare protocol conformance.
+Since *`OperaDecodable`* and `Decodable.Decodable` require us to implement the same method, we only have to declare protocol conformance.
 
 ``` Swift
 // Make Repository conforms to Decodable.Decodable
