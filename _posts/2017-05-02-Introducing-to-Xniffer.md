@@ -6,6 +6,7 @@ author: XL Team
 author_id: xl
 categories: Swift, iOS, Tutorial, network
 markdown: redcarpet
+description: So many times we want to debug or monitoring external services responses in our app, recognize the latency and also work with the returned data...
 
 ---
 
