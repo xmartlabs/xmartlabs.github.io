@@ -6,10 +6,11 @@ author: XL Team
 author_id: xl
 categories: Swift, iOS, Network, Tutorial
 markdown: redcarpet
+description: We all know that Alamofire is the go-to networking library for the Apple ecosystem. Also, many of you work with RxSwift to work with the JSON results. This is our case, so...
 
 ---
 
-We all know that `Alamofire` is the go-to networking library for the apple ecosystem. Also, many of you work with RxSwift and RxPagination to work with the JSON results. This is our case, so, we decided to build [Opera](https://github.com/xmartlabs/Opera) to make things even easier, developed for all the Apple platforms: iOS, OSX, wathchOS and tvOS written in Swift.
+We all know that `Alamofire` is the go-to networking library for the Apple ecosystem. Also, many of you work with RxSwift to work with the JSON results. This is our case, so, we decided to build [Opera](https://github.com/xmartlabs/Opera) to make things even easier, developed for all the Apple platforms: iOS, OSX, wathchOS and tvOS written in Swift.
 This framework is built on top of [Alamofire](https://github.com/Alamofire/Alamofire) and [RxSwift](https://github.com/ReactiveX/RxSwift). It defines a Protocol-Oriented network abstraction layer inspired by [RxPagination](https://github.com/tryswift/RxPagination) that can be integrated with the JSON parsing library of your choice.
 
 ## Why to use Opera?
@@ -151,8 +152,6 @@ request
 
 #### Decoding
 We've said Opera is able to decode JSON response into a Model using your favorite JSON parsing library. Let's see how Opera accomplishes that.
-
-> At Xmartlabs we have been using `Decodable` as our JSON parsing library since March 16. Before that we had used Argo, ObjectMapper and many others. I don't want to deep into the reason of our JSON parsing library choice (we do have our reasons ;)) but during Opera implementation/design we thought it was a good feature to be flexible about it.
 
 This is our Repository model...
 ``` Swift
