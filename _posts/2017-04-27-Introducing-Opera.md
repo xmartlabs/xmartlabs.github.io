@@ -10,19 +10,20 @@ description: We all know that Alamofire is the go-to networking library for the 
 
 ---
 
-We all know that `Alamofire` is the go-to networking library for the Apple ecosystem. Also, many of you work with RxSwift to work with the JSON results. This is our case, so, we decided to build [Opera](https://github.com/xmartlabs/Opera) to make things even easier, developed for all the Apple platforms: iOS, OSX, wathchOS and tvOS written in Swift.
-This framework is built on top of [Alamofire](https://github.com/Alamofire/Alamofire) and [RxSwift](https://github.com/ReactiveX/RxSwift). It defines a Protocol-Oriented network abstraction layer inspired by [RxPagination](https://github.com/tryswift/RxPagination) that can be integrated with the JSON parsing library of your choice.
+If you are familiar with the iOS ecosystem, you may share the love we have to `Alamofire` library, the go-to networking library in Swift (and his previous version, AFNetworking written in Obj-c), and you may use it with RxSwift to work with the JSON results. If that your case, then is our case :), so, we decided to build [Opera](https://github.com/xmartlabs/Opera) to make things even easier for all the Swift developers.
+This framework was built on top of [Alamofire](https://github.com/Alamofire/Alamofire) and [RxSwift](https://github.com/ReactiveX/RxSwift). It defines a Protocol-Oriented network abstraction layer inspired by [RxPagination](https://github.com/tryswift/RxPagination) that can be integrated with the JSON parsing library of your choice.
 
 ## Why to use Opera?
 One of the points to highlight is that working with [Opera](https://github.com/xmartlabs/Opera) is really easy.
-This library automatically handles the response flow, decoding the objects into ready-to-use objects using your JSON parsing library of choice.
-So you will not need to worry anymore about parsing the JSON each time, now you will start working with the decoded object directly.
+This library automatically handles the response flow, decoding the responses into ready-to-use objects using your JSON parsing library of choice.
+So you won't need to worry about parsing the JSON each time anymore, now you will start working with the decoded object directly.
+<br/>
 Furthermore, Opera provides helpers that integrate with RxSwift, returning Observables of JSON serialized types so you receive the object ready to use, or in case that the networking or the object parsing fails, an `OperaError` is returned so you can handle it in the best way possible.
 Long story short, you define the service, the object decoding and then you are ready to subscribe to the requests and work on the events emitted.
 
 ## Features
-- API abstraction through `RouteType` conformance.
--  Pagination support through `PaginationRequestType` conformance.
+- API abstractions through `RouteType` conformance.
+- Pagination support through `PaginationRequestType` conformance.
 - Supports for any JSON parsing library such as [Decodable](https://github.com/Anviking/Decodable) and [Argo](https://github.com/thoughtbot/Argo) through `OperaDecodable` protocol conformance.
 - Networking errors abstraction through `OperaError` type.
 - Opera `OperaError` indicates either an `NSURLSession` error, `Alamofire` error, or your JSON parsing library error.
@@ -33,7 +34,30 @@ Long story short, you define the service, the object decoding and then you are r
 
 ## How to use it?
 
-#### Route setup
+
+### Installation
+**CocoaPods**
+
+To install Opera, simply add the following line to your Podfile:
+
+```ruby
+pod 'Opera', '~> 0.2'
+```
+
+**Carthage**
+
+To install Opera, simply add the following line to your Cartfile:
+
+```
+github "xmartlabs/Opera" ~> 0.2
+```
+
+### Setup
+
+There are a few concepts that you need to be familiarized in order to use Opera at full speed!
+
+
+#### 1. Route setup
 A `RouteType` is a high level representation of the request for a REST API endpoint. By adopting the `RouteType` protocol a type is able to create its corresponding request.
 
 ```swift
@@ -62,10 +86,9 @@ extension GithubAPI.Repository {
       var path: String { return "repos/\(owner)/\(repo)" }
   }
 }
-
 ```
 
-> Alternatively, you can opt to conform to `RouteType` form an enum where each enum value is a specific route (api endpoint) with its own associated values.  
+> Alternatively, you can opt to conform to `RouteType` form an enum where each enum value is a specific route (api endpoint) with its own associated values.
 
 If you are curious check out the rest of [RouteType](https://github.com/xmartlabs/Opera/blob/master/Sources/Common/RouteType.swift) protocol definition.
 
@@ -86,9 +109,9 @@ extension RouteType {
 }
 ```
 
-> Now, by default, all RouteTypes we define will provide https://api.github.com as baseUrl and Manager.singleton as mananger. It's up to you to customize it within a specific RouteType protocol conformance.
+> Now, by default, all RouteTypes we defined will provide https://api.github.com as baseUrl and Manager.singleton as mananger. It's up to you to customize it within a specific RouteType protocol conformance.
 
-#### Default RouteTypes
+#### 2. Default RouteTypes
 To avoid having to implement the `method` property in every `RouteType` Opera provides a protocol for each HTTPMethod so you can implement those:
 
 ``` Swift
@@ -105,18 +128,18 @@ protocol ConnectRouteType: RouteType {}
 
 They are pretty simple, they only implement the method property of `RouteType` with the HTTPMethod that matches.
 
-#### Creating requests
+#### 3. Creating requests
 At this point we can easily create an Alamofire Request:
 
 ``` Swift
 let request: Request =  GithubAPI.Repository.GetInfo(owner: "xmartlabs", repo: "Opera").request
-
 ```
 
 > Notice that `RouteType` conforms to `Alamofire.URLConvertible` so having the manager we can create the associated `Request`.
 
 We can also take advantage of the reactive helpers provided by Opera:
 ``` Swift
+// GETTING ALL THE REPOSITORIES
 request
   .rx.collection()
   .subscribe(
@@ -130,27 +153,28 @@ request
   .addDisposableTo(disposeBag)
   ```
 
-  ``` Swift
-  getInfoRequest
-    .rx.object()
-    .subscribe(
-      onNext: { (repositories: [Repository]) in
-        // do something when networking and Json parsing completes successfully
-      },
-      onError: {(error: Error) in
-        guard let error = error as? OperaError else {
-            //do something when it's not an OperaError
-        }
-        // do something with the OperaError
+``` Swift
+// GETTING ONE REPOSITORY
+getInfoRequest
+  .rx.object()
+  .subscribe(
+    onNext: { (repository: Repository) in
+      // do something when networking and Json parsing completes successfully
+    },
+    onError: {(error: Error) in
+      guard let error = error as? OperaError else {
+          //do something when it's not an OperaError
       }
-    )
-    .addDisposableTo(disposeBag)
+      // do something with the OperaError
+    }
+  )
+  .addDisposableTo(disposeBag)
 ```
 
 > If you are not interested in decode your JSON response into a Model you can invoke `request.rx.any()` which returns a *`Single`* of *`Any`* for the current request and propagates a `OperaError` error through the result sequence if something goes wrong.
 
 
-#### Decoding
+#### 4. Decoding
 We've said Opera is able to decode JSON response into a Model using your favorite JSON parsing library. Let's see how Opera accomplishes that.
 
 This is our Repository model...
@@ -204,7 +228,7 @@ extension Repository : OperaDecodable {}
 ```
 
 
-#### Pagination
+#### 5. Pagination
 Opera represents pagination request through `PaginationRequestType` protocol which also conforms to `URLRequestConvertible`. Typically we don't need to create a new type to conform to it. Opera provides `PaginationRequest<Element: OperaDecodable>` generic type that can be used in most of the scenarios.
 
 One of the requirements to adopt `PaginationRequestType` is to implement the following initializer:
@@ -228,9 +252,7 @@ let firtPageRequest = paginatinRequest.routeWithPage("1").request
 let filteredFirstPageRequest = firtPageRequest.routeWithQuery("Eureka").request
 ```
 
-
-
-#### Error Handling
+#### 6. Error Handling
 If you are using the reactive helpers (which are awesome btw!) you can handle the errors on the `onError` callback which returns an `Error` that, in case of _Networking_ or _Parsing_ issues, can be casted to `OperaError` for easier usage. `OperaError` wraps any error that is Networking or Parsing related. Keep in mind that you have to cast the `Error` on the `onError` callback before using it. `OperaError` also provides a set of properties that make accessing the error's data easier:
 
 **Example:**
@@ -248,27 +270,6 @@ getInfoRequest
   )
   .addDisposableTo(disposeBag)
   ```
-
-### Installation
-**CocoaPods**
-
-[CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects.
-
-To install Opera, simply add the following line to your Podfile:
-
-```ruby
-pod 'Opera', '~> 0.2'
-```
-
-Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a simple, decentralized dependency manager for Cocoa.
-
-To install Opera, simply add the following line to your Cartfile:
-
-```
-github "xmartlabs/Opera" ~> 0.2
-```
 
 ## Where to go from here
 We hope it has served as a good introduction to the **Opera** library and that it really helps you a lot!
