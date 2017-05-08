@@ -41,7 +41,7 @@ Long story short, you define the service, the object decoding and then you are r
 To install Opera, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Opera', '~> 0.2'
+pod 'Opera', '~> 2.0'
 ```
 
 **Carthage**
@@ -49,7 +49,7 @@ pod 'Opera', '~> 0.2'
 To install Opera, simply add the following line to your Cartfile:
 
 ```
-github "xmartlabs/Opera" ~> 0.2
+github "xmartlabs/Opera" ~> 2.0
 ```
 
 ### Setup
@@ -270,6 +270,18 @@ getInfoRequest
   )
   .addDisposableTo(disposeBag)
   ```
+####  7. Composing RequestAdapters
+Opera provides a way to use multiple `RequestAdapter` to adapt your requests. The class `CompositeAdapter` provides a way to setup a pipeline of `RequestAdapter` that will be applied to your requests.
+
+To use it you just have to create a `CompositeAdapter`, add all your adapters ad set it as your NetworkManager's adapter.
+
+**Example:**
+```swift
+let adapter = CompositeAdapter()
+adapter.append(adapter: KeychainAccessTokenAdapter())
+adapter.append(adapter: LanguageAdapter())
+manager.adapter = adapter
+```
 
 ## Where to go from here
 We hope it has served as a good introduction to the **Opera** library and that it really helps you a lot!
