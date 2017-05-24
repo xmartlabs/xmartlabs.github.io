@@ -20,7 +20,7 @@ layout: default
                       <img class="post-author-avatar" src="/images/{{author.image}}" alt="{{author.display_name}}">
                     </a>
                   </div>
-                  <span class="post-author-name"><span class='visible-on-palm'>by </span><a href="{{author.profile_url}}" target="_blank">{{ author.display_name }}</a></span>
+                  <span class="paragraph post-author-name"><span class='visible-on-palm'>by </span><a href="{{author.profile_url}}" target="_blank">{{ author.display_name }}</a></span>
                 </div>
 
                 <div class="post-time-info">
@@ -36,6 +36,9 @@ layout: default
                   <h2>
                     {{ post.description }}
                   </h2>
+                  <p class="paragraph">
+                    {{ post.content | truncatewords:50 | strip_html}}
+                  </p>
                 </div>
                 <div class="clear">
                 </div>
