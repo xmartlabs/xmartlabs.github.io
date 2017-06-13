@@ -2,9 +2,9 @@
 layout: post
 title:  GitHub 2016 round up
 date:   2017-01-30 10:23:24
-author: XL Team
+author: XL AI Team
 categories: GitHub, Data Analysis
-author_id: xl
+author_id: xlai
 markdown: redcarpet
 
 ---
