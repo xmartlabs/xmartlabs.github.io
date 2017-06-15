@@ -82,4 +82,4 @@ We found out some interesting things about MPSCNN and Metal while developing Dre
 
 * There is a [Metal Shading Language Specification](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf) which explains the data types and functions provided with Metal but overall there is little information (apart from some WWDC videos) about the specs of the GPUs and the best practices for optimal performance. It can be quite time-consuming to find out which implementations work best, even more due to the inability to run unit tests with Metal Performance Shaders.
 
-This has been a great experience for us. Stay tuned. We will be writing more about Bender and Machine Learning.
+This has been a great experience for us. Lots of things happened along the way. I suggest you to stay tuned, as we'll be writing more stuff about Bender and Machine Learning.
