@@ -38,7 +38,7 @@ At the same time, [Facebook announced that is working on style transfer](https:/
 
 <div style="text-align:center;margin-bottom:20px"><img src="https://media.giphy.com/media/aZ3LDBs1ExsE8/giphy.gif" alt="wtf" /></div>
 
-On January 2017 we got something working and at the beginning of March we had our first internal version of the app. But what about Bender, it's core engine? It was working just fine, but we wanted to have a simple API and support loading TensorFlow graphs, so we started working on it. And that was when alternatives started to arise.
+On January 2017 we got something working and at the beginning of March we had our first internal version of the app. But what about Bender, its core engine? It was working just fine, but we wanted to have a simple API and support loading TensorFlow graphs, so we started working on it. And that was when alternatives started to arise.
 
 In parallel, [TensorFlow community started to discuss, develop and contribute together to make TensorFlow support Metal Performance Shaders](https://github.com/tensorflow/tensorflow/issues/7958). We expected (and still expect) that [in the long-term TensorFlow will be the Neural Networks library of reference](https://twitter.com/fchollet/status/871089784898310144) for multiple platforms (and Keras, due to [the merger](http://www.fast.ai/2017/01/03/keras/)), so considering this addition and taking into account the time that TensorFlow will take to excel in iOS, Bender won't have a long future but will help the community in their way.
 
@@ -50,13 +50,13 @@ Later, on April 20, [Facebook showed efforts to support Metal within Caffe2](htt
 
 <div style="text-align:center;margin-bottom:20px"><img src="https://media.giphy.com/media/umMYB9u0rpJyE/giphy.gif" alt="shocked" /></div>
 
-Anyway, we end up releasing a version of the app by the end of May. Bender was still under development and we wanted to release it as soon as possible.
+Anyway, we ended up releasing a version of the app by the end of May. Bender was still under development and we wanted to release it as soon as possible.
 
 Google, Facebook and Matthijs Hollemans (from Forge) were competing with us. What else could happen? Well, Apple [have accumulated tons of money in the banks](https://bgr.com/2017/05/01/apple-earnings-cash-overseas-bank-accounts/) and they had a Machine Learning debt to pay. [Something new was expected from them](http://www.cnbc.com/2016/12/03/apple-says-its-investing-heavily-in-machine-learning-in-letter-to-nhtsa.html). Also, rumors said [they were developing their own Neural Engine chip](http://www.barrons.com/articles/apple-developing-neural-engine-chip-says-bloomberg-1495830777), something like [Google TPUs](https://en.wikipedia.org/wiki/Tensor_processing_unit) but for mobile devices. We expected them to make improvements to Metal and related tools, but for us it was unlikely that they would provide a full stack library. We were obviously wrong.
 
 # Synchronism
 
-So we aimed to release Bender before the WWDC, and it happened: on June 2 afternoon, we released Bender. On June 5 morning [it got a lot of attention](https://news.ycombinator.com/item?id=14487259) and it got around 500 stars on GitHub that day. Hours later, Apple announced their brand new Machine Learning framework, Core ML.
+So we aimed to release Bender before the WWDC, and it happened: on June 2nd afternoon, we released Bender. On June 5th morning [it got a lot of attention](https://news.ycombinator.com/item?id=14487259) and it got around 500 stars on GitHub that day. Hours later, Apple announced their brand new Machine Learning framework, Core ML.
 
 <div style="text-align:center;margin-bottom:20px"><img src="https://media.giphy.com/media/1iUZa41YxKQtaJq0/giphy.gif" alt="horror" /></div>
 
