@@ -31,7 +31,7 @@ There are several ways to use it but we aimed at [Databricks] owing to the high 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/github-roundup/databricks.png" alt="Databricks Architecture" /></div>
 
 
-[Apache Zeppelin] is an amazing open source alternative to DataBricks. In spite of Databricks' simpler setup, Zeppelin is more flexible and allowed us to embed JavaScript code more easily in the notebook – which in our case ended up being the tiebreaker. So we switched gears and set it up to work on top of Amazon EMR, with EC2 instances and with the same S3 data.
+[Apache Zeppelin] is an amazing open source alternative to DataBricks. In spite of Databricks' simpler setup, Zeppelin is more flexible and allowed us to embed JavaScript code more easily in the notebook – which in our case ended up being the tiebreaker. So we switched gears and set it up to work on top of [Amazon EMR], with EC2 instances and with the same S3 data.
 
 But then we found out that [the GitHub Archive is published on Google BigQuery](https://cloud.google.com/bigquery/public-data/github) as a public dataset, which made us realize that using Google BigQuery as an end-to-end solution for data storage, analysis and visualization was smarter.
 
