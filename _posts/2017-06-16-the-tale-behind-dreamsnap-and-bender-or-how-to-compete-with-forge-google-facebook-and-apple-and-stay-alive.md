@@ -9,7 +9,7 @@ markdown: redcarpet
 
 ---
 
-Since we started playing with Machine Learning at Xmartlabs, we didn't imagine we will live in a kind of soap opera world with all kind of joys and sorrows. Looking ahead, we experienced and learned a lot while validating our ideas. So in this post we are gonna talk about what [Dreamsnap](https://getdreamsnap.com) and [Bender](https://github.com/xmartlabs/Bender) are and our journey through their inception.
+Since we started playing with Machine Learning at Xmartlabs, we didn't imagine we would live in a kind of soap opera world with all kind of joys and sorrows. Looking ahead, we experienced and learned a lot while validating our ideas. So in this post we are gonna talk about what [Dreamsnap](https://getdreamsnap.com) and [Bender](https://github.com/xmartlabs/Bender) are and our journey through their inception.
 
 # Dreamsnap
 
