@@ -15,7 +15,7 @@ Since we started playing with Machine Learning at Xmartlabs, we didn't imagine w
 
 [Gatys et al. 2015](https://arxiv.org/abs/1508.06576) showed a superb technique to transfer the style of an artist paint to a real photography to generate a new image, as if it were painted by the same artist. It's based on carrying out gradient descent on the image (instead of on the weights) on VGG-16, using a loss function that accounts for the similarity of this new image with respect to certain digest values of the style image at specific layers and particular values of the content image that other layers. Later, [Justin Johnson et al. 2016](https://arxiv.org/abs/1603.08155) showed a way to train a neural network to learn the characterization of an artist paint to be subsequently applied to images in a fast way.
 
-We were fascinated with the idea of doing real-time style transfer on mobile. Something like [Prisma](https://prisma-ai.com/) but in real time. At the end of October 2016 at Xmartlabs we decided to start building an app for **offline real-time style transfer**. The question was how to do it on mobile?
+We were fascinated with the idea of doing real-time style transfer on mobile. Something like [Prisma](https://prisma-ai.com/) but for real time video processing instead of an slow processed photo. At the end of October 2016 at Xmartlabs we decided to start building an app for **offline real-time style transfer**. The question was how to do it on mobile?
 
 <div style="text-align:center;margin-bottom:20px">
   <img width="400px" src="/images/dreamsnap-bender/palacio-salvo.jpg" alt="Palacio Salvo" />
