@@ -3,7 +3,7 @@ layout: post
 title:  Release snapshot versions automatically in Jenkins
 date:   2017-01-30 10:23:24
 author: Matías Irland
-categories: Server,CI,Jenkins
+categories: Android,Server,CI,Jenkins
 author_id: mirland
 
 ---
@@ -30,21 +30,21 @@ In order to release a new `SNAPSHOT` version, first of all we should make some w
   * Last 10 commits (in order to see what are the last changes introduced)
   * And all things that you want
 
-In order to make this work we should create a new build "Execute shell" build task before the compilation, run tests, check lints and that stuff.
+In order to make this work, we should create a new "Execute shell" build task before the compilation, run tests, check lints and that stuff.
 
 <!-- Image with the code -->
 ***Pending Image***
 
 This script is public in [github](https://gist.github.com/matir91/5a8c24196c0fd4408adaabfdab6f198a)
 
-After that we should add the `Invoke gradle script` task, which should have all gradle task that we usually do (compile, run tests, check lints, etc.). Additional we should add a new gradle task, in order to make the release apk. However, we should be careful, it should be done only if the current build is from the `develop` branch. So we should define another build task to compile the new release build, if the new commit comes from the `develop` branch.
+After that we have to add the `Invoke gradle script` build task, which should have all gradle tasks that we usually do (compile, run tests, check lints, etc.). Additional we should add a new gradle task, in order to make the release apk. However, we should be careful, it should be done only if the current build is from the `develop` branch. So we have to define another build task to compile the new release build, if the new commit comes from the `develop` branch.
 
-First of all, we should inject the properties file that we made, in the system environment variables, for that, we will use the  [EnvInject Plugin](https://wiki.jenkins.io/display/JENKINS/EnvInject+Plugin).
+First of all, we should inject the properties file that we made in the system environment variables. For that, we will use the  [EnvInject Plugin](https://wiki.jenkins.io/display/JENKINS/EnvInject+Plugin).
  
 <!-- Image with the code -->
 ***Pending Image***
 
-Then we should add a condition build task, in order to generate the release apk only if build branch is `develop`, for doing that, we will use the [Conditional BuildStep Plugin](https://wiki.jenkins.io/display/JENKINS/Conditional+BuildStep+Plugin).
+Then we should add a conditional build task, in order to generate the release apk only if build branch is `develop`. For doing that, we will use the [Conditional BuildStep Plugin](https://wiki.jenkins.io/display/JENKINS/Conditional+BuildStep+Plugin).
 
 <!-- Image with the code -->
 ***Pending Image***
@@ -56,5 +56,5 @@ Now all "Build" actions were made, so now we have to add a new "Post-Build Actio
 
 Using this configuration, the `SNAPSHOT` build will be upload, it will have a useful release notes and all your team will be notified. 
 
-So, making that, you will be releasing each new feature ASAP without effort and somebody could test it and maybe find a bug could be much easier.
+So, by doing this, you will be releasing each new feature ASAP without effort and somebody could test it and maybe finding a bug could be much easier.
 
