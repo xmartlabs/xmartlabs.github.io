@@ -8,10 +8,10 @@ author_id: mirland
 
 ---
 
-Everyone knows that if you are a developer, a CI server could "change your life". Currently in the Xmartlabs Android team, we are using jenkins, which is an amazing tool, and is helping us in all our build tasks.
+Today I want to show how we can release `SNAPSHOT` versions using [Beta by Fabric](https://docs.fabric.io/android/beta/overview.html).
+Have you ever been in a situation where you release new features between long periods of time and find yourself with tons of bugs to deal with? This process could be a lot smoother if you consider each change you merge into your *main development branch* to be ready for release. Once you're at that stage, you could automatically and effortlessly generate and release a new build of your application for each merge, that could be tested earlier. Moreover, you could run tests, check lints and any other task you normally do, automatically (Yes, magic, i know ;)). That's the beauty of having a CI server. It could "change your life".
 
-Today I want to tell you how we can release `SNAPSHOT` versions using [Beta of Fabric](https://docs.fabric.io/android/beta/overview.html). 
-Suppose that in your git repository, you have a `develop` branch, which is the *main branch* of this repository, which has all changes ready to release. However, most of us usually group a bunch of features or wait to introduce a "big" change before releasing. The main thing here, is that we have changes ready to release, which could be tested for you or someone in your team, but are not released, mainly because of the required effort and time consumption. If it's your situation, this post could be useful for you.
+We're going to use `Jenkins`, an amazing CI server, to help us release each one of those changes. Each release generates what is called a `SNAPSHOT`. Our goal is to release something that is useful, not just the build. For that reason, we'll need the following `Jenkins` plugins to get started: 
 
 First of all, lets check which [jenkins plugins](https://wiki.jenkins.io/display/JENKINS/Plugins) will be required for this work:
 1. [EnvInject Plugin](https://wiki.jenkins.io/display/JENKINS/EnvInject+Plugin)
@@ -21,7 +21,7 @@ First of all, lets check which [jenkins plugins](https://wiki.jenkins.io/display
 
 Well, now we're ready to go.
 
-Firstly, in order to release a new `SNAPSHOT`, we should do some work:
+Firstly, in order to release a new `SNAPSHOT`, we need to do some work:
 * Check that the build branch is `develop`
 * Update the build `versionName` in order to track possible issues with the right version. In this example the version name will be built using the app current `versionName`, plus the current hash of the commit.
 * Create a release note file, including for example:
@@ -56,5 +56,5 @@ Now that all "Build" actions were done, we have to add a new "Post-Build Action"
 
 Using this configuration, the `SNAPSHOT` build will be uploaded, will have useful release notes and all your team will be notified. 
 
-So, by doing this, you will be releasing each new feature ASAP with NO effort at all, and anyone could test it to find bugs at an earlier stage, as well as making it easier to find them.
+By doing this, you will be releasing each new feature ASAP with NO effort at all, and anyone could test it to find bugs at an earlier stage, as well as making it easier to find them.
 
