@@ -18,7 +18,7 @@ One of the points to highlight is that working with [Opera](https://github.com/x
 This library automatically handles the response flow, decoding the responses into ready-to-use objects using your JSON parsing library of choice.
 So you won't need to worry about parsing the JSON each time anymore, now you will start working with the decoded object directly.
 <br/>
-Furthermore, Opera provides helpers that integrate with RxSwift, returning Observables of JSON serialized types so you receive the object ready to use, or in case that the networking or the object parsing fails, an `OperaError` is returned so you can handle it in the best way possible.
+Furthermore, Opera provides helpers that integrate with RxSwift, returning Observables of JSON deserialized types so you receive the object ready to use, or in case that the networking or the object parsing fails, an `OperaError` is returned so you can handle it in the best way possible.
 <br/>
 Long story short, you define the service, the object decoding and you are ready to subscribe to the requests and work with the emitted events.
 
@@ -31,6 +31,8 @@ Long story short, you define the service, the object decoding and you are ready 
 - RxSwift wrappers around `Alamofire.Request` that return an Observable of a JSON deserialized type or an array of it.
 - RxSwift wrappers around `PaginationRequestType` that returns an Observable of `PaginationRensponseType` which contains the deserialized elements and information about the current, next and previous page.
 - Ability to easily mock services through `RouteType.sampleData`.
+- Ability to easily upload multi-part requests through `MultipartRouteType`.
+- Reactive upload & download progress handlers.
 
 ## How to use it?
 
