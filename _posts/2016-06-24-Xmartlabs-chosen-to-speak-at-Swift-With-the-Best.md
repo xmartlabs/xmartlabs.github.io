@@ -6,7 +6,7 @@ author: Agustion Hernandez
 categories: Swift, iOS, Opera, UITableView, With the Best
 author_id: agustin
 markdown: redcarpet
-
+description: This Saturday, June 25th 2016, the world's top Swift developers will unite at Swift With The Best, the largest online conference series for mobile developers. Our team will have two speakers at the conference.
 ---
 
 This Saturday, June 25th, the world's top Swift developers will unite at [Swift With The Best](http://swift.withthebest.com/), the largest online conference series for mobile developers. Our team will have two speakers at the conference.
