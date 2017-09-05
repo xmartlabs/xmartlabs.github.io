@@ -25,7 +25,7 @@ Well, now we're ready to go.
 Firstly, in order to release a new _SNAPSHOT_, we need to do some work:
 
 * Check that the build branch is _develop_ (or the one you use for main development)
-* Update the build `versionName` in order to track possible issues with the right version. In this example the version name will be built using the app current _versionName_, plus the current hash of the commit.
+* Update the build _versionName_ in order to track possible issues with the right version. In this example the version name will be built using the app current _versionName_, plus the current hash of the commit.
 * Create a release note file, including for example:
   * Commit message
   * Author name  
