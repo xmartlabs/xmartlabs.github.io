@@ -3,7 +3,7 @@ layout: post
 title:  Easy Continuous Delivery in Android with Jenkins
 date:   2017-01-30 10:23:24
 author: Matías Irland
-categories: Android,Server,CI,Jenkins
+categories: Android,Server,CI,Jenkins,Fabric
 author_id: mirland
 
 ---
@@ -34,8 +34,7 @@ Firstly, in order to release a new `SNAPSHOT`, we need to do some work:
 
 In order to make this work, we should create a new "Execute shell" build task before the compilation, run tests, check lints and that stuff.
 
-<!-- Image with the code -->
-***Pending Image***
+<img src="/images/jenkins-snapshot/1-shell_script.png" />
 
 This [script is public on GitHub](https://gist.github.com/matir91/5a8c24196c0fd4408adaabfdab6f198a)
 
@@ -43,20 +42,16 @@ Afterwards, we have to add the `Invoke gradle script` build task, which should h
 
 First of all, we should inject the properties file that we created in the system environment variables. To do that, we will use the  [EnvInject Plugin](https://wiki.jenkins.io/display/JENKINS/EnvInject+Plugin).
  
-<!-- Image with the code -->
-***Pending Image***
+<img src="/images/jenkins-snapshot/2-inject_variables.png" />
 
 Then we should add a conditional build task, in order to generate the release apk only if build branch is `develop`. For this, we will use the [Conditional BuildStep Plugin](https://wiki.jenkins.io/display/JENKINS/Conditional+BuildStep+Plugin).
 
-<!-- Image with the code -->
-***Pending Image***
+<img src="/images/jenkins-snapshot/3-build.png" />
 
 Now that all "Build" actions were done, we have to add a new "Post-Build Action" in order to release the build using Beta. In this case, we'll use 2 plugins,  [Conditional BuildStep Plugin](https://wiki.jenkins.io/display/JENKINS/Conditional+BuildStep+Plugin) to check that the build branch is `develop` and [Fabric Beta Publisher Plugin](https://wiki.jenkins.io/display/JENKINS/Fabric+Beta+Publisher+Plugin) to upload the build. Furthermore, we will save the generated apk in the release build information using the "Archive the artifacts" post-build task.
 
-<!-- Image with the code -->
-***Pending Image***
+<img src="/images/jenkins-snapshot/4-release.png" />
 
 Using this configuration, the `SNAPSHOT` build will be uploaded, will have useful release notes and all your team will be notified. 
 
-By doing this, you will be releasing each new feature ASAP with *no* effort at all, and anyone could test it to find bugs at an earlier stage, as well as making it easier to find them.
-
+By doing this, you will be releasing each new feature asap with *no* effort at all, and anyone could test it to find bugs at an earlier stage, as well as making it easier to find them.

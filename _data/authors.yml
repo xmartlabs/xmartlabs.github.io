@@ -61,6 +61,11 @@ remer:
   image: members/remer.jpg
   github: m-revetria
   profile_url: https://github.com/m-revetria
+mirland:
+  display_name: Matías Irland
+  image: members/xl.jpg
+  github: matir91
+  profile_url: https://github.com/matir91
 xl:
   display_name: XL Team
   image: members/xl.jpg
