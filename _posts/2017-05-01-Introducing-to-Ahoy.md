@@ -1,69 +1,63 @@
 ---
 layout: post
-title:  Introducing Ahoy! The faster way to create onboardings in iOS!
-date:   2017-05-01 12:00:00
+title:  Ahoy - The Onboarding Feature You Were Asking For
+date:   2017-09-11 13:40:00
 author: XL Team
 author_id: xl
 categories: Swift, iOS, Onboarding, Tutorial
 markdown: redcarpet
-description: It is quite common that today's apps include a tutorial or onboarding screens that introduce features or advantages about your fancy app to the user…
-
+description: We’re pretty sure you’ll need to include an onboarding feature in the App you’re building. In order to speed up the time spent in development…
 
 ---
 
-It is quite common that today's apps include a tutorial or onboarding screens that introduce features or advantages about your fancy app to the user.
-This simple feature, (from the user's point of view) sometimes is more complex that we think given the variety of things we can do (and are directly related with the designer/marketing team's inspiration), so trying to do our job easier for tomorrow and following our well-known culture of sharing code & knowledge we created [Ahoy!](https://github.com/xmartlabs/Ahoy)
+We’re pretty sure you’ll need to include an onboarding feature in the App you’re building. In order to speed up the time spent in development while giving the developers freedom to build an awesome experience for their users, we created [Ahoy!](https://github.com/xmartlabs/Ahoy).
 
-From now on, you can avoid reinventing the wheel and start focusing on delivering the best user experience, Ahoy will help you get this within a few steps that we are going to introduce you.
+Unique?
+Yes. We know that there are some other alternatives out there, but due to the fact that we always had to tweak them in order to meet our needs, we decided to create our own framework and open source it (Woohoo!).
 
+## Why using Ahoy?
+The ease and speed to create what you need, are the first things to spotlight.
+The flexibility to customize it the way you want comes next.
 
-## Why should you use Ahoy?
-We got tired of having to customize existing rigid frameworks to meet our design request, so this is the main goal of this library: provide a simple and customizable way to implement a wide range of onboarding screens.
+In Ahoy you can:
+* Customize number of pages
+* Tweak text labels
+* Add images
+* Include a button to skip or continue
+* Enable the option to move to the next page
+* Make awesome transitions between steps, via the visibilityChanged callback
 
-You will see later that with only 2 components you will be able to build an onboarding flow in a few minutes with the flexibility to customize things like number of pages, text labels, the images, skip (or continue) button among other things ;).
+Some of the common actions that we always use were taken into account when we created Ahoy.
 
-Say no more to those hacks inside external libraries to have that cool animation beetween slides, or different layout between slides for example.
+Basic overview:
+
+`onOnboardingSkipped` is called by the controller when the user taps on the skip action.
+
+`onOnBoardingFinished` is called by the controller when the user taps on finish.
+
+`visibilityChanged(for cell: UICollectionViewCell, at index: Int, amount: CGFloat)` is called each time the visibility of a cell changes (pst, use this option to incorporate some cool animations between each cell).
+
+**Bonus track:** if you feel like it you can redo the whole UI and just plug it in.
 
 <p align='center'>
   <img src='https://raw.githubusercontent.com/xmartlabs/Ahoy/master/movie.gif' alt='Ahoy in action!'/>
 </p>
 
 
-## How to use it?
 
-### Installation
-Ahoy is available in the most used dependency managers for the iOS ecosystem.
-#### CocoaPods
-To install Ahoy, simply add the following line to your Podfile:
-```ruby
-pod 'Ahoy', '~> 1.0'
-```
-
-#### Carthage
-To install Ahoy, simply add the following line to your Cartfile:
-```
-github "xmartlabs/Ahoy" ~> 1.0
-```
-
-### Setup
+## Setup
 In order to setup your onboarding you just need to define 2 components:
 
-1. A view controller that is going to be a subclass of `OnboardingViewController` and you are going to call it from your code.
-This will handle all the logic related to the slides and managing global controls (for example: a skip button).
-2. A Presenter which must implement the `OnboardingPresenter` protocol  or subclass from `BasePresenter`.
-This will handle all the specific functionality of each cell (which text goes where, the type of cells, etc).
+1. Specify the view controller that you are going to use, and set it as a subclass from `OnboardingViewController`.
+This component will be responsible for all the logic related to the slides, and the management of their global controls (for instance, a skip button).
+2. Choose a Presenter to implement the protocol `OnboardingPresenter` or the subclassing from `BasePresenter`.
+This component will handle all the specific functionalities for each cell (which text goes where, the type of cells, etc).
 
-After this you are ready to go! You can add any other UI components you want via IBOutlets or directly by code.
+Once you’ve defined the two components you’re good to go! Remember that you can also add any other UI component that you want. Add them via IBOutlets or directly in the code.
 
-Note: Create your `OnboardingViewController` subclass and set the presenter property to an instance of your presenter's class. This must be done **before** calling `super.viewDidLoad()`, otherwise you will not see the onboarding view.
+**Note:** Create your `OnboardingViewController` subclass and set the presenter property to an instance of your presenter's class. Take into account that this must be done **before** calling `super.viewDidLoad()`, otherwise you won't see the onboarding view.
 
-In case is necesary, there are some common actions that we always use are handled too:
-- `onOnboardingSkipped` called by the controller when the user taps on the skip action.
-- `onOnBoardingFinished` called by the controller when the user taps on finish action.
-- `visibilityChanged(for cell: UICollectionViewCell, at index: Int, amount: CGFloat)` called each time the visibility of a cell changes, this can be used to implement some cool animations between each cell.
-
-
-### Example
+## Example
 ```swift
 import Ahoy
 class MovieFanOnboardingController: OnboardingViewController {
@@ -83,7 +77,27 @@ class MovieFanPresenter: BasePresenter {
 ```
 
 
-## Where to go from here
-So… now that you meet Ahoy, you will be able to create incredible onboarding experiences, following just a few and easy steps, letting you focus on the real core app functionalities.
 
-We hope you find this post as a good introduction to this library. On GitHub you will find everything to get started or if you want to collaborate, feel free to contribute to this little but helpful [library](https://github.com/xmartlabs/Ahoy).
+## Installation
+You can install Ahoy by using CocoaProjects or Carthage, both are very simple and easy!
+
+### CocoaPods
+CocoaPods is a dependency manager for Cocoa projects.
+To install Ahoy, simply add the following line to your Podfile:
+```ruby
+pod 'Ahoy', '~> 1.0'
+```
+
+### Carthage
+Carthage is a simple and decentralized dependency manager for Cocoa.
+To install Ahoy, simply add the following line to your Cartfile:
+```ruby
+github "xmartlabs/Ahoy" ~> 1.0
+```
+
+## What’s next?
+We hope that Ahoy will be as useful for you as it was for us, and that you create incredible onboarding views with it! We are also willing to receive your collaboration in our humble but helpful [library](https://github.com/xmartlabs/Ahoy).
+
+
+Need other quick but powerful solutions?
+Visit us on [GitHub](https://github.com/xmartlabs), we’re one of the top 10 GitHub Swift developers :), or drop us a line at <hi@xmartlabs.com>.
