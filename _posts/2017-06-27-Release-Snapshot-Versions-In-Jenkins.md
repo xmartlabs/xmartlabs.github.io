@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Easy Continuous Delivery in Android with Jenkins
-date:   2017-20-02 09:00:00
+title: Easy Continuous Delivery in Android with Jenkins
+date: 2017-20-02 09:00:00
 author: Matías Irland
 categories: Android,Server,CI,Jenkins,Fabric
 author_id: mirland
@@ -29,7 +29,7 @@ Firstly, in order to release a new _SNAPSHOT_, we need to do some work:
 * Update the build _versionName_ in order to track possible issues with the right version. In this example the version name will be built using the app current _versionName_, plus the current hash of the commit.
 * Create a release note file, including for example:
   * Commit message
-  * Author name  
+  * Author name
   * Last 10 commits (in order to see what are the last changes introduced)
   * And all things that you want
 
@@ -41,7 +41,7 @@ This [script is public on GitHub](https://gist.github.com/matir91/5a8c24196c0fd4
 
 Afterwards, we have to add the _Invoke gradle script_ build task, which should have all gradle tasks that we usually do (compile, run tests, check lints, etc.). In addition, we should add a new gradle task, in order to make the release apk. However, we should be careful, it should only be done if the current build is from the _develop_ branch. In consequence, we have to define another build task to compile the new release build if the new commit comes from the _develop_ branch.
 
-First of all, we should inject the properties file that we created in the system environment variables. To do that, we will use the  [EnvInject Plugin](https://wiki.jenkins.io/display/JENKINS/EnvInject+Plugin).
+First of all, we should inject the properties file that we created in the system environment variables. To do that, we will use the [EnvInject Plugin](https://wiki.jenkins.io/display/JENKINS/EnvInject+Plugin).
  
 <img src="/images/jenkins-snapshot/2-inject_variables.png" />
 
@@ -49,7 +49,7 @@ Then we should add a conditional build task, in order to generate the release ap
 
 <img src="/images/jenkins-snapshot/3-build.png" />
 
-Now that all "Build" actions have been done, we have to add a new "Post-Build Action" in order to release the build using Beta. In this case, we'll use 2 plugins,  [Flexible Publish Plugin](https://wiki.jenkins.io/display/JENKINS/Flexible+Publish+Plugin) to check that the build branch is _develop_ and [Fabric Beta Publisher Plugin](https://wiki.jenkins.io/display/JENKINS/Fabric+Beta+Publisher+Plugin) to upload the build. Furthermore, we will save the generated apk in the release build information using the "Archive the artifacts" post-build task.
+Now that all "Build" actions have been done, we have to add a new "Post-Build Action" in order to release the build using Beta. In this case, we'll use 2 plugins, [Flexible Publish Plugin](https://wiki.jenkins.io/display/JENKINS/Flexible+Publish+Plugin) to check that the build branch is _develop_ and [Fabric Beta Publisher Plugin](https://wiki.jenkins.io/display/JENKINS/Fabric+Beta+Publisher+Plugin) to upload the build. Furthermore, we will save the generated apk in the release build information using the "Archive the artifacts" post-build task.
 
 <img src="/images/jenkins-snapshot/4-release.png" />
 
