@@ -17,7 +17,8 @@ First of all, let's check which [Jenkins plugins](https://wiki.jenkins.io/displa
 
 1. [EnvInject Plugin](https://wiki.jenkins.io/display/JENKINS/EnvInject+Plugin)
 2. [Conditional BuildStep Plugin](https://wiki.jenkins.io/display/JENKINS/Conditional+BuildStep+Plugin)
-3. [Fabric Beta Publisher Plugin](https://wiki.jenkins.io/display/JENKINS/Fabric+Beta+Publisher+Plugin)
+3. [Flexible Publish Plugin](https://wiki.jenkins.io/display/JENKINS/Flexible+Publish+Plugin)
+4. [Fabric Beta Publisher Plugin](https://wiki.jenkins.io/display/JENKINS/Fabric+Beta+Publisher+Plugin)
 
 
 Well, now we're ready to go.
@@ -48,7 +49,7 @@ Then we should add a conditional build task, in order to generate the release ap
 
 <img src="/images/jenkins-snapshot/3-build.png" />
 
-Now that all "Build" actions have been done, we have to add a new "Post-Build Action" in order to release the build using Beta. In this case, we'll use 2 plugins,  [Conditional BuildStep Plugin](https://wiki.jenkins.io/display/JENKINS/Conditional+BuildStep+Plugin) to check that the build branch is _develop_ and [Fabric Beta Publisher Plugin](https://wiki.jenkins.io/display/JENKINS/Fabric+Beta+Publisher+Plugin) to upload the build. Furthermore, we will save the generated apk in the release build information using the "Archive the artifacts" post-build task.
+Now that all "Build" actions have been done, we have to add a new "Post-Build Action" in order to release the build using Beta. In this case, we'll use 2 plugins,  [Flexible Publish Plugin](https://wiki.jenkins.io/display/JENKINS/Flexible+Publish+Plugin) to check that the build branch is _develop_ and [Fabric Beta Publisher Plugin](https://wiki.jenkins.io/display/JENKINS/Fabric+Beta+Publisher+Plugin) to upload the build. Furthermore, we will save the generated apk in the release build information using the "Archive the artifacts" post-build task.
 
 <img src="/images/jenkins-snapshot/4-release.png" />
 
