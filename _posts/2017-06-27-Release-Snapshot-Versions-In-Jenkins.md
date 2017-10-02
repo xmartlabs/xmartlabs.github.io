@@ -48,10 +48,10 @@ Then we should add a conditional build task, in order to generate the release ap
 
 <img src="/images/jenkins-snapshot/3-build.png" />
 
-Now that all "Build" actions were done, we have to add a new "Post-Build Action" in order to release the build using Beta. In this case, we'll use 2 plugins,  [Conditional BuildStep Plugin](https://wiki.jenkins.io/display/JENKINS/Conditional+BuildStep+Plugin) to check that the build branch is _develop_ and [Fabric Beta Publisher Plugin](https://wiki.jenkins.io/display/JENKINS/Fabric+Beta+Publisher+Plugin) to upload the build. Furthermore, we will save the generated apk in the release build information using the "Archive the artifacts" post-build task.
+Now that all "Build" actions have been done, we have to add a new "Post-Build Action" in order to release the build using Beta. In this case, we'll use 2 plugins,  [Conditional BuildStep Plugin](https://wiki.jenkins.io/display/JENKINS/Conditional+BuildStep+Plugin) to check that the build branch is _develop_ and [Fabric Beta Publisher Plugin](https://wiki.jenkins.io/display/JENKINS/Fabric+Beta+Publisher+Plugin) to upload the build. Furthermore, we will save the generated apk in the release build information using the "Archive the artifacts" post-build task.
 
 <img src="/images/jenkins-snapshot/4-release.png" />
 
 Using this configuration, the _SNAPSHOT_ build will be uploaded, will have useful release notes and all your team will be notified. 
 
-By doing this, you will be releasing each new feature asap with *no* effort at all, and anyone could test it to find bugs at an earlier stage, as well as making it easier to find them.
+By doing this, you will be releasing each new feature asap with *no* effort at all, and anyone will be able to test it to find bugs at an earlier stage, as well as making it easier to find them.
