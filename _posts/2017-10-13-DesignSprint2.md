@@ -10,11 +10,11 @@ author_id: xl
 
 <img src="/images/sprint2/cover.jpg"/>
 
-We’ve already introduced the basics of using a 1 week Design Sprint for idea validation when starting a new project, if you haven’t read it we suggest having a look at this article. It’s time to start the week and put hands on our Clothing Rental Box project.
+We’ve already introduced the basics of using a 1 week Design Sprint for idea validation when starting a new project, if you haven’t read it we suggest having a look at [this article](https://blog.xmartlabs.com/2017/10/11/DesignSprint1). It’s time to start the week and put hands on our Clothing Rental Box project.
 
 Just to recap, the Clothing Rental Box project is a business idea of a subscription service which delivers a set out outfits to wear each week, according to the trends, style, and measurements of each customer.
 
-#### Monday- Understand
+## Monday: Understand
 
 During the Understand phase, your team comes together to explore the business problem from all angles. You create a shared knowledge, which is the foundation for the development of your product. To do so, the Clothing Rental Box’s team will use 2 techniques:
 
@@ -31,7 +31,7 @@ The team needs to become expert in the fashion industry in less than a day, so a
 
 The beginning of the user journey implies finding out which would be the first point of contact that your customers should have with your product, and this means thinking about how customers would find out about the new service. The team realizes that partnering with a few local brands would be the best way to reduce costs and increase the chances of success. After this first decision, they review the steps a user should go through in order to become a paying customer: finding out about the service, registering, using the free trial and, finally, paying for the full subscription.
 
-#### Tuesday: Design
+## Tuesday: Design
 
 During the design phase, individual team members are given the time and space to brainstorm solutions on their own; best ideas are produced by individuals in concentrated thought. The brainstorming is conducted using two techniques:
 
@@ -45,7 +45,8 @@ During the design phase, individual team members are given the time and space to
 
 * Everyone gets pen to paper and design different solutions using a set of fast ideation techniques. The rest of the day is spent refining the solutions and making sure the rest of the team would understand them. After each member presents their solution sketch, a vote is held.
 
-#### Wednesday- Decide
+## Wednesday: Decide
+
 
 During this phase the team converges into a solution and chooses what to prototype. Two steps are involved in the decision making phase:
 
@@ -59,7 +60,8 @@ At this point the walls are filled with hand-drawn sketches and post-it notes th
 
 * It it design time, so both solutions are discussed and sketched a few times, each time in more detail. The team is confident that they had come up with two strong products.
 
-#### Thursday: Prototype
+## Thursday: Prototype
+
 
 During this phase the team builds a facade of the experience you they have envisioned in the design phase. The facade needs to be real enough so as to get an authentic response from a potential user.
 
@@ -67,7 +69,9 @@ During this phase the team builds a facade of the experience you they have envis
 
 Every member of the Clothing Rental Box team has a job to get done: researching outfits, gathering images, creating content, designing the screens and putting together the fake prototype that mimic the website.
 
-#### Friday: Test
+
+## Friday: Test
+
 
 The Test phase is the Design Sprint moment of truth. When you finally get to see live users interact with your ideas and hear direct feedback from your target audience.
 
