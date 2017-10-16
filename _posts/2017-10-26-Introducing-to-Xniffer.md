@@ -33,7 +33,7 @@ Now we can start using this session instance for our requests!
 
 ### Using Alamofire
 
-If you are using Alamofire you can start using the Xniffer by initializing your Manager with the following:
+If you're using Alamofire you can start using the Xniffer by initializing your Manager with the following:
 
 ``` Swift
 let configuration = URLSessionConfiguration.default
