@@ -1,21 +1,21 @@
 ---
 layout: post
-title:  Introducing react-native-line
-date:   2017-11-03 00:00:00
-author: XL Team
-author_id: xl
+title:  react-native-line, the react-native wrapper for LINE
+date:   2017-11-01 00:00:00
+author: Mauricio Cousillas
+author_id: mcousillas
 categories: React-Natve, JavaScript, Android, iOS, Tutorial
 markdown: redcarpet
 ---
 
 Today we are releasing our very first React Native framework to the open source community.
-[React-native-line](https://github.com/Xmartlabs/react-native-line) provides an easy-to-use interface for you to use Line's mobile SDK seamlessly on your app, without having to worry about Android or iOS differences.
+[react-native-line](https://github.com/Xmartlabs/react-native-line) provides an easy-to-use interface for you to use Line's mobile SDK seamlessly on your app, without having to worry about Android or iOS differences.
 
 ## How to use it?
 To start working with react-native-line, you need to add it to your react-native project using your package manager of preference.
 For example:
 ```bash
-  yarn add react-native-line
+  npm install react-native-line
 ```
 
 Then, you need to link the native implementations to your project running:
