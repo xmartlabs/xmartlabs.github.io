@@ -77,3 +77,8 @@ xl:
   image: members/xl.jpg
   github: xmartlabs
   profile_url: https://github.com/xmartlabs
+xlai:
+  display_name: XL AI Team
+  image: members/xl.jpg
+  github: xmartlabs
+  profile_url: https://github.com/xmartlabs
