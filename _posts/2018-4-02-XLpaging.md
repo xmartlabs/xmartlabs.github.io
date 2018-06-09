@@ -30,7 +30,7 @@ In order to read this post, you should already know the repository architectural
 # Listing Component
 First of all I want to tell you a cool Google idea, that they are using in some of their [example projects](https://github.com/googlesamples/android-architecture) to handle all services which contains a list.
 
-They think that you can handle all list streams with a `Listing` component which contains basically four elements:
+They think that you can handle all list streams with a `Listing` component which contains basically five elements:
 
 ```kotlin
 data class Listing<T>(
@@ -143,7 +143,7 @@ interface ListResponse<T> {
 }
 ``` 
 
-So, if we use the same Github example, our page fetcher would be:
+So, if we use the same Github example, our paging handler would be:
 ```kotlin
 data class GhListResponse<T>(val total_count: Long, private val items: List<T>) : ListResponse<T> {
   override fun getElements() = items
@@ -161,6 +161,7 @@ val pagingHandler = (object : PagingHandler<ListResponse<User>> {
 It's no so hard, right?
 However, this example has a problem, the `canFetch` method is returning `true` for all invocations, so we'd implemented an endless paginated solution.
 In most cases this solution will not be so useful, so let fix it.
+
 If we take a look the Github response, we can see that Github is returning the amount of entities in each response, so that it's great, we can use that information to implement a "real" `canFetch` method.
 
 I told you that **XLPaging** provides a way to do that work automatically, so the library defines two response interfaces and two `PagingHandler` providers to handle that.
@@ -219,9 +220,23 @@ So we can invoke the listing creator in this way
 val listing = XlPaging.createNetworkListing(pagingHandler = pagingHandler)
 ```
 That's all, we have our `Listing<User>` structure.
-  In addition, there some optional parameters that you can define when you are constructing the `Listing` object:
+
+In addition, there some optional parameters that you can define when you are constructing the `Listing` object:
 - `firstPage: Int`: The initial page number, by default it's value is 1.
 - `ioServiceExecutor : Executor`: The executor where the service call will be made. By default, the library will use a pool of 5 threads.
 - `pagedListConfig: PagedList.Config` : The paged list configuration, in this object you can specify for example the `pageSize` and the `initialPageSize`. 
 
 In the next post we well see how we could get a `Listing` component which use a cache `DataSource` for storing the data.
+
+### Conclusion
+The `Listing` component is the key of the library, it provides an awesome way of displaying the paged list entities and reflect the different network status in the UI.
+If you have this component implemented, you can create an MVVM architecture app and combine it with the repository pattern.
+If you get a repository which provides a `Listing` component of each paged list, you will be creating a robuster app.
+
+**XlPaging** provides you a way to create a `Listing` component easily for a common paged service type, the services where the paginated strategy is based on an incremental page number.
+
+It also combine two mode, a mode with network support and a mode with network + cache support. 
+The strategy that you choose, will the depend on your problem. 
+
+You should try it :)
+
