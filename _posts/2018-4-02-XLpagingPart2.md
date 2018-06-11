@@ -230,4 +230,6 @@ As well as in the network support listing, there're some optional parameters tha
 
 ### Conclusion
 
-Using [XL Paging]() you can create a listing component which is really useful to show the entities. Ether if you choose to have a cache support or not, the library provides you a common interface that you can use with less effort!     
+Using [XL Paging]() you can create a listing component which is really useful to show the entities. Ether if you choose to have a cache support or not, the library provides you a common interface that you can use with less effort! So change or combine both modes shouldn't be hard.
+
+I suggest you to try this component in a MVVM architecture using the repository pattern and then tell me what do yo think!
