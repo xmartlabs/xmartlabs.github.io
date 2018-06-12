@@ -98,17 +98,19 @@ fun searchUsers(@Query("q") name: String,
 This service is pretty similar to most of the paged services I've seen, so the big question here is how we could integrate this service in a repository using the new Paging Component.
 Furthermore, the question could be how we could convert the `Single<GhListResponse<User>>` response in a `Listing<User>` structure.
 
-The first question that we should answer to solve this problem is: do we want to have a database source to cache the data?
-That's a complicated question, the answer could be that if we want to search entities by a key, maybe a database cache couldn't be the best option.
+The first thing that we should do to answer these questions, is **think about if we need a database source for caching the data** or not.
+That could seems easy, but it's not so easy, that depends on our point of view.
+Some people could say that if we want to search entities by a key, maybe a database cache isn't the best option.
 The response could change a lot in a short period of time and maybe the user doesn't use to do the same search multiple times.
 However, saving data in a database source sometimes could have some advantages.
-For example, you can provide offline support, make less usage of the server, "hide" network problems, do a better manage of the data and be able to share entities easier.
+For example, you can make your app work offline, make less use of the server, hide network problems, manage data better and share entities easier.
 
-Personally, I prefer using the second one, but I know that depending your problem or your use case both options could be valid.
+Personally, I prefer using the second one, but I know that depending on your problem or your use case both options could be valid.
 In this post we will see that both strategies could be implemented using **[Xlpaging](https://github.com/xmartlabs/xlpaging)**. 
 
 # XLPaging
-[XLPaging](https://github.com/xmartlabs/xlpaging) is an **Android Kotlin library** which provides two main features for people who work with paginated services, where the paginated strategy of that services are based on an incremental page number.
+[XLPaging](https://github.com/xmartlabs/xlpaging) is an **Android Kotlin library** conceived to make your life easier when dealing with paged endpoint services, where the paging is based on incremental page numbers (e.g. 1, 2, 3, ...).
+
 Those features are:
 - Provide a `Listing` structure based on a Retrofit & RxJava service.
 - Provide a `Listing` structure with cache support using Retrofit and RxJava for the service layer and a [`DataSource`](https://developer.android.com/reference/android/arch/paging/DataSource) for caching the data. In the examples we will use [Room](https://developer.android.com/topic/libraries/architecture/room) to provide the `DataSource` but you could use any other `DataSource`.
@@ -133,16 +135,15 @@ interface PagingHandler<T> : PageFetcher<T> {
 ```
 So the paging state will be managed by the library using mainly two methods:
 - The first one, is a method to fetch an specific page, by a page number and a page size.
-This method should return a `Single<out T>`, where `T` could be anything.
+This method must return a `Single<out T>`, where `T` could be anything.
 - The second one, is a method to check if a page can be fetched.
-For example, if you know that the server has only 3 pages of 10 items each one, if the library invokes `canFetch(page = 5, pageSize = 10)` you should return `false`.
+For example, if you know that the server has only 3 pages of 10 items each, and the library invokes `canFetch(page = 5, pageSize = 10)` then you should return `false`.
 You have to implement this function using the service specifications.
-Sometime the service returns the amount of pages or the amount of entities in the response headers or in the response body, so you have to use that information to implement this function.
+Sometimes the service returns the pages amount or the entities amount in the response headers or in the response body, so you have to use that information to implement this function.
 However, if you know exactly the amount of pages or the amount of entities, the library provides a way to make this work easier.
 I will show that later.
 
-
-In order to use the **XLPaging Network support**, we have to implement just a `PagingHandler<ListResponse<T>>`, where the `ListResponse<T>` is how the library expects the service response.  
+To use the **XLPaging Network support**, you have to implement just a `PagingHandler<ListResponse<T>>`, where the `ListResponse<T>` is how the library expects the service response.  
 
 ```kotlin
 interface ListResponse<T> {
@@ -150,7 +151,7 @@ interface ListResponse<T> {
 }
 ``` 
 
-So, if we use the same Github example, our paging handler would be:
+So, following the example, our paging handler would be:
 ```kotlin
 data class GhListResponse<T>(val total_count: Long, private val items: List<T>) : ListResponse<T> {
   override fun getElements() = items
@@ -162,16 +163,17 @@ val pagingHandler = (object : PagingHandler<ListResponse<User>> {
       override fun fetchPage(page: Int, pageSize: Int): Single<GhListResponse<User>> =
           userService.searchUsers(userName, page = page, pageSize = pageSize)
     })
-
 ```
 
-It's no so hard, right?
-However, this example has a problem, the `canFetch` method is returning `true` for all invocations, so we'd implemented an endless paginated solution.
-In most cases this solution will not be so useful, so let fix it.
+It's not so hard, right?
+However, the example has a problem: the `canFetch` method is returning `true` for all invocations, so we have implemented an endless paging solution.
+In most cases the solution will not be so useful, so let's fix it.
 
-If we take a look the Github response, we can see that Github is returning the amount of entities in each response, so that it's great, we can use that information to implement a "real" `canFetch` method.
+If we take a look at the GitHub response, we can see that Github is returning the amount of entities in each response.
+That is great, we can use that information to implement a "real" `canFetch` method.
 
-I told you that **XLPaging** provides a way to do that work automatically, so the library defines two response interfaces and two `PagingHandler` providers to handle that.
+I already told you that **XLPaging** provides a way to do that work automatically.
+For do that, the library defines two response interfaces and two `PagingHandler` providers to handle that.
 
 ```kotlin
 interface ListResponseWithEntityCount<T> : ListResponse<T> {
@@ -193,8 +195,8 @@ class PagingHandlerWithTotalPageCount<T>(
 ) : ListResponsePagingHandler<T>
 ```
 
-Depending on if we known the amount of entities or the amount of pages we will use either `ListResponseWithEntityCount<T>` or `ListResponseWithPageCount<T>`.
-  So as Github response has the amount of entities, we have to update the `GhListResponse<T>` to implements `ListResponseWithEntityCount<T>`
+Depending on whether we known the amount of entities or the amount of pages we will use either `ListResponseWithEntityCount<T>` or `ListResponseWithPageCount<T>`.
+So as GitHub response has the amount of entities, we have to update the `GhListResponse<T>` to implements `ListResponseWithEntityCount<T>`
 
 ```kotlin
 data class GhListResponse<T>(
@@ -208,10 +210,9 @@ data class GhListResponse<T>(
 }
 ```
 
-So now, the only thing that we should do to create the `PagingHandler` is to create a `PageFetcher<GhListResponse<T>>`.
+So now, what's left to create the `PagingHandler` is to create a `PageFetcher<GhListResponse<T>>`.
 
 ```kotlin
-
 val pageFetcher = (object : PageFetcher<GhListResponse<User>> {
   override fun fetchPage(page: Int, pageSize: Int): Single<GhListResponse<User>> =
       userService.searchUsers(userName, page = page, pageSize = pageSize)
@@ -220,7 +221,7 @@ val pageFetcher = (object : PageFetcher<GhListResponse<User>> {
 val pagingHandler = PagingHandlerWithTotalEntityCount(pageFetcher = pageFetcher)    
 ```
 
-At the beginning of this post I said that the only required thing to create a `Listing` structure using the **XLPaging Network support** is a `PageHandler`.
+Recall that at the beginning I said that the only required thing to create a `Listing` structure using the **XLPaging Network support** is a `PageHandler`.
 So we can invoke the listing creator in this way
 
 ```kotlin
@@ -228,7 +229,7 @@ val listing = XlPaging.createNetworkListing(pagingHandler = pagingHandler)
 ```
 That's all, we have our `Listing<User>` structure.
 
-In addition, there some optional parameters that you can define when you are constructing the `Listing` object:
+In addition, there are some optional parameters that you can define when you are constructing the `Listing` object:
 - `firstPage: Int`: The initial page number, by default it's value is 1.
 - `ioServiceExecutor : Executor`: The executor where the service call will be made. By default, the library will use a pool of 5 threads.
 - `pagedListConfig: PagedList.Config` : The paged list configuration, in this object you can specify for example the `pageSize` and the `initialPageSize`. 
@@ -236,14 +237,15 @@ In addition, there some optional parameters that you can define when you are con
 In the next post we well see how we could get a `Listing` component which use a cache `DataSource` for storing the data.
 
 ### Conclusion
-The `Listing` component is the key of the library, it provides an awesome way of displaying the paged list entities and reflect the different network status in the UI.
+The `Listing` component is the key of the library.
+It provides an awesome way of displaying the paged list entities and reflecting the different network status in the UI.
 If you have this component implemented, you can create an MVVM architecture app and combine it with the repository pattern.
 If you get a repository which provides a `Listing` component of each paged list, you will be creating a robuster app.
 
 **XlPaging** provides you a way to create a `Listing` component easily for a common paged service type, the services where the paginated strategy is based on an incremental page number.
 
-It also combine two mode, a mode with network support and a mode with network + cache support. 
+It also combine two ways, a mode with network support and a mode with network + cache support. 
 The strategy that you choose, will the depend on your problem. 
 
-You should try it :)
+You should try it and give us feedback :)
 
