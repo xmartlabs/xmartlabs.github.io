@@ -8,17 +8,17 @@ author_id: mirland
 
 ---
 
-There're tons of articles talking about the amazing Android Architecture Components, talking about how we can combine them in an MVVM architecture and make them work as a charm.
+There're tons of articles out there talking about the amazing Android Architecture Components, talking about how we can combine them in an MVVM architecture and make them work as a charm.
 From my point of view, that's true, the **Android Architecture Components are awesome!**
 
-There're another ton of articles talking about the new [Android Paging Library](https://developer.android.com/topic/libraries/architecture/paging/) and how we can combine it with [Room](https://developer.android.com/topic/libraries/architecture/room) and [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) to make the paging as easier as possible.
-I suppose that you have read some of them.
+There is another ton of articles talking about the new [Android Paging Library](https://developer.android.com/topic/libraries/architecture/paging/) and how we can combine it with [Room](https://developer.android.com/topic/libraries/architecture/room) and [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) to make the paging as easier as possible.
+I suppose you are already familiar with the topic :)
 
 So I don't want to write about the new Android Components or how we should use them.
-Today I want to tell you, how we can **integrate a numerated paged service**, in the best way that I know, **using** the new **[XLPaging](https://github.com/xmartlabs/xlpaging) library.**
-A numerated paged service is a service which returns a list of entities structured in pages with sequential page numbers.  
+Today I want to tell you, how we can **integrate a numerated paged service**, to the best of my knowledge, **using** the new **[XLPaging](https://github.com/xmartlabs/xlpaging) library.**
+A numerated paged service is an endpoint which returns a list of entities structured in pages with sequential page numbers.  
 
-In order to read this post, you should already know the repository architectural pattern and the basic things of these libraries:
+To read this post, you should already know the repository architectural pattern and the basic things of these libraries:
 1. [Retrofit](http://square.github.io/retrofit/)
 1. [Rxjava](https://github.com/ReactiveX/RxJava)
 1. [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/)
@@ -28,9 +28,9 @@ In order to read this post, you should already know the repository architectural
 
 
 # Listing Component
-First of all I want to tell you a cool Google idea, that they are using in some of their [example projects](https://github.com/googlesamples/android-architecture) to handle all services which contains a list.
+First I want to tell you about a cool Google idea, that they are using in some of their [example projects](https://github.com/googlesamples/android-architecture) to handle all services that return a list.
 
-They think that you can handle all list streams with a `Listing` component which contains basically five elements:
+They believe that you can handle all list streams with a `Listing` component, which contains basically five elements:
 
 ```kotlin
 data class Listing<T>(
@@ -46,9 +46,9 @@ data class Listing<T>(
 1. A stream which contains the networking state changes.
 1. A refresh function, to refresh all data.
 1. A stream which contains the status of the refresh request.
-1. A retry function, in order to be able to execute it if something failed.
+1. A retry function executed if something failed.
 
-The networking state could be represented as:
+The network state could be represented as:
 ```kotlin
 enum class Status {
   RUNNING,
@@ -69,17 +69,24 @@ data class NetworkState private constructor(
 ```
 
 ## The problem
-Suppose that you are following the repository pattern and you want to expose a paginated list of entities from a service source.
+Suppose that you are following the repository pattern and you want to expose a paged list of entities from a service source.
 In that case, your repository should implement a method which returns a `Listing` of that entities.
+I'll give you an example.
+Suppose that you have an app which lists the GitHub users whose usernames contain a specific word.
 
-I'll give you an example, suppose that you have an app which lists the github users whose usernames contain a specific word.
-
-So, if you use Retrofit and RxJava you can define the service call as:
+So, if you use Retrofit and RxJava, you can define the service call as:
 
 ```kotlin
-data class GhListResponse<T>(val total_count: Long, private val items: List<T>)
+data class GhListResponse<T>(
+  val total_count: Long,
+  private val items: List<T>
+)
 
-data class User(var id: Long, @SerializedName("login") var name: String?, var avatarUrl: String?)
+data class User(
+  var id: Long, 
+  var login: String?, 
+  var avatarUrl: String?
+)
 
 @GET("/search/users")
 fun searchUsers(@Query("q") name: String,
@@ -88,10 +95,10 @@ fun searchUsers(@Query("q") name: String,
 ): Single<GhListResponse<User>>
 ```
 
-This service is pretty similar to the majority of the paged services that I've seen, so the big question here is how we could integrate this service in a repository using the new Paging Component.
+This service is pretty similar to most of the paged services I've seen, so the big question here is how we could integrate this service in a repository using the new Paging Component.
 Furthermore, the question could be how we could convert the `Single<GhListResponse<User>>` response in a `Listing<User>` structure.
 
-The first question that we should do to solve this problem is: do we want to have a database source to cache the data?
+The first question that we should answer to solve this problem is: do we want to have a database source to cache the data?
 That's a complicated question, the answer could be that if we want to search entities by a key, maybe a database cache couldn't be the best option.
 The response could change a lot in a short period of time and maybe the user doesn't use to do the same search multiple times.
 However, saving data in a database source sometimes could have some advantages.
