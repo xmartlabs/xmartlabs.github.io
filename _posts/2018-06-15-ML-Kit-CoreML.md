@@ -9,13 +9,6 @@ markdown: redcarpet
 
 ---
 
-Points:
-* Intro
-* Running ML Kit in iOS
-* Running custom model using ML Kit
-* Comparison with CoreML
-* Conclusions
-
 
 Google released [ML Kit](https://firebase.google.com/docs/ml-kit/), which is part of Firebase, last month at its I/O 2018.
 ML Kit allows developers to run machine learning models both on Android and iOS using TensorFlow Lite as framework.
@@ -25,16 +18,16 @@ For some of these models you can also choose to run them on the device, for more
 The others will either run only on the device or in the cloud.
 But you can also easily deploy your own models and run them on iOS and Android without worrying about the specific formats and implementations for each one of them.
 
-Another feature of ML Kit is that it lets you update your model on the fly, without recompiling your app.
+Another feature of ML Kit is that it lets you update your model on the fly, without recompiling your app. This is very helpful if you want to keep improving your model and update it frequently.
 
 A disadvantage of ML Kit is that it only supports TensorFlow Lite which on iOS has no GPU support which can affect the performance of your models.
-So, we decided to try it out and see how it really works. You can find [the code](...) used here with an example on GitHub
+So, we decided to try it out and see how it really works. You can find [the code](...) used here with an example on GitHub.
 
 
 ## Running ML Kit on iOS
 
-We want to
 To get started with ML Kit on iOS you need to have [Cocoapods](https://cocoapods.org/) installed and add the following lines to your Podfile:
+
 ```
 pod 'Firebase/Core'
 pod 'Firebase/MLVision'
@@ -42,6 +35,8 @@ pod 'Firebase/MLVisionLabelModel'
 ```
 
 > Note: You need to add `MLVisionLabelModel` only if you want to run your model on the device
+
+Then run `pod install` to install these dependencies.
 
 You can then start using one of ML Kit's default models. We will use the image labelling model.
 For this purpose we create a `UIViewController` as follows:
@@ -73,8 +68,9 @@ The view controller has a `videoView`, where we will show what the camera is fil
 
 We then create an image detector using `Vision` and specify a confidence treshold of 0.3 which means that we want all the predictions whose probability is at least 0.3 or 30%.
 
-Next, we have to connect the camera's output to our model. I will not show the code for the camera here but you can see it in the full [example code](...).
-What we have to add to our controller is a function that will be called for each camera frame:
+Next, we have to connect the camera's output to our model. I will not show the code for the camera setup here but you can see it in the full [example code](...).
+What we have to add to our controller is a function that will be called for each camera frame.
+It will receive a `CMSampleBuffer`, run the model and display the results in the `resultLabel`:
 
 ```swift
 func run(buffer: CMSampleBuffer?) {
@@ -101,8 +97,6 @@ func run(buffer: CMSampleBuffer?) {
 }
 ```
 
-We run the model and show the predictions in our `resultLabel`.
-
 This is all we need to run one of the out-of-the-box models of ML Kit. We can now start labelling images.
 
 This will use the on-device model which is more performant and it does not depend on an internet connection but is also less accurate than the cloud model.
@@ -114,7 +108,7 @@ override func viewDidLoad() {
     super.viewDidLoad()
 
     // Replace labelDetector = vision.labelDetector(options: options) with:
-    let labelDetector = Vision.vision().cloudLabelDetector()
+    let labelDetector = vision.cloudLabelDetector()
 }
 
 ```
@@ -126,7 +120,7 @@ You can also specify how many results you want to get and if the Cloud API shoul
 
 To run a custom model you first need a TensorFlow Lite model which you have to upload to the Firebase console of your project. For this go to `ML Kit` -> `Custom` in the console.
 This is where you can easily update your models afterwards as well.
-In our case we will use MobileNet v2 as our custom model.
+In our case we will use [MobileNet v2](https://arxiv.org/abs/1801.04381) as our custom model.
 
 The second step is to add the following pod to your Podfile:
 ```
@@ -160,7 +154,7 @@ class CustomModelViewController: UIViewController {
 
 This is again very similar to our first view controller. In this case we have a list of labels that we will read in a helper function `readClassLabels` from a file "mobilenet_labels".
 We also have a `ModelInterpreter` which we will set up in the function `setupInterpreter`.
-To run a custom you can either specify a local file which contains the model or the name you gave the model in the Firebase console.
+To run a custom model you can either specify a local file which contains the model or the name you gave the model in the Firebase console.
 In this case we will use both which means the app will start with our local file and then update it as soon as we upload new versions to the Firebase console.
 Here is the function:
 
@@ -169,7 +163,7 @@ func setupInterpreter() {
     // We define conditions for model update
     let conditions = ModelDownloadConditions(wiFiRequired: true, idleRequired: false)
     let cloudModelSource = CloudModelSource(
-        modelName: Constants.Models.cloudMobilenet,
+        modelName: "cloud_mobilenet",
         enableModelUpdates: true,
         initialConditions: conditions,
         updateConditions: conditions
@@ -178,18 +172,18 @@ func setupInterpreter() {
     // And then register our cloud version of the model.
     _ = ModelManager.modelManager().register(cloudModelSource)
 
-    // Next we register our local model.
+    // Next we register our local model stored in 'mobilenet.tflite'.
     guard let modelPath = Bundle.main.path(forResource: "mobilenet", ofType: "tflite") else {
         return
     }
-    let localModelSource = LocalModelSource(modelName: Constants.Models.localMobilenet,
+    let localModelSource = LocalModelSource(modelName: "local_mobilenet",
                                             path: modelPath)
     ModelManager.modelManager().register(localModelSource)
 
     // Finally, we create the interpreter using both the local and the cloud model.
     let options = ModelOptions(
-        cloudModelName: Constants.Models.cloudMobilenet,
-        localModelName: Constants.Models.localMobilenet
+        cloudModelName: "cloud_mobilenet",
+        localModelName: "local_mobilenet"
     )
     interpreter = ModelInterpreter(options: options)
 }
@@ -270,13 +264,13 @@ In this test we show the results separately for when the camera is set to 30 or 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/two_frames.png" alt="FPS comparison chart!" /></div>
 
 This chart shows how much time it takes to process one frame.
-We see in this chart that that CoreML takes 42 ms on average no matter if the camera runs at 30 or 60 FPS, which is to be expected as the heavy workload of the model is on the GPU.
+We see in this chart that CoreML takes 42 ms on average no matter if the camera runs at 30 or 60 FPS, which is to be expected as the heavy workload of the model is on the GPU.
 However when running it with 60 FPS we sometimes get periods where it only takes 33 ms to process a frame.
-There is however also an increase in CPU usage, which we saw in the Xcode Debug window, which is related to the increased number of frames being handled.
+There is however also an increase in CPU usage, which we saw in the Xcode Debug window, which is related to the increased number of frames being handled and resized.
 
 On the other hand we see that with ML Kit there is a bigger difference between having the camera at 30 FPS or 60 FPS.
 If we run at 60 FPS then each frame takes longer to process as there is more overlapping between the process times of the frames and everything is done in the CPU.
-However it is to be noted that both end in the same number of processed frames per second which is only a little bit higher than what we get when running one frame at a time.
+However it is to be noted that both end in the same number of processed frames per second.
 
 ### The real frames per second
 
@@ -295,4 +289,6 @@ Also we note a very small advantage for CoreML here.
 
 We saw that it is quite easy to get set up with ML Kit on iOS and while it is still in Beta and there are some green parts like the error handling, it is very helpful if you want to add machine learning to your apps on iOS and Android. It is also very helpful that it comes with some models out of the box.
 
-We saw that there was a small difference in performance between ML Kit and CoreML but it was not too big for this model (MobileNet). It is possible that for other models this difference might be bigger but it seems reasonable to use ML Kit if the real time performance is not critical.
+We saw that there was a small difference in performance between ML Kit and CoreML but it was not very big for this model (MobileNet). It is possible that for other models this difference might be bigger but it seems reasonable to use ML Kit if the real time performance is not critical.
+
+All the code is on this [GitHub repo](...)
