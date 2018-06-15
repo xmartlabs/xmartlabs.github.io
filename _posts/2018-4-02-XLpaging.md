@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Android paging for Mortals part one
+title: Android paging for Mortals - Introducing Fountain Part One
 date: 2018-04-02 09:00:00
 author: Matías Irland
-categories: Android, Android Jetpack,Android Paging Library,Live Data, Android Architecture Components,RxJava,Retrofit
+categories: Android, Android Jetpack,Android Paging Library,Live Data, Android Architecture Components,RxJava,Retrofit,Fountain
 author_id: mirland
 
 ---
@@ -15,7 +15,7 @@ There is another ton of articles talking about the new [Android Paging Library](
 I suppose you are already familiar with the topic :)
 
 So I don't want to write about the new Android Components or how we should use them.
-Today I want to tell you, how we can **integrate a numerated paged service**, to the best of my knowledge, **using** the new **[XLPaging](https://github.com/xmartlabs/xlpaging) library.**
+Today I want to tell you, how we can **integrate a numerated paged service**, to the best of my knowledge, **using** the new **[Fountain](https://github.com/xmartlabs/fountain) library.**
 A numerated paged service is an endpoint which returns a list of entities structured in pages with sequential page numbers.  
 
 To read this post, you should already know the Repository Architectural Pattern and the basic things of these libraries:
@@ -79,7 +79,7 @@ So, if you use Retrofit and RxJava, you can define the service call as:
 ```kotlin
 data class GhListResponse<T>(
   val total_count: Long,
-  private val items: List<T>
+  val items: List<T>
 )
 
 data class User(
@@ -105,10 +105,10 @@ However, saving data in a database source has some advantages.
 For example, you can make your app work offline, make less use of the backend, hide network problems, manage data better and share entities easier.
 
 Personally, I prefer taking the cache way, but I know that it depends on the problem.
-In this post we will explore both strategies using **[Xlpaging](https://github.com/xmartlabs/xlpaging)**. 
+In this post we will explore both strategies using **[Fountain](https://github.com/xmartlabs/fountain)**. 
 
-# XLPaging
-[XLPaging](https://github.com/xmartlabs/xlpaging) is an **Android Kotlin library** conceived to make your life easier when dealing with paged endpoint services, where the paging is based on incremental page numbers (e.g. 1, 2, 3, ...).
+# Fountain
+[Fountain](https://github.com/xmartlabs/fountain) is an **Android Kotlin library** conceived to make your life easier when dealing with paged endpoint services, where the paging is based on incremental page numbers (e.g. 1, 2, 3, ...).
 
 The features are:
 - **Network:** Provide a `Listing` structure based on a Retrofit and RxJava service.
@@ -117,7 +117,7 @@ The features are:
 In this part of the series we'll see how we can integrate the first functionality.
 The second one will be explained in the next part.
 
-## XLPaging Network Support
+## Fountain Network Support
 The library defines two structures to handle the network requests.
 The `PageFetcher` is used to fetch each page from the service, whereas the `PagingHandler` will be used to handle the paging state.
 
@@ -142,7 +142,7 @@ Sometimes the service returns the page amount or the entity amount in the respon
 However, if you know exactly the page or entity count, the library provides a way to make this work easier.
 I will show that later.
 
-To use the **XLPaging Network support**, you have to implement just a `PagingHandler<ListResponse<T>>`, where the `ListResponse<T>` is how the library expects the service response.  
+To use the **Fountain Network support**, you have to implement just a `PagingHandler<ListResponse<T>>`, where the `ListResponse<T>` is how the library expects the service response.
 
 ```kotlin
 interface ListResponse<T> {
@@ -152,16 +152,19 @@ interface ListResponse<T> {
 
 So, following the example, our paging handler would be:
 ```kotlin
-data class GhListResponse<T>(val total_count: Long, private val items: List<T>) : ListResponse<T> {
+data class GhListResponse<T>(
+    val total_count: Long,
+    val items: List<T>
+) : ListResponse<T> {
   override fun getElements() = items
 }
 
-val pagingHandler = (object : PagingHandler<ListResponse<User>> {
-      override fun canFetch(page: Int, pageSize: Int): Boolean = true //Endless list
+val pagHandler = (object : PagingHandler<ListResponse<User>> {
+  override fun canFetch(page: Int, pageSize: Int) = true
 
-      override fun fetchPage(page: Int, pageSize: Int): Single<GhListResponse<User>> =
-          userService.searchUsers(userName, page = page, pageSize = pageSize)
-    })
+  override fun fetchPage(page: Int, pageSize: Int) =
+      userService.searchUsers(userName, page, pageSize)
+})
 ```
 
 It's not so hard, right?
@@ -170,7 +173,7 @@ In most cases the solution will not be so useful, so let's fix it.
 
 If we take a look at the GitHub response, we can see that GitHub is returning the amount of entities in each response.
 That is great, we can use that information to implement a real `canFetch` method.
-Remember that **XLPaging** provides a way to achieve it automatically.
+Remember that **Fountain** provides a way to achieve it automatically.
 To do that, the library defines two response interfaces and two `PagingHandler` providers:
 
 ```kotlin
@@ -183,13 +186,13 @@ interface ListResponseWithPageCount<T> : ListResponse<T> {
 }
 
 class PagingHandlerWithTotalEntityCount<T>(
-    private val firstPage: Int = 1,
-    private val pageFetcher: PageFetcher<out ListResponseWithEntityCount<T>>
+  val pageFetcher: PageFetcher<out ListResponseWithEntityCount<T>>,
+  firstPage: Int = 1
 ) : ListResponsePagingHandler<T> 
 
 class PagingHandlerWithTotalPageCount<T>(
-    private val firstPage: Int = 1,
-    private val pageFetcher: PageFetcher<out ListResponseWithPageCount<T>>
+  val pageFetcher: PageFetcher<out ListResponseWithPageCount<T>>,
+  firstPage: Int = 1
 ) : ListResponsePagingHandler<T>
 ```
 
@@ -198,11 +201,11 @@ Given that the GitHub response has the amount of entities, we have to update the
 
 ```kotlin
 data class GhListResponse<T>(
-    private val total_count: Long,
-    private val items: List<T>)
+    val total_count: Long,
+    val items: List<T>)
   : ListResponseWithEntityCount<T> {
 
-  override fun getEntityCount() = totalCount
+  override fun getEntityCount() = total_count
 
   override fun getElements() = items
 }
@@ -212,18 +215,18 @@ Then, what's left to create the `PagingHandler` is to build a `PageFetcher<GhLis
 
 ```kotlin
 val pageFetcher = (object : PageFetcher<GhListResponse<User>> {
-  override fun fetchPage(page: Int, pageSize: Int): Single<GhListResponse<User>> =
-      userService.searchUsers(userName, page = page, pageSize = pageSize)
+  override fun fetchPage(page: Int, pageSize: Int) =
+      userService.searchUsers(userName, page, pageSize)
 })
 
-val pagingHandler = PagingHandlerWithTotalEntityCount(pageFetcher = pageFetcher)    
+val pagHandler = PagingHandlerWithTotalEntityCount(pageFetcher)
 ```
 
-Recall that at the beginning I said that the only required thing to create a `Listing` structure using the **XLPaging Network support** is a `PageHandler`.
+Recall that at the beginning I said that the only required thing to create a `Listing` structure using the **Fountain Network support** is a `PageHandler`.
 So we can invoke the listing creator in this way:
 
 ```kotlin
-val listing = XlPaging.createNetworkListing(pagingHandler)
+val listing = Fountain.createNetworkListing(pagHandler)
 ```
 And that's all, we have our `Listing<User>` structure!
 
@@ -241,11 +244,10 @@ It provides an awesome way of displaying the paged entity list and reflecting th
 If you have this component implemented, you can create an MVVM architecture app and combine it with the repository pattern.
 If you get a repository which provides a `Listing` component of each paged list, you will be creating a robuster app.
 
-**XlPaging** provides you a way to create a `Listing` component easily for a common paged service type, which are the services where the paginated strategy is based on an incremental page number.
+**Fountain** provides you a way to create a `Listing` component easily for a common paged service type, which are the services where the paginated strategy is based on an incremental page number.
 
 It also provides two ways to go: a mode with **network** support and a mode with **network + cache** support. 
 The strategy you choose will depend on your problem. 
 
 I suggest you to give it a try.
 We'll be glad if you provide feedback :)
-
