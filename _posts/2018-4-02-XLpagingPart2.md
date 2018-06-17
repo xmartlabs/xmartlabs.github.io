@@ -1,24 +1,25 @@
 ---
 layout: post
-title: Android paging for Mortals part two
+title: Android paging for Mortals - Introducing Fountain Part Two
 date: 2018-04-02 09:00:00
 author: Matías Irland
-categories: Android, Android Jetpack,Android Paging Library,Live Data, Android Architecture Components,RxJava,Retrofit
+categories: Android, Android Jetpack,Android Paging Library,Live Data, Android Architecture Components,RxJava,Retrofit,Fountain
 author_id: mirland
 
 ---
 
-In the [previous post]() we've presented **XLPaging** and the way that we can use the `Listing` component to make the paginated as cool and simple as possible.
-In that post we saw the first mode of the library, the **XLPaging Network support** mode, which provides a way to convert a common numerated paged service in `Listing` component.
-The `Listing` component, it's a really useful component to work with paged lists, it provides an easy way to display the paged list entities and reflect the different status in the UI.
-It contains a `LiveData<PagedList<T>>` element, which is provided by the new [Android Paging Library](https://developer.android.com/topic/libraries/architecture/paging/), so we can use all features of the new [PagedListAdapter](https://developer.android.com/reference/android/arch/paging/PagedListAdapter).
-Yes that's awesome, but it has a problem, the entities aren't saved anywhere, so if we want to display multiple times the same entities, we have to wait for them to load each time. 
+In the [previous part]() we've presented **Fountain** and we shown a way, using the `Listing` component, to make the paginated as cool and simple as possible.
+In that post we explained the first way of the library, the **Fountain Network support** mode, which provides a way to convert a common numerated paged service in `Listing` component.
+The `Listing` component, it's a really useful structure to display the paged list entities and reflect the network status changes in the UI.
+It contains a `LiveData<PagedList<T>>` element, which is provided by the new [Android Paging Library](https://developer.android.com/topic/libraries/architecture/paging/), so we can use all features of the new [PagedListAdapter](https://developer.android.com/reference/android/arch/paging/PagedListAdapter) in a simple way.
+Yes that's awesome, but it has a problem, in that example, the entities aren't saved anywhere.
+So if we want to display multiple times the same entities, we have to wait for them to load each time. 
 
 In this post we'll see how we can use the second feature of the library: a `Listing` object combining network and cache support.
 
 
-## XlPaging Cache + Network support
-We've seen how we could implement a `Listing` structure using the [**XlPaging network support** library](https://github.com/xmartlabs/xlpaging).
+# Fountain Cache + Network support
+We've seen how we could implement a `Listing` structure using the [**Fountain network support** library](https://github.com/xmartlabs/fountain).
 However, in that example we had only one source, so how could we manage multiple sources?
 How could we combine a database cache source with a paged service source?
 There are some paged services that make our life a bit easier.
@@ -33,10 +34,10 @@ That's hard, we could save the item position and the page number, but if an item
 In this post I'll show you how we can use the **XlPaging** library to make it work.
 
 
-### Paging strategy
-In order to make the pagination strategy works, **XlPaging** needs basically three required components:
+## Paging strategy
+In order to make the pagination strategy works, **Fountain** needs basically three required components:
 1. A `PageHandler` to fetch all pages.
-This component was presented in the previous post, it's a structure which contain all required operation to manage the pagination of a service with an incremental page number strategy.
+This component was presented in the previous post, it's a structure which contain all required operations to manage the pagination of a paged service, where the paginated strategy is based on an incremental page number.
 1. A [`DataSource.Factory<*, Value>`](https://developer.android.com/reference/android/arch/paging/DataSource.Factory) to setup the [`LivePagedListBuilder`](https://developer.android.com/reference/android/arch/paging/LivePagedListBuilder) of the [Android Paging Library](https://developer.android.com/topic/libraries/architecture/paging/) and get a `LiveData<PagedList<Value>>`.
 Doing that in this way, if the `DataSource`  suffer any change, the `LiveData` object will notify that a change has happened.
 1. A `DataSourceEntityHandler` to be able to update the `DataSource`.
