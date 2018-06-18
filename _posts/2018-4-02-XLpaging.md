@@ -119,7 +119,7 @@ The second one will be explained in the next part.
 
 ## Fountain Network Support
 The library defines two structures to handle the network requests.
-The `PageFetcher` is used to fetch each page from the service, whereas the `PagingHandler` will be used to handle the paging state.
+The `PageFetcher` is used to fetch each page from the service, whereas the `NetworkDataSourceAdapter` will be used to handle the paging state.
 
 ```kotlin
 interface PageFetcher<T> {
@@ -127,7 +127,7 @@ interface PageFetcher<T> {
   fun fetchPage(page: Int, pageSize: Int): Single<out T>
 }
 
-interface PagingHandler<T> : PageFetcher<T> {
+interface NetworkDataSourceAdapter<T> : PageFetcher<T> {
   @CheckResult
   fun canFetch(page: Int, pageSize: Int): Boolean
 }
@@ -142,7 +142,7 @@ Sometimes the service returns the page amount or the entity amount in the respon
 However, if you know exactly the page or entity count, the library provides a way to make this work easier.
 I will show that later.
 
-To use the **Fountain Network support**, you have to implement just a `PagingHandler<ListResponse<T>>`, where the `ListResponse<T>` is how the library expects the service response.
+To use the **Fountain Network support**, you have to implement just a `NetworkDataSourceAdapter<ListResponse<T>>`, where the `ListResponse<T>` is how the library expects the service response.
 
 ```kotlin
 interface ListResponse<T> {
@@ -159,12 +159,13 @@ data class GhListResponse<T>(
   override fun getElements() = items
 }
 
-val pagHandler = (object : PagingHandler<ListResponse<User>> {
-  override fun canFetch(page: Int, pageSize: Int) = true
+val networkDataSourceAdapter = 
+    (object : NetworkDataSourceAdapter<ListResponse<User>> {
+      override fun canFetch(page: Int, pageSize: Int) = true
 
-  override fun fetchPage(page: Int, pageSize: Int) =
-      userService.searchUsers(userName, page, pageSize)
-})
+      override fun fetchPage(page: Int, pageSize: Int) =
+          userService.searchUsers(userName, page, pageSize)
+    })
 ```
 
 It's not so hard, right?
@@ -174,7 +175,7 @@ In most cases the solution will not be so useful, so let's fix it.
 If we take a look at the GitHub response, we can see that GitHub is returning the amount of entities in each response.
 That is great, we can use that information to implement a real `canFetch` method.
 Remember that **Fountain** provides a way to achieve it automatically.
-To do that, the library defines two response interfaces and two `PagingHandler` providers:
+To do that, the library defines two response interfaces and two `NetworkDataSourceAdapter` providers:
 
 ```kotlin
 interface ListResponseWithEntityCount<T> : ListResponse<T> {
@@ -185,19 +186,19 @@ interface ListResponseWithPageCount<T> : ListResponse<T> {
   fun getPageCount(): Long
 }
 
-class PagingHandlerWithTotalEntityCount<T>(
+class NetworkDataSourceWithTotalEntityCountAdapter<T>(
   val pageFetcher: PageFetcher<out ListResponseWithEntityCount<T>>,
   firstPage: Int = 1
-) : ListResponsePagingHandler<T> 
+) : NetworkDataSourceAdapter<ListResponse<T>>
 
-class PagingHandlerWithTotalPageCount<T>(
+class NetworkDataSourceWithTotalPageCountAdapter<T>(
   val pageFetcher: PageFetcher<out ListResponseWithPageCount<T>>,
   firstPage: Int = 1
-) : ListResponsePagingHandler<T>
+) : NetworkDataSourceAdapter<ListResponse<T>>
 ```
 
-Depending on whether we know the entity or the page count, we will use either `ListResponseWithEntityCount<T>` or `ListResponseWithPageCount<T>`.
-Given that the GitHub response has the amount of entities, we have to update the `GhListResponse<T>` to implement `ListResponseWithEntityCount<T>`
+Depending on whether we know the entity or the page count, we will use either `NetworkDataSourceWithTotalEntityCountAdapter<T>` or `NetworkDataSourceWithTotalPageCountAdapter<T>`.
+Given that the GitHub response has the amount of entities, we have to update the `GhListResponse<T>` to implement `NetworkDataSourceWithTotalEntityCountAdapter<T>`
 
 ```kotlin
 data class GhListResponse<T>(
@@ -211,7 +212,7 @@ data class GhListResponse<T>(
 }
 ```
 
-Then, what's left to create the `PagingHandler` is to build a `PageFetcher<GhListResponse<T>>`.
+Then, what's left to create the `NetworkDataSourceAdapter` is to build a `PageFetcher<GhListResponse<T>>`.
 
 ```kotlin
 val pageFetcher = (object : PageFetcher<GhListResponse<User>> {
@@ -219,14 +220,15 @@ val pageFetcher = (object : PageFetcher<GhListResponse<User>> {
       userService.searchUsers(userName, page, pageSize)
 })
 
-val pagHandler = PagingHandlerWithTotalEntityCount(pageFetcher)
+val networkDataSourceAdapter =
+    NetworkDataSourceWithTotalEntityCountAdapter(pageFetcher)
 ```
 
-Recall that at the beginning I said that the only required thing to create a `Listing` structure using the **Fountain Network support** is a `PageHandler`.
+Recall that at the beginning I said that the only required thing to create a `Listing` structure using the **Fountain Network support** is a `NetworkDataSourceAdapter`.
 So we can invoke the listing creator in this way:
 
 ```kotlin
-val listing = Fountain.createNetworkListing(pagHandler)
+Fountain.createNetworkListing(networkDataSourceAdapter)
 ```
 And that's all, we have our `Listing<User>` structure!
 
