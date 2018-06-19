@@ -12,16 +12,24 @@ markdown: redcarpet
 
 Google released [ML Kit](https://firebase.google.com/docs/ml-kit/), which is part of Firebase, last month at its I/O 2018.
 ML Kit allows developers to run machine learning models both on Android and iOS using TensorFlow Lite as framework.
-It includes ML models for common use cases like recognizing text, detecting faces, labeling images and more.
-You an use these models out of the box without knowing anything about machine learning, which is cool.
+It includes Machine Learning models for common use cases like recognizing text, detecting faces, labeling images and more.
+You can use these models out of the box without knowing anything about machine learning, which is cool.
 For some of these models you can also choose to run them on the device, for more privacy and speed, or in the cloud for more accuracy.
 The others will either run only on the device or in the cloud.
 But you can also easily deploy your own models and run them on iOS and Android without worrying about the specific formats and implementations for each one of them.
 
 Another feature of ML Kit is that it lets you update your model on the fly, without recompiling your app. This is very helpful if you want to keep improving your model and update it frequently.
 
-A disadvantage of ML Kit is that it only supports TensorFlow Lite which on iOS has no GPU support which can affect the performance of your models.
+A disadvantage of ML Kit is that it only supports TensorFlow Lite which on iOS has no GPU support up to now, which can affect the performance of your models.
 So, we decided to try it out and see how it really works. You can find [the code](...) used here with an example on GitHub.
+
+In this blog post we will focus on image classification although you can do many other tasks using ML Kit.
+Image classification algorithms have seen a huge improvement in recent years as neural networks have been used and constantly improved.
+One of the main image classification competitions is [ImageNet].
+ImageNet challenges algorithms to classify images into 1000 categories and success is often measured as having the lowest top-5 error rate, this means predicting the correct category with the first 5 predictions.
+Since 2011, this top-5 error rate has decreased from 26% to less than 4% thanks to convolutional neural networks and the vast research that has gone into them in recent years.
+Some of the most successful convolutional neural networks are quite computationally expensive but there are also others like [MobileNet](https://arxiv.org/abs/1801.04381) which achieves an error rate of about 8% but is still small enough to be run on a mobile device in real time.
+We will run MobileNet on an iPhone in this post.
 
 
 ## Running ML Kit on iOS
@@ -39,7 +47,7 @@ pod 'Firebase/MLVisionLabelModel'
 Then run `pod install` to install these dependencies.
 
 You can then start using one of ML Kit's default models. We will use the image labelling model.
-For this purpose we create a `UIViewController` as follows:
+For this purpose, we create a `UIViewController` as follows:
 
 ```swift
 import FirebaseMLVision
@@ -64,7 +72,7 @@ class ViewController: UIViewController {
 }
 ```
 
-The view controller has a `videoView`, where we will show what the camera is filming, and a `resultsLabel` which will show the predictions.
+The view controller has a `videoView`, where we will show what the camera is recording, and a `resultsLabel` which will show the predictions.
 
 We then create an image detector using `Vision` and specify a confidence treshold of 0.3 which means that we want all the predictions whose probability is at least 0.3 or 30%.
 
@@ -265,7 +273,7 @@ In this test we show the results separately for when the camera is set to 30 or 
 
 This chart shows how much time it takes to process one frame.
 We see in this chart that CoreML takes 42 ms on average no matter if the camera runs at 30 or 60 FPS, which is to be expected as the heavy workload of the model is on the GPU.
-However when running it with 60 FPS we sometimes get periods where it only takes 33 ms to process a frame.
+However when running it at 60 FPS we sometimes get periods where it only takes 33 ms to process a frame.
 There is however also an increase in CPU usage, which we saw in the Xcode Debug window, which is related to the increased number of frames being handled and resized.
 
 On the other hand we see that with ML Kit there is a bigger difference between having the camera at 30 FPS or 60 FPS.
