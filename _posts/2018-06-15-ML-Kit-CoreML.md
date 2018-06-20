@@ -23,11 +23,17 @@ Another feature of ML Kit is that it lets you update your model on the fly, with
 A disadvantage of ML Kit is that it only supports TensorFlow Lite which on iOS has no GPU support up to now, which can affect the performance of your models.
 So, we decided to try it out and see how it really works. You can find [the code](...) used here with an example on GitHub.
 
-In this blog post we will focus on image classification although you can do many other tasks using ML Kit.
-Image classification algorithms have seen a huge improvement in recent years as neural networks have been used and constantly improved.
-One of the main image classification competitions is [ImageNet].
-ImageNet challenges algorithms to classify images into 1000 categories and success is often measured as having the lowest top-5 error rate, this means predicting the correct category with the first 5 predictions.
-Since 2011, this top-5 error rate has decreased from 26% to less than 4% thanks to convolutional neural networks and the vast research that has gone into them in recent years.
+### Image Classification
+
+In this blog post we will focus on image classification, although you can do many other tasks using ML Kit.
+Will will try to do something like this:
+
+<img src="/images/mlkit/demo.gif" width="220"/>
+
+Image classification models have improved considerably in recent years as neural networks have been used and constantly improved.
+One of the main image classification competitions is [ImageNet Large Scale Visual Recognition Competition (ILSVRC)](http://www.image-net.org/challenges/LSVRC/).
+This competition challenges algorithms to classify images into 1000 categories and success is often measured as having the lowest top-5 error rate, this means predicting the correct category with the first 5 predictions.
+Since 2011, this top-5 error rate has decreased from 26% to less than 4% thanks to Convolutional Neural Networks (CNN) and the vast research that has gone into them in recent years.
 Some of the most successful convolutional neural networks are quite computationally expensive but there are also others like [MobileNet](https://arxiv.org/abs/1801.04381) which achieves an error rate of about 8% but is still small enough to be run on a mobile device in real time.
 We will run MobileNet on an iPhone in this post.
 
@@ -263,7 +269,7 @@ Therefore it does not reflect the total amount of frames actually processed in o
 
 When we tried both models processing only one frame at any given time (and dropping frames when busy) we found that CoreML is slightly faster than ML Kit.
 CoreML takes an average of 30 ms to process each frame while ML Kit takes 32 ms.
-This small difference comes because CoreML uses the GPU, which ML Kit doesn't.
+This small difference comes because Core ML uses the GPU, which ML Kit doesn't.
 We would expect the difference to be bigger but we have noted that CoreML sometimes does not run as fast as other solutions which use Metal directly.
 With other models this difference could also be bigger.
 
