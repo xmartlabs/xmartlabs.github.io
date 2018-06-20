@@ -105,10 +105,12 @@ func run(buffer: CMSampleBuffer?) {
 }
 ```
 
-This is all we need to run one of the out-of-the-box models of ML Kit. We can now start labelling images.
+This is all we need to run one of the out-of-the-box models of ML Kit. We can now start classifying images.
 
-This will use the on-device model which is more performant and it does not depend on an internet connection but is also less accurate than the cloud model.
-If you wanted to use the cloud model, you first need to upgrade your Firebase project to a Blaze plan (pay as you go) and enable the Cloud Vision API.
+It will use the on-device model which is faster and does not depend on the internet connection but is also less accurate than the cloud model.
+If you want to use the cloud model, you first need to upgrade your Firebase project to a Blaze plan (pay as you go) and enable the Cloud Vision API.
+The first 1000 requests per task are free but if your app surpasses that amount you will have to pay.
+
 Then, in your code it is enough to change the labelDetector we created in `viewDidLoad`:
 
 ```swift
@@ -121,18 +123,18 @@ override func viewDidLoad() {
 
 ```
 
-You can also specify how many results you want to get and if the Cloud API should use the latest model or the last stable model.
+You can also specify how many predictions you want to get and if the Cloud API should use the latest model or the last stable model.
 
 
 ## Running a custom model
 
-To run a custom model you first need a TensorFlow Lite model which you have to upload to the Firebase console of your project. For this go to `ML Kit` -> `Custom` in the console.
+To run a custom model you first need a TensorFlow Lite model which you have to upload to the Firebase console of your project. For this, go to `ML Kit` -> `Custom` in the console.
 This is where you can easily update your models afterwards as well.
-In our case we will use [MobileNet v2](https://arxiv.org/abs/1801.04381) as our custom model.
+In our case, we will use [MobileNet v2](https://arxiv.org/abs/1801.04381) as our custom model.
 
 The second step is to add the following pod to your Podfile:
 ```
-  pod 'Firebase/MLModelInterpreter'
+pod 'Firebase/MLModelInterpreter'
 ```
 
 Next, we will create a view controller to run our model.
@@ -163,7 +165,7 @@ class CustomModelViewController: UIViewController {
 This is again very similar to our first view controller. In this case we have a list of labels that we will read in a helper function `readClassLabels` from a file "mobilenet_labels".
 We also have a `ModelInterpreter` which we will set up in the function `setupInterpreter`.
 To run a custom model you can either specify a local file which contains the model or the name you gave the model in the Firebase console.
-In this case we will use both which means the app will start with our local file and then update it as soon as we upload new versions to the Firebase console.
+In this case we will use both, which means the app will start with our local file and then update it as soon as we upload new versions to the Firebase console.
 Here is the function:
 
 ```swift
@@ -197,7 +199,7 @@ func setupInterpreter() {
 }
 ```
 
-We will again need the camera to provide the images for our model.
+We will again need the camera to provide the images to our model.
 For each frame of the camera we will call a function that will resize the image and run the model:
 
 ```swift
@@ -237,15 +239,15 @@ func run(buffer: CMSampleBuffer?) {
 
 We can now run the model and it will tell us what we are seeing at more or less 30 FPS.
 
-> It is very important to set the input and output sizes of the model correctly. If not then the app will crash when running the model without telling you the reason and you are left wondering what the issue could be.
+> It is crucial to set the input and output sizes of the model correctly. If not then the app will crash when running the model without telling you the reason and you are left wondering what the issue could be.
 
 The next step is to see how this performs if we change a few parameters and how it compares to CoreML, Apple's default machine learning framework.
 
 ## ML Kit vs CoreML
 
-CoreML has a few advantages and disadvantages when we compare it to ML Kit. First of all it supports GPU which is a big advantage.
+CoreML has a few pros and cons when we compare it to ML Kit. First, it supports GPU which is a big advantage.
 On the other hand, it is much easier to update a ML Kit model on the fly than to update a CoreML model.
-Also, CoreML is an Apple framework and therefore only works on iOS and not Android whereas ML Kit supports both.
+Also, CoreML is an Apple framework and therefore only works on iOS and not on Android whereas ML Kit supports both.
 
 We modified the example to support changing between ML Kit and CoreML running the same MobileNet model.
 All the tests were made on an iPhone 7.
@@ -254,35 +256,37 @@ We also tried running the camera at 30 or 60 FPS, while enqueueing one or two fr
 ### Run time with simple buffering
 
 In this and the following test case we measured the time before invoking the run call and immediately after getting the result of the neural network.
-This means that other times like the time spent resizing the image are not included.
+This means that other times, such as the time spent resizing the image, are not included.
 Therefore it does not reflect the total amount of frames actually processed in one second.
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/fps_graph.png" alt="FPS comparison chart!" /></div>
 
 When we tried both models processing only one frame at any given time (and dropping frames when busy) we found that CoreML is slightly faster than ML Kit.
 CoreML takes an average of 30 ms to process each frame while ML Kit takes 32 ms.
-This difference comes because CoreML uses the GPU which ML Kit doesn't.
-With other models this difference could be bigger.
+This small difference comes because CoreML uses the GPU, which ML Kit doesn't.
+We would expect the difference to be bigger but we have noted that CoreML sometimes does not run as fast as other solutions which use Metal directly.
+With other models this difference could also be bigger.
+
 
 ### Double buffering
 
 When we allow up to two frames to be run at the same time we can see the per frame performance of these models change.
-In this test we show the results separately for when the camera is set to 30 or 60 FPS.
+In this test we show the results separately for the cases where the camera is set to 30 or 60 FPS.
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/two_frames.png" alt="FPS comparison chart!" /></div>
 
 This chart shows how much time it takes to process one frame.
 We see in this chart that CoreML takes 42 ms on average no matter if the camera runs at 30 or 60 FPS, which is to be expected as the heavy workload of the model is on the GPU.
-However when running it at 60 FPS we sometimes get periods where it only takes 33 ms to process a frame.
+However, when running it at 60 FPS, we sometimes get periods where it only takes 33 ms to process a frame.
 There is however also an increase in CPU usage, which we saw in the Xcode Debug window, which is related to the increased number of frames being handled and resized.
 
 On the other hand we see that with ML Kit there is a bigger difference between having the camera at 30 FPS or 60 FPS.
-If we run at 60 FPS then each frame takes longer to process as there is more overlapping between the process times of the frames and everything is done in the CPU.
+If we run at 60 FPS, then each frame takes longer to process as there is more overlapping between the process times of the frames, and because everything is done in the CPU.
 However it is to be noted that both end in the same number of processed frames per second.
 
 ### The real frames per second
 
-Here we compare how many frames the model really processes per second. This includes the time needed to resize the image frames from the camera as well as the time the GPU and CPU are idle in between frames.
+Here we compare the wall time, i.e. how many frames the model really processes per second. This includes the time needed to resize the image frames from the camera as well as the time the GPU and CPU are idle in between frames.
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/real_fps.png" alt="FPS comparison chart!" /></div>
 
