@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  ML Kit on iOS and how it performs against Core ML
-date:   2018-06-15 08:00:00
+date:   2018-06-21 08:00:00
 author: Mathias Claassen
 categories: ML Kit, Core ML, iOS
 author_id: mathias
@@ -21,14 +21,15 @@ But you can also easily deploy your own models and run them on iOS and Android w
 Another feature of ML Kit is that it lets you update your model on the fly, without recompiling your app. This is very helpful if you want to keep improving your model and update it frequently.
 
 A disadvantage of ML Kit is that it only supports TensorFlow Lite which on iOS has no GPU support up to now, which can affect the performance of your models.
-So, we decided to try it out and see how it really works. You can find [the code](...) used here with an example on GitHub.
+So, we decided to try it out and see how it really works. You can find [the code](https://github.com/xmartlabs/MLKitTest) used here with an example on GitHub.
 
 # Image Classification
 
 In this blog post we will focus on image classification, although you can do many other tasks using ML Kit.
 We will try to do something like this:
 
-<img src="/images/mlkit/demo.gif" width="220"/>
+<div style="text-align:center;margin-bottom:20px">
+<img src="/images/mlkit/demo.gif" width="220"/></div>
 
 Image classification models have improved considerably in recent years as neural networks have been used and constantly improved.
 One of the main image classification competitions is [ImageNet Large Scale Visual Recognition Competition (ILSVRC)](http://www.image-net.org/challenges/LSVRC/).
@@ -82,7 +83,7 @@ The view controller has a `videoView`, where we will show what the camera is rec
 
 We then create an image detector using `Vision` and specify a confidence treshold of 0.3 which means that we want all the predictions whose probability is at least 0.3 or 30%.
 
-Next, we have to connect the camera's output to our model. I will not show the code for the camera setup here but you can see it in the full [example code](...).
+Next, we have to connect the camera's output to our model. I will not show the code for the camera setup here but you can see it in the full [example code](https://github.com/xmartlabs/MLKitTest).
 What we have to add to our controller is a function that will be called for each camera frame.
 It will receive a `CMSampleBuffer`, run the model and display the results in the `resultLabel`:
 
@@ -309,4 +310,4 @@ We saw that it is quite easy to get set up with ML Kit on iOS and while it is st
 
 We saw that there was a small difference in performance between ML Kit and Core ML but it was not very big for this model (MobileNet). It is possible that for other models this difference might be bigger but it seems reasonable to use ML Kit if the real time performance is not critical.
 
-All the code is on this [GitHub repo](...)
+All the code is on this [GitHub repo](https://github.com/xmartlabs/MLKitTest)
