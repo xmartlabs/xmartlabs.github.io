@@ -127,7 +127,6 @@ override func viewDidLoad() {
     // Replace labelDetector = vision.labelDetector(options: options) with:
     let labelDetector = vision.cloudLabelDetector()
 }
-
 ```
 
 You can also specify how many predictions you want to get and if the Cloud API should use the latest model or the last stable model.
@@ -266,7 +265,9 @@ In this and the following test case we measured the time before invoking the run
 This means that other times, such as the time spent resizing the image, are not included.
 Therefore it does not reflect the total amount of frames actually processed in one second.
 
-<div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/fps_graph.png" alt="FPS comparison chart!" /></div>
+<div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/fps_graph.png" alt="FPS comparison chart!" /><br>
+<em>Inference time in milliseconds for each framework. Lower is better.</em>
+</div>
 
 When we tried both models processing only one frame at any given time (and dropping frames when busy) we found that Core ML is slightly faster than ML Kit.
 Core ML takes an average of 30 ms to process each frame while ML Kit takes 32 ms.
@@ -280,7 +281,10 @@ With other models this difference could also be bigger.
 When we allow up to two frames to be run at the same time we can see the per frame performance of these models change.
 In this test we show the results separately for the cases where the camera is set to 30 or 60 FPS.
 
-<div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/two_frames.png" alt="FPS comparison chart!" /></div>
+<div style="text-align:center;margin-bottom:20px">
+<img src="/images/mlkit/two_frames.png" alt="FPS comparison chart!" /><br>
+<em>This chart shows the inference time of the models in milliseconds per frame, so lower is better. It also compares different camera frame rates.</em>
+</div>
 
 This chart shows how much time it takes to process one frame.
 We see in this chart that Core ML takes 42 ms on average no matter if the camera runs at 30 or 60 FPS, which is to be expected as the heavy workload of the model is on the GPU.
@@ -295,14 +299,24 @@ However it is to be noted that both end in the same number of processed frames p
 
 Here we compare the wall time, i.e. how many frames the model really processes per second. This includes the time needed to resize the image frames from the camera as well as the time the GPU and CPU are idle in between frames.
 
-<div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/real_fps.png" alt="FPS comparison chart!" /></div>
+<div style="text-align:center;margin-bottom:20px">
+<img src="/images/mlkit/real_fps.png" alt="FPS comparison chart!" /><br>
+<em>FPS comparison by framework. Higher is better.</em>
+</div>
 
-> Note: These numbers are averages. We could get peaks of 48 FPS with Core ML.
+> Note: These numbers are averages. We had periods were Core ML ran at 48 FPS.
 
 We can see that it is beneficial to use double buffering as it increases overall performance for both ML Kit and Core ML as it leaves GPU and CPU with less idle time.
 
 Also we note a very small advantage for Core ML here.
 
+Another factor which might influence a decision between these two frameworks is the energy consumption.
+In the tests we made we could see a pretty that Core ML consumes more energy than ML Kit. You can see that in the following image, where Core ML is running during the first half and ML Kit during the second:
+
+<div style="text-align:center;margin-bottom:20px">
+<img src="/images/mlkit/energy.png" alt="Energy comparison chart" /><br>
+<em>Energy consumption while running inference. Core ML is run during the first half and ML Kit during the second. You can see how energy consumption is higher during the first half.</em>
+</div>
 
 # Conclusions
 
