@@ -266,7 +266,7 @@ This means that other times, such as the time spent resizing the image, are not 
 Therefore it does not reflect the total amount of frames actually processed in one second.
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/fps_graph.png" alt="FPS comparison chart!" /><br>
-<em>Inference time in milliseconds for each framework. Lower is better.</em>
+<em>Inference time in milliseconds for each framework model. Lower is better.</em>
 </div>
 
 When we tried both models processing only one frame at any given time (and dropping frames when busy) we found that Core ML is slightly faster than ML Kit.
@@ -311,7 +311,8 @@ We can see that it is beneficial to use double buffering as it increases overall
 Also we note a very small advantage for Core ML here.
 
 Another factor which might influence a decision between these two frameworks is the energy consumption.
-In the tests we made we could see a pretty that Core ML consumes more energy than ML Kit. You can see that in the following image, where Core ML is running during the first half and ML Kit during the second:
+In the tests we made, we could see that Core ML consumes more energy than ML Kit.
+You can see that in the following image, where Core ML is running during the first half and ML Kit during the second:
 
 <div style="text-align:center;margin-bottom:20px">
 <img src="/images/mlkit/energy.png" alt="Energy comparison chart" /><br>
