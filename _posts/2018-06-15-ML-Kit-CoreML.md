@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  ML Kit on iOS and how it performs against CoreML
+title:  ML Kit on iOS and how it performs against Core ML
 date:   2018-06-15 08:00:00
 author: Mathias Claassen
-categories: ML Kit, CoreML, iOS
+categories: ML Kit, Core ML, iOS
 author_id: mathias
 markdown: redcarpet
 
@@ -23,10 +23,10 @@ Another feature of ML Kit is that it lets you update your model on the fly, with
 A disadvantage of ML Kit is that it only supports TensorFlow Lite which on iOS has no GPU support up to now, which can affect the performance of your models.
 So, we decided to try it out and see how it really works. You can find [the code](...) used here with an example on GitHub.
 
-### Image Classification
+# Image Classification
 
 In this blog post we will focus on image classification, although you can do many other tasks using ML Kit.
-Will will try to do something like this:
+We will try to do something like this:
 
 <img src="/images/mlkit/demo.gif" width="220"/>
 
@@ -38,7 +38,7 @@ Some of the most successful convolutional neural networks are quite computationa
 We will run MobileNet on an iPhone in this post.
 
 
-## Running ML Kit on iOS
+# Running ML Kit on iOS
 
 To get started with ML Kit on iOS you need to have [Cocoapods](https://cocoapods.org/) installed and add the following lines to your Podfile:
 
@@ -247,19 +247,19 @@ We can now run the model and it will tell us what we are seeing at more or less 
 
 > It is crucial to set the input and output sizes of the model correctly. If not then the app will crash when running the model without telling you the reason and you are left wondering what the issue could be.
 
-The next step is to see how this performs if we change a few parameters and how it compares to CoreML, Apple's default machine learning framework.
+The next step is to see how this performs if we change a few parameters and how it compares to Core ML, Apple's default machine learning framework.
 
-## ML Kit vs CoreML
+# ML Kit vs Core ML
 
-CoreML has a few pros and cons when we compare it to ML Kit. First, it supports GPU which is a big advantage.
-On the other hand, it is much easier to update a ML Kit model on the fly than to update a CoreML model.
-Also, CoreML is an Apple framework and therefore only works on iOS and not on Android whereas ML Kit supports both.
+Core ML has a few pros and cons when we compare it to ML Kit. First, it supports GPU which is a big advantage.
+On the other hand, it is much easier to update a ML Kit model on the fly than to update a Core ML model.
+Also, Core ML is an Apple framework and therefore only works on iOS and not on Android whereas ML Kit supports both.
 
-We modified the example to support changing between ML Kit and CoreML running the same MobileNet model.
+We modified the example to support changing between ML Kit and Core ML running the same MobileNet model.
 All the tests were made on an iPhone 7.
 We also tried running the camera at 30 or 60 FPS, while enqueueing one or two frames at the same time, and compared the performance of both models.
 
-### Run time with simple buffering
+## Run time with simple buffering
 
 In this and the following test case we measured the time before invoking the run call and immediately after getting the result of the neural network.
 This means that other times, such as the time spent resizing the image, are not included.
@@ -267,14 +267,14 @@ Therefore it does not reflect the total amount of frames actually processed in o
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/fps_graph.png" alt="FPS comparison chart!" /></div>
 
-When we tried both models processing only one frame at any given time (and dropping frames when busy) we found that CoreML is slightly faster than ML Kit.
-CoreML takes an average of 30 ms to process each frame while ML Kit takes 32 ms.
+When we tried both models processing only one frame at any given time (and dropping frames when busy) we found that Core ML is slightly faster than ML Kit.
+Core ML takes an average of 30 ms to process each frame while ML Kit takes 32 ms.
 This small difference comes because Core ML uses the GPU, which ML Kit doesn't.
-We would expect the difference to be bigger but we have noted that CoreML sometimes does not run as fast as other solutions which use Metal directly.
+We would expect the difference to be bigger but we have noted that Core ML sometimes does not run as fast as other solutions which use Metal directly.
 With other models this difference could also be bigger.
 
 
-### Double buffering
+## Double buffering
 
 When we allow up to two frames to be run at the same time we can see the per frame performance of these models change.
 In this test we show the results separately for the cases where the camera is set to 30 or 60 FPS.
@@ -282,7 +282,7 @@ In this test we show the results separately for the cases where the camera is se
 <div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/two_frames.png" alt="FPS comparison chart!" /></div>
 
 This chart shows how much time it takes to process one frame.
-We see in this chart that CoreML takes 42 ms on average no matter if the camera runs at 30 or 60 FPS, which is to be expected as the heavy workload of the model is on the GPU.
+We see in this chart that Core ML takes 42 ms on average no matter if the camera runs at 30 or 60 FPS, which is to be expected as the heavy workload of the model is on the GPU.
 However, when running it at 60 FPS, we sometimes get periods where it only takes 33 ms to process a frame.
 There is however also an increase in CPU usage, which we saw in the Xcode Debug window, which is related to the increased number of frames being handled and resized.
 
@@ -290,23 +290,23 @@ On the other hand we see that with ML Kit there is a bigger difference between h
 If we run at 60 FPS, then each frame takes longer to process as there is more overlapping between the process times of the frames, and because everything is done in the CPU.
 However it is to be noted that both end in the same number of processed frames per second.
 
-### The real frames per second
+## The real frames per second
 
 Here we compare the wall time, i.e. how many frames the model really processes per second. This includes the time needed to resize the image frames from the camera as well as the time the GPU and CPU are idle in between frames.
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/real_fps.png" alt="FPS comparison chart!" /></div>
 
-> Note: These numbers are averages. We could get peaks of 48 FPS with CoreML.
+> Note: These numbers are averages. We could get peaks of 48 FPS with Core ML.
 
-We can see that it is beneficial to use double buffering as it increases overall performance for both ML Kit and CoreML as it leaves GPU and CPU with less idle time.
+We can see that it is beneficial to use double buffering as it increases overall performance for both ML Kit and Core ML as it leaves GPU and CPU with less idle time.
 
-Also we note a very small advantage for CoreML here.
+Also we note a very small advantage for Core ML here.
 
 
-## Conclusions
+# Conclusions
 
 We saw that it is quite easy to get set up with ML Kit on iOS and while it is still in Beta and there are some green parts like the error handling, it is very helpful if you want to add machine learning to your apps on iOS and Android. It is also very helpful that it comes with some models out of the box.
 
-We saw that there was a small difference in performance between ML Kit and CoreML but it was not very big for this model (MobileNet). It is possible that for other models this difference might be bigger but it seems reasonable to use ML Kit if the real time performance is not critical.
+We saw that there was a small difference in performance between ML Kit and Core ML but it was not very big for this model (MobileNet). It is possible that for other models this difference might be bigger but it seems reasonable to use ML Kit if the real time performance is not critical.
 
 All the code is on this [GitHub repo](...)
