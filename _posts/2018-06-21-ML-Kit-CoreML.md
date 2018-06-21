@@ -243,7 +243,7 @@ func run(buffer: CMSampleBuffer?) {
     }
 ```
 
-We can now run the model and it will tell us what we are seeing at more or less 30 FPS.
+We can now run the model and it will tell us what we are seeing at more or less 30 frames per second (FPS).
 
 > It is crucial to set the input and output sizes of the model correctly. If not then the app will crash when running the model without telling you the reason and you are left wondering what the issue could be.
 
