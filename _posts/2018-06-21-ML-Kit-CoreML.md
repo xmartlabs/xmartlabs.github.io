@@ -10,10 +10,10 @@ markdown: redcarpet
 ---
 
 At Xmartlabs we have been working on Machine Learning tasks for a while now.
-Our main focus has been Machine Learning on iOS and we have worked on apps running style transfer, human body pose detection and classifying ultrasound signals from medical devices.
+Our main focus has been Machine Learning on iOS and we have worked on apps running style transfer, human body pose detection and classifying ultrasound signals from medical devices, to name some examples.
 We started developing [Bender](https://github.com/xmartlabs/Bender) over a year ago, which is a framework we have used to run neural network models fast on iOS.
-When Apple released Core ML, which is also a framework to run ML models on iOS, and it validated our path so far, and we excitedly got deep into it.
-Now, we also build [Litio](https://litio.ai/), a platform where you can convert your ML models and get a framework ready to be run on a mobile app.
+When Apple released Core ML, which is also a framework to run ML models on iOS, it validated our path so far, and we excitedly got deep into it.
+Now, we have also built [Litio](https://litio.ai/), a platform where you can convert your ML models and get a framework ready to be run on a mobile app.
 Google released [ML Kit](https://firebase.google.com/docs/ml-kit/) last month at its I/O 2018, and its purpose is very similar to the one of Litio: facilitating the deployment to mobile.
 This is why we wrote this post, trying out ML Kit on iOS :)
 
@@ -331,4 +331,5 @@ We saw that it is quite easy to get set up with ML Kit on iOS and while it is st
 
 We saw that there was a small difference in performance between ML Kit and Core ML, which did not significantly impact this model (MobileNet). It is possible that for other models this difference might be more significant but it seems reasonable to use ML Kit if the real time performance is not critical.
 
-All the code is on this [GitHub repo](https://github.com/xmartlabs/MLKitTest)
+All the code for this post is on this [GitHub repo](https://github.com/xmartlabs/MLKitTest).
+If you have any questions or comments, or need help with a project, don't hesitate to contact us!
