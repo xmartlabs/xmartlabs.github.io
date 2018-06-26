@@ -9,12 +9,21 @@ markdown: redcarpet
 
 ---
 
+At Xmartlabs we have been closely involved in the nascent field of on-device Machine Learning.
+Our main focus has been Machine Learning on iOS and we have been exploring different use cases including style-transfer, human body pose detection and medical imaging classification.
+Not only we have built some ~cool~ [almost magical apps](https://itunes.apple.com/us/app/envision-artistic-filters/id1251483734?mt=8), but we have also rolled our sleeves up to create first of its kind development tools: we released [Bender](https://github.com/xmartlabs/Bender) a few days before WWDC 17, and launched [Litio.ai](https://litio.ai/) earlier this year.
 
-Google released [ML Kit](https://firebase.google.com/docs/ml-kit/), which is part of Firebase, last month at its I/O 2018.
-ML Kit allows developers to run machine learning models both on Android and iOS using TensorFlow Lite as framework.
+[Bender](https://github.com/xmartlabs/Bender) is an open source iOS framework built on top of Metal that allows developers to run ML models with unmatched flexibility and performance.
+[Litio.ai](https://litio.ai/) brings the power of Bender to the masses by providing a higher level, cross-platform solution for on-device Machine Learning.
+
+Unsurprisingly, Apple and Google have joined the party as well. In this blog post we will introduce and compare their offerings by going through an example project that you can follow step-by-step.
+Apple introduced CoreML, an on-device ML framework for iOS, during WWDC17. It has recently announced an upgrade in the latest edition of their annual developer's conference.
+Google released [ML Kit](https://firebase.google.com/docs/ml-kit/) last month at its I/O 2018, a high-level solution for cross-platform ML deployment.
+
+ML Kit, which is part of Firebase, allows developers to run machine learning models both on Android and iOS using TensorFlow Lite as framework.
 It includes Machine Learning models for common use cases like recognizing text, detecting faces, labeling images and more.
-You can use these models out of the box without knowing anything about machine learning, which is cool.
-For some of these models you can also choose to run them on the device, for more privacy and speed, or in the cloud for more accuracy.
+You can use these models out of the box, no Machine Learning background required.
+For some of these models you can also choose to run them on the device, for more privacy and speed, or in the cloud for higher accuracy.
 The others will either run only on the device or in the cloud.
 But you can also easily deploy your own models and run them on iOS and Android without worrying about the specific formats and implementations for each one of them.
 
@@ -53,7 +62,7 @@ pod 'Firebase/MLVisionLabelModel'
 
 Then run `pod install` to install these dependencies.
 
-You can then start using one of ML Kit's default models. We will use the image labelling model.
+You can then start using one of ML Kit's default models. We will use the image labeling model.
 For this purpose, we create a `UIViewController` as follows:
 
 ```swift
@@ -81,7 +90,7 @@ class ViewController: UIViewController {
 
 The view controller has a `videoView`, where we will show what the camera is recording, and a `resultsLabel` which will show the predictions.
 
-We then create an image detector using `Vision` and specify a confidence treshold of 0.3 which means that we want all the predictions whose probability is at least 0.3 or 30%.
+We then create an image detector using `Vision` and specify a confidence threshold of 0.3 which means that we want all the predictions whose probability is at least 0.3 or 30%.
 
 Next, we have to connect the camera's output to our model. I will not show the code for the camera setup here but you can see it in the full [example code](https://github.com/xmartlabs/MLKitTest).
 What we have to add to our controller is a function that will be called for each camera frame.
@@ -118,7 +127,7 @@ It will use the on-device model which is faster and does not depend on the inter
 If you want to use the cloud model, you first need to upgrade your Firebase project to a Blaze plan (pay as you go) and enable the Cloud Vision API.
 The first 1000 requests per task are free but if your app surpasses that amount you will have to pay.
 
-Then, in your code it is enough to change the labelDetector we created in `viewDidLoad`:
+Then, in your code it is enough to change the `labelDetector` we created in `viewDidLoad`:
 
 ```swift
 override func viewDidLoad() {
@@ -245,7 +254,7 @@ func run(buffer: CMSampleBuffer?) {
 
 We can now run the model and it will tell us what we are seeing at more or less 30 frames per second (FPS).
 
-> It is crucial to set the input and output sizes of the model correctly. If not then the app will crash when running the model without telling you the reason and you are left wondering what the issue could be.
+> It is crucial to set the input and output sizes of the model correctly. If not then the app will crash when running the model without telling you the reason.
 
 The next step is to see how this performs if we change a few parameters and how it compares to Core ML, Apple's default machine learning framework.
 
@@ -262,14 +271,14 @@ We also tried running the camera at 30 or 60 FPS, while enqueueing one or two fr
 ## Run time with simple buffering
 
 In this and the following test case we measured the time before invoking the run call and immediately after getting the result of the neural network.
-This means that other times, such as the time spent resizing the image, are not included.
+This means that other times, such as the time spent resizing the image, were not included.
 Therefore it does not reflect the total amount of frames actually processed in one second.
 
 <div style="text-align:center;margin-bottom:20px"><img src="/images/mlkit/fps_graph.png" alt="FPS comparison chart!" /><br>
 <em>Inference time in milliseconds for each framework model. Lower is better.</em>
 </div>
 
-When we tried both models processing only one frame at any given time (and dropping frames when busy) we found that Core ML is slightly faster than ML Kit.
+We tried processing only one frame at any given time (and dropping frames when busy) with both models and found Core ML slightly faster than ML Kit.
 Core ML takes an average of 30 ms to process each frame while ML Kit takes 32 ms.
 This small difference comes because Core ML uses the GPU, which ML Kit doesn't.
 We would expect the difference to be bigger but we have noted that Core ML sometimes does not run as fast as other solutions which use Metal directly.
@@ -306,7 +315,7 @@ Here we compare the wall time, i.e. how many frames the model really processes p
 
 > Note: These numbers are averages. We had periods were Core ML ran at 48 FPS.
 
-We can see that it is beneficial to use double buffering as it increases overall performance for both ML Kit and Core ML as it leaves GPU and CPU with less idle time.
+We can see that it is beneficial to use double buffering as it increases overall performance for both ML Kit and Core ML as it leaves the GPU and CPU with less idle time.
 
 Also we note a very small advantage for Core ML here.
 
@@ -321,8 +330,9 @@ You can see that in the following image, where Core ML is running during the fir
 
 # Conclusions
 
-We saw that it is quite easy to get set up with ML Kit on iOS and while it is still in Beta and there are some green parts like the error handling, it is very helpful if you want to add machine learning to your apps on iOS and Android. It is also very helpful that it comes with some models out of the box.
+We saw that it is quite easy to get set up with ML Kit on iOS and while it is still in Beta, and there are some green parts like the error handling, it is very helpful if you want to add machine learning to your apps on iOS and Android. It is also very helpful that it comes with some models out of the box.
 
-We saw that there was a small difference in performance between ML Kit and Core ML but it was not very big for this model (MobileNet). It is possible that for other models this difference might be bigger but it seems reasonable to use ML Kit if the real time performance is not critical.
+We saw that there was a small difference in performance between ML Kit and Core ML, which did not significantly impact this model (MobileNet). It is possible that for other models this difference might be more significant but it seems reasonable to use ML Kit if the real time performance is not critical.
 
-All the code is on this [GitHub repo](https://github.com/xmartlabs/MLKitTest)
+All the code for this post can be found on [GitHub](https://github.com/xmartlabs/MLKitTest).
+If you have any comment or question, or need help implementing a breakthrough use case of on-device Machine Learning, don't hesitate to [contact us](https://xmartlabs.com/contact)!
