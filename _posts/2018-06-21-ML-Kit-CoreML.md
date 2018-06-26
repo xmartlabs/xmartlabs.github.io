@@ -11,7 +11,7 @@ markdown: redcarpet
 
 At Xmartlabs we have been closely involved in the nascent field of on-device Machine Learning.
 Our main focus has been Machine Learning on iOS and we have been exploring different use cases including style-transfer, human body pose detection and medical imaging classification.
-Not only we have built some ~cool~ [almost magical apps](https://itunes.apple.com/us/app/envision-artistic-filters/id1251483734?mt=8), but we have also rolled our sleeves up to create first of its kind development tools: we released [Bender](https://github.com/xmartlabs/Bender) a few days before WWDC 17, and launched [Litio.ai](https://litio.ai/) earlier this year.
+Not only have we built some ~~cool~~ [almost magical apps](https://itunes.apple.com/us/app/envision-artistic-filters/id1251483734?mt=8), but we have also rolled our sleeves up to create first of its kind development tools: we released [Bender](https://github.com/xmartlabs/Bender) a few days before WWDC 17, and launched [Litio.ai](https://litio.ai/) earlier this year.
 
 [Bender](https://github.com/xmartlabs/Bender) is an open source iOS framework built on top of Metal that allows developers to run ML models with unmatched flexibility and performance.
 [Litio.ai](https://litio.ai/) brings the power of Bender to the masses by providing a higher level, cross-platform solution for on-device Machine Learning.
