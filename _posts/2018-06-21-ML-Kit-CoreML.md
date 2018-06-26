@@ -9,18 +9,21 @@ markdown: redcarpet
 
 ---
 
-At Xmartlabs we have been working on Machine Learning tasks for a while now.
-Our main focus has been Machine Learning on iOS and we have worked on apps running style transfer, human body pose detection and classifying ultrasound signals from medical devices, to name some examples.
-We started developing [Bender](https://github.com/xmartlabs/Bender) over a year ago, which is a framework we have used to run neural network models fast on iOS.
-When Apple released Core ML, which is also a framework to run ML models on iOS, it validated our path so far, and we excitedly got deep into it.
-Now, we have also built [Litio](https://litio.ai/), a platform where you can convert your ML models and get a framework ready to be run on a mobile app.
-Google released [ML Kit](https://firebase.google.com/docs/ml-kit/) last month at its I/O 2018, and its purpose is very similar to the one of Litio: facilitating the deployment to mobile.
-This is why we wrote this post, trying out ML Kit on iOS :)
+At Xmartlabs we have been closely involved in the nascent field of on-device Machine Learning.
+Our main focus has been Machine Learning on iOS and we have been exploring different use cases including style-transfer, human body pose detection and medical imaging classification.
+Not only we have built some ~cool~ [almost magical apps](https://itunes.apple.com/us/app/envision-artistic-filters/id1251483734?mt=8), but we have also rolled our sleeves up to create first of its kind development tools: we released [Bender](https://github.com/xmartlabs/Bender) a few days before WWDC 17, and launched [Litio.ai](https://litio.ai/) earlier this year.
+
+[Bender](https://github.com/xmartlabs/Bender) is an open source iOS framework built on top of Metal that allows developers to run ML models with unmatched flexibility and performance.
+[Litio.ai](https://litio.ai/) brings the power of Bender to the masses by providing a higher level, cross-platform solution for on-device Machine Learning.
+
+Unsurprisingly, Apple and Google have joined the party as well. In this blog post we will introduce and compare their offerings by going through an example project that you can follow step-by-step.
+Apple introduced CoreML, an on-device ML framework for iOS, during WWDC17. It has recently announced an upgrade in the latest edition of their annual developer's conference.
+Google released [ML Kit](https://firebase.google.com/docs/ml-kit/) last month at its I/O 2018, a high-level solution for cross-platform ML deployment.
 
 ML Kit, which is part of Firebase, allows developers to run machine learning models both on Android and iOS using TensorFlow Lite as framework.
 It includes Machine Learning models for common use cases like recognizing text, detecting faces, labeling images and more.
-You can use these models out of the box without knowing anything about machine learning, which is cool.
-For some of these models you can also choose to run them on the device, for more privacy and speed, or in the cloud for more accuracy.
+You can use these models out of the box, no Machine Learning background required.
+For some of these models you can also choose to run them on the device, for more privacy and speed, or in the cloud for higher accuracy.
 The others will either run only on the device or in the cloud.
 But you can also easily deploy your own models and run them on iOS and Android without worrying about the specific formats and implementations for each one of them.
 
@@ -331,5 +334,5 @@ We saw that it is quite easy to get set up with ML Kit on iOS and while it is st
 
 We saw that there was a small difference in performance between ML Kit and Core ML, which did not significantly impact this model (MobileNet). It is possible that for other models this difference might be more significant but it seems reasonable to use ML Kit if the real time performance is not critical.
 
-All the code for this post is on this [GitHub repo](https://github.com/xmartlabs/MLKitTest).
-If you have any questions or comments, or need help with a project, don't hesitate to contact us!
+All the code for this post can be found on [GitHub](https://github.com/xmartlabs/MLKitTest).
+If you have any comment or question, or need help implementing a breakthrough use case of on-device Machine Learning, don't hesitate to [contact us](https://xmartlabs.com/contact)!
