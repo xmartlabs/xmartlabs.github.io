@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Android paging for Mortals - Introducing Fountain Part One
+title: Introducing Fountain Part One
 date: 2018-04-02 09:00:00
 author: Matías Irland
 categories: Android, Android Jetpack, Android Paging Library, Live Data, Android Architecture Components, RxJava, Retrofit, Fountain
@@ -11,20 +11,20 @@ author_id: mirland
 There are plenty of articles out there talking about the amazing Android Architecture Components, how we can combine them in an MVVM architecture and make them work as a charm.
 From my point of view, that's true, the **Android Architecture Components are awesome!**
 
-There's also a ton of articles talking about the new [Android Paging Library](https://developer.android.com/topic/libraries/architecture/paging/) and how we can combine it with [Room](https://developer.android.com/topic/libraries/architecture/room) and [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) to make paging as easy as possible.
+There's also a ton of articles talking about the new [Android Paging Library] and how we can combine it with [Room Persistence Library] and [LiveData] to make paging as easy as possible.
  that you are already familiar with the topic :)
 
 So I don't want to write about the new Android Components or how we should use them.
-Today I want to tell you how we can **integrate a numerated paged service**, to the best of my knowledge, **using** the new **[Fountain](https://github.com/xmartlabs/fountain) library.**
+Today I want to tell you how we can **integrate a numerated paged service**, to the best of my knowledge, **using** the new **[Fountain] library.**
 A numerated paged service is an endpoint which returns a list of entities structured in pages with sequential page numbers.  
 
 To read this post, you should already know the Repository Architectural Pattern and the basics of these libraries:
-- [Retrofit](http://square.github.io/retrofit/)
-- [Rxjava](https://github.com/ReactiveX/RxJava)
-- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/)
-	- [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
-	- [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room)
-	- [Android Paging Library](https://developer.android.com/topic/libraries/architecture/paging/)
+- [Retrofit]
+- [Rxjava]
+- [Android Architecture Components]
+	- [LiveData]
+	- [Room Persistence Library]
+	- [Android Paging Library]
 
 Let's get down to the nitty-gritty!
 
@@ -42,7 +42,7 @@ data class Listing<T>(
 )
 ```
 
-1. **pagedList:** A changing data stream of type `T` represented as a [`LiveData`](https://developer.android.com/topic/libraries/architecture/livedata) of a [`PagedList`](https://developer.android.com/reference/android/arch/paging/PagedList).
+1. **pagedList:** A changing data stream of type `T` represented as a [`LiveData`] of a [`PagedList`].
 1. **networkState:** A stream that notifies network state changes, such as when a new page started loading (so you can show a spinner in the UI).
 1. **refresh:** A refresh function, to refresh all data.
 1. **refreshState:** A stream that notifies the status of the refresh request.
@@ -105,14 +105,14 @@ However, saving data in a database source has some advantages.
 For example, you can make your app work offline, make less use of the backend, hide network problems, manage data better and share entities easier.
 
 Personally, I prefer taking the cache way, but I know that it depends on the problem.
-In this post we will explore both strategies using **[Fountain](https://github.com/xmartlabs/fountain)**. 
+In this post we will explore both strategies using **[Fountain]**. 
 
 # Fountain
-[Fountain](https://github.com/xmartlabs/fountain) is an **Android Kotlin library** conceived to make your life easier when dealing with paged endpoint services, where the paging is based on incremental page numbers (e.g. 1, 2, 3, ...).
+[Fountain] is an **Android Kotlin library** conceived to make your life easier when dealing with paged endpoint services, where the paging is based on incremental page numbers (e.g. 1, 2, 3, ...).
 
 The features are:
 - **Network:** Provide a `Listing` structure based on a Retrofit and RxJava service.
-- **Network + Cache:** Provide a `Listing` structure with cache support using Retrofit and RxJava for the service layer and a [`DataSource`](https://developer.android.com/reference/android/arch/paging/DataSource) for caching the data. In the examples we will use [Room](https://developer.android.com/topic/libraries/architecture/room) to provide the `DataSource` but you could use any other `DataSource`.
+- **Network + Cache:** Provide a `Listing` structure with cache support using Retrofit and RxJava for the service layer and a [`DataSource`] for caching the data. In the examples we will use [Room Persistence Library] to provide the [`DataSource`] but you could use any other [`DataSource`].
 
 In this first part of the series we'll see how we can integrate the first functionality.
 The second one will be explained in the next part.
@@ -240,6 +240,8 @@ In this object you can specify several options, for example the `pageSize` and t
 
 In the next part we'll see how we could get a `Listing` component which uses a `DataSource` cache to store the data.
 
+Example code can be found in the [sample app](https://github.com/xmartlabs/fountain/tree/master/app).
+
 ### Conclusion
 The `Listing` component is the key of the library.
 It provides an awesome way of displaying the paged entity list and reflecting the network state in the UI.
@@ -253,3 +255,15 @@ The strategy you choose will depend on your problem.
 
 I suggest you give it a shot.
 We'll be glad if you provide feedback :)
+
+[`DataSource`]: https://developer.android.com/reference/android/arch/paging/DataSource
+[`LiveData`]: https://developer.android.com/topic/libraries/architecture/livedata
+[`PagedList`]: https://developer.android.com/reference/android/arch/paging/PagedList
+[Android Architecture Components]: https://developer.android.com/topic/libraries/architecture/
+[Android Paging Library]: https://developer.android.com/topic/libraries/architecture/paging/
+[Fountain]: https://github.com/xmartlabs/fountain
+[LiveData]: https://developer.android.com/topic/libraries/architecture/livedata
+[LiveData]: https://developer.android.com/topic/libraries/architecture/livedata
+[Retrofit]: http://square.github.io/retrofit/
+[Room Persistence Library]: https://developer.android.com/topic/libraries/architecture/room
+[Rxjava]: https://github.com/ReactiveX/RxJava
