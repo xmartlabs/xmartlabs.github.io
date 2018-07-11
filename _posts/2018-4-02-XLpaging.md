@@ -3,22 +3,22 @@ layout: post
 title: Android paging for Mortals - Introducing Fountain Part One
 date: 2018-04-02 09:00:00
 author: Matías Irland
-categories: Android, Android Jetpack,Android Paging Library,Live Data, Android Architecture Components,RxJava,Retrofit,Fountain
+categories: Android, Android Jetpack, Android Paging Library, Live Data, Android Architecture Components, RxJava, Retrofit, Fountain
 author_id: mirland
 
 ---
 
-There're tons of articles out there talking about the amazing Android Architecture Components, talking about how we can combine them in an MVVM architecture and make them work as a charm.
+There are plenty of articles out there talking about the amazing Android Architecture Components, how we can combine them in an MVVM architecture and make them work as a charm.
 From my point of view, that's true, the **Android Architecture Components are awesome!**
 
-There is another ton of articles talking about the new [Android Paging Library](https://developer.android.com/topic/libraries/architecture/paging/) and how we can combine it with [Room](https://developer.android.com/topic/libraries/architecture/room) and [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) to make the paging as easier as possible.
-I suppose you are already familiar with the topic :)
+There's also a ton of articles talking about the new [Android Paging Library](https://developer.android.com/topic/libraries/architecture/paging/) and how we can combine it with [Room](https://developer.android.com/topic/libraries/architecture/room) and [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) to make paging as easy as possible.
+ that you are already familiar with the topic :)
 
 So I don't want to write about the new Android Components or how we should use them.
-Today I want to tell you, how we can **integrate a numerated paged service**, to the best of my knowledge, **using** the new **[Fountain](https://github.com/xmartlabs/fountain) library.**
+Today I want to tell you how we can **integrate a numerated paged service**, to the best of my knowledge, **using** the new **[Fountain](https://github.com/xmartlabs/fountain) library.**
 A numerated paged service is an endpoint which returns a list of entities structured in pages with sequential page numbers.  
 
-To read this post, you should already know the Repository Architectural Pattern and the basic things of these libraries:
+To read this post, you should already know the Repository Architectural Pattern and the basics of these libraries:
 - [Retrofit](http://square.github.io/retrofit/)
 - [Rxjava](https://github.com/ReactiveX/RxJava)
 - [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/)
@@ -43,7 +43,7 @@ data class Listing<T>(
 ```
 
 1. **pagedList:** A changing data stream of type `T` represented as a [`LiveData`](https://developer.android.com/topic/libraries/architecture/livedata) of a [`PagedList`](https://developer.android.com/reference/android/arch/paging/PagedList).
-1. **networkState:** A stream that notifies network state changes, such as when a new page started loading (and hence you can show a spinner in the UI).
+1. **networkState:** A stream that notifies network state changes, such as when a new page started loading (so you can show a spinner in the UI).
 1. **refresh:** A refresh function, to refresh all data.
 1. **refreshState:** A stream that notifies the status of the refresh request.
 1. **retry:** A retry function to execute if something failed.
@@ -95,10 +95,10 @@ fun searchUsers(@Query("q") name: String,
 ): Single<GhListResponse<User>>
 ```
 
-This service is pretty similar to most paged services I've seen, so the big question here is how we could integrate this service in a repository using the new Paging Component.
-Furthermore, the question could be how we could convert the `Single<GhListResponse<User>>` response in a `Listing<User>` structure.
+This service is pretty similar to most paged services I've seen, so the big question here is how we can integrate this service in a repository using the new Paging Component.
+Furthermore, the question could be how we could convert the `Single<GhListResponse<User>>` response to a `Listing<User>` structure.
 
-The first thing that we should consider, is **to decide if we need a database source to cache the data**.
+The first thing that we should consider, is **deciding if we need a database source to cache the data**.
 It could seem easy, but it's not.
 Some people could say that if we want to search entities by a key, a database cache isn't the best option because the response may change constantly and frequently, and at the same time the app user doesn't repeat the same search query multiple times.
 However, saving data in a database source has some advantages.
@@ -114,7 +114,7 @@ The features are:
 - **Network:** Provide a `Listing` structure based on a Retrofit and RxJava service.
 - **Network + Cache:** Provide a `Listing` structure with cache support using Retrofit and RxJava for the service layer and a [`DataSource`](https://developer.android.com/reference/android/arch/paging/DataSource) for caching the data. In the examples we will use [Room](https://developer.android.com/topic/libraries/architecture/room) to provide the `DataSource` but you could use any other `DataSource`.
 
-In this part of the series we'll see how we can integrate the first functionality.
+In this first part of the series we'll see how we can integrate the first functionality.
 The second one will be explained in the next part.
 
 ## Fountain Network Support
@@ -138,11 +138,11 @@ This method must return a `Single<out T>`, where `T` can be anything.
 1. A method to **check** if a page can be fetched.
 For example, if you know that the server has only 3 pages of 10 items each, and the library invokes `canFetch(page = 5, pageSize = 10)` then you should return `false`.
 You have to implement this function using the service specification.
-Sometimes the service returns the page amount or the entity amount in the response headers or in the response body, so you have to use that information to implement this function.
+Sometimes the service returns the page amount or the entity amount in the response headers or in the response body, so you'll have to use that information to implement this function.
 However, if you know exactly the page or entity count, the library provides a way to make this work easier.
 I will show that later.
 
-To use the **Fountain Network support**, you have to implement just a `NetworkDataSourceAdapter<ListResponse<T>>`, where the `ListResponse<T>` is how the library expects the service response.
+To use the **Fountain Network support**, you just have to implement a `NetworkDataSourceAdapter<ListResponse<T>>`, where the `ListResponse<T>` is how the library expects the service response.
 
 ```kotlin
 interface ListResponse<T> {
@@ -224,8 +224,8 @@ val networkDataSourceAdapter =
     NetworkDataSourceWithTotalEntityCountAdapter(pageFetcher)
 ```
 
-Recall that at the beginning I said that the only required thing to create a `Listing` structure using the **Fountain Network support** is a `NetworkDataSourceAdapter`.
-So we can invoke the listing creator in this way:
+Recall that at the beginning I said that the only required thing to create a `Listing` structure using the **Fountain Network support** was a `NetworkDataSourceAdapter`.
+So we can invoke the listing creator this way:
 
 ```kotlin
 Fountain.createNetworkListing(networkDataSourceAdapter)
@@ -238,7 +238,7 @@ In addition, there are some optional parameters that you can define when you are
 - `pagedListConfig: PagedList.Config` : The paged list configuration.
 In this object you can specify several options, for example the `pageSize` and the `initialPageSize`. 
 
-In the next part we'll see how we could get a `Listing` component which uses a cache `DataSource` to store the data.
+In the next part we'll see how we could get a `Listing` component which uses a `DataSource` cache to store the data.
 
 ### Conclusion
 The `Listing` component is the key of the library.
@@ -246,10 +246,10 @@ It provides an awesome way of displaying the paged entity list and reflecting th
 If you have this component implemented, you can create an MVVM architecture app and combine it with the repository pattern.
 If you get a repository which provides a `Listing` component of each paged list, you will be creating a robuster app.
 
-**Fountain** provides you a way to create a `Listing` component easily for a common paged service type, which are the services where the paginated strategy is based on an incremental page number.
+**Fountain** provides a way to create a `Listing` component easily for a common paged service type, which are the services where the paginated strategy is based on an incremental page number.
 
 It also provides two ways to go: a mode with **network** support and a mode with **network + cache** support. 
 The strategy you choose will depend on your problem. 
 
-I suggest you to give it a try.
+I suggest you give it a shot.
 We'll be glad if you provide feedback :)
