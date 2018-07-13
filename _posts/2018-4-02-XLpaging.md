@@ -12,7 +12,7 @@ There are plenty of articles out there talking about the amazing Android Archite
 From my point of view, that's true, the **Android Architecture Components are awesome!**
 
 There's also a ton of articles talking about the new [Android Paging Library] and how we can combine it with [Room Persistence Library] and [LiveData] to make paging as easy as possible.
- that you are already familiar with the topic :)
+I suppose that you are already familiar with the topic :)
 
 So I don't want to write about the new Android Components or how we should use them.
 Today I want to tell you how we can **integrate a numerated paged service**, to the best of my knowledge, **using** the new **[Fountain] library.**
@@ -26,7 +26,7 @@ To read this post, you should already know the Repository Architectural Pattern 
 	- [Room Persistence Library]
 	- [Android Paging Library]
 
-Let's get down to the nitty-gritty!
+Let's get down to the nitty-gritty stuff!
 
 # Listing Component
 First I want to tell you about a cool idea from Google, that they are using in some of their [example projects](https://github.com/googlesamples/android-architecture) to handle all services that return a list.
@@ -104,7 +104,7 @@ Some people could say that if we want to search entities by a key, a database ca
 However, saving data in a database source has some advantages.
 For example, you can make your app work offline, make less use of the backend, hide network problems, manage data better and share entities easier.
 
-Personally, I prefer taking the cache way, but I know that it depends on the problem.
+Personally, I prefer taking the cache approach, but I know that it depends on the problem.
 In this post we will explore both strategies using **[Fountain]**. 
 
 # Fountain
