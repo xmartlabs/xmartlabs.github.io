@@ -3,15 +3,15 @@ layout: post
 title: Android paging for Mortals - Introducing Fountain Part Two
 date: 2018-04-02 09:00:00
 author: Matías Irland
-categories: Android, Android Jetpack,Android Paging Library,Live Data, Android Architecture Components,RxJava,Retrofit,Fountain
+categories: Android, Android Jetpack, Android Paging Library, Live Data, Android Architecture Components, RxJava, Retrofit, Fountain
 author_id: mirland
 
 ---
 
-In the [previous part]() we've presented **Fountain** and we shown a way, using the `Listing` component, to make the paginated as cool and simple as possible.
-In that post we explained the first way of the library, the **Fountain Network support** mode, which provides a way to convert a common numerated paged service in `Listing` component.
-The `Listing` component, it's a really useful structure to display the paged list entities and reflect the network status changes in the UI.
-It contains a `LiveData<PagedList<T>>` element, which is provided by the new [Android Paging Library](https://developer.android.com/topic/libraries/architecture/paging/), so we can use all features of the new [PagedListAdapter](https://developer.android.com/reference/android/arch/paging/PagedListAdapter) in a simple way.
+In the [previous part]() we've presented **[Fountain]** and shown a way, using the `Listing` component, to make the paging as cool and simple as possible.
+In that post we explained the first feature of the library, the **Fountain Network support** mode, which provides a way to convert a common numerated paged service in `Listing` component.
+The `Listing` component is a really useful structure to display the paged list entities and reflect the network status changes in the UI.
+It contains a `LiveData<PagedList<T>>` element, which is provided by the new [Android Paging Library], so we can use all of the features offered by the [PagedListAdapter] in a simple way.
 Yes that's awesome, but it has a problem, in that example, the entities aren't saved anywhere.
 So if we want to display multiple times the same entities, we have to wait for them to load each time. 
 
@@ -21,42 +21,42 @@ In this post we'll see how we can use the second feature of the library: a `List
 # Fountain Cache + Network support
 We've seen how we could implement a `Listing` structure using the [**Fountain network support** library](https://github.com/xmartlabs/fountain).
 However, in that example we had only one source, so how could we manage multiple sources?
-How could we combine a database cache source with a paged service source?
+How can we combine a database cache source with a paged service source?
 There are some paged services that make our life a bit easier.
-For instance, if you are using a service API like Reddit, you don't have the page number concept, you have the concept of the page before and page after of something.
+For instance, if you are using a service API like Reddit, you don't have the page number concept, you have the concept of the page before and the page after something.
 Suppose that you are listing the hottest posts associated to a subreddit (like in [one of Google's examples](https://github.com/googlesamples/android-architecture-components/tree/master/PagingWithNetworkSample)) and then, given a specific post, the API enables you to get the next and the previous page of that post.
-That's great, suppose that the post order cannot change, so using that, we could save in database all posts and in somewhere which is the newest and the oldest post.
+That's great, suppose that the post order cannot change, so using that, we could save in the database all of the posts and which is the newest and the oldest one.
 Then we could use that to get the page after and before them, and make the paged stuff easy.
 
-That's cool, but what happened if our service API use only an incremental page number strategy to implement the paging stuff?
+That's cool, but what happens if our service API uses only an incremental page number strategy to implement the paging stuff?
 Suppose that we have an incremental paged service, like the Github example presented in the previous post and we want to save the responses in a database source.
 That's hard, we could save the item position and the page number, but if an item is added all pages are updated, so that's not a good idea.
-In this post I'll show you how we can use the **XlPaging** library to make it work.
+In this post I'll show you how we can use the **[Fountain]** library to make it work.
 
 
 ## Paging strategy
-In order to make the pagination strategy works, **Fountain** needs basically three required components:
+In order to make the pagination strategy work, **Fountain** needs three components:
 1. A `PageHandler` to fetch all pages.
-This component was presented in the previous post, it's a structure which contain all required operations to manage the pagination of a paged service, where the paginated strategy is based on an incremental page number.
-1. A [`DataSource.Factory<*, Value>`](https://developer.android.com/reference/android/arch/paging/DataSource.Factory) to setup the [`LivePagedListBuilder`](https://developer.android.com/reference/android/arch/paging/LivePagedListBuilder) of the [Android Paging Library](https://developer.android.com/topic/libraries/architecture/paging/) and get a `LiveData<PagedList<Value>>`.
-Doing that in this way, if the `DataSource`  suffer any change, the `LiveData` object will notify that a change has happened.
-1. A `DataSourceEntityHandler` to be able to update the `DataSource`.
+This component was presented in the previous post, it's a structure which contains all required operations to manage the pagination of a paged service, where the strategy is based on an incremental page number.
+1. A [`DataSource.Factory<*, Value>`] to setup the [`LivePagedListBuilder`] of the [Android Paging Library] and get a `LiveData<PagedList<Value>>`.
+Doing that in this way, if the [`DataSource`] suffers any changes, the [`LiveData`] object will notify that a change has happened.
+1. A `DataSourceEntityHandler` to be able to update the [`DataSource`].
 It's very useful because it's the interface that the library will use to take control of the `DataSource`.
 
 
-The pagination strategy that is using **XlPaging** will be done using these components and it can be seen in the following image.
+The pagination strategy that **[Fountain]** is using will be done using these components and it can be seen in the following image.
 
 ***Bruno PHOTO***
 
 
-The paging strategy starts with an initial service data request, by default the initial data requested is three pages size, but this value could be changed using the [`setInitialLoadSizeHint`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method in the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html).
+The paging strategy starts with an initial service data request, by default the initial data requested is three pages size, but this value can be changed using the [`setInitialLoadSizeHint`] method in the [`PagedList.Config`].
 When the service data comes, all data is refreshed in the `DataSource` using the `DataSourceEntityHandler`.
-Remember that the `LiveData<PagedList<Value>>` was created using the `DataSource`, so the `LiveData` will notify that the data changed.
-After that, the [Android Paging Library](https://developer.android.com/reference/android/arch/paging/package-summary) will require pages when the local data is running low. When a new page is required, the paging library will invoke a new service call, and will use the `DataSourceEntityHandler` to save the returned data into the `DataSource`.
+Remember that the `LiveData<PagedList<Value>>` was created using the `DataSource`, so the `LiveData` will notify each time the data changes.
+After that, the [Android Paging Library] will require pages when the local data is running low. When a new page is required, the paging library will invoke a new service call, and will use the `DataSourceEntityHandler` to save the returned data into the `DataSource`.
 
 ### DataSourceEntityHandler definition
 
-We've talked about the `DataSourceEntityHandler` and what is their function, but we've not defined it yet. So, let do it!
+We've talked about the `DataSourceEntityHandler` and its function, but we've not defined it yet. So, let's do it!
 
 ```kotlin
 interface DataSourceEntityHandler<T> {
@@ -82,23 +82,23 @@ This will be executed in a transaction.
 
 ### DataSource
 
-Now we know what is `DataSourceEntityHandler`, but the implementation of this interface will depend mostly in the `DataSource` that we choose.
-So, in order to make the things easier we'll use the [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room) which provides a `DataSource` trivially.
+Now we know what is a `DataSourceEntityHandler`, but the implementation of this interface will depend mostly in the `DataSource` that we choose.
+So, in order to make the things easier we'll use the [Room Persistence Library] which provides a `DataSource` trivially.
 
-The next important step is to think about how we could retrieve the `DataSource` entities in the same order that the entities were returned by the service. 
+The next important step is to think about how we can retrieve the [`DataSource`] entities in the same order as they were returned by the service. 
 A common approach here is to save an index position in the entity.
-Then, when a new page come, we have to search the bigger index position in the `DataSource` and update all entities in the response, incrementing that index by one.
-That could work, but suppose that you are listing the Github users and you have two sort modes to display them.
-The first one is list the users by the number of starts and the second one is list the users by the number of followers.
-So there are multiple services that could return the same entity in different order.
+Then, when a new page comes, we have to search for the bigger index position in the `DataSource` and update all entities in the response, incrementing that index by one.
+That could work, but suppose that you are listing the GitHub users and you have two sort modes to display them.
+The first one is list the users by the number of stars and the second one is list the users by the number of followers.
+So there are multiple services that could return the same entity in a different order.
 In order to solve this problem using the current approach we have to add two position indexes in the `User` entity.
-That will work, but from my point of view that's no so clean.
-Furthermore, we could have problems to keep the index consistent when the entities are updated.
+That will work, but from my point of view that's not so clean.
+Furthermore, we can run into problems keeping the index consistent when the entities are updated.
 
-I prefer a different solution, a solution that use one table for the entity, and one table per sort relation.
+I prefer a different solution, a solution that uses one table for the entity, and one table per sort relation.
 Now it's better, in our example we will have an `User` table, an `UserOrderByStats` table and an `UserOrderByFollowers` table, where the last two have a position index attribute.
 
-Suppose that we have to implement the same app than in the previous post, an app which lists the Github users whose usernames contain a specific word.
+Suppose that we have to implement the same app than in the previous post, an app which lists the GitHub users whose usernames contain a specific word.
 So using the last solution we will have two entities `User` and `UserSearch`, where the last one will contain the query search and the position of the entity in the list associated to the query search.
 First of all, let define the entities using Room.
 
@@ -125,7 +125,7 @@ data class UserSearch(
 
 ```
 
-After that, we can define the `DataSource.Factory` creating a [Room Dao interface](https://developer.android.com/reference/android/arch/persistence/room/Dao).
+After that, we can define the `DataSource.Factory` creating a [Room Dao interface].
 
 ```kotlin
 @Dao
@@ -144,15 +144,15 @@ That's all, we've created a `DataSource.Factory<Int, User>` which returns the li
 In order to create the `DataSourceEntityHandler` of users, we have to implement the three operations that the interface defines: `saveEntities`, `dropEntities` and `runInTransaction`.
 We have to update `UserDao` in order to be able to implement these methods. 
 
-If we follow the paging strategy that we defined, `saveEntities` will require three more methods:
+If we follow the paging strategy we defined, `saveEntities` will require three more methods:
 - A method to insert the `User` entities.
 - A method to insert the `UserSearch` entities.
 - A method to get the next `searchPosition` index. 
 
-The `dropEntities` method will require one or two methods depending what we want to do.
-- The first option can be have a method to delete all `User` entities and all `UserSearch` entities associated to a `search` query.
-- The second one can be have only one method to delete the `UserSearch` entities associated to a `search` query and keep the `User` entities in database.
-This is very helpful when you have multiple services that return the same entities and we've to keep the database consistent.
+The `dropEntities` method will require one or two methods depending on what we want to do, or what we want to achieve.
+- The first option can be to have a method to delete all `User` entities and all `UserSearch` entities associated to a `search` query.
+- The second one can be to have only one method to delete the `UserSearch` entities associated to a `search` query and keep the `User` entities in database.
+This is very helpful when you have multiple services that return the same entities and we have to keep the database consistent.
 In our example, the same user could be included in multiple `search` queries responses, so to remove some complexity, we will use this solution.  
 
 The `runInTransaction` operation will not require any change in the `UserDao`, we will just use the `runInTransaction` method that Room provides.
@@ -180,7 +180,7 @@ interface UserDao {
 }
 ```
 
-Now we have all components to implement our `DataSourceEntityHandler` of users, remember that we'd defined the `User` and `ListResponse` entities in the previous post.
+Now we have all the components we need to implement our `DataSourceEntityHandler` of users, remember that we'd defined the `User` and `ListResponse` entities in the previous post.
 
 ```kotlin
 val dataSourceEntityHandler = object : DataSourceEntityHandler<ListResponse<User>> {
@@ -205,23 +205,23 @@ val dataSourceEntityHandler = object : DataSourceEntityHandler<ListResponse<User
   }
 }
 ```
-The implementation looks well, the most difficult thing is create the `UserSearch` entities and assign the right `searchPosition` but it's not so hard!
+The implementation looks well, the most difficult thing is creating the `UserSearch` entities and assigning the right `searchPosition` but it's not so hard!
 
 
 ### Get the listing component
 
 Well, I told you that there are three required components to create the `Listing` object.
-If we use the `pagingHandler` that we created in the previous post, we have all components that we need.
+If we use the `pagingHandler` that we created in the previous post, we have all the components that we need.
 
 ```kotlin
-val listingWithCacheSupport = XlPaging.createNetworkWithCacheSupportListing(
+val listingWithCacheSupport = Fountain.createNetworkWithCacheSupportListing(
     dataSourceEntityHandler = dataSourceEntityHandler,
     dataSourceFactory = userDao.findUsersByName(userName),
     pagingHandler = pagingHandler
 )
 ```
 
-As well as in the network support listing, there're some optional parameters that you can use to setup the `Listing` object.
+As well as in the network support listing, there are some optional parameters that you can use to setup the `Listing` object.
 
 - `firstPage: Int`: The initial page number, by default it's value is 1.
 - `ioServiceExecutor : Executor`: The executor where the service call will be made. By default the library will use a pool of 5 threads.
@@ -231,6 +231,21 @@ As well as in the network support listing, there're some optional parameters tha
 
 ### Conclusion
 
-Using [XL Paging]() you can create a listing component which is really useful to show the entities. Ether if you choose to have a cache support or not, the library provides you a common interface that you can use with less effort! So change or combine both modes shouldn't be hard.
+Using [Fountain] you can create a listing component which is really useful to show the entities.
+Either if you choose to have cache support or not, the library provides with a common interface that you can use with less effort!
+So changing or combining both modes both modes shouldn't be hard.
 
 I suggest you to try this component in a MVVM architecture using the repository pattern and then tell me what do yo think!
+
+
+[`DataSource.Factory<*, Value>`]: https://developer.android.com/reference/android/arch/paging/DataSource.Factory
+[`DataSource`]: https://developer.android.com/reference/android/arch/paging/DataSource
+[`LiveData`]: https://developer.android.com/topic/libraries/architecture/livedata
+[`LivePagedListBuilder`]: https://developer.android.com/reference/android/arch/paging/LivePagedListBuilder
+[`PagedList.Config`]: https://developer.android.com/reference/android/arch/paging/PagedList.Config.html
+[`setInitialLoadSizeHint`]: https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint
+[Android Paging Library]: https://developer.android.com/topic/libraries/architecture/paging/
+[Fountain]: https://github.com/xmartlabs/fountain
+[PagedListAdapter]: https://developer.android.com/reference/android/arch/paging/PagedListAdapter
+[Room Dao interface]: https://developer.android.com/reference/android/arch/persistence/room/Dao
+[Room Persistence Library]: https://developer.android.com/topic/libraries/architecture/room
