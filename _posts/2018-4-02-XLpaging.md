@@ -117,6 +117,18 @@ The features are:
 In this first part of the series we'll see how we can integrate the first functionality.
 The second one will be explained in the next part.
 
+## Integration
+To integrate [Fountain] into your app, you have to include the following dependency in your gradle app.
+```groovy
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation 'com.github.xmartlabs:fountain:0.1.+'
+}
+```
+
 ## Fountain Network Support
 The library defines two structures to handle the network requests.
 The `PageFetcher` is used to fetch each page from the service, whereas the `NetworkDataSourceAdapter` will be used to handle the paging state.
