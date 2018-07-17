@@ -22,7 +22,7 @@ Why not use the [Android Paging Library] directly?
 To be able to integrate these kind of services you'll have to write a lot of code to obtain the necessary paging component, `LiveData<PagedList<T>>`.
 Once you have it, the paging issue becomes trivial, but getting it is not. And this is only if you don't need database support, in that case you'll have to write a lot more code.
 This is where [Fountain] comes to life.
-It provides everything that you'll need to work with these services and more, easily and without boilerplate.  
+It provides everything you'll need to work with these services and more, easily and without boilerplate.  
 
 To read this post, you should already know the Repository Architectural Pattern and the basics of these libraries:
 - [Retrofit]
