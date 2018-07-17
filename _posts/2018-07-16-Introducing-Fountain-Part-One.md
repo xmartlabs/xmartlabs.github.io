@@ -15,7 +15,7 @@ There's also a ton of articles talking about the new [Android Paging Library] an
 I suppose that you are already familiar with the topic :)
 
 So I don't want to write about the new Android Components or how we should use them.
-Today I want to tell you how we can **integrate a numerated paged service**, to the best of my knowledge, **using** our new **[Fountain] library.**
+Today I want to tell you how we can **integrate a numerated paged service**, to the best of my knowledge, **using our new [Fountain] library.**
 A numerated paged service is an endpoint which returns a list of entities structured in pages with sequential page numbers.  
 
 Why not use the [Android Paging Library] directly?
