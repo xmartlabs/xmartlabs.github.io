@@ -26,7 +26,7 @@ There are some paged services that make our life a bit easier.
 For instance, if you are using a service API like Reddit, you don't have the page number concept, you have the concept of the page before and the page after some entity id.
 Suppose that you are listing the hottest posts associated to a subreddit (like in [one of the Google's examples](https://github.com/googlesamples/android-architecture-components/tree/master/PagingWithNetworkSample)) and then, given a specific post, the API enables you to get the next and the previous page of that post.
 That's great.
-Suppose that the post order cannot change, then we could save in the database all the posts and which is the newest and the oldest one.
+Suppose that the post order cannot change, then we could save in the database all the posts and which is the oldest and the newest one (that way you can know which was the previous page and which is the next one).
 Then we could use it to get the pages after and before them, and make the paging easy.
 
 That's cool, but what happens if our service API uses only an incremental page number strategy to implement the paging mechanism?
@@ -50,7 +50,7 @@ The pagination strategy that is using **Fountain** can be seen in the following 
 -->
 
 The paging strategy starts with an initial service data request.
-By default the initial data requested is three pages, but this value can be changed, in the [`PagedList.Config`], using the [`setInitialLoadSizeHint`] method.
+By default the initial data requested is three pages, but this value can be changed calling the [setInitialLoadSizeHint] method in the [PagedList.Config] configuration object.
 When the service data comes, all data is refreshed in the `DataSource` using the [`CachedDataSourceAdapter`].
 Note that the [`Listing`] component will notify that the data changed.
 
@@ -104,7 +104,7 @@ Furthermore, we can run into problems keeping the index consistent when the enti
 
 I prefer a different solution, a solution that uses multiple objects to model the situation.
 One object to model the entity itself and one object for each relationship or ordering of this entity.
-Now it's better, in our example we'll have an `User` object, an `UserOrderByStats` object and an `UserOrderByFollowers` object, where the last two have a position index attribute.
+Now it's better, in our example we'll have an `User` object, an `UserOrderByStars` object and an `UserOrderByFollowers` object, where the last two have a position index attribute.
 
 Suppose that we have to implement the same app than in the [previous post], an app which lists the GitHub users whose usernames contain a specific word.
 If we use the last solution, we'll have two entities `User` and `UserSearch` where the last one will contain the query search and the position of the entity in the list associated to the query search.
@@ -140,9 +140,9 @@ data class UserSearch(
 To create the `CachedDataSourceAdapter` of users, we have to implement the four operations that the interface defines: `saveEntities`, `dropEntities`, `getDataSourceFactory` and `runInTransaction`.
 To implement these methods, we have to define a [Room Dao interface], let's name it `UserDao`. 
 
-The `getDataSourceFactory` method will require defining a method to retrieve all `User` entities associated to a `search` query, sorted by the index.
+The `getDataSourceFactory` method will require a method to retrieve all `User` entities associated to a `search` query, sorted by the index.
 
-If we follow the paging strategy we defined, `saveEntities` will require define three methods in the `UserDao`:
+If we follow the paging strategy we defined, `saveEntities` will require three methods in the `UserDao`:
 - A method to insert the `User` entities.
 - A method to insert the `UserSearch` entities.
 - A method to get the next `searchPosition` index. 
@@ -231,7 +231,7 @@ As well as in the network support listing, there are some optional parameters th
 ### Conclusion
 
 Using [Fountain] you can create a listing component which is really useful to show the entities.
-Either if you choose to have cache support or not, the library provides with a common interface that you can use with less effort!
+Either if you choose to have cache support or not, the library provides with a common interface that you can use with low effort!
 So changing or combining both modes shouldn't be hard.
 
 I suggest you to try this component in a MVVM architecture using the Repository pattern and then tell me what you think!
