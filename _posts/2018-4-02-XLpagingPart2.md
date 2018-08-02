@@ -8,12 +8,12 @@ author_id: mirland
 
 ---
 
-In the [previous part] we've presented **[Fountain]** and shown a way, using the `Listing` component, to make the paging as cool and simple as possible.
-In that post we explained the first feature of the library, the **Fountain Network support** mode, which provides a way to convert a common numerated paged service in `Listing` component.
+In the [previous part] we presented **[Fountain]** and shown a way, using the `Listing` component, to make the paging as cool and simple as possible.
+In that post we explained the first feature of the library, the **Fountain Network support** mode, which provides a way to convert a common numerated paged service into a `Listing` component.
 The `Listing` component is a really useful structure to display the paged list entities and reflect the network changes in the UI.
 It contains a `LiveData<PagedList<T>>` element, which is provided by the new [Android Paging Library], so we can use all of the features offered by the [PagedListAdapter] in a simple way.
 Yes that's awesome, but it has a problem, in that example, the entities aren't saved anywhere.
-So if we want to display multiple times the same entities, we have to wait for them to load each time. 
+So if we want to display the same entities multiple times, we have to wait for them to load each time. 
 
 In this post we'll see how we can use the second feature of the library: a `Listing` object combining network and cache support.
 
@@ -24,34 +24,34 @@ However, in that example we had only one source, so how could we manage multiple
 How can we combine a database cache source with a paged service source?
 There are some paged services that make our life a bit easier.
 For instance, if you are using a service API like Reddit, you don't have the page number concept, you have the concept of the page before and the page after some entity id.
-Suppose that you are listing the hottest posts associated to a subreddit (like in [one of the Google's examples](https://github.com/googlesamples/android-architecture-components/tree/master/PagingWithNetworkSample)) and then, given a specific post, the API enables you to get the next and the previous page of that post.
+Suppose that you are listing the hottest posts associated to a subreddit (like in [one of Google's examples](https://github.com/googlesamples/android-architecture-components/tree/master/PagingWithNetworkSample)) and then, given a specific post, the API enables you to get the next and the previous page of that post.
 That's great.
-Suppose that the post order cannot change, then we could save in the database all the posts with an index position.
+Suppose that the post order cannot change, then we could save all the posts in the database with an index position.
 Then we could use it to get the pages after and before your cached pages, and make the paging easy.
 
 That's cool, but what happens if our service API uses only an incremental page number strategy to implement the paging mechanism?
 Suppose that we have an incremental paged service, like the GitHub example presented in the [previous post] and we want to save the responses in a database source.
 It's hard to implement, we could save the item position and page number, but when an item is added all pages are updated, so it's not a good idea.
-In this post I show you how we can use the **[Fountain]** library to make it work.
+In this post I show you how we can use the **[Fountain]** library to get it to work.
 
 
 ## Paging strategy
 To make the pagination strategy work, **Fountain** needs two components:
 1. A `NetworkDataSourceAdapter<out ListResponse<Value>>` to fetch all pages.
-This component was presented in the previous post, it's a structure which contains all required operations to manage the pagination of a paged service, where the strategy is based on an incremental page number.
+This component was presented in the previous post. Tt's a structure which contains all required operations to manage the pagination of a paged service, where the strategy is based on an incremental page number.
 1. A [`CachedDataSourceAdapter`] to update the [`DataSource`].
 It's the interface that the library will use to take control of the [`DataSource`].
 
 
 <!--
-The pagination strategy that is using **Fountain** can be seen in the following image.
+The pagination strategy that **Fountain** is using can be seen in the following image.
 
 ***TODO: Add an image ***
 -->
 
 The paging strategy starts with an initial service data request.
 By default the initial data requested is three pages, but this value can be changed calling the [setInitialLoadSizeHint] method in the [PagedList.Config] configuration object.
-When the service data comes, all data is refreshed in the `DataSource` using the [`CachedDataSourceAdapter`].
+When the service data comes, all the data is refreshed in the `DataSource` using the [`CachedDataSourceAdapter`].
 Note that the [`Listing`] component will notify that the data changed.
 
 After that, the [Android Paging Library] will require pages when the local data is running low.
@@ -149,9 +149,9 @@ If we follow the paging strategy we defined, `saveEntities` will require three m
 
 The `dropEntities` method will require one or two methods depending on what we want to do.
 - The first option can be to have a method to delete all `User` entities and all `UserSearch` entities associated to a `search` query.
-- The second one can be to have only one method to delete the `UserSearch` entities associated to a `search` query and keep the `User` entities in database.
+- The second one can be to have only one method to delete the `UserSearch` entities associated to a `search` query and keep the `User` entities in the database.
 This is very helpful when you have multiple services that return the same entities and we have to keep the database consistent.
-In our example, the same user could be included in multiple `search` queries responses, so to remove some complexity, we will use this solution.  
+In our example, the same user could be included in multiple `search` queries' responses, so to remove some complexity, we will use this solution.  
 
 Note that the `runInTransaction` operation will not require any method in the `UserDao`, we will just use the `runInTransaction` method that Room provides.
 
@@ -231,7 +231,7 @@ As well as in the network support listing, there are some optional parameters th
 ### Conclusion
 
 Using [Fountain] you can create a listing component which is really useful to show the entities.
-Either if you choose to have cache support or not, the library provides with a common interface that you can use with low effort!
+Either if you choose to have cache support or not, the library provides a common interface that you can use with low effort!
 So changing or combining both modes shouldn't be hard.
 
 I suggest you to try this component in a MVVM architecture using the Repository pattern and then tell me what you think!
