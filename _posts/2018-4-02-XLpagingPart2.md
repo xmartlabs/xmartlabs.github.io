@@ -26,8 +26,8 @@ There are some paged services that make our life a bit easier.
 For instance, if you are using a service API like Reddit, you don't have the page number concept, you have the concept of the page before and the page after some entity id.
 Suppose that you are listing the hottest posts associated to a subreddit (like in [one of the Google's examples](https://github.com/googlesamples/android-architecture-components/tree/master/PagingWithNetworkSample)) and then, given a specific post, the API enables you to get the next and the previous page of that post.
 That's great.
-Suppose that the post order cannot change, then we could save in the database all the posts and which is the oldest and the newest one (that way you can know which was the previous page and which is the next one).
-Then we could use it to get the pages after and before them, and make the paging easy.
+Suppose that the post order cannot change, then we could save in the database all the posts with an index position.
+Then we could use it to get the pages after and before your cached pages, and make the paging easy.
 
 That's cool, but what happens if our service API uses only an incremental page number strategy to implement the paging mechanism?
 Suppose that we have an incremental paged service, like the GitHub example presented in the [previous post] and we want to save the responses in a database source.
