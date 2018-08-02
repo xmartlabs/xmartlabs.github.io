@@ -23,15 +23,16 @@ We've seen how we could implement a `Listing` structure using the [**Fountain ne
 However, in that example we had only one source, so how could we manage multiple sources?
 How can we combine a database cache source with a paged service source?
 There are some paged services that make our life a bit easier.
-For instance, if you are using a service API like Reddit, you don't have the page number concept, you have the concept of the page before and the page after something.
-Suppose that you are listing the hottest posts associated to a subreddit (like in [one of Google's examples](https://github.com/googlesamples/android-architecture-components/tree/master/PagingWithNetworkSample)) and then, given a specific post, the API enables you to get the next and the previous page of that post.
-That's great, suppose that the post order cannot change, so using that, we could save in the database all of the posts and which is the newest and the oldest one.
-Then we could use that to get the page after and before them, and make the paged stuff easy.
+For instance, if you are using a service API like Reddit, you don't have the page number concept, you have the concept of the page before and the page after some entity id.
+Suppose that you are listing the hottest posts associated to a subreddit (like in [one of the Google's examples](https://github.com/googlesamples/android-architecture-components/tree/master/PagingWithNetworkSample)) and then, given a specific post, the API enables you to get the next and the previous page of that post.
+That's great.
+Suppose that the post order cannot change, then we could save in the database all the posts and which is the newest and the oldest one.
+Then we could use it to get the pages after and before them, and make the paging easy.
 
-That's cool, but what happens if our service API uses only an incremental page number strategy to implement the paging stuff?
+That's cool, but what happens if our service API uses only an incremental page number strategy to implement the paging mechanism?
 Suppose that we have an incremental paged service, like the GitHub example presented in the [previous post] and we want to save the responses in a database source.
-That's hard, we could save the item position and the page number, but if an item is added all pages are updated, so that's not a good idea.
-In this post I'll show you how we can use the **[Fountain]** library to make it work.
+It's hard to implement, we could save the item position and page number, but when an item is added all pages are updated, so it's not a good idea.
+In this post I show you how we can use the **[Fountain]** library to make it work.
 
 
 ## Paging strategy
@@ -59,7 +60,6 @@ When a new page is required, the paging library will invoke a new service call, 
 ### CachedDataSourceAdapter definition
 
 We've talked about the [`CachedDataSourceAdapter`] and its function, but we've not defined it yet.
-So, let's do it!
 
 ```kotlin
 interface CachedDataSourceAdapter<T> {
@@ -89,14 +89,14 @@ This will be executed in a transaction.
 
 ### DataSource
 
-Now we know what is a [`CachedDataSourceAdapter`], but the implementation of this interface will depend mostly in the [`DataSource`] that we choose.
+Now we know what is a [`CachedDataSourceAdapter`], but the implementation of this interface will depend mostly on the [`DataSource`] we choose.
 So, to make the things easier we'll use the [Room Persistence Library] which provides a [`DataSource`] trivially.
 
 The next important step is to think about how we can retrieve the [`DataSource`] entities in the same order as they were returned by the service. 
 A common approach here is to save an index position in the entity.
-Then, when a new page comes, we have to search for the biggest index position in the [`DataSource`] and update all entities in the response, incrementing that index by one.
+Then, when a new page comes, we have to search for the largest index position in the [`DataSource`] and update all entities in the response, incrementing it by one.
 That could work, but suppose that you are listing the GitHub users and you have two sort modes to display them.
-The first one is list the users by the number of stars and the second one is list the users by the number of followers.
+The first one is to list the users by star number and the second one is by follower number.
 So there are multiple services that could return the same entity in a different order.
 To solve this problem using the current approach we have to add two position indexes in the `User` entity.
 It will work, but it's not an elegant solution.
@@ -104,11 +104,11 @@ Furthermore, we can run into problems keeping the index consistent when the enti
 
 I prefer a different solution, a solution that uses multiple objects to model the situation.
 One object to model the entity itself and one object for each relationship or ordering of this entity.
-Now it's better, in our example we will have an `User` object, an `UserOrderByStats` object and an `UserOrderByFollowers` object, where the last two have a position index attribute.
+Now it's better, in our example we'll have an `User` object, an `UserOrderByStats` object and an `UserOrderByFollowers` object, where the last two have a position index attribute.
 
 Suppose that we have to implement the same app than in the [previous post], an app which lists the GitHub users whose usernames contain a specific word.
-So using the last solution we will have two entities `User` and `UserSearch`, where the last one will contain the query search and the position of the entity in the list associated to the query search.
-First of all, let define the entities using Room.
+If we use the last solution, we'll have two entities `User` and `UserSearch` where the last one will contain the query search and the position of the entity in the list associated to the query search.
+First let's define the entities using Room.
 
 ```kotlin
 @Entity
@@ -120,7 +120,10 @@ data class User(
 
 @Entity(
     foreignKeys = [
-      ForeignKey(entity = User::class, parentColumns = ["id"], childColumns = ["userId"])
+      ForeignKey(
+        entity = User::class, 
+        parentColumns = ["id"], 
+        childColumns = ["userId"])
     ],
     indices = [Index("userId")]
 )
@@ -130,13 +133,12 @@ data class UserSearch(
     val userId: Long,
     val searchPosition: Long
 )
-
 ```
 
 ### CachedDataSourceAdapter implementation
 
 To create the `CachedDataSourceAdapter` of users, we have to implement the four operations that the interface defines: `saveEntities`, `dropEntities`, `getDataSourceFactory` and `runInTransaction`.
-To implement these methods, we have to define a [Room Dao interface], lets name it `UserDao`. 
+To implement these methods, we have to define a [Room Dao interface], let's name it `UserDao`. 
 
 The `getDataSourceFactory` method will require defining a method to retrieve all `User` entities associated to a `search` query, sorted by the index.
 
@@ -145,7 +147,7 @@ If we follow the paging strategy we defined, `saveEntities` will require define 
 - A method to insert the `UserSearch` entities.
 - A method to get the next `searchPosition` index. 
 
-The `dropEntities` method will require one or two methods depending on what we want to do, or what we want to achieve.
+The `dropEntities` method will require one or two methods depending on what we want to do.
 - The first option can be to have a method to delete all `User` entities and all `UserSearch` entities associated to a `search` query.
 - The second one can be to have only one method to delete the `UserSearch` entities associated to a `search` query and keep the `User` entities in database.
 This is very helpful when you have multiple services that return the same entities and we have to keep the database consistent.
@@ -176,7 +178,7 @@ interface UserDao {
 }
 ```
 
-Now we have all the components we need to implement our `CachedDataSourceAdapter` of users, remember that we'd defined the `User` and `ListResponse` entities in the previous post.
+Now we have all the components we need to implement our `CachedDataSourceAdapter` of users, remember that we had defined the `User` and `ListResponse` entities in the previous post.
 
 ```kotlin
 val cachedDataSourceAdapter = object : CachedDataSourceAdapter<ListResponse<User>> {
@@ -230,9 +232,9 @@ As well as in the network support listing, there are some optional parameters th
 
 Using [Fountain] you can create a listing component which is really useful to show the entities.
 Either if you choose to have cache support or not, the library provides with a common interface that you can use with less effort!
-So changing or combining both modes both modes shouldn't be hard.
+So changing or combining both modes shouldn't be hard.
 
-I suggest you to try this component in a MVVM architecture using the repository pattern and then tell me what do yo think!
+I suggest you to try this component in a MVVM architecture using the Repository pattern and then tell me what you think!
 
 [`CachedDataSourceAdapter`]: https://xmartlabs.gitbook.io/fountain/fountain/cacheddatasourceadapter
 [`DataSource.Factory<*, Value>`]: https://developer.android.com/reference/android/arch/paging/DataSource.Factory
@@ -245,7 +247,7 @@ I suggest you to try this component in a MVVM architecture using the repository 
 [Android Paging Library]: https://developer.android.com/topic/libraries/architecture/paging/
 [Fountain]: https://github.com/xmartlabs/fountain
 [PagedListAdapter]: https://developer.android.com/reference/android/arch/paging/PagedListAdapter
-[previous part]: ""
-[previous post]: ""
+[previous part]: /2018/07/16/Introducing-Fountain-Part-One/
+[previous post]: /2018/07/16/Introducing-Fountain-Part-One/
 [Room Dao interface]: https://developer.android.com/reference/android/arch/persistence/room/Dao
 [Room Persistence Library]: https://developer.android.com/topic/libraries/architecture/room
