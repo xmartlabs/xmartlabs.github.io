@@ -42,12 +42,8 @@ This component was presented in the previous post. Tt's a structure which contai
 1. A [`CachedDataSourceAdapter`] to update the [`DataSource`].
 It's the interface that the library will use to take control of the [`DataSource`].
 
-
-<!--
-The pagination strategy that **Fountain** is using can be seen in the following image.
-
-***TODO: Add an image ***
--->
+The paging strategy that **Fountain** is using can be seen in the following image:
+<br> <br> <img src="/images/fountain/paginationStrategy.png" align="center" />
 
 The paging strategy starts with an initial service data request.
 By default the initial data requested is three pages, but this value can be changed calling the [setInitialLoadSizeHint] method in the [PagedList.Config] configuration object.
