@@ -115,7 +115,7 @@ The features are:
 - **Network + Cache:** Provide a `Listing` structure with cache support using Retrofit and RxJava for the service layer and a [`DataSource`] for caching the data. In the examples we will use [Room Persistence Library] to provide the [`DataSource`] but you could use any other [`DataSource`].
 
 In this first part of the series we'll see how we can integrate the first functionality.
-The second one will be explained in the next part.
+The second one will be explained in the [next part](/2018/04/02/Introducing-Fountain-Part-Two/).
 
 ## Integration
 To integrate [Fountain] into your app, you have to include the following dependency in your gradle app.
@@ -125,7 +125,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.xmartlabs:fountain:0.1.+'
+    implementation 'com.github.xmartlabs:fountain:0.2.+'
 }
 ```
 
@@ -250,7 +250,7 @@ In addition, there are some optional parameters that you can define when you are
 - `pagedListConfig: PagedList.Config` : The paged list configuration.
 In this object you can specify several options, for example the `pageSize` and the `initialPageSize`. 
 
-In the next part we'll see how we could get a `Listing` component which uses a `DataSource` cache to store the data.
+In the [next part of this series](/2018/04/02/Introducing-Fountain-Part-Two/) we'll see how we could get a `Listing` component which uses a `DataSource` cache to store the data.
 
 Example code can be found in the [sample app](https://github.com/xmartlabs/fountain/tree/master/app).
 

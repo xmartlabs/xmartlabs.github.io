@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Introducing Fountain Part Two
-date: 2018-04-02 09:00:00
+date: 2018-08-13 09:00:00
 author: Matías Irland
 categories: Android, Android Jetpack, Android Paging Library, Live Data, Android Architecture Components, RxJava, Retrofit, Fountain
 author_id: mirland
@@ -38,15 +38,15 @@ In this post I show you how we can use the **[Fountain]** library to get it to w
 ## Paging strategy
 To make the pagination strategy work, **Fountain** needs two components:
 1. A `NetworkDataSourceAdapter<out ListResponse<Value>>` to fetch all pages.
-This component was presented in the previous post. Tt's a structure which contains all required operations to manage the pagination of a paged service, where the strategy is based on an incremental page number.
+This component was presented in the [previous post]. It's a structure which contains all required operations to manage the pagination of a paged service, where the strategy is based on an incremental page number.
 1. A [`CachedDataSourceAdapter`] to update the [`DataSource`].
 It's the interface that the library will use to take control of the [`DataSource`].
 
 The paging strategy that **Fountain** is using can be seen in the following image:
 <br> <br> <img src="/images/fountain/paginationStrategy.png" align="center" />
 
-The paging strategy starts with an initial service data request.
-By default the initial data requested is three pages, but this value can be changed calling the [setInitialLoadSizeHint] method in the [PagedList.Config] configuration object.
+It starts with an initial service data request.
+By default the initial data requested is three pages, but this value can be changed calling the [`setInitialLoadSizeHint`] method in the [`PagedList.Config`] configuration object.
 When the service data comes, all the data is refreshed in the `DataSource` using the [`CachedDataSourceAdapter`].
 Note that the [`Listing`] component will notify that the data changed.
 
@@ -58,11 +58,11 @@ When a new page is required, the paging library will invoke a new service call, 
 We've talked about the [`CachedDataSourceAdapter`] and its function, but we've not defined it yet.
 
 ```kotlin
-interface CachedDataSourceAdapter<T> {
-  fun getDataSourceFactory(): DataSource.Factory<*, T>
+interface CachedDataSourceAdapter<NetworkValue, DataSourceValue> {
+  fun getDataSourceFactory(): DataSource.Factory<*, DataSourceValue>
 
   @WorkerThread
-  fun saveEntities(response: List<T>)
+  fun saveEntities(response: List<NetworkValue>)
 
   @WorkerThread
   fun dropEntities()
@@ -174,22 +174,26 @@ interface UserDao {
 }
 ```
 
-Now we have all the components we need to implement our `CachedDataSourceAdapter` of users, remember that we had defined the `User` and `ListResponse` entities in the previous post.
+Now we have all the components we need to implement our `CachedDataSourceAdapter` of users, remember that we had defined the `User` and `ListResponse` entities in the [previous post].
 
 ```kotlin
-val cachedDataSourceAdapter = object : CachedDataSourceAdapter<ListResponse<User>> {
+val cachedDSAdapter = object : CachedDataSourceAdapter<User, User> {
   override fun getDataSourceFactory() = userDao.findUsersByName(userName)
   
   override fun runInTransaction(transaction: () -> Unit) {
     db.runInTransaction(transaction)
   }
 
-  override fun saveEntities(response: ListResponse<User>?) {
+  override fun saveEntities(response: List<User>) {
     response?.getElements()?.let { users ->
       val start = userDao.getNextIndexInUserSearch(userName)
       val relationItems = users
           .mapIndexed { index, user ->
-            UserSearch(search = userName, userId = user.id, searchPosition = start + index)
+            UserSearch(
+              search = userName, 
+              userId = user.id, 
+              searchPosition = start + index
+            )
           }
       userDao.insert(users)
       userDao.insertUserSearch(relationItems)
@@ -212,7 +216,7 @@ If we use the `cachedDataSourceAdapter` that we created in the [previous post], 
 ```kotlin
 Fountain.createPagedNetworkWithCacheSupportListing(
   networkDataSourceAdapter = networkDataSourceAdapter,
-  cachedDataSourceAdapter = cachedDataSourceAdapter
+  cachedDataSourceAdapter = cachedDSAdapter
 )
 ```
 
