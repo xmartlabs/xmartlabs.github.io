@@ -42,7 +42,7 @@ This component was presented in the [previous post]. It's a structure which cont
 1. A [`CachedDataSourceAdapter`] to update the [`DataSource`].
 It's the interface that the library will use to take control of the [`DataSource`].
 
-The paging strategy that **Fountain** is using can be seen in the following image:
+The paging strategy that **Fountain** is using can be seen in the following diagram:
 <br> <br> <img src="/images/fountain/paginationStrategy.png" align="center" />
 
 It starts with an initial service data request.
@@ -85,8 +85,8 @@ This will be executed in a transaction.
 
 ### DataSource
 
-Now we know what is a [`CachedDataSourceAdapter`], but the implementation of this interface will depend mostly on the [`DataSource`] we choose.
-So, to make the things easier we'll use the [Room Persistence Library] which provides a [`DataSource`] trivially.
+We just discussed what a [`CachedDataSourceAdapter`] is, but the implementation of this interface will mostly depend on the [`DataSource`] we choose.
+So, to make things easier we'll use the [Room Persistence Library] which provides a [`DataSource`] trivially.
 
 The next important step is to think about how we can retrieve the [`DataSource`] entities in the same order as they were returned by the service. 
 A common approach here is to save an index position in the entity.
