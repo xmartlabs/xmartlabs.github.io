@@ -483,7 +483,7 @@ footer {
 }
 
 .page-content {
-    padding: 45px 0;
+    padding: 0;
 }
 
 .page-heading {
@@ -497,7 +497,6 @@ footer {
 
  .disqus_section
  {
-   margin-top: 80px;
    .disqus_title{
      @include font_black();
      color: #BBBBBB;
