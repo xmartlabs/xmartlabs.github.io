@@ -8,26 +8,6 @@ author_id: xl
 
 ---
 
-It’s an exciting time to be working in Augmented Reality.
-
-The release of Apple’s AR Kit and Google’s AR Core in 2017 enabled hundreds of millions of smartphones to be AR capable. 2018 ushered in multiplayer/persistence capabilities across these devices, to build what the industry is calling the “AR Cloud.”
-
-What is the AR Cloud, anyway? It’s the single most important piece of tech  infrastructure you’ve never heard of - that will disrupt your industry, whether you like it or not.
-
-Here’s a rundown by SuperVentures founder Ori Inbar, who coined the term:
-
-<iframe width="100%" height="383px" src="https://www.youtube.com/embed/TAlJ5t73Rr8" frameborder="0" allowfullscreen></iframe>
-
-In a nutshell, the AR Cloud is a machine-readable 1:1 scale model of the real world. Devices that are AR-capable are real-time interfaces to this virtual replica of the world, which is overlaid perfectly on top of our real physical environment. This shared virtual replica of the world is updated in real-time and enables users to collaborate with digital assets overlaid on top of the places where we work and play.
-
-Why is this important? Well, do you remember using the internet in the 90s? It was a largely solitary experience in which real-time communication was difficult and information was hard to find. The rise of Google, Facebook, and other services made the internet a much more interesting and practical tool to collaborate and share with others, as well as easily find the information you were seeking.
-
-Likewise, the AR Cloud has enabled millions of devices to communicate with each other in a collaborative way about digital content and experiences that overlay the real world. The best-known use case of AR right now (August 2018) is the mobile game “Pokemon Go”, which exploded in popularity in 2016.
-
-However, the AR cloud will be useful for far more than gaming experiences. It will ultimately transform how we organize information, as we can now annotate the real physical world with digital content and information through our cameras. This capability is revolutionary and has produced blue ocean opportunities for nearly every industry imaginable.
-
-# OPPORTUNITIES IN AUGMENTED REALITY
-
 We at Xmartlabs have built an expert team around computer vision, machine learning, and augmented reality. In this segment, we’ll be sharing specific AR use cases we believe to be immediately practical and valuable for a range of industries.
 
 ### Retail
