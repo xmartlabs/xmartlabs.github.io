@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  How AR can crate an ROI for the enterprise
+title:  How AR can create an ROI for the enterprise
 date: 2018-10-08 09:00:00
 author: XL Team
 categories: AR
@@ -17,7 +17,8 @@ The skepticism around mobile AR in 2017 and 2018 is justified: can you think of 
 
 Until recently, mobile AR was a single-device experience. However, the recent introduction of [AR Cloud capabilities](https://blog.xmartlabs.com/2018/08/20/How-to-revolutionize-your-company-with-augmented-reality/) has enabled millions of devices to communicate with each other about where digital content persists in the real world. This has enabled an entirely new type of communication to be possible. 
 
-<img width="100%" src="/images/how-ar-can-create-an-roi-for-the-enterprise/sephora-virtual-artist.png" />
+<img width="100%" src="/images/how-ar-can-create-an-roi-for-the-enterprise/sephora-virtual-artist.png" /> 
+<br />
 (source: [SephoraVirtualArtist](https://sephoravirtualartist.com))
 
 2. AR has been subtly introduced as an add-on to existing platforms
@@ -30,7 +31,7 @@ The enterprise stands to gain significantly from ubiquitous multi-user AR capabi
 
 The introduction of AR Cloud capabilities on smartphones means that digital content can persist in the real world. This means that assets such as video tutorials for how to use and maintain equipment can be “pinned” to specific locations in a worksite, for employees to access and view precisely where and when they need information. 
 
-<iframe width="100%" height="383px" src="https://www.youtube.com/watch?v=N7GSC4DGCik" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="383px" src="https://www.youtube.com/embed/N7GSC4DGCik" frameborder="0" allowfullscreen></iframe>
 
 For example, a manager at a retail shop can record videos of current employees properly using the cash register, folding clothing, restocking shelves, managing new delivery orders, and then “pin” these tutorial videos to the precise locations where those tasks need to be done. As such, new employees can be trained faster and more efficiently without having to consult the manager or other workers. Instructional videos can be recorded once and then syndicated/pinned into thousands of retail branches worldwide. 
 
@@ -38,13 +39,13 @@ Moreover, computer vision technology can help the enterprise automate inventory 
 
 It’s possible to adopt AR training and inventory tracking capabilities across an enterprise as a new internal tool or as an add-on feature to an existing company-wide platform. 
 
-To learn more about how AR can improve employee training, [contact us today.](https://form.jotformz.com/82355834626665) 
+To learn more about how AR can improve employee training, [contact us today.](#JotFormIFrame-82355834626665) 
 
 ### Close deals faster with AR visualization
 
 AR has already been successfully adopted for product visualization by companies like Amazon, IKEA, and Sephora - as demonstrated here:
 
-<iframe width="100%" height="383px" src="https://www.youtube.com/watch?v=77ZJ3jw6EkA" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="383px" src="https://www.youtube.com/embed/77ZJ3jw6EkA" frameborder="0" allowfullscreen></iframe>
 
 The ability to showcase digital representations of products in the real world is particularly valuable in the real estate industry. Stakeholders in real estate deals, such as tenants, landlords, buyers, sellers, and agents can use AR to “virtually stage” a property with digital assets such as furniture and appliances. This helps to easily communicate a vision of how a space can be transformed and close deals faster. 
 
@@ -52,25 +53,25 @@ Since it’s possible for various digital layouts to persist in that space, AR u
 
 Like employee training, AR visualization can be implemented as a standalone application or as an integration with existing company-wide platforms. 
 
-To learn more about how AR visualization can help close deals faster, feel free to [contact us with your questions.](https://form.jotformz.com/82355834626665)
+To learn more about how AR visualization can help close deals faster, feel free to [contact us with your questions.](#JotFormIFrame-82355834626665)
 
-### Boost e-commerce sales with visual search 
+### Boost e-commerce sales with visual search
 
 AR can help remove a layer of abstraction from e-commerce purchasing decisions. SnapChat has collaborated with Amazon to implement a creative example of this capability:
 
-<iframe width="100%" height="383px" src="https://www.youtube.com/watch?v=cTUS_tr1_iU" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="383px" src="https://www.youtube.com/embed/cTUS_tr1_iU" frameborder="0" allowfullscreen></iframe>
 
 By using innovative computer vision capabilities, users can visually search, recognize, and purchase products from within applications. This removes the need for customers to go find products via more traditional routes, such as manually searching on Google or Amazon. 
 
 E-commerce companies can benefit from these capabilities by enabling customers to more quickly identify and purchase their products, at the exact moment when people encounter their brand. 
 
-To learn more about how you can boost e-commerce sales with visual search, [reach out to us](https://form.jotformz.com/82355834626665) today. 
+To learn more about how you can boost e-commerce sales with visual search, [reach out to us](#JotFormIFrame-82355834626665) today. 
 
 ### Save time and boost productivity with AR communication
 
 For industries and situations in which workflows require communicating about a physical location, either in real time or asynchronously, AR can be a substantial value add. For example, a major renovation project for a commercial property requires multiple stakeholders to communicate effectively about changes that are planned or currently in progress on the worksite. This can include tenants, multiple teams of contractors, the landlord, buying and selling agents, and city inspectors. 
 
-<iframe width="100%" height="383px" src="https://www.youtube.com/watch?v=k3fCP3Pr4pU" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="383px" src="https://www.youtube.com/embed/k3fCP3Pr4pU" frameborder="0" allowfullscreen></iframe>
 
 A communication tool that leverages AR’s persistence capabilities would enable all stakeholders to pin private digital content, such as documentation, pictures, and videos, to specific locations of interest to other people collaborating on the worksite. This would enable teams to work and communicate asynchronously and not have to physically meet in the same place at the same time. 
 
@@ -78,7 +79,7 @@ Content can be tagged with a specific date, time, and context for other team mem
 
 These capabilities would result in significant cost and time savings across these teams, as tasks could move forward without stakeholders having to spend time and capital traveling to the location. 
 
-To learn more about how AR communication can make your team more effective, [reach out to us](https://form.jotformz.com/82355834626665) today.
+To learn more about how AR communication can make your team more effective, [reach out to us](#JotFormIFrame-82355834626665) today.
 
 <iframe
       id="JotFormIFrame-82355834626665"
