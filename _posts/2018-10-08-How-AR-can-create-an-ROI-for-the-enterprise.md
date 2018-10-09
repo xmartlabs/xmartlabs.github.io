@@ -13,15 +13,15 @@ Due to recent breakthroughs in AR technology, mobile AR has suddenly become valu
 
 The skepticism around mobile AR in 2017 and 2018 is justified: can you think of a single AR app you use on a daily basis? Probably not. However, the reasons for this are twofold:
 
-1. Mobile AR lacked multi-user capabilities until very recently
+#### 1 - Mobile AR lacked multi-user capabilities until very recently
 
 Until recently, mobile AR was a single-device experience. However, the recent introduction of [AR Cloud capabilities](https://blog.xmartlabs.com/2018/08/20/How-to-revolutionize-your-company-with-augmented-reality/) has enabled millions of devices to communicate with each other about where digital content persists in the real world. This has enabled an entirely new type of communication to be possible. 
 
 <img width="100%" src="/images/how-ar-can-create-an-roi-for-the-enterprise/sephora-virtual-artist.png" /> 
 <br />
-(source: [SephoraVirtualArtist](https://sephoravirtualartist.com))
+<p style="text-align: center;"> (source: <a href="https://sephoravirtualartist.com">SephoraVirtualArtist</a>)</p>
 
-2. AR has been subtly introduced as an add-on to existing platforms
+#### 2 - AR has been subtly introduced as an add-on to existing platforms
 
 AR has already been successfully merged into existing platforms such as SnapChat, IKEA, Sephora, and Amazon. While none of these apps are uniquely AR focused, they show that AR is being successfully introduced into products as add-on features that deliver real value. This trend will continue in other large scale applications as consumers, particularly in the Gen Z and Millennial markets, adopt AR in their daily lives. 
 
@@ -65,7 +65,7 @@ By using innovative computer vision capabilities, users can visually search, rec
 
 E-commerce companies can benefit from these capabilities by enabling customers to more quickly identify and purchase their products, at the exact moment when people encounter their brand. 
 
-To learn more about how you can boost e-commerce sales with visual search, [reach out to us](#JotFormIFrame-82355834626665) today. 
+To learn more about how you can boost e-commerce sales with visual search, [reach out to us today.](#JotFormIFrame-82355834626665) 
 
 ### Save time and boost productivity with AR communication
 
@@ -79,7 +79,7 @@ Content can be tagged with a specific date, time, and context for other team mem
 
 These capabilities would result in significant cost and time savings across these teams, as tasks could move forward without stakeholders having to spend time and capital traveling to the location. 
 
-To learn more about how AR communication can make your team more effective, [reach out to us](#JotFormIFrame-82355834626665) today.
+To learn more about how AR communication can make your team more effective, [reach out to us today.](#JotFormIFrame-82355834626665)
 
 <iframe
       id="JotFormIFrame-82355834626665"
