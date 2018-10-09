@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  How AR can crate an ROI for the enterprise
-date: 2018-08-20 09:00:00
+date: 2018-10-08 09:00:00
 author: XL Team
 categories: AR
 author_id: xl
