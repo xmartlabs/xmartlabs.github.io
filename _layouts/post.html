@@ -2,67 +2,74 @@
 layout: default
 ---
 <article class="page-content">
-
-  <div class="post-header">
-    <div class="wrapper">
-      <h1 class="post-title">{{ page.title }}</h1>
-    </div>
-  </div>
-  <!-- <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p> -->
   <div class="post-content wrapper">
-    {% assign author = site.data.authors[page.author_id] %}
-    <div class="post-author-info">
-      <div class="post-author-image">
-        <a href="{{author.profile_url}}" target="_blank">
-          <img class="post-author-avatar" src="/images/{{author.image}}" alt="{{author.display_name}}">
-        </a>
-      </div>
-      <div class="margin-top-3">
-        <span>by <a class="post-author-name" href="{{author.profile_url}}" target="_blank">{{ author.display_name }}</a></span>
-        <div class="post-time-info">
-          <time class="post-meta" datetime="{{ page.date }}">
-            {{ page.date | date: "%b %-d, %Y" }}
-          </time>
+    <div class="post">
+      <div class="post-header">
+        <div class="wrapper">
+          <h1 class="post-title">{{ page.title }}</h1>
         </div>
       </div>
+      {% assign author = site.data.authors[page.author_id] %}
+      <div class="post-author-info">
+        <div class="post-author-image">
+          <a href="{{author.profile_url}}" target="_blank">
+            <img class="post-author-avatar" src="/images/{{author.image}}" alt="{{author.display_name}}">
+          </a>
+        </div>
+        <div class="margin-top-3">
+          <span>By <a class="post-author-name" href="{{author.profile_url}}" target="_blank">{{ author.display_name }}</a></span>
+          <div class="post-time-info">
+            <time class="post-meta" datetime="{{ page.date }}">
+              {{ page.date | date: "%b %-d, %Y" }}
+            </time>
+          </div>
+        </div>
+      </div>
+      <div class="post-share">
+        {% include social_media.html %}
+      </div>
+      <div class="clear">
+      </div>
+      <div class="post_container">
+        {{ content }}
+      </div>
+      <div class="post-footer">
+        <p class="dots">• • • • • •</p>
+        {% include social_media.html %}
+        <img src="/images/bender-banner.png" class="bender"/>
+      </div>
+      <div class="disqus-section">
+        <h3 class="disqus_title">Comments:</h3>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES * * */
+            var disqus_shortname = 'xmartlabs';
 
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      </div>
+      <div class="get-in-touch">
+        <img src="/images/logo.svg"/>
+        <a href="mailto:hi@xmartlabs.com?Subject=Hello%20Xmartlabs">
+          <span>Get in touch</span>
+        </a>
+      </div>
     </div>
-    <div class="post-share">
-      <ul class="share-list">
-        <li>
-          <h4 class="share-list-name">Share on:</h4>
-        </li>
-        <li>
-          <a class="icon-twitter icon" href="https://twitter.com/intent/tweet?text={{ page.title }} %7C {{site.url_blog}}{{ page.url}}" target="_blank" title="Share on Twitter"></a>
-        </li>
-        <li>
-          <a class="icon-linkedin icon" href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url_blog }}{{ page.url }}&title={{ page.title }}&summary={{ page.description}}&source={{ site.url}}" target="_blank" title="Share on LinkedIn"></a>
-        </li>
-      </ul>
-
+    <div class="lets-talk">
+      <div class="banner">
+        <h1>Let's talk</h1>
+        <p>Interested in how AR can help your company?</p>
+        <a href="mailto:hi@xmartlabs.com?Subject=Hello%20Xmartlabs">
+          <span>Get in touch</span>
+        </a>
+        <div class="background"></div>
+      </div>
     </div>
-    <div class="clear">
-    </div>
-    <div class="post_container">
-      {{ content }}
-    </div>
-    <div class="disqus_section">
-      <h3 class="disqus_title">Comments:</h3>
-      <div id="disqus_thread"></div>
-      <script type="text/javascript">
-          /* * * CONFIGURATION VARIABLES * * */
-          var disqus_shortname = 'xmartlabs';
-
-          /* * * DON'T EDIT BELOW THIS LINE * * */
-          (function() {
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-    </div>
-
-
   </div>
 </article>
