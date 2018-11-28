@@ -33,7 +33,7 @@ NFC cards are already being use to identify most of the people in the world, sin
 
 Some companies decide to equip theirs business card with this technology in order to identify its employees and show its resumes.
 
-Banking, governmental agencies and other enterprises have been benefit from this technology if you want to know how this could help your enterprise workflows and make it more efficients, [contact us today.](#JotFormIFrame-82355834626665) 
+Banking, governmental agencies and other enterprises have been benefit from this technology if you want to know how this could help your enterprise workflows and make it more efficients, <a href="mailto:hi@xmartlabs.com">contact us today</a>.
 
 ### Safe and efficient way to give access to yours employees or invitees 
 
@@ -49,7 +49,7 @@ Some companies have come up with lockers that require both a NFC key that contai
 
 In some events NFC cars where used to give easily access to certain areas and control the identity of the attendees. 
 
-To learn how NFC keys can help your business improve access and identification, feel free to [contact us with your questions.](#JotFormIFrame-82355834626665) 
+To learn how NFC keys can help your business improve access and identification, feel free to <a href="mailto:hi@xmartlabs.com">contact us with your questions</a>.
 
 ### Easy and enjoyable interactions
 
@@ -57,7 +57,7 @@ Skylanders its a game that uses NFC interaction between devices to get the user 
 
 <img width="100%" src="/images/how-nfc-can-help-improve-your-business/skylanders-items.jpg" /> 
 <br />
-<p style="text-align: center;"> (source: <a href=https://www.theverge.com">The Verge</a>)</p>
+<p style="text-align: center;"> (source: <a href="https://www.theverge.com">The Verge</a>)</p>
 
 There are also a variety of consoles that have NFC integrated to them. In this cases some developers have come up with applications that could link devices to exchange game objects or share game play adding to it a competitive and cooperative experience. 
 
@@ -67,78 +67,4 @@ This kinds of interactions help make the user experience more remarkable to the 
 
 A way to exchange information pair to pair securely and efficient, NFC based applications allows you to create mechanism to not only make yours business presses more secure but to improve their efficiency and help create a more appeal user experience. This technology is used in a variety of industries and have prove to provide an improvement to its owners.
 
-To learn more about how NFC based apps can make improve your business, [reach out to us today.](#JotFormIFrame-82355834626665)
-
-<iframe
-      id="JotFormIFrame-82355834626665"
-      onload="window.parent.scrollTo(0,0)"
-      allowtransparency="true"
-      allowfullscreen="true"
-      allow="geolocation; microphone; camera"
-      src="https://form.jotformz.com/82355834626665"
-      frameborder="0"
-      style="width: 1px;
-      min-width: 100%;
-      height:539px;
-      border:none;"
-      scrolling="no"
-    ></iframe>
-<script type="text/javascript">
-  var ifr = document.getElementById("JotFormIFrame-82355834626665");
-  if(window.location.href && window.location.href.indexOf("?") > -1) {
-    var get = window.location.href.substr(window.location.href.indexOf("?") + 1);
-    if(ifr && get.length > 0) {
-      var src = ifr.src;
-      src = src.indexOf("?") > -1 ? src + "&" + get : src  + "?" + get;
-      ifr.src = src;
-    }
-  }
-  window.handleIFrameMessage = function(e) {
-    var args = e.data.split(":");
-    if (args.length > 2) { iframe = document.getElementById("JotFormIFrame-" + args[(args.length - 1)]); } else { iframe = document.getElementById("JotFormIFrame"); }
-    if (!iframe) { return; }
-    switch (args[0]) {
-      case "scrollIntoView":
-        iframe.scrollIntoView();
-        break;
-      case "setHeight":
-        iframe.style.height = args[1] + "px";
-        break;
-      case "collapseErrorPage":
-        if (iframe.clientHeight > window.innerHeight) {
-          iframe.style.height = window.innerHeight + "px";
-        }
-        break;
-      case "reloadPage":
-        window.location.reload();
-        break;
-      case "loadScript":
-        var src = args[1];
-        if (args.length > 3) {
-            src = args[1] + ':' + args[2];
-        }
-        var script = document.createElement('script');
-        script.src = src;
-        script.type = 'text/javascript';
-        document.body.appendChild(script);
-        break;
-      case "exitFullscreen":
-        if      (window.document.exitFullscreen)        window.document.exitFullscreen();
-        else if (window.document.mozCancelFullScreen)   window.document.mozCancelFullScreen();
-        else if (window.document.mozCancelFullscreen)   window.document.mozCancelFullScreen();
-        else if (window.document.webkitExitFullscreen)  window.document.webkitExitFullscreen();
-        else if (window.document.msExitFullscreen)      window.document.msExitFullscreen();
-        break;
-    }
-    var isJotForm = (e.origin.indexOf("jotform") > -1) ? true : false;
-    if(isJotForm && "contentWindow" in iframe && "postMessage" in iframe.contentWindow) {
-      var urls = {"docurl":encodeURIComponent(document.URL),"referrer":encodeURIComponent(document.referrer)};
-      iframe.contentWindow.postMessage(JSON.stringify({"type":"urls","value":urls}), "*");
-    }
-  };
-  if (window.addEventListener) {
-    window.addEventListener("message", handleIFrameMessage, false);
-  } else if (window.attachEvent) {
-    window.attachEvent("onmessage", handleIFrameMessage);
-  }
-  </script>
+To learn more about how NFC based apps can make improve your business, <a href="mailto:hi@xmartlabs.com">reach out to us today</a>.
