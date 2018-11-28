@@ -59,7 +59,7 @@ Skylanders its a game that uses NFC interaction between devices to get the user 
 <br />
 <p style="text-align: center;"> (source: <a href=https://www.theverge.com">The Verge</a>)</p>
 
-There are also a variety of consoles that have NFC integrated to them. In this cases some developers have come up applications that could link devices to exchange game objects or share game play adding to it a competitive and cooperative experience. 
+There are also a variety of consoles that have NFC integrated to them. In this cases some developers have come up with applications that could link devices to exchange game objects or share game play adding to it a competitive and cooperative experience. 
 
 This kinds of interactions help make the user experience more remarkable to the user and help make user interact more with the game itself. 
 
