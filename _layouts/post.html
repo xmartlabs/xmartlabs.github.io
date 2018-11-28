@@ -1,74 +1,73 @@
 ---
 layout: default
 ---
+{% assign author = site.data.authors[page.author_id] %}
 <article class="page-content">
-  <div class="post-content wrapper">
-    <div class="post">
-      <div class="post-header">
-        <div class="wrapper">
-          <h1 class="post-title">{{ page.title }}</h1>
-        </div>
-      </div>
-      {% assign author = site.data.authors[page.author_id] %}
-      <div class="post-author-info">
-        <div class="post-author-image">
-          <a href="{{author.profile_url}}" target="_blank">
-            <img class="post-author-avatar" src="/images/{{author.image}}" alt="{{author.display_name}}">
-          </a>
-        </div>
-        <div class="margin-top-3">
-          <span>By <a class="post-author-name" href="{{author.profile_url}}" target="_blank">{{ author.display_name }}</a></span>
-          <div class="post-time-info">
-            <time class="post-meta" datetime="{{ page.date }}">
-              {{ page.date | date: "%b %-d, %Y" }}
-            </time>
+  <div class="post-wrapper wrapper">
+    <div class="post-header">
+      <div class="wrapper">
+        <h1 class="post-title">{{ page.title }}</h1>
+        <div class="post-author-info">
+          <div class="post-author-image">
+            <a href="{{author.profile_url}}" target="_blank">
+              <img class="post-author-avatar" src="/images/{{author.image}}" alt="{{author.display_name}}">
+            </a>
+          </div>
+          <div class="post-author">
+            <span>By <a class="post-author-name" href="{{author.profile_url}}" target="_blank">{{ author.display_name }}</a></span>
+            <div class="post-time-info">
+              <time class="post-meta" datetime="{{ page.date }}">
+                {{ page.date | date: "%b %-d, %Y" }}
+              </time>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="post-share">
-        {% include social_media.html %}
-      </div>
-      <div class="clear">
-      </div>
-      <div class="post_container">
-        {{ content }}
-      </div>
-      <div class="post-footer">
-        <p class="dots">• • • • • •</p>
-        {% include social_media.html %}
-        <img src="/images/bender-banner.png" class="bender"/>
-      </div>
-      <div class="disqus-section">
-        <h3 class="disqus_title">Comments:</h3>
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES * * */
-            var disqus_shortname = 'xmartlabs';
-
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-      </div>
-      <div class="get-in-touch">
-        <img src="/images/logo.svg"/>
-        <a href="mailto:hi@xmartlabs.com?Subject=Hello%20Xmartlabs">
-          <span>Get in touch</span>
-        </a>
+        <div class="post-share">
+          {% include social_media.html %}
+        </div>
       </div>
     </div>
-    <div class="lets-talk">
-      <div class="banner">
-        <h1>Let's talk</h1>
-        <p>Interested in how AR can help your company?</p>
-        <a href="mailto:hi@xmartlabs.com?Subject=Hello%20Xmartlabs">
-          <span>Get in touch</span>
-        </a>
-        <div class="background"></div>
+    <div class="post-content">
+      <div class="post">
+        <div class="post_container">
+          {{ content }}
+        </div>
+        <div class="post-footer">
+          <p class="dots">• • • • • •</p>
+          {% include social_media.html %}
+        </div>
+        <div class="clear"></div>
+        <div class="disqus-section">
+          <h3 class="disqus_title">Comments:</h3>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+              /* * * CONFIGURATION VARIABLES * * */
+              var disqus_shortname = 'xmartlabs';
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div>
+        <div class="get-in-touch">
+          <img src="/images/logo.svg"/>
+          <a href="mailto:hi@xmartlabs.com?Subject=Hello%20Xmartlabs">
+            <span>Get in touch</span>
+          </a>
+        </div>
+      </div>
+      <div class="lets-talk">
+        <div class="banner">
+          <h1>Let's talk</h1>
+          <p>{{ page.banner_message | default: "Interested in how we can help you?" }}</p>
+          <a href="mailto:hi@xmartlabs.com?Subject=Hello%20Xmartlabs">
+            <span>Get in touch</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

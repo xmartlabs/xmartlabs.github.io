@@ -78,6 +78,9 @@ div.header {
       height: 100%;
       width: 100%;
     }
+    img {
+      box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .5);
+    }
     .post-title {
       position: absolute;
       bottom: 0;
@@ -197,7 +200,7 @@ div.header {
 }
 
 .get-in-touch {
-  display: flex;
+  display: none;
   justify-content: space-between;
   margin-top: 20px;
   a {
@@ -214,11 +217,13 @@ div.header {
     font-weight: bold;
     text-transform: uppercase;
   }
+  @include media-query($on-palm) {
+    display: flex;
+  }
 }
 
 .post-header {
   text-align: center;
-  padding: 40px 0px;
   .wrapper {
     height: 100%;
     display: table;
@@ -226,8 +231,6 @@ div.header {
     text-align: left;
   }
   .post-title {
-    display: table-cell;
-    vertical-align: middle;
     color: $black;
     font-size: 40px;
     font-weight: bold;
@@ -236,10 +239,11 @@ div.header {
     @include media-query($on-palm) {
       font-size: 25px;
       letter-spacing: 2px;
+      margin-top: 0;
     }
   }
   @include media-query($on-palm) {
-    padding: 0px 0px 30px;
+    padding: 0;
   }
 }
 
@@ -274,13 +278,50 @@ div.header {
     }
   }
 }
+.post-header {
+  .wrapper {
+    display: contents;
+  }
+  .post-share {
+    float: right;
+    margin-top: 20px;
+  }
+  .post-author-info {
+    float: left;
+    width: 50%;
+    font-family: $body;
+    font-size: 16px;
+    .post-author-image {
+      width: 90px;
+      position: relative;
+      float: left;
+      margin-right: 10px;
+      @include media-query($on-palm) {
+        width: 74px;
+      }
+    }
+    .post-author {
+      margin-top: 20px;
+      a {
+        color: $black;
+      }
+      span {
+        color: $light-grey;
+      }
+      @include media-query($on-palm) {
+        margin-top: 10px;
+      }
+    }
+  }
+}
 .post-content {
   display: flex;
   .lets-talk {
     .banner {
       position: fixed;
-      top: 100px;
+      top: 250px;
       margin-left: 20px;
+      width: 280px;
       color: $black;
       font-family: $body;
       padding: 40px 30px 70px 30px;
@@ -306,15 +347,6 @@ div.header {
         width: 90%;
         height: 50px;
       }
-      .background {
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        background: $lighter-grey;
-        width: 40%;
-        z-index: -1;
-      }
     }
     @include media-query($md-width) {
       display: none;
@@ -323,32 +355,6 @@ div.header {
   .post {
     margin-bottom: $spacing-unit;
     width: 70%;
-    .post-share {
-      float: right;
-    }
-    .post-author-info {
-      float: left;
-      width: 50%;
-      font-family: $body;
-      font-size: 16px;
-      .post-author-image {
-        width: 90px;
-        position: relative;
-        top: -30px;
-        float: left;
-        margin-right: 10px;
-        @include media-query($on-palm) {
-          width: 74px;
-          top: -17px;
-        }
-      }
-      a {
-        color: $black;
-      }
-      span {
-        color: $light-grey;
-      }
-    }
     .post-footer {
       .dots {
         font-family: $body;
