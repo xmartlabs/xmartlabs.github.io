@@ -1,42 +1,48 @@
 ---
 layout: default
 ---
-{% include featured.html %}
-    
 <div class="page-content">
   <div class="wrapper">
     <div class="home">
+
       <h1 class="page-heading">
       </h1>
       <section>
         <ul class="post-list">
           {% for post in site.posts %}
+          {% assign author = site.data.authors[post.author_id] %}
             <li>
               <article class="post-item {{ post.author_id }}">
 
-                <div class="post-info">
-                  <h1 class="post-title">
-                    <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-                  </h1>
-                  <div class="post-time-info visible-xs">
-                    <time class="post-meta" datetime="{{ post.date }}">
-                      {{ post.date | date: "%b %-d, %Y" }}
-                    </time>
+                <div class="post-author-info">
+                  <div class="post-author-image">
+                    <a href="https://github.com/{{author.github}}" target="_blank">
+                      <img class="post-author-avatar" src="/images/{{author.image}}" alt="{{author.display_name}}">
+                    </a>
                   </div>
-                  <p class="paragraph">
-                    {{ post.content | truncatewords:20 | strip_html}}
-                  </p>
-                  <a href="{{ post.url | prepend: site.baseurl }}" class="read-more"> Read more </a>
+                  <span class="paragraph post-author-name"><span class='visible-on-palm'>by </span><a href="{{author.profile_url}}" target="_blank">{{ author.display_name }}</a></span>
                 </div>
 
-                <div class="post-time-info hidden-xs">
+                <div class="post-time-info">
                   <time class="post-meta" datetime="{{ post.date }}">
                     {{ post.date | date: "%b %-d, %Y" }}
                   </time>
                 </div>
 
+                <div class="post-info">
+                  <h1 class="post-title">
+                    <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                  </h1>
+                  <h2>
+                    {{ post.description }}
+                  </h2>
+                  <p class="paragraph">
+                    {{ post.content | truncatewords:50 | strip_html}}
+                  </p>
+                </div>
                 <div class="clear">
                 </div>
+
 
               </article>
             </li>
