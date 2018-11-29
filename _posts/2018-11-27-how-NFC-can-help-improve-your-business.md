@@ -2,38 +2,38 @@
 layout: post
 title:  How NFC can help improve your business
 date: 2018-10-08 09:00:00
-author: XL Team
-categories: AR
-author_id: xl
+author: Felipe de León
+categories: NFC
+author_id: felipe
 
 ---
 
-In 2017 Apple made IOS 11 support NFC application with this move apples joins Google and others device manufacturers that provides SDK's to integrate this technology. This action has widely increase the amount of devices with custom NFC applications available in the market. 
+With the release of iOS 11 back in 2017, Apple added support for NFC applications. With this it joined Google and many other device manufacturers in supporting the technology and providing an SDK to integrate it natively in iOS apps. This action has widely increased the amount of devices with NFC availability on the market.
 
-NFC its a communication protocol that enable two devices to share data withing a range of 4 cm that was launched to the public in 2004. This technology is usually used to share personal or critical data between two devices, since its range restrictions make it more secure than Bluetooth. In this post we will explore some use cases that have display some of the benefits of this technology.
+NFC it's a communication protocol that enables two devices to share data within a range of up to 4 cm, launched to the public in 2004. This technology is usually used to share personal or critical data between two devices, since its range restrictions make it more secure than Bluetooth. In this post we will explore some real-world use cases to put the benefits of this technology on display
 
-### Quickly and effortless payments
+### Quick and effortless payments
 
-NFC its not a new thing when we speak about payments, since 2014 Apple, Google and Samsung have been working in a Wallet of their own that allow you to pay through a NFC POS terminal. This wallets prove to be very secure and convenient since the number of smartphones and NFC POS terminals have been increasing in the past years added to the ability to pay however you want without having to take your cash, credit/debit card or checkbook out of your home.
+NFC its not a newcomer when it comes to payments. Since 2014 companies like Apple, Google and Samsung have been working in a Wallet of their own, to allow users to pay through NFC-enabled POS terminal. have proven to be very secure and also very convenient, since the number of smartphones and NFC-enabled POS terminals have been increasing over the past few years, added to the ability to pay however you want without having to take your cash, credit/debit card or checkbook out of your home.
 
 <iframe width="100%" height="383px" src="https://www.youtube.com/embed/bXbgtpkkTqw" frameborder="0" allowfullscreen></iframe>
 
-Paypal Visa and Master Card has follow this same model and create applications that allows the user to pay with its cards or accounts from its smarthphones.
+Paypal Visa and Master Card has also followed this same model to create applications that allows the user to pay with their debit or credit card as well as their bank accounts directly from their smarthphones, making use of NFC.
 
-NFC based payment methods have been accepted for a widely variety of stores banks and cards providers around the world.
+NFC-based payment methods have been accepted in a wide variety of stores, banks and other entities all around the world.
 
 ### Rapid and effective data authentication
 
-NFC cards are already being use to identify most of the people in the world, since the big majority of the world passports have an NFC chip that contains the person information. Biometric information is usually storage in this type of chips allowing to identify its owner and provide other critical information like its digital signature. Since the creation of the standard a lot of countries have transitioned to the electronic passport in order to make their identifications processes faster and more efficients.
+NFC chips are already being use to identify most of the people in the world, since the big majority of the world passports have an NFC chip that contains the person information. Biometric information is usually storage in this type of chips allowing to identify its owner and provide other critical information like its digital signature. Since the creation of the standard a lot of countries have transitioned to the electronic passport in order to make their identifications processes faster and more efficients.
 
 
 <img width="100%" src="/images/how-nfc-can-help-improve-your-business/linked-in.jpg" /> 
 <br />
 <p style="text-align: center;"> (source: <a href="https://www.instructables.com/">Instructables</a>)</p>
 
-Some companies decide to equip theirs business card with this technology in order to identify its employees and show its resumes.
+In addition, Some companies have decide to equip theirs business card with this technology, providing an easy way to identify its employees and showing their resumes.
 
-Banking, governmental agencies and other enterprises have been benefit from this technology if you want to know how this could help your enterprise workflows and make it more efficients, <a href="mailto:hi@xmartlabs.com">contact us today</a>.
+Financial and governmental agencies, as well as other enterprises have benefited from this technology if you want to know how this could help your company's  workflow, making them more efficients, <a href="mailto:hi@xmartlabs.com">contact us today</a>.
 
 ### Safe and efficient way to give access to yours employees or invitees 
 
@@ -63,7 +63,7 @@ There are also a variety of consoles that have NFC integrated to them. In this c
 
 This kinds of interactions help make the user experience more remarkable to the user and help make user interact more with the game itself. 
 
-### Interested in building NFC based applications get in touch!
+### Interested in building NFC based applications? get in touch!
 
 A way to exchange information pair to pair securely and efficient, NFC based applications allows you to create mechanism to not only make yours business presses more secure but to improve their efficiency and help create a more appeal user experience. This technology is used in a variety of industries and have prove to provide an improvement to its owners.
 
