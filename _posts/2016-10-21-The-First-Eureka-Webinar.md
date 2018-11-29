@@ -11,7 +11,7 @@ markdown: redcarpet
 
 [Eureka]:        https://github.com/xmartlabs/Eureka
 [Xmartlabs]:     https://xmartlabs.com/
-<img src="/images/eureka-webinar/eureka.jpg" alt="Screenshot of hiding rows" />
+<img src="/images/eureka.jpg" alt="Screenshot of hiding rows" />
 
 [Eureka] is Xmartlabs’ elegant form builder for Swift iOS, built and refined for the open source community to accelerate the development cycle and produce cleaner code.
 
@@ -23,7 +23,7 @@ If you are starting a new iOS project, or using Eureka and want to learn more ab
 
 **There are only 30 spots available for this webinar, secure your spot today!**
 
-<a  href="https://goo.gl/forms/rKNRZQ1r5Ay5gM3p2" target="_blank"><img src="/images/eureka-webinar/save_your_spot.png" alt="Screenshot of hiding rows" /></a>
+<a  href="https://goo.gl/forms/rKNRZQ1r5Ay5gM3p2" target="_blank"><img src="/images/save_your_spot.png" alt="Screenshot of hiding rows" /></a>
 
 On the agenda:
 - Overview
