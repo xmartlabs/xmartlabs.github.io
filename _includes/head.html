@@ -5,8 +5,8 @@
   <title>{% if page.title %}{{ page.title }} | Xmartlabs{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-  <link rel="stylesheet" href="{{ "/css/xmartlabs-new-home.webflow.be16b59f1.min.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/css/main.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ "/css/xmartlabs-new-home.webflow.be16b59f1.min.css" | relative_url }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fluidbox/1.4.3/css/fluidbox.css">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
@@ -20,16 +20,6 @@
   <script src="/js/main.js"></script>
 
   <!-- Webflow custom font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic%7CSource+Sans+Pro:300,regular,600">
-
-  <script>
-    $( document ).ready(function() {
-      $('#menu-icon').on( "touchend click", function( event ) {
-        $('#site-nav').toggleClass('toggle-on');
-        event.preventDefault();
-      });
-      $('a.fluid-box').fluidbox();
-    });
-  </script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic%7CSource+Sans+Pro:300,regular,600,900">
 
 </head>
