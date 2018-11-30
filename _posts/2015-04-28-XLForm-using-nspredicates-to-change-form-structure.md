@@ -90,7 +90,7 @@ Probably you will never have to invoke these previous methods directly from your
 
 Let's see this simple example:
 
-![Screenshot of hiding rows](/images/xl-form/XLFormBlogExample.gif)
+![Screenshot of hiding rows](/images/XLFormBlogExample.gif)
 
 Suppose we have a form that questions the users hobbies. So we will have a multiple selector where the user can choose some of "Sport", "Music" and "Films". Now if the user selects "Sport" we want him to name his favourite sportsman but if the user selects "Films" we want to ask which is the best film he has seen or which is his favourite actor. And so on.
 

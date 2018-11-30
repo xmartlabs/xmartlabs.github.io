@@ -4,7 +4,7 @@
 @charset "utf-8";
 
 
-$font-family: 'Source Sans Pro', sans-serif;
+$font-family: 'Helvetica Neue';
 $font-weight-light: 300;
 $font-weight-normal: 400;
 $font-weight-bold: 700;
@@ -29,13 +29,10 @@ $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
 // Width of the content area
-$content-width:    950px;
-$md-content-width: 728px;
+$content-width:    800px;
 
 $on-palm:          620px;
 $on-laptop:        800px;
-$md-width:         992px;
-
 
 // Using media queries with like this:
 // @include media-query($on-palm) {
@@ -85,6 +82,7 @@ $md-width:         992px;
         "fonts",
         "reset",
         "bootstrap",
+        "icons",
         "base",
         "layout",
         "syntax-highlighting"
