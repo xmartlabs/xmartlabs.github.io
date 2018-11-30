@@ -76,7 +76,7 @@ For that purpose we created yet another graph, that compares commits per capita 
 
 Yes! **Cocos Island**. This tiny country of only 14m2 and 600 inhabitants, located in the Indian Ocean has a HDI of 0.829 and 11,036 commits during 2016! Woah. Are we in presence of a programming heaven? We don't really know :) This and other outliers happen to be countries with very little population, in which very few data and the presence of errors in the users’ stated locations can explain the high deviation of their stats. More recognizable countries such as **Monaco** and **Vatican City** display a similar pattern.
 
-<div style="text-align:center;margin-top:20px;margin-bottom:50px"><img src="/images/github-roundup/cocos-island-flag.png" alt="Cocos Island flag" /></div>
+<div style="text-align:center;margin-top:20px;margin-bottom:50px"><img src="/images/cocos-island-flag.png" alt="Cocos Island flag" /></div>
 
 ### Committers
 
