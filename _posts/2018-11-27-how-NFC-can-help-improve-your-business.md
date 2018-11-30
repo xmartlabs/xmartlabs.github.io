@@ -14,7 +14,7 @@ NFC it's a communication protocol that enables two devices to share data within 
 
 ### Quick and effortless payments
 
-NFC its not a newcomer when it comes to payments. Since 2014 companies like Apple, Google and Samsung have been working in a Wallet of their own, to allow users to pay through NFC-enabled POS terminal. have proven to be very secure and also very convenient, since the number of smartphones and NFC-enabled POS terminals have been increasing over the past few years, added to the ability to pay however you want without having to take your cash, credit/debit card or checkbook out of your home.
+NFC its not a newcomer when it comes to payments. Since 2014 companies like Apple, Google and Samsung have been working in a Wallet of their own, to allow users to pay through NFC-enabled POS terminal. These have proven to be very secure and also very convenient, since the number of smartphones and NFC-enabled POS terminals have been increasing over the past few years, adding to the ability to pay however you want without having to take your cash, credit/debit card or checkbook out of your home.
 
 <iframe width="100%" height="383px" src="https://www.youtube.com/embed/bXbgtpkkTqw" frameborder="0" allowfullscreen></iframe>
 
@@ -37,7 +37,7 @@ Financial and governmental agencies, as well as other enterprises have benefited
 
 ### Safe and efficient way to give access to your employees or guests 
 
-NFC keys are objects that allow you to lock and unlock doors or any type of object with an NFC-enabled close by. These keys are composed of two elements: the key and a lock. Since it operates under the NFC protocol it is necessary to hold the key to a certain distance to the object you are trying to lock or unlock. Only the key contains the data to unlock it making this a very secure and convenient method. These kind of keys are used by AirBnb owners and other enterprises because it's easy to reconfigure, giving access to theirs guest or invitees. 
+NFC keys are physical objects that allow you to lock / unlock doors -or other type of objects- with an NFC-enabled lock. These mechanisms are composed of two elements: the key and a lock. Since it operates under the NFC protocol it is necessary to hold the key to a certain distance to the object you are trying to lock or unlock. Some of the aspects that makes these keys a very secure and convenient method are the ability to activate new keys or invalidate them. Furthermore, they can be programed to give certain access in defined conditions for example allow he key to unlock only between a certain period of time. These kind of keys are used by AirBnb owners and other enterprises because it's easy to reconfigure, giving access to theirs guest or invitees. 
 
 <iframe width="100%" height="383px" src="https://youtube.com/embed/Zbxc1FxqHP4" frameborder="0" allowfullscreen></iframe>
 
