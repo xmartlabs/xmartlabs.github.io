@@ -65,6 +65,6 @@ This kind of interactions aid in making a more remarkable user experience, provi
 
 ### Interested in building NFC based applications? get in touch!
 
-As means to exchange information pair to pair securely and efficient, NFC based apps allows you to create mechanism to not only make yours business processes more secure and efficient but also to help create a more appeal user experience. This technology is used in a variety of industries and have proven to provide an improvement to its owners.
+As means to exchange information pair to pair securely and efficiently, NFC based apps allow you to create mechanisms to not only make your business processes more secure and efficient but also to help create a more appealing user experience. This technology is used in a variety of industries and has proven to provide clear benefits to its owners and users.
 
 To learn more about how NFC based apps can make improve your business <a href="mailto:hi@xmartlabs.com">reach out to us today</a>.
