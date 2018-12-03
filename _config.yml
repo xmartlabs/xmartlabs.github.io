@@ -46,3 +46,10 @@ defaults:
       type: "posts"
     values:
       author: "mtnBarreto"
+
+exclude:
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - Rakefile
