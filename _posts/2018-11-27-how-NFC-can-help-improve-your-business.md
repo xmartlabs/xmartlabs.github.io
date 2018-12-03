@@ -53,7 +53,7 @@ To learn how NFC keys can help your business improve access control and identifi
 
 ### Easy and enjoyable interactions
 
-Skylanders it's a game that uses NFC interaction between devices to get the user experience to the next level, adding NFC chips to figures, making the game more appeal to its users. 
+Skylanders is a game that uses NFC interaction between devices to get the user experience to the next level. By adding NFC chips to action figures, they make the game more appealing to its users. 
 
 <img width="100%" src="/images/how-nfc-can-help-improve-your-business/skylanders-items.jpg" /> 
 <br />
