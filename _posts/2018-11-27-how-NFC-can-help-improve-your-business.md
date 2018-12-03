@@ -35,7 +35,7 @@ In addition to that, some companies have decided to equip their business cards w
 
 Financial and government institutions, as well as other enterprises are benefiting from this technology. If you want to know how this could help improve your company's workflow with increased automation and convenience <a href="mailto:hi@xmartlabs.com">contact us today</a>.
 
-### Safe and efficient way to give access to your employees or guests 
+### Safe and efficient way to grant access to your employees or guests 
 
 NFC keys are physical objects that allow you to lock / unlock doors -or other type of objects- with an NFC-enabled lock. These mechanisms are composed of two elements: the key and a lock. Since it operates under the NFC protocol it is necessary to hold the key to a certain distance to the object you are trying to lock or unlock. Some of the aspects that makes these keys a very secure and convenient method are the ability to activate new keys or invalidate them. Furthermore, they can be programed to give certain access in defined conditions for example allow he key to unlock only between a certain period of time. These kind of keys are used by AirBnb owners and other enterprises because it's easy to reconfigure, giving access to theirs guest or invitees. 
 
