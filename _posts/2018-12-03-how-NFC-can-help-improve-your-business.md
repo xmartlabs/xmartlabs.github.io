@@ -1,14 +1,14 @@
 ---
 layout: post
 title:  How NFC can help improve your business
-date: 2018-10-08 09:00:00
+date: 2018-12-03 09:00:00
 author: Felipe de León
 categories: NFC
 author_id: felipe
 
 ---
 
-NFC it's a communication protocol that enables two devices to share data within a range of up to 4 cm, launched to the public in 2004. This technology is usually used to share personal or critical data between two devices, since its range restrictions make it more secure than Bluetooth. 
+NFC is a communication protocol that enables two devices to share data within a range of up to 4 cm, launched to the public in 2004. This technology is usually used to share personal or critical data between two devices, since its range restrictions make it more secure than Bluetooth. 
 
 With the release of iOS 11 back in 2017, Apple added support for NFC applications. By providing a native iOS SDK you can integrate into iOS apps, it joined Google and other device manufacturers that already supported the protocol. As a result, the amount of devices with NFC integration capabilities on the market has widely increased.
 
@@ -16,7 +16,7 @@ In this post we will explore some real-world use cases to put the benefits of th
 
 ### Quick and effortless payments
 
-NFC its not a newcomer when it comes to payments. Since 2014 companies like Apple, Google and Samsung have been working in a Wallet of their own, to allow users to pay through NFC-enabled POS terminal. These have proven to be very secure and also very convenient, since the number of smartphones and NFC-enabled POS terminals have been increasing over the past few years, adding to the ability to pay however you want without having to take your cash, credit/debit card or checkbook out of your home.
+NFC is not a newcomer when it comes to payments. Since 2014 companies like Apple, Google and Samsung have been working in Wallet apps of their own, to allow users to pay through NFC-enabled POS terminals. These have proven to be very secure and also very convenient, since the number of smartphones and NFC-enabled POS terminals have been increasing over the past few years, adding to the ability to pay however you want without having to take your cash, credit/debit card or checkbook out of your home.
 
 <iframe width="100%" height="383px" src="https://www.youtube.com/embed/bXbgtpkkTqw" frameborder="0" allowfullscreen></iframe>
 
