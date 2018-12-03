@@ -121,6 +121,9 @@ div.header {
       margin-bottom: 20px;
     }
   }
+  >li:last-child {
+    margin-bottom: 20px;
+  }
   article {
     display: block;
     padding: 30px 50px;
@@ -141,6 +144,7 @@ div.header {
       word-break: break-word;
       h1.post-title {
         margin-top: 4px;
+        color: $black;
         @include media-query($on-palm) {
           margin-bottom: 5px;
         }
@@ -409,6 +413,9 @@ div.header {
       padding-bottom: 0.25em;
       list-style-type: disc;
     }
+    @include media-query($on-palm) {
+      padding-left: 0;
+    }
   }
   ol {
     list-style-type: decimal;
@@ -416,11 +423,15 @@ div.header {
     &.alphabetical {
       list-style-type: lower-alpha;
     }
+    @include media-query($on-palm) {
+      padding-left: 0;
+    }
   }
 }
 
 code {
   display: inline-block !important;
+  white-space: normal;
 }
 
 pre code {
@@ -437,5 +448,46 @@ div.post_container a {
   @include media-query($md-width) {
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+
+ul.pager {
+  padding-left: 0;
+  margin-left: 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  li {
+    font-family: $body;
+    font-size: 1.4em;
+    font-weight: 300;
+    letter-spacing: .02em;
+    a {
+      color: $pink;
+    }
+  }
+}
+
+#goToTop {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background-color: $pink;
+  display: none;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  border-radius: 60px;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+  font-family: $body;
+  font-size: 2em;
+
+  span {
+    padding-bottom: 5px;
   }
 }

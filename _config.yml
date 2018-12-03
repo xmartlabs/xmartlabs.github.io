@@ -19,8 +19,20 @@ future: false
 timezone: America/Montevideo
 permalink: /:year/:month/:day/:title/
 
-# sass:
-#   style: :compressed
+plugins: [jekyll-paginate-v2]
+
+plugins_dir:
+  - jekyll-paginate-v2
+
+# Pagination Settings
+pagination:
+  enabled: true
+  per_page: 12
+  permalink: '/page/:num/'
+  title: ':title - page :num of :max'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
 
 defaults:
   # Default layout and language to everything
