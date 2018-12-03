@@ -20,7 +20,7 @@ NFC its not a newcomer when it comes to payments. Since 2014 companies like Appl
 
 Paypal, Visa and Master Card have also followed the same path. They created applications that allow the user to pay with their debit or credit card as well as their bank accounts directly from their smarthphones, making use of NFC technology.
 
-NFC-based payment methods have been accepted in a wide variety of stores, banks and other entities all around the world.
+Furthermore, NFC-based payment methods have been accepted in a wide variety of stores, banks and other entities all around the world.
 
 ### Rapid and effective data authentication
 
