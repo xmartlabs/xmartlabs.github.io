@@ -41,7 +41,7 @@ NFC keys are physical objects that allow you to lock / unlock doors -or other ty
 
 <iframe width="100%" height="383px" src="https://youtube.com/embed/Zbxc1FxqHP4" frameborder="0" allowfullscreen></iframe>
 
-Some companies have come up with lockers that require both a NFC key that contains the biometric information of the person that is trying to open it so in order to open a lock it has a two factor authentication process like system.
+Some companies came up with lockers with a two factor authentication process like system. They require a NFC key that contains biometric information, and a second step involving a sensor to verify it.
 
 <img width="100%" src="/images/how-nfc-can-help-improve-your-business/nfc-key.jpg" /> 
 <br />
