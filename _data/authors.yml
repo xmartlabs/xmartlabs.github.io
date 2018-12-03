@@ -77,3 +77,8 @@ xl:
   image: members/xl.png
   github: xmartlabs
   profile_url: https://github.com/xmartlabs
+felipe:
+  display_name: Felipe de León
+  image: members/felipe.jpg
+  github: f7deleon
+  profile_url: https://github.com/f7deleon
