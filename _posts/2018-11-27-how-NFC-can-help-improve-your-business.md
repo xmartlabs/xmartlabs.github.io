@@ -33,7 +33,7 @@ NFC chips are already being used to identify most of the people in the world! Si
 
 In addition to that, some companies have decided to equip their business cards with this technology, providing an easy way to identify its employees and provide additional relevant information.
 
-Financial and governmental agencies, as well as other enterprises have benefited from this technology if you want to know how this could help your company's  workflow, making them more efficients, <a href="mailto:hi@xmartlabs.com">contact us today</a>.
+Financial and government institutions, as well as other enterprises are benefiting from this technology. If you want to know how this could help improve your company's workflow with increased automation and convenience <a href="mailto:hi@xmartlabs.com">contact us today</a>.
 
 ### Safe and efficient way to give access to your employees or guests 
 
