@@ -8,9 +8,11 @@ author_id: felipe
 
 ---
 
+NFC it's a communication protocol that enables two devices to share data within a range of up to 4 cm, launched to the public in 2004. This technology is usually used to share personal or critical data between two devices, since its range restrictions make it more secure than Bluetooth. 
+
 With the release of iOS 11 back in 2017, Apple added support for NFC applications. By providing a native iOS SDK you can integrate into iOS apps, it joined Google and other device manufacturers that already supported the protocol. As a result, the amount of devices with NFC integration capabilities on the market has widely increased.
 
-NFC it's a communication protocol that enables two devices to share data within a range of up to 4 cm, launched to the public in 2004. This technology is usually used to share personal or critical data between two devices, since its range restrictions make it more secure than Bluetooth. In this post we will explore some real-world use cases to put the benefits of this technology on display
+In this post we will explore some real-world use cases to put the benefits of this technology on display.
 
 ### Quick and effortless payments
 
@@ -37,7 +39,7 @@ Financial and government institutions, as well as other enterprises are benefiti
 
 ### Safe and efficient way to grant access to your employees or guests 
 
-NFC keys are physical objects that allow you to lock / unlock doors -or other type of objects- with an NFC-enabled lock. These mechanisms are composed of two elements: the key and a lock. Since it operates under the NFC protocol it is necessary to hold the key to a certain distance to the object you are trying to lock or unlock. Some of the aspects that makes these keys a very secure and convenient method are the ability to activate new keys or invalidate them. Furthermore, they can be programed to give certain access in defined conditions for example allow he key to unlock only between a certain period of time. These kind of keys are used by AirBnb owners and other enterprises because it's easy to reconfigure, giving access to theirs guest or invitees. 
+NFC keys are physical objects that allow you to lock / unlock doors -or other type of objects- with an NFC-enabled lock. These mechanisms are composed of two elements: the key and a lock. Since it operates under the NFC protocol it is necessary to hold the key to a certain distance to the object you are trying to lock or unlock. Some of the aspects that makes these keys a very secure and convenient method are the ability to activate new keys or invalidate them. Furthermore, they can be programed to give certain access in defined conditions for example allow the key to unlock only between a certain period of time. These kind of keys are used by AirBnb owners and other enterprises because it's easy to reconfigure, giving access to theirs guest or invitees. 
 
 <iframe width="100%" height="383px" src="https://youtube.com/embed/Zbxc1FxqHP4" frameborder="0" allowfullscreen></iframe>
 
