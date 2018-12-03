@@ -6,7 +6,8 @@ author: Mathias Claassen
 categories: ML Kit, Core ML, iOS
 author_id: mathias
 markdown: redcarpet
-
+featured_position: 1
+featured_image: /images/mlkit/featured.png
 ---
 
 At Xmartlabs we have been closely involved in the nascent field of on-device Machine Learning.
