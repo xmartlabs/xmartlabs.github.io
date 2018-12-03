@@ -47,7 +47,7 @@ Some companies came up with lockers with a two factor authentication process lik
 <br />
 <p style="text-align: center;"> (source: <a href="https://www.theverge.com">The Verge</a>)</p>
 
-In some events NFC cars where given, allowing attendees to have easy access to certain areas. 
+In some events NFC cards are provided to allow attendees to access restricted areas. 
 
 To learn how NFC keys can help your business improve access control and identification, feel free to <a href="mailto:hi@xmartlabs.com">contact us with any questions</a>.
 
