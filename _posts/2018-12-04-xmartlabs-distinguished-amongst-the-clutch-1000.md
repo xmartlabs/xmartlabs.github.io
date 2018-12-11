@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Xmartlabs Distinguished Amongst the Clutch 1000
-date: 2018-12-04 09:00:00
+title:  Xmartlabs distinguished as top 10 mobile app developer in LATAM
+date: 2018-12-11 09:00:00
 author: XL Team
 categories: Marketing
 author_id: xl
