@@ -20,7 +20,7 @@ Browse through all of your repositories, including forks and the ones from organ
 
 #### Import or create projects
 
-Select an existing project and import it to your device start working on it or create a new one from scratch. 
+Select an existing project and import it to your device to start working on it or create a new one from scratch. 
 
 #### Manage your imported projects
 
