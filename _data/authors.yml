@@ -82,3 +82,8 @@ felipe:
   image: members/felipe.jpg
   github: f7deleon
   profile_url: https://github.com/f7deleon
+bruno:
+  display_name: Bruno Ferrari
+  image: members/bruno.jpg
+  github: FerrariBruno
+  profile_url: https://github.com/FerrariBruno
