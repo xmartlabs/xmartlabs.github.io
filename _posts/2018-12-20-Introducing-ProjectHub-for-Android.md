@@ -3,13 +3,13 @@ layout: post
 title:  Introducing ProjectHub for Android
 date: 2018-12-20 09:00:00
 author: Bruno Ferrari
-categories: Android
+categories: Android, GitHub, Project Management 
 author_id: bruno
 
 ---
 
-We have just released our brand-new Android app, **ProjectHub**, to the public. 
-You can download it [here](https://play.google.com/store/apps/details?id=com.xmartlabs.projecthub&hl=en).
+We have just released to the public our brand-new Android app, **ProjectHub**. 
+You can download it (for free) [here](https://play.google.com/store/apps/details?id=com.xmartlabs.projecthub&hl=en).
 
 <img width="100%" src="/images/projecthub/projecthub_promo_graphic.png"/>
 
@@ -29,7 +29,7 @@ Select an existing project and import it to your device to start working on it o
 #### Manage your imported projects
 
 Create, move, rename and delete columns and cards from your imported projects. 
-Everything you can do from GitHub you can do from ProjectHub.
+Everything you can do from GitHub you can do easily from ProjectHub.
 
 <img width="100%" src="/images/projecthub/projecthub_screenshots.png"/>
 
