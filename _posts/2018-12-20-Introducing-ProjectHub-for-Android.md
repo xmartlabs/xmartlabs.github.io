@@ -9,7 +9,7 @@ author_id: bruno
 ---
 
 We have just released to the public our brand-new Android app, **ProjectHub**. 
-You can download it (for free) [here](https://play.google.com/store/apps/details?id=com.xmartlabs.projecthub&hl=en).
+You can [install it from Google Play (for free!)](https://play.google.com/store/apps/details?id=com.xmartlabs.projecthub&hl=en).
 
 <img width="100%" src="/images/projecthub/projecthub_promo_graphic.png"/>
 
