@@ -8,7 +8,7 @@ author_id: bruno
 
 ---
 
-We have just released to the public our brand-new Android app, **ProjectHub**. 
+We have just released to the public the Android version of our already existing iOS app, **ProjectHub**.
 You can [install it from Google Play (for free!)](https://play.google.com/store/apps/details?id=com.xmartlabs.projecthub&hl=en).
 
 <img width="100%" src="/images/projecthub/projecthub_promo_graphic.png"/>
@@ -25,6 +25,7 @@ The app also offers filters so that you can select an organization -should you h
 #### Import or create projects
 
 Select an existing project and import it to your device to start working on it or create a new one from scratch. 
+Even without an active internet connection, you'll still be able to see your imported projects.
 
 #### Manage your imported projects
 
@@ -36,4 +37,4 @@ Everything you can do from GitHub you can do easily from ProjectHub.
 So, what are you waiting for? 
 Download [ProjectHub](https://play.google.com/store/apps/details?id=com.xmartlabs.projecthub&hl=en) and start working on your GitHub projects, anywhere, anytime. 
 If you are an iOS user, don't worry, we got your back! 
-Download ProjectHub for iOS [here](https://itunes.apple.com/uy/app/projecthub/id1245190471?mt=8)!
+Download [ProjectHub for iOS from the App Store](https://itunes.apple.com/uy/app/projecthub/id1245190471?mt=8)!
