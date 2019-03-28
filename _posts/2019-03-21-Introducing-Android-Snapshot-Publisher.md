@@ -92,6 +92,16 @@ The default value is the current version name and the short-hash commit, joined 
 
 You can read the more about each block in the [project's GitHub Repository](https://github.com/xmartlabs/android-snapshot-publisher#setup), but I promise you that the setup is really easy.
 
+After the setup process is finished, the plugin defines some gradle tasks that can be run.
+The naming convention is as follows: `[action][Variant][BuildType]`.
+For example, `publishSnapshotGooglePlayStagingRelease` will be generated if the app has a `staging` flavor and `release` build type.
+
+To find available tasks, run `./gradlew tasks` and look under the "Snapshot Publishing" section.
+
+The main available tasks are:
+
+- `publishSnapshotFabric[Variant][BuildType]`: it'll publish a snapshot version in Fabric's Beta.
+- `publishSnapshotGooglePlay[Variant][BuildType]`: it'll publish a snapshot version in Google Play.
 
 ## Conclusion
 
