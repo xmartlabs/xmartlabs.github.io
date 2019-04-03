@@ -8,25 +8,25 @@ author_id: mirland
 
 ---
 
-We're happy to announce the release of our first [open source **Gradle Android Plugin**](https://github.com/xmartlabs/android-snapshot-publisher), a plugin to **create Android Snapshot versions** in the simplest way that we know!
+We're happy to announce the release of our first [open source **Gradle Android Plugin**](https://github.com/xmartlabs/android-snapshot-publisher), a plugin to **create Android Snapshot versions** in the simplest way we know!
 
-Here at [Xmartlabs](https://www.xmartlabs.com/) we love to create new product, add new features, improve our client apps and fix the existing issues.
-On the other side are our clients, who want to get a try our work ASAP.
-Moreover, the QA department or some team members could be waiting for our deploy to test the changes.
-So we try to prepare and deliver new *Snapshot Builds* as soon as possible.
+Here at [Xmartlabs](https://www.xmartlabs.com/) we love engineering new products, adding new features to existing ones and also improving and fixing up our client's apps.
+Our awesome clients are oftentimes so exited about the work we do that they want to try it ASAP.
+Furthermore, our QA department or some other team members could also be waiting for our changes to deploy in order to test themselves.
+That's why we try to prepare and deliver new *Snapshot Builds* as soon as possible.
 
-Does it your case? If that's true, you may know that prepare and distribute new builds is not so hard but it could take you same valuable time.
-Nowadays the CI/CD servers are helping us a lot, they can compile and deliver our applications easily.
-Furthermore, they let you to don't waste your time waiting for test process or lint checks, you just schedule the task and you know that the deploy will be executed successfully.
+Can you relate to this? If you can, you probably know that preparing and distributing new builds is not too hard but can take up valuable time.
+Nowadays the CI/CD servers are of great help as they can compile and deliver our applications with ease.
+Additionally, they let you schedule tasks so you don't have to care about tests or linter checks running, they will simply be executed before every deployment.
 
-However, you may know that some pre-work must be done before releasing a new build.
-In my opinion the two most important tasks that we have to do before deploy all builds are:
-1. Add information to track possible issues.
-For example if a crash happened you must know which was the build that caused that crash.
-1. Generate a good release notes including a changelog to check what changed.
-It's so important because you have to communicate what should be tasted.
+However, there's always some work that must be done before releasing a new build.
+In my opinion two of the most important tasks we have to perform before deploying all builds are:
+1. Adding information to track possible issues.
+For example if a crash happened you'll want to know which was the specific build that caused that crash.
+1. Generating good release notes (including a changelog) to check what changed when compared to previous builds.
+This is essential as you must communicate what should be tested.
 
-Based on that, we decided to create our [**Gradle Android Snapshot Publisher plugin!**](https://github.com/xmartlabs/android-snapshot-publisher)
+Based on that we decided to create our very own [**Gradle Android Snapshot Publisher plugin!**](https://github.com/xmartlabs/android-snapshot-publisher)
 
 ## Which are the main features of this plugin?
 
@@ -34,38 +34,38 @@ It was designed to **prepare and distribute Android Snapshot builds**.
 
 The main features of the preparation process are:
 - Update the Android Version Name to keep track of the distributed versions.
-The default behavior adds the commit identifier to the Android Version name, for instance a version name may looks similar to `1.0.2-b799fbc`.
-- Create and customize rich release notes based on git's history.
+The default behavior appends the commit identifier to the Android Version name. For instance, a version name may look similar to `1.0.2-b799fbc`.
+- Create and customize rich release notes based on Git's history.
 
-After this pre-work is made, the plugin proceed to compile and publish the snapshot build.
-Currently the available sources to deploy the build are:
+After this preparation work, the plugin will proceed to compile and publish the snapshot build.
+Currently the available sources to deploy the builds are:
 - [Google Play](https://play.google.com/apps/publish)
 - [Fabric Beta](https://docs.fabric.io/android/beta/overview.html)
 
 
-The next picture shown an example of how the plugin prepared and deployed in Fabric Beta an snapshot version of a typical app.
+The next picture shows an example of how the plugin prepares and deploys -in Fabric Beta- a snapshot version of a typical app.
 ***MOCK AN IMAGE***
 
-## What is the preparation step based on?
+## What is the preparation work based on?
 
-The plugin makes a good use of your project's git repository to perform the preparation step.
-To get the most out of this plugin, you have to be as neat as you can when managing the git repository.
-In my team, we are following a simple but nice git flow.
-We have two main branches, `master` which contains the production code and `develop` which contains the newest changes that have not been released yet.
-Then, if we want to add a new feature or fixing an existing issue, we create a new branch from `develop` and we start coding!
-The next step is to create a new pull request, and wait for the reviewers.
-After we get approval, we can integrate our changes in the `develop` branch, but how should we integrate these changes? 
-GitHub provides 3 ways of do that, "Merge", "Rebase and Merge" or "Squash and Merge", but if you are not using GitHub you can just use Git's commands to get the same result.
-Based on how we created the branch, the branch could contains multiple commits, but only one feature or fix.
-So the main value of that branch is the feature that you are introducing or the fix that you are adding.
-For this reason, some time ago we decided to start using the "Squash and Merge" option, usually together with a good and descriptive message.
-The key of this flow is that if you check the git history of your main branches, each commit has an understandable and important value.
+The plugin makes good use of your project's Git repository to perform the prep work.
+To get the most out of this plugin, you have to be as neat as you can when managing it.
+In my team, we are following a simple but nice Git flow.
+We have two main branches: `master` which contains the production code and `develop` which contains the newest changes that have not been released to production just yet.
+Then, if we want to add a new feature or fix an already existing issue, we create a new branch from `develop` and start coding!
+The next step is to create a new pull request, and wait for the reviewers to review the code we want to merge.
+After we get approval, we can integrate our changes into the `develop` branch. But, how should we really integrate them? 
+GitHub provides 3 predefined ways to do that, "Merge", "Rebase and Merge" or "Squash and Merge" (if you are not using GitHub you can just use Git's commands to get the same result).
+Based on how the branch was created it could contain multiple commits but all of them related to only one feature or fix. 
+So the main value of that branch is the feature or fix you are introducing.
+For this reason, some time ago we decided to start using the "Squash and Merge" option, together with a good and descriptive message.
+The key to this flow is that if you check the Git history of your main branches, each commit has an understandable and important value.
 
 ## How to get started?
 
-The first step is to [include the plugin dependency in your project and apply it in your Android module](https://github.com/xmartlabs/android-snapshot-publisher#installation), it's the typical setup of any plugin.
+The first step is to [include the plugin dependency in your project and apply it in your Android module](https://github.com/xmartlabs/android-snapshot-publisher#installation). It's the typical setup of any plugin.
 
-Then, the plugin defines a `snapshotPublisher` block where you can add the different setup alongside the Android modules.
+Then, the plugin defines a `snapshotPublisher` block where you can add the different setups alongside the Android modules.
 
 ```groovy
 snapshotPublisher {
@@ -86,11 +86,11 @@ snapshotPublisher {
 
 `version`: Defines the Android Version Name customizations for the delivered build.
 The default value is the current version name and the short-hash commit, joined by a hyphen.
-`releaseNotes`: Define the release notes customizations.
+`releaseNotes`: Defines the release notes customizations.
 `fabric`: Defines the configuration needed to deploy the artifacts in Fabric's Beta.
 `googlePlay`: Defines the configuration needed to deploy the artifacts in Google Play.
 
-You can read the more about each block in the [project's GitHub Repository](https://github.com/xmartlabs/android-snapshot-publisher#setup), but I promise you that the setup is really easy.
+You can read more about each of the blocks in the [project's GitHub Repository](https://github.com/xmartlabs/android-snapshot-publisher#setup), but I promise you that the setup is really easy.
 
 After the setup process is finished, the plugin defines some gradle tasks that can be run.
 The naming convention is as follows: `[action][Variant][BuildType]`.
@@ -105,9 +105,9 @@ The main available tasks are:
 
 ## Conclusion
 
-This project was designed to release hot builds quickly and easily without wasting your time.
-One of the most interesting features of it, is that you can integrate it easily with the CI/CD servers.
-You can schedule a build each day or you can subscribe to some GitHub hook, for instance you can perform the release after a merge is made to some specific branch or when a git tag is created.
-We're currently using it and it's helping a lot.
-We are happy because we don't spend time in releases, our coworkers are happy because they can try the newest version of our different applications and the clients are happy because they are receiving build with much more frequency than before.
-For all of these and more I recommend you to give it a try and then tell me what do you think!
+This project was designed to release quick and valuable builds without wasting your time.
+One of the most interesting features is that you can integrate it easily with a CI/CD server.
+For instance, you could schedule a build every night or you could subscribe to some GitHub hook and perform the release after a merge is made or a Git tag created.
+We're currently using it and it's helping us a lot.
+We are happy because we don't end up spending time in releases, our coworkers are happy because they can try the newest version of our different applications and the clients are happy because they are receiving builds with much more frequency than before.
+For all these reasons and more I recommend you give it a try and then tell me what you think!
