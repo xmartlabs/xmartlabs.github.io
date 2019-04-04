@@ -43,7 +43,7 @@ Currently the available sources to deploy the builds are:
 - [Fabric Beta](https://docs.fabric.io/android/beta/overview.html)
 
 
-The next picture shows an example of how the plugin prepares and deploys -in Fabric Beta- a snapshot version of a typical app.
+The next picture shows an example of a Build published by the Plugin.
 ***MOCK AN IMAGE***
 
 ## What is the preparation work based on?
