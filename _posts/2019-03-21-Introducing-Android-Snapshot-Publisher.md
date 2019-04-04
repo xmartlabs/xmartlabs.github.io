@@ -60,6 +60,8 @@ Based on how the branch was created it could contain multiple commits but all of
 So the main value of that branch is the feature or fix you are introducing.
 For this reason, some time ago we decided to start using the "Squash and Merge" option, together with a good and descriptive message.
 The key to this flow is that if you check the Git history of your main branches, each commit has an understandable and important value.
+This was just an introduction to our Git flow, following it is not mandatory to use this plugin.
+However, if you use a similar flow where each commit is of value and has a descriptive message your **Snapshot Build** will be great! 
 
 ## How to get started?
 
