@@ -15,7 +15,7 @@ Our awesome clients are oftentimes so exited about the work we do that they want
 Furthermore, our QA department or some other team members could also be waiting for our changes to deploy in order to test themselves.
 That's why we try to prepare and deliver new *Snapshot Builds* as soon as possible.
 
-Can you relate to this? If you can, you probably know that preparing and distributing new builds is not too hard but can take up valuable time.
+Do you find this familiar? If you do, you probably know that preparing and distributing new builds is not too hard but can take up valuable time.
 Nowadays the CI/CD servers are of great help as they can compile and deliver our applications with ease.
 Additionally, they let you schedule tasks so you don't have to care about tests or linter checks running, they will simply be executed before every deployment.
 
@@ -51,8 +51,8 @@ The next picture shows an example of how the plugin prepares and deploys -in Fab
 The plugin makes good use of your project's Git repository to perform the prep work.
 To get the most out of this plugin, you have to be as neat as you can when managing it.
 In my team, we are following a simple but nice Git flow.
-We have two main branches: `master` which contains the production code and `develop` which contains the newest changes that have not been released to production just yet.
-Then, if we want to add a new feature or fix an already existing issue, we create a new branch from `develop` and start coding!
+We have two main branches: `master` which contains the production code and `develop` which contains the newest changes that have not been released to production yet.
+Then, if we want to add a new feature or fix an existing issue, we create a new branch from `develop` and start coding!
 The next step is to create a new pull request, and wait for the reviewers to review the code we want to merge.
 After we get approval, we can integrate our changes into the `develop` branch. But, how should we really integrate them? 
 GitHub provides 3 predefined ways to do that, "Merge", "Rebase and Merge" or "Squash and Merge" (if you are not using GitHub you can just use Git's commands to get the same result).
@@ -94,7 +94,7 @@ You can read more about each of the blocks in the [project's GitHub Repository](
 
 After the setup process is finished, the plugin defines some gradle tasks that can be run.
 The naming convention is as follows: `[action][Variant][BuildType]`.
-For example, `publishSnapshotGooglePlayStagingRelease` will be generated if the app has a `staging` flavor and `release` build type.
+For example, `publishSnapshotGooglePlayStagingRelease` will be generated if the app has a `staging` variant and `release` build type.
 
 To find available tasks, run `./gradlew tasks` and look under the "Snapshot Publishing" section.
 
@@ -109,5 +109,5 @@ This project was designed to release quick and valuable builds without wasting y
 One of the most interesting features is that you can integrate it easily with a CI/CD server.
 For instance, you could schedule a build every night or you could subscribe to some GitHub hook and perform the release after a merge is made or a Git tag created.
 We're currently using it and it's helping us a lot.
-We are happy because we don't end up spending time in releases, our coworkers are happy because they can try the newest version of our different applications and the clients are happy because they are receiving builds with much more frequency than before.
-For all these reasons and more I recommend you give it a try and then tell me what you think!
+We are happy because we don't end up spending time with releases, our coworkers are happy because they can try the latest version of our different apps and the clients are happy because they are receiving builds more frequently than before. 😄 
+For all these reasons and more, I recommend you give it a try and then tell me what you think!
