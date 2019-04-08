@@ -8,7 +8,7 @@ author_id: mirland
 
 ---
 
-We're happy to announce the release of our first [open source **Gradle Android Plugin**](https://github.com/xmartlabs/android-snapshot-publisher), a plugin to **create Android Snapshot versions** in the simplest way we know!
+We're happy to announce the release of [**Android Snapshot Publisher**, our first open source Android Gradle Plugin](https://github.com/xmartlabs/android-snapshot-publisher), a plugin to **create Android Snapshot versions** in the simplest way we know!
 
 Here at [Xmartlabs](https://xmartlabs.com/) we love engineering new products, adding new features to existing ones and also improving and fixing up our client's apps.
 Our awesome clients are oftentimes so excited about the work we do that they want to try it ASAP.
@@ -38,7 +38,7 @@ The default behavior appends the commit identifier to the Android Version name. 
 - Create and customize rich release notes based on Git's history.
 
 After this preparation work, the plugin will proceed to compile and publish the snapshot build.
-Currently the available sources to deploy the builds are:
+Currently, the available distribution sources are:
 - [Google Play](https://play.google.com/apps/publish)
 - [Fabric Beta](https://docs.fabric.io/android/beta/overview.html)
 
