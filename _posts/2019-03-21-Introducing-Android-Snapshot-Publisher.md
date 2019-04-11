@@ -44,7 +44,11 @@ Currently, the available distribution sources are:
 
 
 Here's an illustration of the process:
-***MOCK AN IMAGE***
+<div class="separator" style="clear: both; text-align: center;">
+    <img  border="0" src="/images/android-snapshot-plugin/snapshot-sample.png" />
+</div>
+<br/>
+
 
 ## What is the preparation work based on?
 
