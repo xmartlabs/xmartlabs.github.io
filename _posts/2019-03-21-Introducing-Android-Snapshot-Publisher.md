@@ -28,7 +28,7 @@ This is essential as you must communicate what should be tested.
 
 Based on that, we decided to create our very own [**Android Snapshot Publisher Gradle plugin!**](https://github.com/xmartlabs/android-snapshot-publisher)
 
-## what're the plugin's main features?
+## What're the plugin's main features?
 
 It was designed to **prepare and distribute Android Snapshot builds**.
 
