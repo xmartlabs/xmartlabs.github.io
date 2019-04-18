@@ -26,7 +26,9 @@ For example, if a crash happens, you'll want to know which was the specific buil
 1. Generating reasonable release notes (including a changelog) to be aware of what changed with respect to previous versions.
 This is essential as you must communicate what should be tested.
 
-Based on that, we decided to create our very own [**Android Snapshot Publisher Gradle plugin!**](https://github.com/xmartlabs/android-snapshot-publisher)
+We've already discussed [how we can do some of these tasks in a Jenkins-specific way](/2017/10/02/Release-Snapshot-Versions-In-Jenkins/).
+In this blogpost we introduce a different approach that's platform agnostic.
+[**Android Snapshot Publisher Gradle plugin!**](https://github.com/xmartlabs/android-snapshot-publisher) is a plugin to prepare and distribute snapshot builds in a simple and common way.
 
 ## What're the plugin's main features?
 
