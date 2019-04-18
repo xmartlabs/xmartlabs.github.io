@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Introducing Android Snapshot Plugin
-date: 2019-03-20 12:00:00
+date: 2019-04-18 12:00:00
 author: Matías Irland
 categories: Android, Gradle Plugin, Snapshot, Google Play, Fabric Beta
 author_id: mirland
@@ -28,7 +28,7 @@ This is essential as you must communicate what should be tested.
 
 We've already discussed [how we can do some of these tasks in a Jenkins-specific way](/2017/10/02/Release-Snapshot-Versions-In-Jenkins/).
 In this blogpost we introduce a different approach that's platform agnostic.
-[**Android Snapshot Publisher Gradle plugin!**](https://github.com/xmartlabs/android-snapshot-publisher) is a plugin to prepare and distribute snapshot builds in a simple and common way.
+[**Android Snapshot Publisher Gradle plugin**](https://github.com/xmartlabs/android-snapshot-publisher) is a plugin to prepare and distribute snapshot builds in a simple and common way.
 
 ## What're the plugin's main features?
 
