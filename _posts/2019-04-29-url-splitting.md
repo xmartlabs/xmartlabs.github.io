@@ -11,7 +11,7 @@ featured_image: /images/url-splitting/banner.jpg
 
 As devices become more powerful, web apps tend to have heavier client-side logic. In particular, Single Page Applications (SPAs) have become very popular in these past years, with the advent of battle-tested frontend frameworks such as React, Angular or Vue.
 
-These kind of apps aim to reduce as much load from the servers as possible, for example, by caching data aggressively and avoiding reloads. Why spend money upgrading your servers when your users have all this unused potential on their top-of-the-line phones and PCs?
+These kind of apps aim to reduce the server's load as much as possible, for example, by caching data aggressively and avoiding reloads. Why spend money upgrading your servers when your users have all this unused potential on their top-of-the-line phones and PCs?
 
 ## The Problem
 
@@ -19,7 +19,7 @@ Heavier client-side apps are not even close to being a panacea. As code sent to 
 
 Caching, compressing and CDNs tend to reduce loading times, but huge code also means parsing and execution times are bigger. At a certain point, pushing more code to the user becomes less and less effective.
 
-Say you have a very big SPA, with 20 distinct pages. Does the user really need all that code? Will the user navigate across all those 20 pages everytime they use your app? I'm willing to bet, in most cases, the answer is no. So, if the user only needs a subset of the code at any one time, why not split it? Enter URL splitting.
+Say you have a very big SPA, with 20 distinct pages. Does the user really need all that code? Will the user navigate across all those 20 pages every time they use your app? I'm willing to bet, in most cases, the answer is no. So, if the user only needs a subset of the code at any one time, why not split it? Enter URL splitting.
 
 ## URL Splitting
 
@@ -27,11 +27,11 @@ When apps are big, the user will probably navigate on a subset of the app's page
 
 URL splitting is the act of splitting an SPA in multiple sub apps, which will be in charge of knowing how to render a subset of the URLs of the app.
 
-Let's create an example: think of an e-commerce app. This app let's users browse products, either by searching manually or looking through a catalog by category. Naturally, users can fill their cart and then proceed to the checkout process, which is fairly complex: users have to specify their address, billing information, select what shipping option they want, and then confirm the purchase. Also, the app has a static pages section with a lot of information on how the business works, terms and conditions, FAQs, and more.
+Let's introduce an example: think of an e-commerce app. This app let's users browse products, either by searching manually or looking through a catalog by category. Naturally, users can fill their cart and then proceed to the checkout process, which is fairly complex: users have to specify their address, billing information, select what shipping option they want, and then confirm the purchase. Also, the app has a section of static pages with a lot of information on how the business works, terms and conditions, FAQs, and more.
 
-If you've ever used an e-commerce app, you know you certainly don't navigate through all the pages everytime you use it. Most likely you spend some time looking at products, probably in more than one sitting (buying that sixty inch TV takes convincing), then go through the whole checkout process if you decide to buy. And you probably won't ever visit the static pages unless you are really interested on their business or have a question.
+I'm willing to bet that, if you've ever used an e-commerce app, you probably don't navigate through all the pages every time you use it. Most likely you spend some time looking at products, probably in more than one sitting (buying that sixty inch TV takes convincing), then go through the whole checkout process if you decide to buy. And you probably won't ever visit the static pages unless you are really interested on their business or have a question.
 
-The first thing you need to do when URL splitting is deciding how many sub apps will be created and what subsets of pages will they manage. This part is more art than science, since you'll have to rely on your knowledge of the business and predict how the users will use the app. On this case, it seems logical to split the app in three parts:
+The first thing you need to do when URL splitting is deciding how many sub apps will be created and what subsets of pages they will manage. This part is more art than science, since you'll have to rely on your knowledge of the business and predict how the users will use the app. On this case, it seems logical to split the app in three parts:
 
 - **Products App**: will be in charge of the homepage and any page that shows products, including the detail of a single product.
 - **Checkout App**: in charge of authentication-related pages, such as login and register. Also, in charge of the whole checkout process.
@@ -41,7 +41,7 @@ Here's a crude diagram of how our app would be split, with some examples of the 
 
 <img width="100%" src="/images/url-splitting/apps-diagram.png">
 
-You might be wondering why we put the login and register page on the Checkout App. Why not split a fourth app with all these pages? Well, you certainly could! But in this case it makes sense that, most of the time, users will log in or register when starting the checkout process. Threading authentication and checkout together seems like a good idea, but to be really sure we'd need to check the analytics of similar businesses.
+You may be wondering why we put the login and register page on the Checkout App. Why not split a fourth app with all these pages? Well, you certainly could! But in this case it makes sense that, most of the time, users will log in or register when starting the checkout process. Threading authentication and checkout together seems like a good idea, but to be really sure we'd need to check the analytics of similar businesses.
 
 ## Implementation
 
@@ -67,7 +67,7 @@ Now that we have our blank canvas to work with, let's get our hands dirty.
 
 ### Boilerplate
 
-We'll need a couple of files to get started. First, we'll need three different app entrypoints. The current one is `src/App.js`. Let's create a `src/apps` directory where to put all our entrypoints. These files will work as root files that start the corresponding React app. We'll need three since we don't want to mix the code of all three apps, and also you might want to configure some things differently. Think of three separate React apps living in the same repository.
+We'll need a couple of files to get started. First, we'll need three different app entry points. The current one is `src/App.js`. Let's create a `src/apps` directory where to put all our entry points. These files will work as root files that start the corresponding React app. We'll need three since we don't want to mix the code of all three apps, and also you may want to configure some things differently. Think of three separate React apps living in the same repository.
 
 Our first app will be located in `src/apps/products`. The directory structure could be as follows:
 
@@ -83,7 +83,7 @@ Our first app will be located in `src/apps/products`. The directory structure co
 
 What I've done here is simply move the files that were on `src/` and renamed them (we don't use Pascal Case to name component files, but you can do it if you like). We'll have to adapt them down the line, but we'll cross that bridge when we get there.
 
-You should create similar files for the other two apps (`checkout` and `static-pages`). In some cases you might want some configuration to work similarily across apps (for example, the router, debugging components). So what we usually do is create an `AppTemplate` component that serves that purpose, and then simply render that component in each `app.js` file. For simplicity, let's take the code that's in the initial `App.js` file and put it in `src/apps/app-template.js`.
+You should create similar files for the other two apps (`checkout` and `static-pages`). In some cases you might want some configuration to work similarily across apps (for example, the router, debugging components). So what we usually do is create an `AppTemplate` component that serves that purpose, and then simply render that component in each `app.js` file. For simplicity, let's copy the code that's in the initial `App.js` file and paste it in `src/apps/app-template.js`.
 
 ```jsx
 /* src/apps/app-template.js */
@@ -132,11 +132,11 @@ const App = () => (
 export default App;
 ```
 
-**Note:** I've negleted to show a few updates you'll need to make in other files, but they should be pretty evident (for example updating imports in each of the apps `index.js` files).
+**Note:** I've neglected to show a few updates you'll need to make in other files, but they should be pretty evident (for example updating imports in each of the apps `index.js` files).
 
 This setup will allow you to centralize configuration of code that needs to go on every sub app, while also allowing us to override or add local configuration to a specific app. You can even pass props to `AppTemplate` if you want, to make this approach even more versatile. Right now all our `app.js` files are equal, but as apps grow, they'll start changing and becoming more complex.
 
-If you try to start the project now, it will most certainly crash. That's because we haven't told Webpack we want it to process multiple entrypoints!
+If you try to start the project now, it will most certainly crash. That's because we haven't told Webpack we want it to process multiple entry points!
 
 ### Webpack Configuration
 
@@ -167,7 +167,7 @@ const appData = Object.values(apps).map((appName) => {
 });
 ```
 
-The idea is to export the configuration for each of our apps on the `appData` object. The `js` key should make sense, we're specifying the name of the app (`products`) and where it's entrypoint is located (`src/apps/products/index.js`). The `html` key might not make a lot of sense right now, so lets explain.
+The idea is to export the configuration for each of our apps on the `appData` object. The `js` key should make sense, as we're specifying the name of the app (`products`) and where its entry point is located (`src/apps/products/index.js`). The `html` key might not make a lot of sense right now, so let's explain.
 
 The `template` key specifies where the base template for the HTML of the app is located. You should already have an `index.html` in your public folder. I'd suggest renaming it to something like `base-template.html` to avoid confusions. The `filename` key specifies what the final name of the HTML should be (`products.html`). The `chunks` key is very important, as it tells Webpack to only include the chunks related to this app (`products.js`, `products.css` and all other assets).
 
@@ -193,9 +193,9 @@ module.exports = {
 };
 ```
 
-#### Entrypoint Configuration
+#### Entry point Configuration
 
-On line 127 of the Webpack configuration file is the `entry` key. We must add our new entrypoints:
+On line 127 of the Webpack configuration file is the `entry` key. We must add our new entry points:
 
 ```js
 /* config/webpack.config.js */
@@ -269,11 +269,11 @@ return {
 
 Remember to maintain the relative order of the plugins. Also, keep in mind that you have to *replace* the instance of HtmlWebpackPlugin that is already being created.
 
-We've done it! Now are apps are correctly split. Sadly it isn't the end yet, but we're getting closer! The last thing we'll need to do is configure Webpack's development server to serve us the three different apps.
+We did it! Now are apps are correctly splitted. Sadly it isn't the end yet, but we're getting closer! The last thing we'll need to do is configure Webpack's development server to serve us the three different apps.
 
 ### Rewriting Development Routes
 
-The development server that runs when you start the project in development is biased towards a single-entrypoint implementation. We'll need to change a couple of things to make URL splitting work here. Essentially, the development server needs to know which app it needs to serve on which URL. We can do so with *rewrites*:
+The development server that runs when you start the project in development is biased towards a single-entry-point implementation. We'll need to change a couple of things in order to make URL splitting work here. Essentially, the development server needs to know which app it needs to serve on which URL. We can do so with *rewrites*:
 
 ```js
 /* config/paths.js */
@@ -310,11 +310,11 @@ Great! Your app now supports URL splitting correctly! Let's do a recap. Stick ar
 
 Here's what we've accomplished so far:
 
-- Create individual entrypoints for our apps.
+- Create individual entry points for our apps.
 - Configure Webpack's bundler to support all our apps.
 - Configure Webpack's development server to serve different HTML files depending on the URL.
 
-If you try to start the server now, it'll crash. This is because the scripts that are bundled with CreateReactApp's code expect only one Javascript entrypoint. It should be extremely simple to fix this, simply check the start and build scripts on `scripts/`. Once you start the server, you should be met with something similar to this:
+If you try to start the server now, it'll crash. This is because the scripts that are bundled with CreateReactApp's code expect only one Javascript entry points. It should be extremely simple to fix this, simply check the start and build scripts on `scripts/`. Once you start the server, you should be met with something similar to this:
 
 <img width="100%" src="/images/url-splitting/app-base-page.png">
 
@@ -326,7 +326,7 @@ To convince ourselves that our apps are different, we can change the background 
 
 The whole idea of URL splitting is to avoid serving the user code they probably won't need. On the other hand, we should have a way to share code between our apps, to make everything as DRY as possible. But beware, sharing code between apps can be tricky! Be sure to import only what you'll need on any specific app. You might end up loading every app with code that will never be visited.
 
-Try structuring your code in a way that shared code is correctly labeled and identifiable. This means global styling files, helpers and generic components. This will make it easier for people who work with your code to know what they're looking at, and give you an idea of how much code you're sharing.
+Try structuring your code in a way that reusable code is correctly labeled and easy to identify (i.e. global styling files, helpers and generic components). This will make it easier for people who work with your code to know what they're looking at, and give you an idea of how much code you're sharing.
 
 Much like a prepubescent teenager, your apps want to have a personality! If you find yourself sharing *everything* between apps, it might be a sign that you didn't split them in a sensible way. Also, sharing little to no code between them can also be signalling an issue. It's all a matter of balance.
 
@@ -334,7 +334,7 @@ Much like a prepubescent teenager, your apps want to have a personality! If you 
 
 The initial app we created is configured to be a [Progressive Web App](https://developers.google.com/web/progressive-web-apps/) out of the box. This is because it is assumed you'll always have a single bundle, and having your app be a PWA without configuration is sure useful!
 
-The problem is, our app is now *three* different bundles. You can't have a PWA with multiple entrypoints that don't share all the code. What you can have is three different PWAs scoped by an internal path in your domain. I won't go into detail on how you could achieve this, since it isn't the scope of this article, and I personally don't find it very useful (but it could be for your use case).
+The problem is, our app is now *three* different bundles. You can't have a PWA with multiple entry points that don't share all the code. What you can have is three different PWAs scoped by an internal path in your domain. I won't go into detail on how you could achieve this, since it isn't the scope of this article, and I personally don't find it very useful (but it could be for your use case).
 
 If you've followed this blogpost's code to a tee, then probably all your apps' `index.js` file have these lines somewhere:
 
@@ -349,7 +349,7 @@ This means that our app is not really a PWA yet. We'd need to explicitly enable 
 
 ### Production Backend
 
-One of the advantages of SPAs is that the backend that serves them can be as dumb as a second coat of paint. Meaning that, no matter the request, the backend will always serve the matching public file, or the HTML entrypoint for your SPA.
+One of the advantages of SPAs is that the backend that serves them can be as dumb as a second coat of paint. Meaning that, no matter the request, the backend will always serve the matching public file, or the HTML entry points for your SPA.
 
 Sadly, with URL splitting you'll need to make your backend a little smarter. Much like we did with Webpack's development server, you'll need to specify what HTML file to serve on which URLs. This can be done extremely quickly using an Express backend (which is what I do).
 
@@ -361,7 +361,7 @@ Jokes aside, this is a somewhat deep topic, so I've decided to split it. Check o
 
 ## Afterword
 
-Yes, I know, configuring URL splitting is quite horrible, and you certainly shouldn't go through the hassle of doing it **unless** you really need it. Think of it as another tool in your toolbelt. And, believe me, I've run into mind-boggling issues while configuring the project myself. But in the end, it's a one-time thing that will help you get a more stable, more performant app in the end. And everytime you configure it it gets easier.
+Yes, I know, configuring URL splitting is quite horrible, and you certainly shouldn't go through the hassle of doing it **unless** you really need it. Think of it as another tool in your toolbelt. And, believe me, I've run into mind-boggling issues while configuring the project myself. But in the end, it's a one-time thing that will help you get a more stable, more performant app in the end. And every time you configure it it gets easier.
 
 So don't be afraid if you don't understand everything that's going on. With time, you will. And if there's something that wasn't clear, feel free to leave a comment or an issue on the repo! I'm always open for feedback.
 
