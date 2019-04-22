@@ -11,15 +11,15 @@ featured_image: /images/url-splitting/banner.jpg
 
 As devices become more powerful, web apps tend to have heavier client-side logic. In particular, Single Page Applications (SPAs) have become very popular in these past years, with the advent of battle-tested frontend frameworks such as React, Angular or Vue.
 
-These kind of apps aim to reduce as much load from the servers as possible by, for example, caching data aggressively and avoiding reloads. Why spend money upgrading your servers when your users have all this unused potential on their top-of-the-line phones and PCs?
+These kind of apps aim to reduce as much load from the servers as possible, for example, by caching data aggressively and avoiding reloads. Why spend money upgrading your servers when your users have all this unused potential on their top-of-the-line phones and PCs?
 
 ## The Problem
 
-Heavier client-side apps are not even close to being a panacea. As code sent to the client grows in size, first-time loads tend to take longer and longer. This isn't good, but could be [worse than you think](https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/).
+Heavier client-side apps are not even close to being a panacea. As code sent to the client grows in size, first-time page loads tend to take longer and longer. This isn't good, but it could be [worse than you think](https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/).
 
 Caching, compressing and CDNs tend to reduce loading times, but huge code also means parsing and execution times are bigger. At a certain point, pushing more code to the user becomes less and less effective.
 
-Say you have a very big SPA, with 20 distinct pages. Does the user really need all that code? Will the user navigate all those 20 pages everytime they use your app? I'm willing to bet, in most cases, no. So, if the user only needs a subset of the code at any one time, why not split it? Enter URL splitting.
+Say you have a very big SPA, with 20 distinct pages. Does the user really need all that code? Will the user navigate across all those 20 pages everytime they use your app? I'm willing to bet, in most cases, the answer is no. So, if the user only needs a subset of the code at any one time, why not split it? Enter URL splitting.
 
 ## URL Splitting
 
@@ -45,7 +45,7 @@ You might be wondering why we put the login and register page on the Checkout Ap
 
 ## Implementation
 
-Before moving on to the implementation, I've gone ahead and created a [repository on Github](https://github.com/mlvieras/url-splitting-and-react) that follows this tutorial. Feel free to check it out if you don't want to do everything from scratch! Also, it might be useful if you get stuck somewhere. I've structured the commits by section, so you can navigate the changes needed on individual sections.
+Before moving on to the implementation, I've gone ahead and created a [repository on Github](https://github.com/mlvieras/url-splitting-and-react) that follows this tutorial. Feel free to check it out if you don't want to do everything from scratch! Also, it might be useful if you get stuck somewhere. I've structured the commits by section, for you to navigate through the changes needed on individual sections.
 
 ### Setting Up
 
@@ -57,7 +57,7 @@ First, create your new app (you'll need Node >= `8.10.0`):
 npx create-react-app@2.1.8 my-app && cd my-app
 ```
 
-Then eject the app to get access to all the configuration files. In some of the most common cases you don't need to eject the app, but I like to do it always (I don't like not knowing what's going on under the hood 😁).
+Then eject the app to get access to all the configuration files. In most cases you don't need to eject the app, but I like to do it always (I don't like not knowing what's going on under the hood 😁).
 
 ```bash
 npm run eject
@@ -132,15 +132,15 @@ const App = () => (
 export default App;
 ```
 
-**Note:** I've negleted to show a few updates you'll need to do to other files, but they should be pretty evident (for example updating imports in each of the apps `index.js` files).
+**Note:** I've negleted to show a few updates you'll need to make in other files, but they should be pretty evident (for example updating imports in each of the apps `index.js` files).
 
-This setup will allow to centralize configuration of things that need to go on every sub app, while also allowing us to override or add local configuration to a specific app. You can even pass props to `AppTemplate` if you want, to make this approach even more versatile. Right now all our `app.js` files are equal, but as apps grow, they'll start changing and becoming more complex.
+This setup will allow you to centralize configuration of code that needs to go on every sub app, while also allowing us to override or add local configuration to a specific app. You can even pass props to `AppTemplate` if you want, to make this approach even more versatile. Right now all our `app.js` files are equal, but as apps grow, they'll start changing and becoming more complex.
 
 If you try to start the project now, it will most certainly crash. That's because we haven't told Webpack we want it to process multiple entrypoints!
 
 ### Webpack Configuration
 
-Take a look at webpack's main configuration file, located in `config/webpack.config.js`. If you don't have experience with Webpack there's a lot to take in (a **lot**), but let's focus on what's important. Take a look at the `entry` key on line 127. To Webpack, entry points are a way of specifying the different bundles you want to create. Each entry point will be processed individually. So, what we want to do is specify three entry points, one for each of our sub apps. Create React App centralizes path configuration in a single `paths.js` file. We must edit this file to add information of all our apps. Add this code somewhere on the paths file:
+Take a look at webpack's main configuration file, located in `config/webpack.config.js`. If you don't have experience with Webpack there's a lot to take in (a **lot**), but let's focus on what's important. Take a look at the `entry` key on line 127. To Webpack, entry points are a way of specifying the different bundles you want to create. Each entry point will be processed individually. Therefore, what we want to do is specify three entry points, one for each of our sub apps. `Create React App` centralizes path configuration in a single `paths.js` file. We must edit this file to add information of all our apps. Add this code somewhere on the paths file:
 
 #### Path Configuration
 
@@ -269,11 +269,11 @@ return {
 
 Remember to maintain the relative order of the plugins. Also, keep in mind that you have to *replace* the instance of HtmlWebpackPlugin that is already being created.
 
-We've done it! Now are apps are correctly split. Sadly it isn't the end yet, but we're getting closer! The last thing we need to do is configure Webpack's development server to serve us the three different apps.
+We've done it! Now are apps are correctly split. Sadly it isn't the end yet, but we're getting closer! The last thing we'll need to do is configure Webpack's development server to serve us the three different apps.
 
 ### Rewriting Development Routes
 
-The development server that runs when you start the project in development is biased towards a single-entrypoint implementation. We'll need to change a couple of things to make URL splitting work here. Essentially, the development server needs to know which app it needs to serve on which URL. We can do so with rewrites:
+The development server that runs when you start the project in development is biased towards a single-entrypoint implementation. We'll need to change a couple of things to make URL splitting work here. Essentially, the development server needs to know which app it needs to serve on which URL. We can do so with *rewrites*:
 
 ```js
 /* config/paths.js */
@@ -287,7 +287,7 @@ const appRewrites = [
 
 Now simply export `appRewrites` so that we can access it from the configuration file.
 
-Rewrites work with regular expressions, so you won't necessarily need to specify *each* of your app's paths manually. Here I've given a naive example to get you going. It's also reasonable to put a catch-all rule at the end so that the user always gets an app served to the user (maybe to show them a not found page).
+Rewrites work with regular expressions, so you won't necessarily need to specify *each* of your app's paths manually. Here I've given a naive example to get you going. It's also reasonable to put a catch-all rule at the end so that the user always gets an app served to them (maybe to show them a not found page).
 
 Now, let's tell Webpack's development server to use these rewrites. The configuration resides in `config/webpackDevServer.config.js`.
 
@@ -334,7 +334,7 @@ Much like a prepubescent teenager, your apps want to have a personality! If you 
 
 The initial app we created is configured to be a [Progressive Web App](https://developers.google.com/web/progressive-web-apps/) out of the box. This is because it is assumed you'll always have a single bundle, and having your app be a PWA without configuration is sure useful!
 
-The problem is, our app is now *three* different bundles. You can't have a PWA with multiple entrypoints that don't share all the code. What you can have is three different PWAs scoped by an internal path in your domain. I won't go into how you would do this, since it isn't the scope of this article, and personally I don't find it very useful (but it could be for your use case).
+The problem is, our app is now *three* different bundles. You can't have a PWA with multiple entrypoints that don't share all the code. What you can have is three different PWAs scoped by an internal path in your domain. I won't go into detail on how you could achieve this, since it isn't the scope of this article, and I personally don't find it very useful (but it could be for your use case).
 
 If you've followed this blogpost's code to a tee, then probably all your apps' `index.js` file have these lines somewhere:
 
@@ -345,7 +345,7 @@ If you've followed this blogpost's code to a tee, then probably all your apps' `
 serviceWorker.unregister();
 ```
 
-This means that our app is not really a PWA yet. We'd need to explicitly enable the service worker on the client's browser by changing that line. So, essentially you're not in trouble if you leave all this code hanging around, buy I always like to remove all the evidence to avoid confusing people not familiar with the code.
+This means that our app is not really a PWA yet. We'd need to explicitly enable the service worker on the client's browser by changing that line. So, essentially you're not in trouble if you leave all this code hanging around, but I always like to remove all the evidence to avoid confusing people who are not familiar with the code.
 
 ### Production Backend
 
