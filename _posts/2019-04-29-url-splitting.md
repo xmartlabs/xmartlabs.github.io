@@ -1,7 +1,7 @@
 ---
 layout: post
 title: URL Splitting and React (Part 1)
-date: 2019-04-23 09:00:00
+date: 2019-04-29 09:00:00
 author: Matías Lorenzo
 categories: React, URL splitting
 author_id: mlorenzo
