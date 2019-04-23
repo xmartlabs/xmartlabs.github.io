@@ -50,12 +50,14 @@ Before moving on to the implementation, I've gone ahead and created a [repositor
 
 ### Setting Up
 
-Let's take a look at how to implement this. Please note that there are many ways to implement URL splitting on your app, depending on your project setup and what technologies you're using. In this example we'll take a look at how to do it using React with Webpack as our bundler. To make things easy, we'll start by creating a project with [Create React App](https://github.com/facebook/create-react-app). If you're following at home, make sure to use [`create-react-app@2.1.8`](https://github.com/facebook/create-react-app/releases/tag/v2.1.8) to get exactly the same output when creating your app.
+Let's take a look at how to implement this. Please note that there are many ways to implement URL splitting on your app, depending on your project setup and what technologies you're using.
+In this example we'll take a look at how to do it using React with Webpack as our bundler. To make things easy, we'll start by creating a project with [Create React App](https://github.com/facebook/create-react-app).
+If you're following at home, make sure to use [`create-react-app@3.0.0`](https://github.com/facebook/create-react-app/releases/tag/v3.0.0) to get exactly the same output when creating your app.
 
 First, create your new app (you'll need Node >= `8.10.0`):
 
 ```bash
-npx create-react-app@2.1.8 my-app && cd my-app
+npx create-react-app@3.0.0 my-app && cd my-app
 ```
 
 Then eject the app to get access to all the configuration files. In most cases there is no need to eject the app, but you'll have to this time. I like to do it always (I don't like not knowing what's going on under the hood 😁).
@@ -196,7 +198,7 @@ module.exports = {
 
 #### Entry point Configuration
 
-On line 127 of the Webpack configuration file is the `entry` key. We must add our new entry points:
+On line 134 of the Webpack configuration file is the `entry` key. We must add our new entry points:
 
 ```js
 /* config/webpack.config.js */
