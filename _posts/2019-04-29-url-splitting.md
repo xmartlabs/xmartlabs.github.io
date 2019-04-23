@@ -26,6 +26,7 @@ Say you have a very big SPA, with 20 distinct pages. Does the user really need a
 When apps are big, the user will probably navigate on a subset of the app's pages for a while, and then switch to another subset, or close the app. If the app is well designed, this behavior makes a lot of sense: if you're trying to do something, the tools to do it should be on screen, or a minimal amount of clicks away.
 
 URL splitting is the act of splitting an SPA in multiple sub apps, which will be in charge of knowing how to render a subset of the URLs of the app.
+If done correctly, it can lower your bundle size significantly, increase your app's performance and allow you to scale your app in the future!
 
 Let's introduce an example: think of an e-commerce app. This app let's users browse products, either by searching manually or looking through a catalog by category. Naturally, users can fill their cart and then proceed to the checkout process, which is fairly complex: users have to specify their address, billing information, select what shipping option they want, and then confirm the purchase. Also, the app has a section of static pages with a lot of information on how the business works, terms and conditions, FAQs, and more.
 
@@ -57,7 +58,7 @@ First, create your new app (you'll need Node >= `8.10.0`):
 npx create-react-app@2.1.8 my-app && cd my-app
 ```
 
-Then eject the app to get access to all the configuration files. In most cases you don't need to eject the app, but I like to do it always (I don't like not knowing what's going on under the hood 😁).
+Then eject the app to get access to all the configuration files. In most cases there is no need to eject the app, but you'll have to this time. I like to do it always (I don't like not knowing what's going on under the hood 😁).
 
 ```bash
 npm run eject
