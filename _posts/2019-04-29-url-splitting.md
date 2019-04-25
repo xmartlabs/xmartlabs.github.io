@@ -272,7 +272,7 @@ return {
 
 Remember to maintain the relative order of the plugins. Also, keep in mind that you have to *replace* the instance of HtmlWebpackPlugin that is already being created.
 
-We did it! Now are apps are correctly splitted. Sadly it isn't the end yet, but we're getting closer! The last thing we'll need to do is configure Webpack's development server to serve us the three different apps.
+We did it! Now are apps are correctly split. Sadly it isn't the end yet, but we're getting closer! The last thing we'll need to do is configure Webpack's development server to serve us the three different apps.
 
 ### Rewriting Development Routes
 
