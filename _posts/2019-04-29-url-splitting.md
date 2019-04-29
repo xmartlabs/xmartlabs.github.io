@@ -272,7 +272,7 @@ return {
 
 Remember to maintain the relative order of the plugins. Also, keep in mind that you have to *replace* the instance of HtmlWebpackPlugin that is already being created.
 
-We did it! Now are apps are correctly split. Sadly it isn't the end yet, but we're getting closer! The last thing we'll need to do is configure Webpack's development server to serve us the three different apps.
+Now are apps are correctly split. Sadly it isn't the end yet, but we're getting closer! The last thing we'll need to do is configure Webpack's development server to serve us the three different apps.
 
 ### Rewriting Development Routes
 
@@ -321,7 +321,7 @@ If you try to start the server now, it'll crash. This is because the scripts tha
 
 <img width="100%" src="/images/url-splitting/app-base-page.png">
 
-To convince ourselves that our apps are different, we can change the background to different colors. Go to each app's `app.css` file and edit the background color. I've used red, green and blue. Now navigate to `/products`, `/checkout` and `/static-pages` and you should be met by three different background colors. This means our server is serving them correctly!.
+To convince ourselves that our apps are different, we can change the background to different colors. Go to each app's `app.css` file and edit the background color. I've used red, green and blue. Now navigate to `/products`, `/checkout` and `/static-pages` and you should be met by three different background colors. This means our server is serving them correctly!
 
 ## Caveats
 
