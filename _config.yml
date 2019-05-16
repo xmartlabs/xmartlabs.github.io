@@ -34,3 +34,6 @@ defaults:
       type: "posts"
     values:
       author: "mtnBarreto"
+
+exclude:
+  - README.md

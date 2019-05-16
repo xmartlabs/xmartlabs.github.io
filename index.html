@@ -2,7 +2,7 @@
 layout: default
 ---
 {% include featured.html %}
-    
+
 <div class="page-content">
   <div class="wrapper">
     <div class="home">
@@ -11,35 +11,11 @@ layout: default
       <section>
         <ul class="post-list">
           {% for post in site.posts %}
+            {% unless post.featured_position %}
             <li>
-              <article class="post-item {{ post.author_id }}">
-
-                <div class="post-info">
-                  <h1 class="post-title">
-                    <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-                  </h1>
-                  <div class="post-time-info visible-xs">
-                    <time class="post-meta" datetime="{{ post.date }}">
-                      {{ post.date | date: "%b %-d, %Y" }}
-                    </time>
-                  </div>
-                  <p class="paragraph">
-                    {{ post.content | truncatewords:20 | strip_html}}
-                  </p>
-                  <a href="{{ post.url | prepend: site.baseurl }}" class="read-more"> Read more </a>
-                </div>
-
-                <div class="post-time-info hidden-xs">
-                  <time class="post-meta" datetime="{{ post.date }}">
-                    {{ post.date | date: "%b %-d, %Y" }}
-                  </time>
-                </div>
-
-                <div class="clear">
-                </div>
-
-              </article>
+              {% include post.html post=post %}
             </li>
+            {% endunless %}
           {% endfor %}
         </ul>
       </section>

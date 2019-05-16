@@ -1,0 +1,26 @@
+<article class="post-item">
+  <a href="{{ post.url | prepend: site.baseurl }}">
+    <div class="post-info">
+      <h1 class="post-title">
+        {{ post.title }}
+      </h1>
+      <div class="post-time-info visible-xs">
+        <time class="post-meta" datetime="{{ post.date }}">
+          {{ post.date | date: "%b %-d, %Y" }}
+        </time>
+      </div>
+      <p class="paragraph">
+        {{ post.content | truncatewords:20 | strip_html}}
+      </p>
+      <p class="read-more"> Read more </p>
+    </div>
+
+    <div class="post-time-info hidden-xs">
+      <time class="post-meta" datetime="{{ post.date }}">
+        {{ post.date | date: "%b %-d, %Y" }}
+      </time>
+    </div>
+    <div class="clear">
+    </div>
+  </a>
+</article>
