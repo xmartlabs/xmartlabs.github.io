@@ -11,28 +11,27 @@ featured_image: /images/url-splitting/banner.jpg
 
 As devices become more powerful, web apps tend to have heavier client-side logic. In particular, Single Page Applications (SPAs) have become very popular in these past years, with the advent of battle-tested frontend frameworks such as React, Angular or Vue.
 
-These kind of apps aim to reduce the server's load as much as possible, for example, by caching data aggressively and avoiding reloads. Why spend money upgrading your servers when your users have all this unused potential on their top-of-the-line phones and PCs?
+These kinds of apps aim to reduce the server's load as much as possible, for example, by caching data aggressively and avoiding reloads. Why spend money upgrading your servers when your users have all this unused potential on their top-of-the-line phones and PCs?
 
 ## The Problem
 
-Heavier client-side apps are not even close to being a panacea. As code sent to the client grows in size, first-time page loads tend to take longer and longer. This isn't good, but it could be [worse than you think](https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/).
+Heavier client-side apps are not even close to being a panacea. As code sent to the client grows in size, first-time page loading tends to take longer and longer. This isn't good, however the problem may be [worse than you originally thought](https://www.thinkwithgoogle.com/marketing-resources/data-measurement/mobile-page-speed-new-industry-benchmarks/).
 
-Caching, compressing and CDNs tend to reduce loading times, but huge code also means parsing and execution times are bigger. At a certain point, pushing more code to the user becomes less and less effective.
+Caching, compressing and CDNs tend to reduce loading times, but huge code also means parsing and execution times are bigger. At a certain point, pushing more code to the user becomes less and less effective and can actually diminish the utility of the code.
 
 Say you have a very big SPA, with 20 distinct pages. Does the user really need all that code? Will the user navigate across all those 20 pages every time they use your app? I'm willing to bet, in most cases, the answer is no. So, if the user only needs a subset of the code at any one time, why not split it? Enter URL splitting.
 
 ## URL Splitting
 
-When apps are big, the user will probably navigate on a subset of the app's pages for a while, and then switch to another subset, or close the app. If the app is well designed, this behavior makes a lot of sense: if you're trying to do something, the tools to do it should be on screen, or a minimal amount of clicks away.
+When apps are big, the user will probably navigate on a subset of the app’s pages, then switch to another subset or close the app. If the app is well designed, this behavior makes a lot of sense: if you’re trying to do something, the tools to do it should be on screen, or a minimal amount of clicks away.
 
-URL splitting is the act of splitting an SPA in multiple sub apps, which will be in charge of knowing how to render a subset of the URLs of the app.
-If done correctly, it can lower your bundle size significantly, increase your app's performance and allow you to scale your app in the future!
+URL splitting is the act of splitting an SPA in multiple sub apps, which will be in charge of knowing how to render a subset of the URLs of the app. If done correctly, it can lower your bundle size significantly, increase your app’s performance and allow you to scale your app in the future!
 
-Let's introduce an example: think of an e-commerce app. This app let's users browse products, either by searching manually or looking through a catalog by category. Naturally, users can fill their cart and then proceed to the checkout process, which is fairly complex: users have to specify their address, billing information, select what shipping option they want, and then confirm the purchase. Also, the app has a section of static pages with a lot of information on how the business works, terms and conditions, FAQs, and more.
+Let’s introduce an example: think of an e-commerce app. This app lets users browse products, either by searching manually or looking through a catalog by category. Naturally, users can fill their cart and then proceed to the checkout process, which is fairly complex: users have to specify their address, billing information, select what shipping option they want, and then confirm the purchase. Also, the app has a section of static pages with a lot of information on how the business works, terms and conditions, FAQs, and more.
 
-I'm willing to bet that, if you've ever used an e-commerce app, you probably don't navigate through all the pages every time you use it. Most likely you spend some time looking at products, probably in more than one sitting (buying that sixty inch TV takes convincing), then go through the whole checkout process if you decide to buy. And you probably won't ever visit the static pages unless you are really interested on their business or have a question.
+I'm almost certain that if you have ever used an e-commerce app, the likelyhood that you navigated through every page each time you visited the app is very low. Most likely you spent some time looking at products, probably in more than one sitting (buying that sixty-inch TV takes convincing), then go through the whole checkout process if you decide to buy. Furthermore, you probably won’t ever visit the static pages unless you are really interested on their business or have a question.
 
-The first thing you need to do when URL splitting is deciding how many sub apps will be created and what subsets of pages they will manage. This part is more art than science, since you'll have to rely on your knowledge of the business and predict how the users will use the app. On this case, it seems logical to split the app in three parts:
+The first thing you need to do when URL splitting is deciding how many sub apps will be created and what subsets of pages they will manage. This part is more art than science, since you’ll have to rely on your knowledge of the business and predict how the users will use the app. On this case, it seems logical to split the app in three parts:
 
 - **Products App**: will be in charge of the homepage and any page that shows products, including the detail of a single product.
 - **Checkout App**: in charge of authentication-related pages, such as login and register. Also, in charge of the whole checkout process.
@@ -42,17 +41,17 @@ Here's a crude diagram of how our app would be split, with some examples of the 
 
 <img width="100%" src="/images/url-splitting/apps-diagram.png">
 
-You may be wondering why we put the login and register page on the Checkout App. Why not split a fourth app with all these pages? Well, you certainly could! But in this case it makes sense that, most of the time, users will log in or register when starting the checkout process. Threading authentication and checkout together seems like a good idea, but to be really sure we'd need to check the analytics of similar businesses.
+You may be wondering why we put the login and register page on the Checkout App. Why not split a fourth app with all these pages? Well, you certainly could! But in this case, it makes sense that most of the time users will log in or register when starting the checkout process. Threading authentication and checkout together seems like a good idea, but to be really sure we’d need to check the analytics of similar businesses.
 
 ## Implementation
 
-Before moving on to the implementation, I've gone ahead and created a [repository on Github](https://github.com/mlvieras/url-splitting-and-react) that follows this tutorial. Feel free to check it out if you don't want to do everything from scratch! Also, it might be useful if you get stuck somewhere. I've structured the commits by section, for you to navigate through the changes needed on individual sections.
+Before moving on to the implementation, I've gone ahead and created a [repository on Github](https://github.com/mlvieras/url-splitting-and-react) that follows this tutorial. Feel free to check it out if you don’t want to do everything from scratch! Also, it might be useful if you get stuck somewhere. I’ve structured the commits by section, for you to navigate through the changes needed on individual sections.
 
 ### Setting Up
 
-Let's take a look at how to implement this. Please note that there are many ways to implement URL splitting on your app, depending on your project setup and what technologies you're using.
-In this example we'll take a look at how to do it using React with Webpack as our bundler. To make things easy, we'll start by creating a project with [Create React App](https://github.com/facebook/create-react-app).
-If you're following at home, make sure to use [`create-react-app@3.0.0`](https://github.com/facebook/create-react-app/releases/tag/v3.0.0) to get exactly the same output when creating your app.
+Let’s take a look at how to implement this. Please note that there are many ways to implement URL splitting on your app, depending on your project setup and what technologies you’re using.
+In this example we’ll take a look at how to do it using React with Webpack as our bundler. To make things easy, we’ll start by creating a project with [Create React App](https://github.com/facebook/create-react-app).
+If you’re following at home, make sure to use [`create-react-app@3.0.0`](https://github.com/facebook/create-react-app/releases/tag/v3.0.0) to get exactly the same output when creating your app.
 
 First, create your new app (you'll need Node >= `8.10.0`):
 
@@ -60,7 +59,7 @@ First, create your new app (you'll need Node >= `8.10.0`):
 npx create-react-app@3.0.0 my-app && cd my-app
 ```
 
-Then eject the app to get access to all the configuration files. In most cases there is no need to eject the app, but you'll have to this time. I like to do it always (I don't like not knowing what's going on under the hood 😁).
+Then eject the app to get access to all the configuration files. In most cases there is no need to eject the app, but you’ll have to this time. I always like to do it anyway (I don’t like not knowing what’s going on under the hood 😁).
 
 ```bash
 npm run eject
@@ -70,7 +69,7 @@ Now that we have our blank canvas to work with, let's get our hands dirty.
 
 ### Boilerplate
 
-We'll need a couple of files to get started. First, we'll need three different app entry points. The current one is `src/App.js`. Let's create a `src/apps` directory where to put all our entry points. These files will work as root files that start the corresponding React app. We'll need three since we don't want to mix the code of all three apps, and also you may want to configure some things differently. Think of three separate React apps living in the same repository.
+We’ll need a couple of files to get started. First, we’ll need three different app entry points. The current one is `src/App.js`. Let's create a `src/apps` directory where to put all our entry points. These files will work as root files that start the corresponding React app. We'll need three since we don't want to mix the code of all three apps, and also you may want to configure some things differently. Think of three separate React apps living in the same repository.
 
 Our first app will be located in `src/apps/products`. The directory structure could be as follows:
 
