@@ -82,3 +82,8 @@ felipe:
   image: members/felipe.jpg
   github: f7deleon
   profile_url: https://github.com/f7deleon
+mlorenzo:
+  display_name: Matías Lorenzo
+  image: members/mlorenzo.jpg
+  github: mlvieras
+  profile_url: https://github.com/mlvieras
