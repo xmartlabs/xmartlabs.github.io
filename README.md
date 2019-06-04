@@ -30,7 +30,7 @@ Remember to place the image inside the post's folder. A different name and forma
 If multiple posts have the same `featured_position` the newest will show on the featured section but the others won't show on the list of posts (since these are filtered to avoid repetition). **Please avoid this by deleting these variables from the post you want to replace.**
 
 ## What to do if the CSS changes aren't applied when releasing?
-Something changes to the CSS aren't applied once the page is released to GitHub Pages, this means the old CSS will be used causing different problems that can't be reproduce locally.
+Sometimes changes to the CSS aren't applied once the page is released to GitHub Pages, this means the old CSS will be used causing different problems that can't be reproduced locally.
 
 To force GitHub to load the new CSS you can edit [this line at `head.html`](_includes/head.html#L8):
 ```
