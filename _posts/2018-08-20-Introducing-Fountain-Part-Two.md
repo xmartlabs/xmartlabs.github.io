@@ -5,6 +5,7 @@ date: 2018-08-20 09:00:00
 author: Matías Irland
 categories: Android, Android Jetpack, Android Paging Library, Live Data, Android Architecture Components, RxJava, Retrofit, Fountain
 author_id: mirland
+featured_position: 3
 featured_image: /images/fountain/featured.png
 ---
 
@@ -13,7 +14,7 @@ In that post we explained the first feature of the library, the **Fountain Netwo
 The `Listing` component is a really useful structure to display the paged list entities and reflect the network changes in the UI.
 It contains a `LiveData<PagedList<T>>` element, which is provided by the new [Android Paging Library], so we can use all of the features offered by the [PagedListAdapter] in a simple way.
 Yes that's awesome, but it has a problem, in that example, the entities aren't saved anywhere.
-So if we want to display the same entities multiple times, we have to wait for them to load each time. 
+So if we want to display the same entities multiple times, we have to wait for them to load each time.
 
 In this post we'll see how we can use the second feature of the library: a `Listing` object combining network and cache support.
 
@@ -88,7 +89,7 @@ This will be executed in a transaction.
 We just discussed what a [`CachedDataSourceAdapter`] is, but the implementation of this interface will mostly depend on the [`DataSource`] we choose.
 So, to make things easier we'll use the [Room Persistence Library] which provides a [`DataSource`] trivially.
 
-The next important step is to think about how we can retrieve the [`DataSource`] entities in the same order as they were returned by the service. 
+The next important step is to think about how we can retrieve the [`DataSource`] entities in the same order as they were returned by the service.
 A common approach here is to save an index position in the entity.
 Then, when a new page comes, we have to search for the largest index position in the [`DataSource`] and update all entities in the response, incrementing it by one.
 That could work, but suppose that you are listing the GitHub users and you have two sort modes to display them.
@@ -117,8 +118,8 @@ data class User(
 @Entity(
     foreignKeys = [
       ForeignKey(
-        entity = User::class, 
-        parentColumns = ["id"], 
+        entity = User::class,
+        parentColumns = ["id"],
         childColumns = ["userId"])
     ],
     indices = [Index("userId")]
@@ -134,14 +135,14 @@ data class UserSearch(
 ### CachedDataSourceAdapter implementation
 
 To create the `CachedDataSourceAdapter` of users, we have to implement the four operations that the interface defines: `saveEntities`, `dropEntities`, `getDataSourceFactory` and `runInTransaction`.
-To implement these methods, we have to define a [Room Dao interface], let's name it `UserDao`. 
+To implement these methods, we have to define a [Room Dao interface], let's name it `UserDao`.
 
 The `getDataSourceFactory` method will require a method to retrieve all `User` entities associated to a `search` query, sorted by the index.
 
 If we follow the paging strategy we defined, `saveEntities` will require three methods in the `UserDao`:
 - A method to insert the `User` entities.
 - A method to insert the `UserSearch` entities.
-- A method to get the next `searchPosition` index. 
+- A method to get the next `searchPosition` index.
 
 The `dropEntities` method will require one or two methods depending on what we want to do.
 - The first option can be to have a method to delete all `User` entities and all `UserSearch` entities associated to a `search` query.
@@ -179,7 +180,7 @@ Now we have all the components we need to implement our `CachedDataSourceAdapter
 ```kotlin
 val cachedDSAdapter = object : CachedDataSourceAdapter<User, User> {
   override fun getDataSourceFactory() = userDao.findUsersByName(userName)
-  
+
   override fun runInTransaction(transaction: () -> Unit) {
     db.runInTransaction(transaction)
   }
@@ -190,8 +191,8 @@ val cachedDSAdapter = object : CachedDataSourceAdapter<User, User> {
       val relationItems = users
           .mapIndexed { index, user ->
             UserSearch(
-              search = userName, 
-              userId = user.id, 
+              search = userName,
+              userId = user.id,
               searchPosition = start + index
             )
           }
@@ -225,7 +226,7 @@ As well as in the network support listing, there are some optional parameters th
 - `firstPage: Int`: The initial page number, by default it's value is 1.
 - `ioServiceExecutor : Executor`: The executor where the service call will be made. By default the library will use a pool of 5 threads.
 - `ioDatabaseExecutor : Executor`: The executor where the database transaction will be done. By default the library will use a single thread executor.
-- `pagedListConfig: PagedList.Config` : The paged list configuration, in this object you can specify for example the `pageSize` and the `initialPageSize`. 
+- `pagedListConfig: PagedList.Config` : The paged list configuration, in this object you can specify for example the `pageSize` and the `initialPageSize`.
 
 
 ### Conclusion
