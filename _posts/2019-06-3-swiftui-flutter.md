@@ -11,6 +11,10 @@ featured_image: /images/swiftui-flutter/featured.jpg
 
 Good day everyone, so Apple just announced its new declarative UI Framework built from the ground up on Swift: **SwiftUI**. It’s for me the most interesting thing announced for developers at this year's WWDC. Let’s take a quick look at the basics:
 
+<p align="center">
+<img width="100%" src="/images/swiftui-flutter/featured.jpg">
+</p>
+
 The first example in the new website is:
 
 ```swift
