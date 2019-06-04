@@ -32,7 +32,7 @@ At first glance, JUST WOW, this is such a departure from the current workflow wh
 
 > Lists rule mobile UI
 
-Lists are by far the most common UI layout used today (just think about how everything scrolls down in modern apps). And given how tedious it was to create a list using UIKit it makes a lot of sense that Apple shows this as their first demo. It’s like shouting to their audience a big *“Look! This doesn’t suck anymore!”*. This announcements goes perfefctly in line with the other WWDC keynote announcements, all which respond to long-awaited needs.
+Lists are by far the most common UI layout used today (just think about how everything scrolls down in modern apps). And given how tedious it was to create a list using UIKit it makes a lot of sense that Apple shows this as their first demo. It’s like shouting to their audience a big *“Look! This doesn’t suck anymore!”*. These announcements go perfectly in line with the other WWDC keynote announcements, all which respond to long-awaited needs.
 
 ### New UI, familiar syntax
 
