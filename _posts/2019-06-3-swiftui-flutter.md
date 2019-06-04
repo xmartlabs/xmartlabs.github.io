@@ -85,7 +85,7 @@ Although a really basic example, we can pick up some differences:
 
 * Adding optional elements is a bit trickier in Flutter, given a Widget lists cannot contain nulls ([currently in discussion](https://github.com/flutter/flutter/issues/3783)).
 
-I’m wondering how much of this is on purpose, Apple has had a few years to look at what Google and others have been doing as use it as an inspiration. In the end, developers don’t want to learn 5 different ways of doing things, just one that works well is enough.
+I’m wondering how much of this is on purpose, Apple has had a few years to look at what Google and others have been doing to use as inspiration. In the end, developers don’t want to learn 5 different ways of doing things, just one that works well is enough.
 
 ### The devil’s in the details
 
