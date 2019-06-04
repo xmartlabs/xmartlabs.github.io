@@ -64,19 +64,32 @@ div.header {
   margin-left: auto;
   padding: 0 15px;
   display: flex;
-  .right-column {
-    margin-left: 10px;
+  flex-direction: column;
+  .bottom-row {
+    margin-top: 10px;
+    display: flex;
     @include media-query($on-palm) {
-      margin-left: 0;
-      margin-top: 10px;
+      flex-direction: column;
+    }
+    .featured-post {
+      height: 270px;
+      @include media-query($on-palm) {
+        height: 200px;
+      }
     }
   }
   .featured-post {
     position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    flex: 0.5;
     a {
       display: block;
       height: 100%;
       width: 100%;
+      background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
     }
     img {
       box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .5);
@@ -88,11 +101,20 @@ div.header {
       font-size: 3em;
       @include media-query($on-palm) {
         font-size: 20px;
+        bottom: 5px;
+        left: 15px;
       }
+    }
+    @include media-query($on-palm) {
+      height: 200px;
     }
   }
   .featured-post:last-of-type {
-    margin-top: 10px;
+    margin-left: 10px;
+    @include media-query($on-palm) {
+      margin-top: 10px;
+      margin-left: 0;
+    }
   }
   @include media-query($md-width) {
     max-width: $md-content-width;
