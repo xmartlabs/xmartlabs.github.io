@@ -81,7 +81,7 @@ There are a few Swift vs Dart syntax differences (Swift is definitely cleaner, w
 
 Although a really basic example, we can pick up some differences:
 
-* SwiftUI List’s receive a model and automatically maps it to the cell builder function. (nice!), in Flutter we need to use a map function and then turn it into a List. (Although this would probably be done using [List.builder](https://api.flutter.dev/flutter/widgets/ListView/ListView.builder.html)).
+* SwiftUI Lists receive a model and automatically maps it to the cell builder function. (nice!), in Flutter we need to use a map function and then turn it into a List. (Although this would probably be done using [List.builder](https://api.flutter.dev/flutter/widgets/ListView/ListView.builder.html)).
 
 * Adding optional elements is a bit trickier in Flutter, given a Widget lists cannot contain nulls ([currently in discussion](https://github.com/flutter/flutter/issues/3783)).
 
