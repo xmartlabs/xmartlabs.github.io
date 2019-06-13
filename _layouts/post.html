@@ -22,9 +22,6 @@ layout: default
             </div>
           </div>
         </div>
-        <div class="post-share">
-          {% include social_media.html %}
-        </div>
       </div>
     </div>
     <div class="post-content">
@@ -62,6 +59,9 @@ layout: default
       </div>
       <div class="lets-talk">
         <div class="banner">
+          <div class="float-social">
+          {% include social_media.html %}
+          </div>
           <h1>Let's talk</h1>
           <p>{{ page.banner_message | default: "Interested in how we can help you?" }}</p>
           <a href="mailto:hi@xmartlabs.com?Subject=Hello%20Xmartlabs">

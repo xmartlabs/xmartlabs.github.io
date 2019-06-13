@@ -373,6 +373,20 @@ div.header {
         width: 90%;
         height: 50px;
       }
+      ul.share-list {
+        margin-left: 0px;
+        li {
+          padding: 5px 1px 20px !important;
+          width: 69px;
+          a{
+            border-color: #000000;
+            border-style: solid;
+            border-width: 2px;
+            background-color: #FFFFFF;
+          }
+        }
+      }
+
     }
     @include media-query($md-width) {
       display: none;
