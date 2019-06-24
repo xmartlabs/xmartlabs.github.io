@@ -10,7 +10,7 @@ featured_image: /images/url-splitting/banner.jpg
 ---
 
 Welcome to part two of URL splitting in React.
-If you haven't, please read [part one](/2019/04/29/url-splitting) (or don't, I'm not your boss).
+If you haven't already, please read [part one](/2019/04/29/url-splitting) (or don't, I'm not your boss).
 Both this post and the previous one have a companion [Github project](https://github.com/mlvieras/url-splitting-and-react) that you should check out if you need some help or want to experiment without following the tutorial step by step.
 
 Remember we were working with an e-commerce app and we decided to split the app in three parts semantically.
@@ -28,16 +28,19 @@ Let's recap what was done last time:
 - Webpack was configured to support our new entry points.
 - We did some clean up and clarified some caveats.
 
-This post will be about how to implement routing in our frontend.
+But we never talked about how this setup could affect routing on the frontend!
+This post is just about that.
 
 ## Single SPA Routing
 
-Let's take a look at how routing in a single SPA would be implemented.
+Let's take a look at how routing in a single SPA could be implemented.
 
-There are different ways to implement routing on an SPA.
+There are different ways to tackle this problem.
 Create React App remains unopinionated in this regard, but I think the most common alternative is [React Router](https://github.com/ReactTraining/react-router).
 This library is great at what it does: providing a framework to help you create virtual pages on your SPA.
 Throughout this tutorial we're going to use React Router and expand on it to implement routing on our URL-split app.
+Do you use other routing frameworks? Do you implement routing yourself? This post might still be useful!
+You'll probably need to adjust a few things here and there, but I think the general idea is agnostic to the routing framework.
 
 React Router provides some components that are very useful, namely `Link` and `Redirect`.
 Links will trigger a route change when clicked, and Redirects will trigger a route change instantly when rendered.
@@ -107,7 +110,10 @@ npm install react-router-dom
 
 #### Directory structure
 
-All of our app's pages will be located in a `pages` directory inside `src`. Even though each of them will belong to a sub app, I find it easier to navigate my code if I have all the pages centralized. Also, you might reuse a page across multiple sub apps (the not found or error page, for example). You're free to organize your code as you see fit though 😃.
+All of our app's pages will be located in a `pages` directory inside `src`.
+Even though each of them will belong to a sub app, I find it easier to navigate my code if I have all the pages centralized.
+Also, you might reuse a page across multiple sub apps (the not found or error page, for example).
+You're free to organize your code as you see fit though 😃.
 
 So our `src` directory will look similar to this:
 
