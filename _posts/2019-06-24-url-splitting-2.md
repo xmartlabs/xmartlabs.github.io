@@ -102,10 +102,10 @@ Note that we won't be adding any real logic to these pages. We only need to have
 
 #### Install the Router
 
-We'll need the web version of the router:
+We'll need the web version of the router. We'll be using version `5.0.1`.
 
 ```bash
-npm install react-router-dom
+npm install react-router-dom@5.0.1
 ```
 
 #### Directory structure
@@ -121,12 +121,46 @@ So our `src` directory will look similar to this:
 /src
   |- /apps
   |- /pages
-    |- home
-    |- login
-    |- register
+    |- /home
+    |- /login
+    |- /register
     ...
 ```
 
 #### Create Page Components
 
 Each of our app's pages will be its own React component.
+For the purposes of this experiment we'll only need a way to tell which page has been rendered, so a simple title on screen will suffice for each one.
+I won't share the code of each page, since they are all pretty much the same.
+Let's check out how the Home page looks like.
+Create a `home.jsx` file on the `home` directory like this:
+
+```jsx
+import React from 'react';
+
+const Home = () => (
+  <div>
+    <h1>
+      HOME
+    </h1>
+  </div>
+);
+
+export { Home };
+```
+
+And to make importing easier, create an `index.js` file on the same directory:
+
+```js
+import { Home } from './home';
+
+export { Home };
+```
+
+I usually create two files instead of adding all the code to the index file to make file search easier in the future.
+Now, for each page create files similar to these ones and you're set!
+(Remember you can clone the project on Github to avoid doing all the work).
+Our base framework is set, now where do we begin?
+Let's start by defining our routes and apps somewhere.
+
+### Routing
