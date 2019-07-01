@@ -76,6 +76,9 @@ div.header {
       @include media-query($on-palm) {
         height: 200px;
       }
+      @media (min-width: $on-palm + 1) {
+        flex: 0.5;
+      }
     }
   }
   .featured-post {
@@ -84,7 +87,6 @@ div.header {
     background-repeat: no-repeat;
     background-size: cover;
     height: 400px;
-    flex: 0.5;
     a {
       display: block;
       height: 100%;
