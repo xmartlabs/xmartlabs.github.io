@@ -5,7 +5,7 @@ date: 2019-05-17 09:00:00
 author: Matías Lorenzo
 categories: React, URL splitting
 author_id: mlorenzo
-featured_position: 2
+featured_position: 3
 featured_image: /images/url-splitting/banner.jpg
 ---
 
