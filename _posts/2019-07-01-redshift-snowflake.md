@@ -72,4 +72,4 @@ If this is the case and you want to extract and correlate this data with other s
 Redshift also provides this feature through Spectrum, but it needs [some previous configuration](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html) to work properly, like creating external schemas and tables.
 
 
-Summarizing, both of this cloud data warehouse options are powerful and flexible solutions that are constantly improving to help companies to focus on what's important, get data-supported insights that will make their business successful.
+Summarizing, both of these cloud data warehouse options are powerful and flexible solutions that are constantly improving to help companies to focus on what's important, get data-supported insights that will make their business successful.
