@@ -16,7 +16,7 @@ There, a consolidated view of all the convenient business information is stored 
 
 Cloud Data warehouses are a popular choice among today's options. 
 This type of warehouses are easy-to-scale, highly performant and cheaper than their in-house counterparts, as companies don't need to buy and maintain dedicated hardware nor hire highly specialized personnel.
-On this ecosystem of providing a data warehouse as a service, there are two solutions that you definitely heard about, especially if you prefer AWS platform, [Amazon Redshift](https://aws.amazon.com/redshift/) and [Snowflake](https://www.snowflake.com/). 
+On this ecosystem of providing a data warehouse as a service, there are two solutions that you must have heard about, especially if you prefer AWS platform, [Amazon Redshift](https://aws.amazon.com/redshift/) and [Snowflake](https://www.snowflake.com/). 
 With Columnar storage and massively parallel processing (MPP) infrastructure, integrated with many Business Intelligence solutions and flexible pricing, this two solutions will definitely meet most of your requirements to analyze your business data today and in the future to come.
 
 However, choosing the right option for your company sometimes is not about if the solution will successfully complete a task but what is the most suitable option for your data strategy.
@@ -43,7 +43,7 @@ This way, you can pay for your storage and compute capabilities more independent
 If you manage sensitive information, for example, Protected Health Information (PHI), one of your top concerns must be to have an infrastructure that correctly protects your data and complies to the highest standards.
 
 Redshift provides robust and customizable end-to-end encryption, network isolation using VPCs and audit options through CloudTrail integration, among other features.
-Also, AWS services comply to [several programs](https://aws.amazon.com/compliance/programs/), meaning you can configure your cluster to satisfy well-known regulations.
+Also, AWS services comply with [several programs](https://aws.amazon.com/compliance/programs/), meaning you can configure your cluster to satisfy well-known regulations.
 
 Snowflake also takes security seriously and provides always-on encryption on both your in-transit and at-rest data, VPN network isolation and also complies with security regulations. 
 The important detail here is that these security options will depend on the [plan you selected](https://www.snowflake.com/pricing/), so you should take extra care when selecting the plan that fits your needs best.
