@@ -42,7 +42,7 @@ The Snowflake approach for pricing is essentially paying for what you use, [spli
     * *Up-front*: If you know how much storage you need, you can pre-pay for it each month, which is cheaper than the on-demand option.
 
 The pricing on Redshift [is more coupled](https://aws.amazon.com/redshift/pricing/) but it offer some interesting options too:
-* You can choose between two different **dense compute** or **dense storage** clusters, both options with powerful characteristics.
+* You can choose between **two different cluster types**, **dense compute** or **dense storage**, both options with powerful characteristics.
 * The usage is billed on a **per-hour** granularity.
 * You can choose between an **on-demand plan or an up-front payment**, obtaining interesting savings if you choose the latter option.
 * Provides a **Concurrency Scaling** option, where you can add to your cluster more computing power on-demand, priced on a per-second rate.
@@ -93,7 +93,7 @@ On this platform, you can **create different warehouses for different proposes**
 
 Nowadays, it is more and more common to have information on a semi-structured format, for example, a JSON report from 3rd party API like Google Analytics Reporting API or exports from a NoSQL database like MongoDB.
 
-If this is the case and you want to extract and correlate this data with other sources, Snowflake provides [**out-of-the-box datatypes and a query syntax**](https://docs.snowflake.net/manuals/sql-reference/data-types-semistructured.html) that allow you to transverse your JSON data.
+If this is the case and you want to extract and correlate this data with other sources, Snowflake provides [**out-of-the-box datatypes and a query syntax**](https://docs.snowflake.net/manuals/sql-reference/data-types-semistructured.html) that allow you to traverse your JSON data.
 Redshift also provides this feature through [**Spectrum**](https://aws.amazon.com/blogs/big-data/amazon-redshift-spectrum-extends-data-warehousing-out-to-exabytes-no-loading-required/), but it needs [some previous configuration](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html) to work properly, like creating external schemas and tables.
 
 
