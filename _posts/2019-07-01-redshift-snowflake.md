@@ -65,20 +65,20 @@ A desirable feature for your data warehouse is the ability to scale up or down t
 On Snowflake, this process is as easy as [altering your warehouse](https://docs.snowflake.net/manuals/user-guide/warehouses-tasks.html#resizing-a-warehouse) and select a new size, taking virtually no time.
 
 On redshift, you have [two different options to re-scale a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/rs-resize-tutorial.html):
-1. *Elastic resize*: 
+1. *Elastic resize:* 
     * Change only the **number of nodes** on your cluster
     * **Takes a few minutes** to add the new resources and redistribute the data among them.
-2. *Classic resize*:
+2. *Classic resize:*
     * Change the **types of the nodes** (and the amount if you want).
     * **Takes some hours**, as a new cluster is created the data from the old one is transfer to it.
-    * Redshift team recommends to follow the approach *Snapshot, Restore, and Resize* to avoid downtimes during this process.
+    * Redshift team recommends to follow the approach [*Snapshot, Restore, and Resize*](https://docs.aws.amazon.com/redshift/latest/mgmt/rs-resize-tutorial.html#rs-tutorial-snapshot-restore-resize-overview) to avoid downtimes during this process.
 
 Another topic to consider is how to manage the query load on your data warehouse, in order to deliver the needed information for every report in a reasonable time.
 
 On Redshift, all the user that wants to analyze data on the cluster **shares the compute resources**, so if there are a lot of user running a bunch of queries, they will definitely compete for them.
 The solution that Redshift provides to control this concurrency problem is to configure [WLM Queue Assignment Rules](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-queue-assignment-rules.html) to **give priority on the cluster usage**.
 
-<img width="100%" src="/images/redshift-snowflake/redshift_WML_Queues.jpg" /> 
+<img width="100%" src="/images/redshift-snowflake/redshift_WML_Queues.png" /> 
 <br />
 <p style="text-align: center;"> (source: <a href="https://www.slideshare.net/AmazonWebServices/getting-started-with-amazon-redshift-72473371">Amazon</a>)</p>
 
@@ -94,7 +94,7 @@ On this platform, you can **create different warehouses for different proposes**
 Nowadays, it is more and more common to have information on a semi-structured format, for example, a JSON report from 3rd party API like Google Analytics Reporting API or exports from a NoSQL database like MongoDB.
 
 If this is the case and you want to extract and correlate this data with other sources, Snowflake provides [**out-of-the-box datatypes and a query syntax**](https://docs.snowflake.net/manuals/sql-reference/data-types-semistructured.html) that allow you to transverse your JSON data.
-Redshift also provides this feature through **Spectrum**, but it needs [some previous configuration](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html) to work properly, like creating external schemas and tables.
+Redshift also provides this feature through [**Spectrum**](https://aws.amazon.com/blogs/big-data/amazon-redshift-spectrum-extends-data-warehousing-out-to-exabytes-no-loading-required/), but it needs [some previous configuration](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html) to work properly, like creating external schemas and tables.
 
 
 Summarizing, both of these cloud data warehouse options are powerful and flexible solutions that are constantly improving to help companies to focus on what's important, get data-supported insights that will make their business successful.
