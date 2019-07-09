@@ -92,3 +92,8 @@ jrocco:
   image: members/jrocco.jpg
   github: joaquinrok
   profile_url: https://github.com/joaquinrok
+pbt:
+  display_name: Rodrigo Bayá
+  image: members/pbt.jpg
+  github: pbt31
+  profile_url: https://github.com/pbt31
