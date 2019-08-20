@@ -10,7 +10,7 @@ featured_image: /images/xmartlabs-first-hackathon/general_view_bbq.jpg
 ---
 
 Last Saturday Xmartlabs held its very first hackathon!
-For those who are not familiar with the concept, a hackathon is an event where everyone who is involved in software development -be it graphic designers, project managers, software developers, etc- come together to collaborate in projects of different nature.
+For those who are not familiar with the concept, a hackathon is an event where everyone who is involved in software development -be it graphic designers, project managers, software developers, etc- come together to collaborate in projects of different natures.
 This means that projects don't necessarily have to be software-related, but can be anything the team sets their mind to.
 Our hackathon had teams comprised of up to 6 members, and a whole day duration.
 
