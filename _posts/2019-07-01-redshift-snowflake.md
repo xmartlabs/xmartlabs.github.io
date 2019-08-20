@@ -5,7 +5,7 @@ date: 2019-07-04 17:00:00
 author: Rodrigo Baya
 categories: Data analysis, Data warehouse, 
 author_id: pbt
-featured_position: 1
+featured_position: 2
 featured_image: /images/redshift-snowflake/data_center_cloud.jpg
 ---
 
