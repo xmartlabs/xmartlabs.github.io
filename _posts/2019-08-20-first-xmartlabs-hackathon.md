@@ -25,8 +25,8 @@ The first project was an IoT project. The team wanted to be able to ask, through
 <img width="100%" src="/images/xmartlabs-first-hackathon/iot_project.jpg" /> 
 <br />
 
-For this the team paired a ultrasonic sensor with an ESP8266 chip (essentially an Arduino Uno with WiFi capabilities) and also developed a custom command for Slack to give orders to the chip.
-Even though the game only works on PC, the team is eager about making a port for Android or iOS.
+For this the team paired a ultrasonic sensor with an ESP8266 chip (essentially an Arduino Uno with WiFi capabilities) and also developed a custom command for Slack to give orders to the chip. 
+Even though no one on this specific team had extensive experience working with IoT components, the project was functional in the end.
 
 ### Skillset blog
 
