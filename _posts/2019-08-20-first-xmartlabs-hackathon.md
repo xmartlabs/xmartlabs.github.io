@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Our very first Hackathon!"
-date: 2019-08-18 17:00:00
+date: 2019-09-09 10:00:00
 author: Bruno Ferrari
 categories: hackathon, team, xmartlabs
 author_id: bruno
@@ -35,7 +35,7 @@ The second project consisted of building an internal Skillset blog of our team m
 <img width="100%" src="/images/xmartlabs-first-hackathon/skillset_blog.jpg" /> 
 <br />
 
-The challenge here were two: get specific information about all of Xmartlabs' collaborators skillset (we are around 50 now, so it isn't an easy task) and build the blog using state-of-the-art technologies like GraphQL and Nest.
+The challenges here were two: get specific information about all of Xmartlabs' collaborators skillset (we are around 50 now, so it isn't an easy task) and build the blog using state-of-the-art technologies like GraphQL and Nest.
 
 ### Internal Rails app
 
