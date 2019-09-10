@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Our very first Hackathon!"
-date: 2019-09-09 10:00:00
+date: 2019-09-10 10:00:00
 author: Bruno Ferrari
 categories: hackathon, team, xmartlabs
 author_id: bruno
