@@ -97,3 +97,8 @@ pbt:
   image: members/pbt.jpg
   github: pbt31
   profile_url: https://github.com/pbt31
+bruno:
+  display_name: Bruno Ferrari
+  image: members/bruno.jpg
+  github: FerrariBruno
+  profile_url: https://github.com/FerrariBruno
