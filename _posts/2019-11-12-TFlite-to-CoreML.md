@@ -8,7 +8,7 @@ author_id: mathias
 featured_position: 1
 ---
 
-It's been over a year ago that Apple has introduced Create ML, a framework that allows building neural network models in Swift and use them in CoreML on iPhones or iPads.
+It's been over a year since Apple has introduced Create ML, a framework that allows you to build neural network models in Swift and use them on iPhones and iPads with Core ML.
 However, the most common way of getting a CoreML model is still by converting a model trained on TensorFlow, Keras, Pytorch or other ML frameworks. 
 Apple officially supports [coremltools](https://github.com/apple/coremltools) which allows converting some model formats like Keras, Caffe (v1) and TensorFlow (since version 3.0).
 
@@ -141,7 +141,7 @@ def network(input_shape, interpreter):
     return model
 ```
 
-### Debugging your model
+### Testing and Debugging your Model
 
 Constructing the same model as the one used in the TF Lite model is not always straightforward. 
 Sometimes you won't know why your implementation does not return the same result as the original.
