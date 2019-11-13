@@ -8,26 +8,23 @@ author_id: mathias
 featured_position: 1
 ---
 
-Apple has introduced Create ML over a year ago, a framework that allows building ML models in Swift and use them in CoreML on iPhones or iPads.
+It's been over a year ago that Apple has introduced Create ML, a framework that allows building neural network models in Swift and use them in CoreML on iPhones or iPads.
 However, the most common way of getting a CoreML model is still by converting a model trained on TensorFlow, Keras, Pytorch or other ML frameworks. 
-Apple officially supports [coremltools](https://github.com/apple/coremltools) which allows converting some model formats like scikit-learn, Keras and Caffe (v1) to CoreML. 
-There are also some other libraries that support more formats like [tfcoreml](https://github.com/tf-coreml/tf-coreml) which supports converting TensorFlow models to CoreML.
+Apple officially supports [coremltools](https://github.com/apple/coremltools) which allows converting some model formats like Keras, Caffe (v1) and TensorFlow (since version 3.0).
 
 However, not all model formats can be converted so easily to CoreML.
 For example, there is no library that supports converting a TensorFlow Lite model.
-TensorFlow Lite is used to deploy TensorFlow models on mobile or embedded devices but not for training them. 
-You can deploy TF Lite models on iOS, but you might want to run it on CoreML as that might prove to be more performant.
-So, if you have trained a model on TensorFlow, you can use `tfcoreml` to convert that model to CoreML and you are good to go.
-However, if you got a TF Lite model from a recent research paper which you want to test or you simply got a TF Lite from somewhere and want to test it on CoreML then you have to do this conversion manually. 
- 
-A TF Lite model cannot be converted back to a TensorFlow model but we can see its architecture and export its weights and then reimplement the network graph in TensorFlow using the exported weights.
-That is what we are going to do in this tutorial.
+While this is not needed when you train your own model in TensorFlow, it can be helpful if you want to do performance comparisons between different on-device frameworks or if you want to run a recently published research model in CoreML and you only have the model in TF Lite format, to name a few examples.
 
-## Inspecting the model 
+TensorFlow Lite is used to deploy TensorFlow models on mobile or embedded devices but not for training them.
+Once converted to TF Lite, a model cannot be converted back to a TensorFlow model but we can see its architecture and export its weights and then reimplement the network graph in TensorFlow using the exported weights. We can then use `coremltools` or [tfcoreml](https://github.com/tf-coreml/tf-coreml) to convert it to CoreML.
+That is what we are going to do in this tutorial.
 
 We will use a MNIST model from the [TF Lite examples](https://github.com/tensorflow/examples/tree/master/lite) repository.
 
-The first thing we must do is inspect the model to see its layers.
+## Inspecting the model 
+
+The first thing we should do is to inspect the model to see its layers.
 One great tool to do this is [Netron](https://github.com/lutzroeder/netron).
 With Netron you can see the graph and even export the weights of a model.
 If you install Netron you can just open any `.tflite` file by clicking it.
@@ -50,11 +47,11 @@ import tensorflow as tf
 interpreter = tf.lite.Interpreter(model_path="mnist.tflite")
 interpreter.allocate_tensors()
 
-# Get input and output tensors.
+# Get output tensor details.
 output_details = interpreter.get_output_details()
 
 num_layer = output_details[0]["index"] + 1 
-for i in range(8):
+for i in range(num_layer):
     detail = interpreter._get_tensor_details(i)
     print(i, detail['name'], detail['shape'])
 ```
@@ -67,9 +64,9 @@ for i in range(8):
 As said before, Netron also allows us to export the weights of these layers. 
 You can do that with your model but in this guide we are going to export them differently.
 
-To export the weights we are going to use the `get_tensor` function of the `tf.lite.Interpreter`. This function cannot be used to get intermediate results of a graph but it can be used to get parameters such as weights and biases as well as the outptus of the model.
+To export the weights we are going to use the `get_tensor` function of the `tf.lite.Interpreter`. This function cannot be used to get intermediate results of a graph but it can be used to get parameters such as weights and biases as well as the outputs of the model.
 
-Using the code snippet above we get the indexes of the parameters we have to export:
+Using the code snippet in the previous section we get the indexes of the parameters we have to export:
 
 ```
 0 Identity [ 1 10]
@@ -87,18 +84,16 @@ We can now create a function to get them from the interpreter:
 ```python
 def get_variable(interpreter, index, transposed=False):
     var = interpreter.get_tensor(index)
-
-    # Weights might have to be transposed
     if transposed:
-        var = np.transpose(var, (1, 0))
-    
+        var = np.transpose(var, (1, 0))    
     return var
 ```
+
+> Fully connected weights must be transposed. That might also be necessary for convolution weights, for example.
 
 ## Building the model
 
 We have to reimplement the model in TensorFlow, unless we have the code that produced the model.
-If you are lucky you can find an implementation matching your model on the web.
 In our case it is a pretty simple model which we can rebuild easily. However first we will implement the dense layer which we will use later:
 
 ```python
@@ -150,8 +145,8 @@ def network(input_shape, interpreter):
 
 Constructing the same model as the one used in the TF Lite model is not always straightforward. 
 Sometimes you won't know why your implementation does not return the same result as the original.
-For such cases it is helpful to check layer by layer that your model gives the same output as the original to know where to serch for the bug.
-Getting intermediate outputs from a TensorFlow model is not difficult: you only need to return said node as output of the model.
+For such cases it is helpful to check layer by layer that your model gives the same output as the original to know where to search for the bug.
+Getting intermediate outputs from a TensorFlow model is not difficult: you only need to return said node as an output of the model.
 The same does not happen to a TFLite model. You can't get intermediate outputs using the `get_tensor()` method. 
 What I used to debug the model and get to a working version is this [tflite_tensor_outputter](https://github.com/raymond-li/tflite_tensor_outputter) script.
 This script will generate a folder with details and outputs of each intermediate node in the graph by changing the output node index in the graph.
@@ -166,7 +161,7 @@ Anyway it did not work for me using SavedModel so I had to freeze the TensorFlow
 ### Freeze the graph
 
 To freeze a model you can use the `freeze_graph` utility from `tensorflow.python.tools`, but again it did not work for this model.
-You can freeze the model using this snippet:
+You can also freeze the model using this snippet:
 
 ```python
 # imports ...
@@ -183,8 +178,6 @@ def freeze_graph(graph, session, output):
 # Load TFLite model and allocate tensors.
 interpreter = tf.lite.Interpreter(model_path="mnist.tflite")
 interpreter.allocate_tensors()
-
-# tf.keras.backend.set_learning_phase(0)
 
 input_shape = [28, 28, 1]
 model = network(input_shape, interpreter)
@@ -213,9 +206,12 @@ tf_converter.convert(tf_model_path=FROZEN_MODEL_FILE,
 
 And that is it. We have a CoreML model!
 
-## Final words
+## Conclusion
 
-Converting a model to CoreML can be tricky in some cases.
-Sometimes you must use a different layer or function for the conversion to be successful.
+Some takeaways from this post:
+* TensorFlow Lite models have to be converted manually to CoreML but that can be done, specially when you already have some code that produces the same architecture.
+* Converting a model to CoreML can be tricky in some cases.
+* Sometimes you must use a different layer or function for the conversion to be successful.
 
-The source code used in this tutorial can be found in [this gist](https://gist.github.com/mats-claassen/f76520dd32108b65d57113fd7ac99bf9)
+
+The source code used in this tutorial can be found in [this GitHub gist](https://gist.github.com/mats-claassen/f76520dd32108b65d57113fd7ac99bf9).
