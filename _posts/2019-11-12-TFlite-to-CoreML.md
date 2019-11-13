@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to convert a NN model from TFlite to CoreML"
+title: "How to convert a NN model from TensorFlow Lite to CoreML"
 date: 2019-11-12 10:00:00
 author: Mathias Claassen
 categories: machine learning, tflite, coreml, xmartlabs
@@ -20,7 +20,7 @@ TensorFlow Lite is used to deploy TensorFlow models on mobile or embedded device
 Once converted to TF Lite, a model cannot be converted back to a TensorFlow model but we can see its architecture and export its weights and then reimplement the network graph in TensorFlow using the exported weights. We can then use `coremltools` or [tfcoreml](https://github.com/tf-coreml/tf-coreml) to convert it to CoreML.
 That is what we are going to do in this tutorial.
 
-We will use a MNIST model from the [TF Lite examples](https://github.com/tensorflow/examples/tree/master/lite) repository.
+We will use a MNIST model from the [TF Lite examples](https://github.com/tensorflow/examples/tree/master/lite) repository. MNIST is a handwritten digit database. So the task this model tries to perform is to recognise handwritten digits which can be done fairly well with a relatively small model.
 
 ## Inspecting the model 
 
@@ -30,7 +30,7 @@ With Netron you can see the graph and even export the weights of a model.
 If you install Netron you can just open any `.tflite` file by clicking it.
 With the MNIST model we get the following:
 
-<img width="80%" src="/images/tflite_coreml/tflite-netron.png" /> 
+<img width="100%" src="/images/tflite_coreml/tflite-netron.png" /> 
 <br />
 
 There we can see that this simple model has the following layers:
@@ -58,15 +58,7 @@ for i in range(num_layer):
 
 > In case `num_layer` is not actually the number of layers you can just use any big enough number for it.
 
-
-## Exporting the weights
-
-As said before, Netron also allows us to export the weights of these layers. 
-You can do that with your model but in this guide we are going to export them differently.
-
-To export the weights we are going to use the `get_tensor` function of the `tf.lite.Interpreter`. This function cannot be used to get intermediate results of a graph but it can be used to get parameters such as weights and biases as well as the outputs of the model.
-
-Using the code snippet in the previous section we get the indexes of the parameters we have to export:
+Using this snippet we get the following output for our model:
 
 ```
 0 Identity [ 1 10]
@@ -79,7 +71,15 @@ Using the code snippet in the previous section we get the indexes of the paramet
 7 sequential_2/dense_5/MatMul_bias [10]
 ```
 
-We can now create a function to get them from the interpreter:
+## Exporting the weights
+
+As said before, Netron also allows us to export the weights of these layers. 
+You can do that with your model but in this guide we are going to export them differently.
+
+To export the weights we are going to use the `get_tensor` function of the `tf.lite.Interpreter`. This function cannot be used to get intermediate results of a graph but it can be used to get parameters such as weights and biases as well as the outputs of the model.
+
+Using the code snippet in the previous section we get the indexes of the parameters we have to export.
+We can now create a function to extract them from the interpreter:
 
 ```python
 def get_variable(interpreter, index, transposed=False):
@@ -98,15 +98,13 @@ In our case it is a pretty simple model which we can rebuild easily. However fir
 
 ```python
 def dense(params):
-    X = params[0]
-    W = params[1]
-    b = params[2]
+    X, W, b = params
     return tf.add(tf.matmul(X, W), b)
 ```
 
 > We use only one parameter to be able to use this function in a `Lambda` layer
 
-And now we build our model:
+And now we build our model (using TF 2):
 
 ```python
 import tensorflow as tf
@@ -115,7 +113,6 @@ from tensorflow.python.keras.layers import Lambda
 # ...
 
 def network(input_shape, interpreter):
-    
     W1 = get_variable(interpreter, 2, transposed=True)
     b1 = get_variable(interpreter, 3)
     W2 = get_variable(interpreter, 6, transposed=True)
@@ -136,20 +133,28 @@ def network(input_shape, interpreter):
     # Finally the softmax
     x_softmax = tf.keras.activations.softmax(x_2)
     
-    model = tf.keras.models.Model(inputs=inputs, outputs=[x_softmax])
-    
-    return model
+    return tf.keras.models.Model(inputs=inputs, outputs=[x_softmax])
 ```
 
 ### Testing and Debugging your Model
 
+At this point we should test that our model gives the same output as the original so that we know our implementation is correct.
 Constructing the same model as the one used in the TF Lite model is not always straightforward. 
-Sometimes you won't know why your implementation does not return the same result as the original.
+Sometimes you won't know why your implementation does not return the same result as the original, and it is not easy to debug errors in this context.
 For such cases it is helpful to check layer by layer that your model gives the same output as the original to know where to search for the bug.
 Getting intermediate outputs from a TensorFlow model is not difficult: you only need to return said node as an output of the model.
 The same does not happen to a TFLite model. You can't get intermediate outputs using the `get_tensor()` method. 
 What I used to debug the model and get to a working version is this [tflite_tensor_outputter](https://github.com/raymond-li/tflite_tensor_outputter) script.
 This script will generate a folder with details and outputs of each intermediate node in the graph by changing the output node index in the graph.
+
+You can use it like this:
+
+```
+python tflite_tensor_outputter.py --image input/dog.jpg \
+    --model_file mnist.tflite \
+    --label_file labels.txt \
+    --output_dir output/
+```
 
 ## Converting the model
 
