@@ -6,6 +6,7 @@ author: Mathias Claassen
 categories: machine learning, tflite, coreml, xmartlabs
 author_id: mathias
 featured_position: 1
+featured_image: /images/tflite_coreml/featured.png
 ---
 
 It's been over a year since Apple has introduced Create ML, a framework that allows you to build neural network models in Swift and use them on iPhones and iPads with Core ML.
@@ -21,6 +22,11 @@ Once converted to TF Lite, a model cannot be converted back to a TensorFlow mode
 That is what we are going to do in this tutorial.
 
 We will use a MNIST model from the [TF Lite examples](https://github.com/tensorflow/examples/tree/master/lite) repository. MNIST is a handwritten digit database. So the task this model tries to perform is to recognise handwritten digits which can be done fairly well with a relatively small model.
+
+So for example, for the following image, we want our model to predict "0":
+
+<img width="100px" src="/images/tflite_coreml/zero.png" /> 
+
 
 ## Inspecting the model 
 
@@ -210,6 +216,9 @@ tf_converter.convert(tf_model_path=FROZEN_MODEL_FILE,
 ```
 
 And that is it. We have a CoreML model!
+
+<img src="/images/tflite_coreml/model_on_ios.gif" /> 
+<br />
 
 ## Conclusion
 
