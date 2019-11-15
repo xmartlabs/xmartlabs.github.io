@@ -155,7 +155,7 @@ This script will generate a folder with details and outputs of each intermediate
 
 You can use it like this:
 
-```
+```bash
 python tflite_tensor_outputter.py --image input/dog.jpg \
     --model_file mnist.tflite \
     --label_file labels.txt \
