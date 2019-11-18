@@ -33,7 +33,6 @@ So for example, for the following image, we want our model to predict "0":
 The first thing we should do is to inspect the model to see its layers.
 One great tool to do this is [Netron](https://github.com/lutzroeder/netron).
 With Netron you can see the model's graph and even export its weights.
-If you install Netron you can just open any `.tflite` file by clicking it.
 With the MNIST model we get the following:
 
 <img width="100%" src="/images/tflite_coreml/tflite-netron.png" /> 
@@ -53,16 +52,12 @@ import tensorflow as tf
 interpreter = tf.lite.Interpreter(model_path="mnist.tflite")
 interpreter.allocate_tensors()
 
-# Get output tensor details.
-output_details = interpreter.get_output_details()
+# Get tensor details.
+details = interpreter.get_tensor_details()
 
-num_layer = output_details[0]["index"] + 1 
-for i in range(num_layer):
-    detail = interpreter._get_tensor_details(i)
-    print(i, detail['name'], detail['shape'])
+for detail in details:
+    print(detail['index'], detail['name'], detail['shape'])
 ```
-
-> In case `num_layer` is not actually the number of layers you can just use any big enough number for it.
 
 Using this snippet we get the following output for our model:
 
@@ -146,13 +141,14 @@ def network(input_shape, interpreter):
 
 At this point we should test that our model gives the same output as the original so that we know our implementation is correct.
 Constructing the same model as the one used in the TF Lite model is not always straightforward. 
+
 Sometimes you won't know why your implementation does not return the same result as the original, and it is not easy to debug errors in this context.
 For such cases it is helpful to check layer by layer that your model gives the same output as the original to know where to search for the bug.
 Getting intermediate outputs from a TensorFlow model is not difficult: you only need to return said node as an output of the model.
+
 The same does not happen to a TFLite model. You can't get intermediate outputs using the `get_tensor()` method. 
 What I used to debug the model and get to a working version is this [tflite_tensor_outputter](https://github.com/raymond-li/tflite_tensor_outputter) script.
 This script will generate a folder with details and outputs of each intermediate node in the graph by changing the output node index in the graph.
-
 You can use it like this:
 
 ```bash
