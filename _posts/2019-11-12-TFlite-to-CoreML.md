@@ -13,13 +13,13 @@ It's been over a year since Apple has introduced Create ML, a framework that all
 However, the most common way of getting a CoreML model is still by converting a model trained on TensorFlow, Keras, Pytorch or other ML frameworks. 
 Apple officially supports [coremltools](https://github.com/apple/coremltools) which allows converting some model formats like Keras, Caffe (v1) and TensorFlow (since version 3.0).
 
-However, not all model formats can be converted so easily to CoreML.
+Unfortunately, not all model formats can be converted so easily to CoreML.
 For example, there is no library that supports converting a TensorFlow Lite model.
-While this is not needed when you train your own model in TensorFlow, it can be helpful if you want to do performance comparisons between different on-device frameworks or if you want to run a recently published research model in CoreML and you only have the model in TF Lite format, to name a few examples.
+While this is not required when you train your own model in TensorFlow, it can be helpful if you want to do performance comparisons between different on-device frameworks, or if you want to run a recently published research model in CoreML and you only have the model in TF Lite format.
 
 TensorFlow Lite is used to deploy TensorFlow models on mobile or embedded devices but not for training them.
-Once converted to TF Lite, a model cannot be converted back to a TensorFlow model but we can see its architecture and export its weights and then reimplement the network graph in TensorFlow using the exported weights. We can then use `coremltools` or [tfcoreml](https://github.com/tf-coreml/tf-coreml) to convert it to CoreML.
-That is what we are going to do in this tutorial.
+Once converted to TF Lite, a model cannot be converted back to a TensorFlow model but we can inspect its architecture and export its weights in order to reimplement the network graph in TensorFlow. We can then use `coremltools` or [tfcoreml](https://github.com/tf-coreml/tf-coreml) to convert it to CoreML.
+This is what we are going to accomplish in this tutorial.
 
 We will use a MNIST model from the [TF Lite examples](https://github.com/tensorflow/examples/tree/master/lite) repository. MNIST is a handwritten digit database. So the task this model tries to perform is to recognise handwritten digits which can be done fairly well with a relatively small model.
 
@@ -32,7 +32,7 @@ So for example, for the following image, we want our model to predict "0":
 
 The first thing we should do is to inspect the model to see its layers.
 One great tool to do this is [Netron](https://github.com/lutzroeder/netron).
-With Netron you can see the graph and even export the weights of a model.
+With Netron you can see the model's graph and even export its weights.
 If you install Netron you can just open any `.tflite` file by clicking it.
 With the MNIST model we get the following:
 
@@ -41,7 +41,7 @@ With the MNIST model we get the following:
 
 There we can see that this simple model has the following layers:
 * A Flatten layer which serves as input
-* A FullyConnected, or Dense, layer with Relu activation function
+* A FullyConnected, or Dense, layer with ReLU activation function
 * Another FullyConnected layer without activation function
 * A Softmax layer
 
@@ -80,7 +80,7 @@ Using this snippet we get the following output for our model:
 ## Exporting the weights
 
 As said before, Netron also allows us to export the weights of these layers. 
-You can do that with your model but in this guide we are going to export them differently.
+However, on this guide, we are going to export them differently.
 
 To export the weights we are going to use the `get_tensor` function of the `tf.lite.Interpreter`. This function cannot be used to get intermediate results of a graph but it can be used to get parameters such as weights and biases as well as the outputs of the model.
 
@@ -100,7 +100,7 @@ def get_variable(interpreter, index, transposed=False):
 ## Building the model
 
 We have to reimplement the model in TensorFlow, unless we have the code that produced the model.
-In our case it is a pretty simple model which we can rebuild easily. However first we will implement the dense layer which we will use later:
+In our case, it is a pretty simple model that we can rebuild easily. First, we will implement the dense layer (which we will use later):
 
 ```python
 def dense(params):
@@ -167,12 +167,12 @@ python tflite_tensor_outputter.py --image input/dog.jpg \
 We now have the model but we still need to convert it.
 We will use `tfcoreml` to convert our TensorFlow model. 
 The `convert` method supports a path to a `SavedModel` but only when specifying a minimum iOS target of '13'. 
-Anyway it did not work for me using SavedModel so I had to freeze the TensorFlow graph and then convert it.
+Nevertheless, it did not work for me using SavedModel so I had to freeze the TensorFlow graph and then convert it.
 
 ### Freeze the graph
 
 To freeze a model you can use the `freeze_graph` utility from `tensorflow.python.tools`, but again it did not work for this model.
-You can also freeze the model using this snippet:
+You can also freeze the model using the following snippet:
 
 ```python
 # imports ...
