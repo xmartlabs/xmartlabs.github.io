@@ -9,19 +9,19 @@ featured_position: 1
 featured_image: /images/tflite_coreml/featured.png
 ---
 
-It's been over a year since Apple has introduced Create ML, a framework that allows you to build neural network models in Swift and use them on iPhones and iPads with Core ML.
+It's been over a year since Apple has introduced [Create ML](https://developer.apple.com/documentation/createml), a framework that allows you to build neural network models in Swift and use them on iPhones and iPads with Core ML.
 However, the most common way of getting a CoreML model is still by converting a model trained on TensorFlow, Keras, Pytorch or other ML frameworks. 
 Apple officially supports [coremltools](https://github.com/apple/coremltools) which allows converting some model formats like Keras, Caffe (v1) and TensorFlow (since version 3.0).
 
-Unfortunately, not all model formats can be converted so easily to CoreML.
+Unfortunately, not all model formats can be converted so easily to Core ML.
 For example, there is no library that supports converting a TensorFlow Lite model.
 While this is not required when you train your own model in TensorFlow, it can be helpful if you want to do performance comparisons between different on-device frameworks, or if you want to run a recently published research model in CoreML and you only have the model in TF Lite format.
 
 TensorFlow Lite is used to deploy TensorFlow models on mobile or embedded devices but not for training them.
-Once converted to TF Lite, a model cannot be converted back to a TensorFlow model but we can inspect its architecture and export its weights in order to reimplement the network graph in TensorFlow. We can then use `coremltools` or [tfcoreml](https://github.com/tf-coreml/tf-coreml) to convert it to CoreML.
+Once converted to TF Lite, a model cannot be converted back to a TensorFlow model but we can inspect its architecture and export its weights in order to reimplement the network graph in TensorFlow. We can then use [coremltools](https://github.com/apple/coremltools) or [tfcoreml](https://github.com/tf-coreml/tf-coreml) to convert it to CoreML.
 This is what we are going to accomplish in this tutorial.
 
-We will use a MNIST model from the [TF Lite examples](https://github.com/tensorflow/examples/tree/master/lite) repository. MNIST is a handwritten digit database. So the task this model tries to perform is to recognise handwritten digits which can be done fairly well with a relatively small model.
+We will use an MNIST model from the [TF Lite examples](https://github.com/tensorflow/examples/tree/master/lite) repository. [MNIST](http://yann.lecun.com/exdb/mnist/) is a handwritten digit database. So the task this model tries to perform is to recognize handwritten digits, which can be done fairly well with a relatively small model.
 
 So for example, for the following image, we want our model to predict "0":
 
