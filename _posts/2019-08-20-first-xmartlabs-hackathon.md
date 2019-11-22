@@ -5,7 +5,7 @@ date: 2019-09-10 10:00:00
 author: Bruno Ferrari
 categories: hackathon, team, xmartlabs
 author_id: bruno
-featured_position: 1
+featured_position: 2
 featured_image: /images/xmartlabs-first-hackathon/general_view_bbq.jpg
 ---
 
