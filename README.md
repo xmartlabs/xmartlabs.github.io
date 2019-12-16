@@ -6,15 +6,21 @@ We will also keep it updated with info and news about Xmartlabs.
 * [Local setup](#local-setup)
 * [Featured posts](#featured-posts)
 
-## Local setup
+## Setup
 This blog was built using [Jekyll](https://jekyllrb.com), a simple, extendable and static site generator.
-To set it up on your machine:
-1. Clone the project into your machine: git clone git@github.com:xmartlabs/blog.git
-2. Create your branch: `git checkout -b my-new-branch`
-3. Install Ruby 2.3.0 (you can use [rbenv](https://github.com/rbenv/rbenv))
-4. Install Jekyll and bundler in this Ruby version by running: `gem install jekyll bundler`
-5. Go to the folder for this repository and build the site with `jekyll serve` or `jekyll serve --host=0.0.0.0` (if you want to use it from your phone or other machine)
-6. Now browse to http://localhost:4000 or http://YOUR-IP:4000
+To set it up on your machine you have two options:
+
+### Local setup
+1. Clone the project into your machine: `git clone git@github.com:xmartlabs/blog.git`
+2. Install Ruby 2.3.0 (you can use [rbenv](https://github.com/rbenv/rbenv))
+3. Install Jekyll and bundler in this Ruby version by running: `gem install jekyll bundler`
+4. Go to the folder for this repository and build the site with `jekyll serve` or `jekyll serve --host=0.0.0.0` (if you want to use it from your phone or other machine)
+5. Now browse to http://localhost:4000 or http://YOUR-IP:4000
+
+### Local setup using docker
+1. Clone the project into your machine: `git clone git@github.com:xmartlabs/blog.git`
+2. Install docker and docker-compose
+3. Go to the folder for this repository and build the site with `docker-compose up`
 
 ## Featured posts
 If you want a post to be among the 3 featured posts you need to set the following custom variables in its [front matter](https://jekyllrb.com/docs/front-matter/):
