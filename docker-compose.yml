@@ -4,7 +4,7 @@ services:
     image: jekyll/jekyll:3.8
     command: jekyll serve
     volumes:
-      - $PWD:/srv/jekyll
-      - $PWD/vendor/bundle:/usr/local/bundle
+      - .:/srv/jekyll
+      - ./vendor/bundle:/usr/local/bundle
     ports:
       - 4000:4000
