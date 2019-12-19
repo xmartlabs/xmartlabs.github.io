@@ -37,3 +37,5 @@ defaults:
 
 exclude:
   - README.md
+  - vendor/
+  - docker-compose.yml
