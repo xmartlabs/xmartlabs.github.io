@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "How to convert a NN model from TensorFlow Lite to CoreML"
+title: "CI with Fastlane How to convert a NN model from TensorFlow Lite to CoreML"
 date: 2019-11-22 10:00:00
 author: Mathias Claassen
 categories: machine learning, tflite, coreml, xmartlabs
 author_id: mathias
-featured_position: 1
+featured_position: 2
 featured_image: /images/tflite_coreml/featured.png
 ---
 
 It's been over a year since Apple has introduced [Create ML](https://developer.apple.com/documentation/createml), a framework that allows you to build neural network models in Swift and use them on iPhones and iPads with Core ML.
-However, the most common way of getting a CoreML model is still by converting a model trained on TensorFlow, Keras, Pytorch or other ML frameworks. 
+However, the most common way of getting a CoreML model is still by converting a model trained on TensorFlow, Keras, Pytorch or other ML frameworks.
 Apple officially supports [coremltools](https://github.com/apple/coremltools) which allows converting some model formats like Keras, Caffe (v1) and TensorFlow (since version 3.0).
 
 Unfortunately, not all model formats can be converted so easily to Core ML.
@@ -25,17 +25,17 @@ We will use an MNIST model from the [TF Lite examples](https://github.com/tensor
 
 So for example, for the following image, we want our model to predict "0":
 
-<img width="100px" src="/images/tflite_coreml/zero.png" /> 
+<img width="100px" src="/images/tflite_coreml/zero.png" />
 
 
-## Inspecting the model 
+## Inspecting the model
 
 The first thing we should do is to inspect the model to see its layers.
 One great tool to do this is [Netron](https://github.com/lutzroeder/netron).
 With Netron you can see the model's graph and even export its weights.
 With the MNIST model we get the following:
 
-<img width="100%" src="/images/tflite_coreml/tflite-netron.png" /> 
+<img width="100%" src="/images/tflite_coreml/tflite-netron.png" />
 <br />
 
 There we can see that this simple model has the following layers:
@@ -74,7 +74,7 @@ Using this snippet we get the following output for our model:
 
 ## Exporting the weights
 
-As said before, Netron also allows us to export the weights of these layers. 
+As said before, Netron also allows us to export the weights of these layers.
 However, on this guide, we are going to export them differently.
 
 To export the weights we are going to use the `get_tensor` function of the `tf.lite.Interpreter`. This function cannot be used to get intermediate results of a graph but it can be used to get parameters such as weights and biases as well as the outputs of the model.
@@ -120,7 +120,7 @@ def network(input_shape, interpreter):
     b2 = get_variable(interpreter, 7)
 
     inputs = tf.keras.layers.Input(shape=input_shape)
-    
+
     # Flatten layer
     x_0 = tf.keras.layers.Flatten()(inputs)
 
@@ -133,20 +133,20 @@ def network(input_shape, interpreter):
 
     # Finally the softmax
     x_softmax = tf.keras.activations.softmax(x_2)
-    
+
     return tf.keras.models.Model(inputs=inputs, outputs=[x_softmax])
 ```
 
 ### Testing and Debugging your Model
 
 At this point we should test that our model gives the same output as the original so that we know our implementation is correct.
-Constructing the same model as the one used in the TF Lite model is not always straightforward. 
+Constructing the same model as the one used in the TF Lite model is not always straightforward.
 
 Sometimes you won't know why your implementation does not return the same result as the original, and it is not easy to debug errors in this context.
 For such cases it is helpful to check layer by layer that your model gives the same output as the original to know where to search for the bug.
 Getting intermediate outputs from a TensorFlow model is not difficult: you only need to return said node as an output of the model.
 
-The same does not happen to a TFLite model. You can't get intermediate outputs using the `get_tensor()` method. 
+The same does not happen to a TFLite model. You can't get intermediate outputs using the `get_tensor()` method.
 What I used to debug the model and get to a working version is this [tflite_tensor_outputter](https://github.com/raymond-li/tflite_tensor_outputter) script.
 This script will generate a folder with details and outputs of each intermediate node in the graph by changing the output node index in the graph.
 You can use it like this:
@@ -161,8 +161,8 @@ python tflite_tensor_outputter.py --image input/dog.jpg \
 ## Converting the model
 
 We now have the model but we still need to convert it.
-We will use `tfcoreml` to convert our TensorFlow model. 
-The `convert` method supports a path to a `SavedModel` but only when specifying a minimum iOS target of '13'. 
+We will use `tfcoreml` to convert our TensorFlow model.
+The `convert` method supports a path to a `SavedModel` but only when specifying a minimum iOS target of '13'.
 Nevertheless, it did not work for me using SavedModel so I had to freeze the TensorFlow graph and then convert it.
 
 ### Freeze the graph
@@ -213,7 +213,7 @@ tf_converter.convert(tf_model_path=FROZEN_MODEL_FILE,
 
 And that is it. We have a CoreML model!
 
-<img src="/images/tflite_coreml/model_on_ios.gif" /> 
+<img src="/images/tflite_coreml/model_on_ios.gif" />
 <br />
 
 ## Conclusion

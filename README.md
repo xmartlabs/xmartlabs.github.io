@@ -12,7 +12,7 @@ To set it up on your machine you have two options:
 
 ### Local setup
 1. Clone the project into your machine: `git clone git@github.com:xmartlabs/blog.git`
-2. Install Ruby 2.3.0 (you can use [rbenv](https://github.com/rbenv/rbenv))
+2. Install Ruby 2.6.3 (you can use [rbenv](https://github.com/rbenv/rbenv))
 3. Install Jekyll and bundler in this Ruby version by running: `gem install jekyll bundler`
 4. Go to the folder for this repository and build the site with `jekyll serve` or `jekyll serve --host=0.0.0.0` (if you want to use it from your phone or other machine)
 5. Now browse to http://localhost:4000 or http://YOUR-IP:4000

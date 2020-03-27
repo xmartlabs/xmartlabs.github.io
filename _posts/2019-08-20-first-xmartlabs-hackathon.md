@@ -5,7 +5,7 @@ date: 2019-09-10 10:00:00
 author: Bruno Ferrari
 categories: hackathon, team, xmartlabs
 author_id: bruno
-featured_position: 2
+featured_position: 3
 featured_image: /images/xmartlabs-first-hackathon/general_view_bbq.jpg
 ---
 
@@ -22,17 +22,17 @@ The projects of our very first hackathon were all software-related (it runs thro
 
 The first project was an IoT project. The team wanted to be able to ask, through a Slack command, if a specific bathroom in our office was occupied or not.
 
-<img width="100%" src="/images/xmartlabs-first-hackathon/iot_project.jpg" /> 
+<img width="100%" src="/images/xmartlabs-first-hackathon/iot_project.jpg" />
 <br />
 
-For this the team paired a ultrasonic sensor with an ESP8266 chip (essentially an Arduino Uno with WiFi capabilities) and also developed a custom command for Slack to give orders to it. 
+For this the team paired a ultrasonic sensor with an ESP8266 chip (essentially an Arduino Uno with WiFi capabilities) and also developed a custom command for Slack to give orders to it.
 Even though no one on this specific team had extensive experience working with IoT components, the project was functional in the end.
 
 ### Skillset blog
 
 The second project consisted of building an internal Skillset blog of our team members, allowing for an interactive way of accessing information about the Xmartlabs team.
 
-<img width="100%" src="/images/xmartlabs-first-hackathon/skillset_blog.jpg" /> 
+<img width="100%" src="/images/xmartlabs-first-hackathon/skillset_blog.jpg" />
 <br />
 
 The challenges here were two: get specific information about all of Xmartlabs' collaborators skillset (we are around 50 now, so it isn't an easy task) and build the blog using state-of-the-art technologies like GraphQL and Nest.
@@ -42,7 +42,7 @@ The challenges here were two: get specific information about all of Xmartlabs' c
 The last project was another internal one.
 The team built a Rails app -CMS, backend and frontend- with goodies like Google sign-in only for Xmartlabs' accounts and a very nice UX/UI overall.
 
-<img width="100%" src="/images/xmartlabs-first-hackathon/rails_app.jpg" /> 
+<img width="100%" src="/images/xmartlabs-first-hackathon/rails_app.jpg" />
 <br />
 
 This app is actually going to save Xmartlabs around \$750 a year, as we now won't have to use a paid option.
@@ -51,7 +51,7 @@ This app is actually going to save Xmartlabs around \$750 a year, as we now won'
 
 This project consisted of creating an endless runner game using Unity and our very own assets.
 
-<img width="100%" src="/images/xmartlabs-first-hackathon/endless_runner.jpg" /> 
+<img width="100%" src="/images/xmartlabs-first-hackathon/endless_runner.jpg" />
 <br />
 
 Even though the game only works on PC, the team is eager about making a port for Android or iOS.
@@ -60,18 +60,18 @@ Even though the game only works on PC, the team is eager about making a port for
 
 To celebrate a very fun and productive day, we had a traditional Uruguayan BBQ.
 
-<img width="100%" src="/images/xmartlabs-first-hackathon/general_view_bbq.jpg" /> 
+<img width="100%" src="/images/xmartlabs-first-hackathon/general_view_bbq.jpg" />
 <br />
 
-<img width="100%" src="/images/xmartlabs-first-hackathon/henry_bbq.jpg" /> 
+<img width="100%" src="/images/xmartlabs-first-hackathon/henry_bbq.jpg" />
 <br />
 
 We also welcomed Florencia and Valentina into our team:
 
-<img width="100%" src="/images/xmartlabs-first-hackathon/welcome_flo.jpg" /> 
+<img width="100%" src="/images/xmartlabs-first-hackathon/welcome_flo.jpg" />
 <br />
 
-<img width="100%" src="/images/xmartlabs-first-hackathon/welcome_vale.jpg" /> 
+<img width="100%" src="/images/xmartlabs-first-hackathon/welcome_vale.jpg" />
 <br />
 
 All in all, it was a very positive experience and one that we for sure are going to repeat soon!
