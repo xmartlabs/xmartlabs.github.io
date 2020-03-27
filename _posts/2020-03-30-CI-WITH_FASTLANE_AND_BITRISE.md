@@ -13,7 +13,7 @@ The only way to move faster in a dynamic environment is to automate everything r
 There are many task we can automate in a common development workflow, in this post i would like to talk about how our iOS team uses Fastlane and bitrise to automate the creation of testflight releases, but also how we are able to implement features and rely that we are not introducing any error in what we have already working.
 
 
-### What's Fastlane in one sentence
+### What's Fastlane
 
 Basically Fastlane is a open source that simplify and speed up development process by allowing the team to automate development workflows. It has continues integration support with many CI platforms like Bitrise, circleCI, Jenkins, travisCI among others.
 
@@ -23,7 +23,7 @@ Bitrise allows us to do Continues integration and Continues delivery as a servic
 
 
 
-> This blog is not intended to explain these concepts but how we configure and set up these tools to optimize our development workflow. See their respective website and documentation to know more abut each tool.
+> This blog is not intended to explain these concepts but how we configure and set up these tools to optimize our development workflow. See their respective website and documentation to know more about each tool.
 
 
 ### So, why automate integrations and releases.
