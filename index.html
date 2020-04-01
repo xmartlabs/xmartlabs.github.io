@@ -12,9 +12,11 @@ layout: default
         <ul class="post-list">
           {% for post in site.posts %}
             {% unless post.featured_position %}
+              {% unless post.search %}
             <li>
               {% include post.html post=post %}
             </li>
+              {% endunless %}
             {% endunless %}
           {% endfor %}
         </ul>
