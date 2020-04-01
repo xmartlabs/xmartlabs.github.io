@@ -5,7 +5,7 @@ date: 2019-11-22 10:00:00
 author: Mathias Claassen
 categories: machine learning, tflite, coreml, xmartlabs
 author_id: mathias
-featured_position: 2
+featured_position: 1
 featured_image: /images/tflite_coreml/featured.png
 ---
 

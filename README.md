@@ -32,6 +32,25 @@ These may take one of the following values:
 - `featured_image: /images/my-new-post/featured.png`
 Remember to place the image inside the post's folder. A different name and format can be used, just assign the correct path to the variable.
 
+## Not listing the post in blog.xmatlabs.com but allow people to access o the url
+
+Add the search attribute to the blog file.
+
+`search: exclude`
+
+```
+---
+layout: post
+title: "Agile iOS development workflow using Fastlane & Bitrise"
+date: 2020-04-01 10:00:00
+author: Martin Barreto
+categories: CI, fastlane, bitrise
+author_id: mtnBarreto
+featured_image: /images/ios-fastlane-ci/featured.png
+search: exclude
+---
+```
+
 **IMPORTANT:**
 If multiple posts have the same `featured_position` the newest will show on the featured section but the others won't show on the list of posts (since these are filtered to avoid repetition). **Please avoid this by deleting these variables from the post you want to replace.**
 
