@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "CI with Fastlane How to convert a NN model from TensorFlow Lite to CoreML"
+title: "How to convert a NN model from TensorFlow Lite to CoreML"
 date: 2019-11-22 10:00:00
 author: Mathias Claassen
 categories: machine learning, tflite, coreml, xmartlabs
