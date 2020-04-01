@@ -1,51 +1,50 @@
 ---
 layout: post
-title: "Make your iOS development workflow faster through Fastlane automate tasks and Bitrise CI & CD"
-date: 2020-03-25 10:00:00
+title: "Agile iOS development workflow using Fastlane & Bitrise"
+date: 2020-04-01 10:00:00
 author: Martin Barreto
 categories: CI, fastlane, bitrise
 author_id: mtnBarreto
 featured_position: 1
-featured_image: /images/tflite_coreml/featured.png
+featured_image: /images/ios-fastlane-ci/featured.png
 ---
 
-The only way to move faster in a dynamic environment is to automate everything repetitive and time consuming.
-There are many task we can automate in a common development workflow, in this post i would like to talk about how our iOS team uses [Fastlane](https://https://fastlane.tools/) and [Bitrise](https://www.bitrise.io/) to automate the app release to testflight, but also how we are able to make sure we are not introducing error in already implemented functionality.
+The only way to move faster in a dynamic environment is to automate everything that's repetitive and time-consuming.
+When it comes to the common development workflow, places to automate abound. In this post I'll talk about how our iOS team uses [Fastlane](https://https://fastlane.tools/) and [Bitrise](https://www.bitrise.io/) to automate the app release process to [TestFlight](https://developer.apple.com/testflight/), but also about how we make sure that we're not introducing errors in already implemented functionalities.
 
 
 ### What's Fastlane
 
-Basically Fastlane is a open source that simplify and speed up development process by allowing the team to automate development workflows. It has continues integration support with many CI platforms like Bitrise, circleCI, Jenkins, travisCI among others.
+Basically Fastlane is an open-source platform that both simplifies and speeds up development process by allowing teams to automate development workflows. It also has continuous integration support with multiple CI platforms like Bitrise, circleCI, Jenkins, travisCI, among others.
 
 ### What's Bitrise
 
-Bitrise allows us to do continues integration and continues delivery as a services.
+Bitrise is a Continuous Integration and Delivery (CI/CD) Platform as a Service (PaaS) with a main focus on mobile app development.
 
-> This blog is not intended to explain these concepts but how we configure and set up these tools to optimize our development workflow. See their respective website and documentation to know more about each tool.
+> This blog is not intended to explain these concepts but how we configure and set up these tools to optimize our development workflow. See their respective websites and docs to know more about each tool.
+
+### So, why automate integrations and releases?
+
+There are several reasons but these are the most important:
+
+- Definition of the development workflow. Consistency in frequency or triggers that execute the automated tasks like testing and release.
+- Save time and money. Nobody in an engineering team likes to do repetitive tasks, freeing us of these allows us to invest our precious time on what really matters.
 
 
-### So, why automate integrations and releases.
+## How to set up fastlane in an iOS project
 
-There are several reasons but the most important are:
+> we'll assume you already have installed Fastlane in your computer. If not you can follow [Fastlane documentation](https://docs.fastlane.tools/getting-started/ios/setup/) and then come back to this section.
 
-1. Definition of development workflow. Consistency on frequency or triggers that execute the automate tasks like testing and release.
-2. Save Time and money. Nobody in a engineering team likes to do repetity tasks. We have more time/money to invest on what's really matters.
-
-
-## How to set un Fastlane in a iOS project.
-
-> we consider you have already installed Fastlane in your computer. If not see Fastlane documentation and get back to this point.
-
-Navigate in your terminal to your iOS project's directory and run:
+From your terminal, navigate to your iOS project's directory and run:
 
 ```bash
 fastlane init
 ```
 
-This will create several fastlane config files, the most important is `Fastfile` file which stores the automation configuration within that you'll see different lanes. Each lane is there to automate a different task, like screenshots, code signing, or pushing new releases.
+This will automatically generates several Fastlane config files, with the most important being `Fastfile`, which is the file that stores the automation configuration where you'll see different lanes. Each lane is there to automate a different task, such as screenshots, code signing, or pushing new releases.
 
-We can add as many lanes as we need. Each lane automate a development process and can be run through a command `fastlane <lane_name>`.
-So let's create a test lane in order to run nit tests by running `fastlane test`.
+We can add as many lanes as we need. Each lane automates a development process and can be run through the command `fastlane <lane_name>`.
+So, let's create a test lane in order to run unit tests by running `fastlane test`.
 
 ```ruby
 desc "Runs all the tests"
@@ -54,31 +53,31 @@ lane :test do
   xctest(
     clean: false,
     code_coverage: true,
-    scheme: "chefsfeed",
-    workspace: "chefsfeed.xcworkspace",
+    scheme: "xmartlabs",
+    workspace: "xmartlabs.xcworkspace",
     destination: "name=iPhone 11,OS=13.3"
   )
 end
 ```
 
-> xctest is a build-in fastlane action available to everyone that uses Xcode command tools and run Xcode tests.
+> xctest is a built-in fastlane action available to everyone that uses Xcode command line tools and runs Xcode tests.
 
-So now we can run our ios project tests by running `fastlane tests`.
+So now we are able to run our iOS project tests by running `fastlane tests`.
 
-Now we want to automatically trigger this lane whenever any developer create a pull request in our git remote repository. To do so we are going to use Bitrise which allows us to do continues integrations and continue delivery as a service.
+Now our next goal is to automatically trigger this lane whenever any developer opens a pull request in our git remote repository. To accomplish so we are going to use Bitrise which allows us to do continuous integration and continuous delivery as a service.
 
-In short Bitrise allows the developer to create workflows, a sequence of tasks that run one per time until it fails or completes. Bitrise also provides triggers that execute a workflow whenever a git tag, pull request or push is performed in a remote git repository.
+In short, Bitrise allows the developer to define workflows, a sequence of tasks that run one at a time until one fails or all completes. Bitrise also provides triggers that execute a workflow whenever a git tag, pull request or push is performed on a remote git repository.
 
 
 <img width="100%" src="/images/ios-fastlane-ci/triggers.png" />
 
 
-We still need to define our `pr` workflow that should run `fastlane tests`. As we said a workflow is a sequence of task that will run one after another. Bitrise provides the computer hardware with basic configuration and setup like Xcode and cocoapods and some other tools. We only need to define the workflow, which means we need to define the sequence of tasks that belongs to the workflow.
+We still need to define our `pr` workflow that should run `fastlane tests`. As we said a workflow is a sequence of tasks that will run one after another. Bitrise provides the computer hardware with basic configuration and setup like Xcode and CocoaPods and some other tools. We only need to define the workflow, which means we need to define the sequence of tasks that belong to the workflow.
 
-We would said that first step is to clone the repository, Bitrise already provides a task to do so named `Git Clone Repository`.
+The first step is to clone the repository for which Bitrise already provides a task to do so named `Git Clone Repository`.
 
-We also have to install any needed tool not provided by default in [Bitrise environment stack](https://github.com/bitrise-io/bitrise.io/blob/master/system_reports/osx-xcode-11.3.x.log). It could be a missing functionality or we might need another version for a particular tool.
-Even though fastlane is part of the Bitrise stack I'm using a newer version so i'm gonna install it. We will also update cocoapods repo. We can do so by adding a new step to the workflow that run a script named 'Do anything with Script step'.
+We also have to install any needed tool not provided by default in [Bitrise environment stack](https://github.com/bitrise-io/bitrise.io/blob/master/system_reports/osx-xcode-11.3.x.log). It could be a missing functionality or we might need another version of a particular tool.
+Even though Fastlane is part of the Bitrise stack, I'm using a newer version of it so I'm gonna install it. We will also update the cocoapods repo. We can do so by adding a new step to the workflow that runs a script named 'Do anything with Script step'.
 
 Below you can see the content of the script.
 
@@ -98,27 +97,25 @@ gem install fastlane --version 2.142.0 --no-document
 ```
 
 
-Then we need to run our fastlane lane, Bitrise also provides a Workflow task to accomplish this named `fastlane` where we only need to specify the name of our fastlane lane which is `test`.
+After this, we need to run our Fastlane lane, Bitrise also provides a Workflow task to accomplish this named `fastlane` where we only need to specify the name of our already defined lane (which is `test`).
 
 Here is the entire workflow already created in Bitrise.
 
 <img width="100%" src="/images/ios-fastlane-ci/workflow.png" />
 
 
-At this point `test` lane will be executed whenever a pull request is created/updated. cool right? Bitrise integrates with github/bitbucket and many other git solutions to indicate if everything goes well or not.
+At this point, the `test` lane will be executed whenever a pull request is created/updated. Cool right? Bitrise integrates with Github/Bitbucket and many other git solutions to indicate if everything goes well or not.
 
 
-Another automated task we strongly use is the release of new versions. Basically we send a new build to testflight whenever a new tag (named <version_*>) is created in github. As we said Bitrise provides push, pull request and tag triggers, this time we are going to use tag triggers.
+Another automated task we strongly use is the release of new versions. Basically we send a new build to Testflight whenever a new tag (named <version_*>) is created in Github. As we said Bitrise provides us with push, pull request and tag triggers, this time we are going to use a tag trigger.
 
-The most important task to set up the bitrise workflow is running the `release_appstore` lane, all the rest are tasks dedicated to clone the repo, and set up the environment are the same as `pr` workflow.
-
-Let's create the bitrise `testflight` workflow first.
+Let's create the Bitrise `testflight` workflow first.
 
 <img width="100%" src="/images/ios-fastlane-ci/addNewWorkflow.gif" />
 
-The most important workflow task is the execution of `release_appstore` lane.
+The most important task to set up the Bitrise workflow is running the `release_appstore` lane, all the rest are tasks dedicated to cloning the repo, and setting up the environment (same as `pr` workflow).
 
-Now let's see how to implement fastlane `release_appstore` lane...
+Now let's see how to implement the fastlane `release_appstore` lane...
 
 ```ruby
 lane :release_appstore  do
@@ -132,16 +129,16 @@ lane :release_appstore  do
   build_folder = Time.now.strftime("%Y.%m.%d-%H.%M.%S+") + Random.rand(20).to_s
   build_derived_data_path = "./fastlane/builds/#{build_type}/#{build_folder}/derived_data/"
   build_output_path = "./fastlane/builds/#{build_type}/#{build_folder}/artifacts/"
-  build_output_name = "chefsfeed_" + build_type
+  build_output_name = "xmartlabs_" + build_type
 
   # `automatic_code_signing` configures Xcode's Codesigning options.
   automatic_code_signing(
     use_automatic_signing: false,
-    path: "chefsfeed.xcodeproj",
+    path: "xmartlabs.xcodeproj",
     team_id: build_sign_team_id,
     profile_name: build_sign_profile_name,
     code_sign_identity: build_sign_certificate_name,
-    targets: ["chefsfeed"]
+    targets: ["xmartlabs"]
   )
 
   #`cocoapods` runs pod install for the project.
@@ -151,9 +148,9 @@ lane :release_appstore  do
 
   #`build_ios_app` Easily build and sign your iOS app.
   build_ios_app(
-    workspace: "chefsfeed.xcworkspace",
+    workspace: "xmartlabs.xcworkspace",
     configuration: "Release",
-    scheme: "chefsfeed",
+    scheme: "xmartlabs",
     clean: true,
     output_name: build_output_name,
     output_directory: build_output_path,
@@ -169,9 +166,9 @@ lane :release_appstore  do
       method: "app-store",
       teamID: build_sign_team_id,
       provisioningProfiles: {
-        "com.credibleinc.chefsfeed": "ChefsFeed Distribution",
-        "com.credibleinc.chefsfeed.chefsfeed-notification-content-extension": "ChefsFeed Notification Content Distribution",
-        "com.credibleinc.chefsfeed.chefsfeed-notification-service-extension": "ChefsFeed Notification Service Distribution",
+        "com.xmartlabsinc.xmartlabs": "Xmartlabs Distribution",
+        "com.xmartlabsinc.xmartlabs.xmartlabs-notification-content-extension": "Xmartlabs Notification Content Distribution",
+        "com.xmartlabsinc.xmartlabs.xmartlabs-notification-service-extension": "Xmartlabs Notification Service Distribution",
       }
     }
   )
@@ -182,17 +179,17 @@ lane :release_appstore  do
 end
 ```
 
-Explain each parameter and detail of each fastlane action is out of the scope of this blogpost. I added a short comment inline in the code above to indicate the propose of each action. Please visit each fastlane action documentation reference if needed.
+Explaining each parameter and details of each fastlane action is out of the scope of this blogpost. I added a short inline comment in the code above to indicate the purpose of each action. Please visit each fastlane action documentation reference if needed.
 
-Now we a new TestFlight app version will be released each time we create a new tag named `version_<number>`.
-
-
-Although we can accomplish the same result just using Bitrise tasks, we prefer to use it in combination with Fastlane due to the following reasons:
-
-1. Anyone in the team can run fastlane lanes locally without the need of having CI/CD as a service.
-2. We have more freedom to change our CI/CD platform at any time. Actually each customer has its own CI/CD preference. Migrating to another CI/CD platform like github Action, travis should be very straightforward since we just need to run the fastlane lane.
+Now a new TestFlight app version will be released each time we create a new tag named `version_<number>`.
 
 
+Although we could've accomplished the same result just by using Bitrise tasks, we prefer to do so in combination with Fastlane due to the following reasons:
 
-Well guys, hope you have seen the benefits of having these automated tasks.
+- Anyone in the team can run Fastlane lanes locally without the need of having CI/CD as a service.
+- We have more freedom to change our CI/CD platform at any time. In the real world, each customer has its own CI/CD preference. Migrating to another CI/CD platform like Github Actions or TravisCI should be very straightforward since we just need to run the fastlane lane.
+
+
+
+Well, hope you have seen the benefits of having these automated tasks.
 This is all I have to share in this post. See you in the next one!
