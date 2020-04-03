@@ -7,6 +7,7 @@ categories: ML Kit, Core ML, iOS
 author_id: mathias
 markdown: redcarpet
 featured_image: /images/mlkit/featured.png
+show: true
 ---
 
 At Xmartlabs we have been closely involved in the nascent field of on-device Machine Learning.

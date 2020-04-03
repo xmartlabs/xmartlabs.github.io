@@ -5,7 +5,7 @@ date: 2018-07-16 12:00:00
 author: Matías Irland
 categories: Android, Android Jetpack, Android Paging Library, Live Data, Android Architecture Components, RxJava, Retrofit, Fountain
 author_id: mirland
-
+show: true
 ---
 
 There are plenty of articles out there talking about the amazing Android Architecture Components, how we can combine them in an MVVM architecture and make them work as a charm.
@@ -89,8 +89,8 @@ data class GhListResponse<T>(
 )
 
 data class User(
-  var id: Long, 
-  var login: String?, 
+  var id: Long,
+  var login: String?,
   var avatarUrl: String?
 )
 
@@ -111,7 +111,7 @@ However, saving data in a database source has some advantages.
 For example, you can make your app work offline, make less use of the backend, hide network problems, manage data better and share entities easier.
 
 Personally, I prefer taking the cache approach, but I know that it depends on the problem.
-In this post we will explore both strategies using **[Fountain]**. 
+In this post we will explore both strategies using **[Fountain]**.
 
 # Fountain
 [Fountain] is an **Android Kotlin library** conceived to make your life easier when dealing with paged endpoint services, where the paging is based on incremental page numbers (e.g. 1, 2, 3, ...).
@@ -166,7 +166,7 @@ To use the **Fountain Network support**, you just have to implement a `NetworkDa
 interface ListResponse<T> {
   fun getElements(): List<T>
 }
-``` 
+```
 
 So, following the example, our paging handler would be:
 ```kotlin
@@ -177,7 +177,7 @@ data class GhListResponse<T>(
   override fun getElements() = items
 }
 
-val networkDataSourceAdapter = 
+val networkDataSourceAdapter =
     (object : NetworkDataSourceAdapter<ListResponse<User>> {
       override fun canFetch(page: Int, pageSize: Int) = true
 
@@ -254,7 +254,7 @@ In addition, there are some optional parameters that you can define when you are
 - `firstPage: Int`: The initial page number, by default its value is 1.
 - `ioServiceExecutor : Executor`: The executor with which the service call will be made. By default, the library will use a pool of 5 threads.
 - `pagedListConfig: PagedList.Config` : The paged list configuration.
-In this object you can specify several options, for example the `pageSize` and the `initialPageSize`. 
+In this object you can specify several options, for example the `pageSize` and the `initialPageSize`.
 
 In the [next part of this series](/2018/04/02/Introducing-Fountain-Part-Two/) we'll see how we could get a `Listing` component which uses a `DataSource` cache to store the data.
 
@@ -268,8 +268,8 @@ If you get a repository which provides a `Listing` component of each paged list,
 
 **Fountain** provides a way to create a `Listing` component easily for a common paged service type, which are the services where the paginated strategy is based on an incremental page number.
 
-It also provides two ways to go: a mode with **network** support and a mode with **network + cache** support. 
-The strategy you choose will depend on your problem. 
+It also provides two ways to go: a mode with **network** support and a mode with **network + cache** support.
+The strategy you choose will depend on your problem.
 
 I suggest you give it a shot.
 We'll be glad if you provide feedback :)

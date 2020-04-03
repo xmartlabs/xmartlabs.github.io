@@ -6,6 +6,7 @@ author: Joaquín Rocco
 categories: UI, Swift, Flutter
 author_id: jrocco
 featured_image: /images/swiftui-flutter/featured.jpg
+show: true
 ---
 
 <p align="center">
@@ -22,7 +23,7 @@ List(landmarks) { landmark in
       Image(landmark.thumbnail)
       Text(landmark.name)
       Spacer()
-      
+
       if landmark.isFavorite {
          Image(systemName: "star.fill")
             .foregroundColor(.yellow)
@@ -55,7 +56,7 @@ List(landmarks) { landmark in
       Image(landmark.thumbnail)
       Text(landmark.name)
       Spacer()
-      
+
       if landmark.isFavorite {
          Image(systemName: "star.fill")
             .foregroundColor(.yellow)

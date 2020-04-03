@@ -6,7 +6,7 @@ author: Miguel Revetria
 categories: JavaScript, Plugin, Widget, CORS, Ruby, Rails, CSS
 author_id: remer
 markdown: redcarpet
-
+show: true
 ---
 
 In this occasion we will introduce a way to create a client side JavaScript plug-in that can be easily integrated in any third party websites.
@@ -25,7 +25,7 @@ Suppose that our plug-in clients are hair cutting web sites and we want to allow
 We are going to let the users schedule a haircut from within our plug-in.
 
 We have to take in mind that this client-side plug-in must be compatible with all kind of web applications and browsers in order to be used by all of our possible clients.
-For this reason, we will use only pure JavaScript code along with CSS and HTML. 
+For this reason, we will use only pure JavaScript code along with CSS and HTML.
 This means, that we won't use any external library in the client since we want to be the less intrusive as possible.
 
 We want to make this plug-in easy to be integrated by client web sites' developers, that's why we will make public the constructor and a few methods and we will keep under the hood all the auxiliary code (internal variables and any detail of the implementation).
@@ -49,7 +49,7 @@ Below we have a starting template for our plug-in:
   Widget.prototype.init = function(options, doc) {
     this.doc = doc || window.document
     this.options = merge(defaults, options)
-    
+
     if (!this.options.clientId) {
       // Validate options as needed
       console.error("Undefined `clientId`. You must set it before start using Widget");
@@ -114,7 +114,7 @@ Next code shows you how to add the widget to the client web site, add it within 
 
 Now that we've created the code base for applying the plug-in and we introduced a generic way to load it into any web page, we are going to go deep in our goal by adding some styles and functionalities to our widget.
 
-> Note: we are going to need a CSS file where to place the widget's styles. 
+> Note: we are going to need a CSS file where to place the widget's styles.
 
 ```javascript
 (function() {
@@ -131,7 +131,7 @@ Now that we've created the code base for applying the plug-in and we introduced 
   Widget.prototype.init = function(options, doc) {
     this.doc = doc || window.document
     this.options = merge(defaults, options)
-    
+
     if (!this.options.clientId) {
       // Validate options as needed
       console.error("Undefined `clientId`. You must set it before start using Widget");
@@ -161,7 +161,7 @@ Now that we've created the code base for applying the plug-in and we introduced 
   }
 
   function me() {
-    // In the code added to the client web page, we have used `MyAppWidget` to store the name of the variable which holds the instance of our plug-in. 
+    // In the code added to the client web page, we have used `MyAppWidget` to store the name of the variable which holds the instance of our plug-in.
     // Next line will return the object stored in the `window` which the stored in the key `MyAppWidget` of `window`.
     return window[window['MyAppWidget']];
   }
@@ -178,7 +178,7 @@ Now that we've created the code base for applying the plug-in and we introduced 
     widgetMarker.className = 'myapp-widget-marker myapp-widget-hoverable myapp-widget-unselectable';
     widgetMarker.innerHTML = '<div class="myapp-widget-title">Schedule your cute</div>';
     widgetMarker.onclick = toggleWidgetCollapsed;
-    
+
     customizeMarker(widgetMarker, options);
 
     doc.getElementsByTagName('body')[0].appendChild(widgetMarker);
@@ -216,7 +216,7 @@ Now that we've created the code base for applying the plug-in and we introduced 
   function createScheduleForm(doc, options) {
     var page = doc.createElement('div');
     page.className = 'myapp-widget-container myapp-widget-centered';
-    page.innerHTML = 
+    page.innerHTML =
       '<div class="myapp-widget-content">' +
         '<div class="myapp-widget-title">Schedule your hair cute</div>' +
         '<div class="myapp-widget-form">' +
@@ -295,7 +295,7 @@ Now that we've created the code base for applying the plug-in and we introduced 
     };
     xhttp.send(JSON.stringify(params));    
   }
-  
+
   /******* DIY: straightforward functions *******/
 
   // change marker style properties according to the options passed
@@ -332,11 +332,11 @@ Such endpoint will accept a `clientId` parameter included in the request in orde
 
 If `clientId` is not present we can return a default JavaScript without any customization.
 
-You can save the plug-in code and the CSS files as a template (ERB, HAML, etc., if you are using Ruby) and use an engine to render them. 
+You can save the plug-in code and the CSS files as a template (ERB, HAML, etc., if you are using Ruby) and use an engine to render them.
 The following code will help you to achieve this.
 
 ```javascript
-// Instead of setting the `href` property of the style element, just add the parse CSS file 
+// Instead of setting the `href` property of the style element, just add the parse CSS file
 // content as its `innerHTML`
 var css = me().doc.createElement('style');
 // As an example, we are passing an additionally option arguments in order to make some
@@ -352,7 +352,7 @@ me().doc.getElementsByTagName('head')[0].appendChild(css);
 As is expected our plug-in must be accessible from other domains than ours.
 If we go deeper, any additionally call made from JavaScript must be accessible from any domains rather than ours.
 
-A way to achieve this is enabling CORS (Cross-origin Resource Sharing) in our backend. 
+A way to achieve this is enabling CORS (Cross-origin Resource Sharing) in our backend.
 
 > This can be done just for the necessary resources to make our plug-in works properly.
 
@@ -390,7 +390,7 @@ Don't forget to include the `clientId` in the endpoint that will be secured with
 
 ### 2.4. Security
 
-Like everything that is public on internet, it will be tried to be hacked. 
+Like everything that is public on internet, it will be tried to be hacked.
 Don't worry we know it's not personal but it's something we shouldn't skip.
 Additionally we have to keep an eye on naively-written scrapers.
 
@@ -417,7 +417,7 @@ As we are adding an external CSS file, there are a few things you should conside
 
 * **Class name collisions:** you should prevent this by adding a prefix on each class name, something like `myapp-widget-` should be good enough.
 You know this is a pain in the butt, so be smart and handle it from the beginning.
-* **External styles:** since we are including HTML and CSS in an external web site, it's going to be affected by all the rules that are already present on it. 
+* **External styles:** since we are including HTML and CSS in an external web site, it's going to be affected by all the rules that are already present on it.
 Something like `* { background: red }` will change your widget's style and that is something you must avoid.
 You can add a generic selector in your CSS filtering by the previous prefix, where you will override the appropriate values for CSS properties.
 The following code will help you to do it.

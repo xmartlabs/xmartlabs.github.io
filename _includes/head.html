@@ -4,7 +4,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>{% if page.title %}{{ page.title }} | Xmartlabs{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-
+  {% if page.show %}
+  {% else %}
+    {% if page.dir != "/" %}
+    <meta name="robots" content="noindex">
+    {% endif %}
+  {% endif %}
   <link rel="stylesheet" href="{{ "/css/main.css?id=12345678" | relative_url }}">
   <link rel="stylesheet" href="{{ "/css/xmartlabs-new-home.webflow.be16b59f1.min.css" | relative_url }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fluidbox/1.4.3/css/fluidbox.css">

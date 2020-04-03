@@ -5,7 +5,7 @@ date: 2019-04-18 12:00:00
 author: Matías Irland
 categories: Android, Gradle Plugin, Snapshot, Google Play, Fabric Beta
 author_id: mirland
-
+show: true
 ---
 
 We're happy to announce the release of [**Android Snapshot Publisher**, our first open source Android Gradle Plugin](https://github.com/xmartlabs/android-snapshot-publisher), a plugin to **create Android Snapshot versions** in the simplest way we know!
@@ -60,14 +60,14 @@ My team typically follows a simple but nice Git flow.
 We have two main branches: `master` which contains the production code and `develop` which contains the newest changes that have not been released to production yet.
 Then, if we want to add a new feature or fix an existing issue, we create a new branch from `develop` and start coding!
 The next step is to create a new pull request, and wait for the reviewers to review the code we want to merge.
-After we get approval, we can integrate our changes into the `develop` branch. But, how should we really integrate them? 
+After we get approval, we can integrate our changes into the `develop` branch. But, how should we really integrate them?
 GitHub provides 3 predefined ways to do that, "Merge", "Rebase and Merge" or "Squash and Merge" (if you are not using GitHub you can just use Git's commands to get the same result).
-Based on how the branch was created it could contain multiple commits but all of them related to only one feature or fix. 
+Based on how the branch was created it could contain multiple commits but all of them related to only one feature or fix.
 So the main value of that branch is the feature or fix you are introducing.
 For this reason, some time ago we decided to start using the "Squash and Merge" option, together with a good and descriptive message.
 The key to this flow is that if you check the Git history of your main branches, each commit has an understandable and important value.
 This was just an introduction to our Git flow, following it is not mandatory to use this plugin.
-However, if you use a similar flow where each commit is of value and has a descriptive message, your **Snapshot Build** will be great! 
+However, if you use a similar flow where each commit is of value and has a descriptive message, your **Snapshot Build** will be great!
 
 ## How to get started?
 
@@ -117,5 +117,5 @@ This project was designed to release quick and valuable builds without wasting y
 One of the most interesting features is that you can integrate it easily with a CI/CD server.
 For instance, you could schedule a build every night or you could subscribe to some GitHub hook and perform the release after a merge is made or a Git tag created.
 We're currently using it and it's helping us a lot.
-We are glad that we don't end up spending significant time with releases, our coworkers are happy because they can try the latest version of our different apps and the clients are pleased to receive builds more frequently than ever before. It's a win-win-win! 😄 
+We are glad that we don't end up spending significant time with releases, our coworkers are happy because they can try the latest version of our different apps and the clients are pleased to receive builds more frequently than ever before. It's a win-win-win! 😄
 For all these reasons and more, we recommend you give it a try and then tell us what are your thoughts!
