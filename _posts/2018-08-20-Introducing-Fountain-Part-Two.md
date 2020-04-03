@@ -5,7 +5,9 @@ date: 2018-08-20 09:00:00
 author: Matías Irland
 categories: Android, Android Jetpack, Android Paging Library, Live Data, Android Architecture Components, RxJava, Retrofit, Fountain
 author_id: mirland
+
 show: true
+
 ---
 
 In the [previous part] we presented **[Fountain]** and shown a way, using the `Listing` component, to make the paging as cool and simple as possible.

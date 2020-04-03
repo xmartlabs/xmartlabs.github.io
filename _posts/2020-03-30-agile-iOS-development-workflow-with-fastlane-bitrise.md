@@ -1,15 +1,16 @@
 ---
 layout: post
 title: "Agile iOS development workflow using Fastlane & Bitrise"
-date: 2020-04-01 10:00:00
+date: 2020-04-03 10:00:00
 author: Martin Barreto
 categories: CI, fastlane, bitrise
 author_id: mtnBarreto
 featured_image: /images/ios-fastlane-ci/featured.png
+show: false
 ---
 
 The only way to move faster in a dynamic environment is to automate everything that's repetitive and time-consuming.
-When it comes to the common development workflow, places to automate abound. In this post I'll talk about how our iOS team uses [Fastlane](https://fastlane.tools/) and [Bitrise](https://www.bitrise.io/) to automate the app release process to [TestFlight](https://developer.apple.com/testflight/), but also about how we make sure that we're not introducing errors in already implemented functionalities.
+When it comes to the common development workflow, places to automate abound. In this post I'll talk about how our iOS team uses [Fastlane](https://https://fastlane.tools/) and [Bitrise](https://www.bitrise.io/) to automate the app release process to [TestFlight](https://developer.apple.com/testflight/), but also about how we make sure that we're not introducing errors in already implemented functionalities.
 
 
 ### What's Fastlane
