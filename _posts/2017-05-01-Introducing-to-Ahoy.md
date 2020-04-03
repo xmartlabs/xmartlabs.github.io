@@ -6,8 +6,7 @@ author: XL Team
 author_id: xl
 categories: Swift, iOS, Onboarding, Tutorial
 markdown: redcarpet
-
-
+show: true
 ---
 
 We’re pretty sure you’ll need to include an onboarding library in the iOS App you’re building. In order to speed up the time spent in development while giving the developers freedom to build an awesome experience for their users, we created [Ahoy](https://github.com/xmartlabs/Ahoy), developed in Swift!

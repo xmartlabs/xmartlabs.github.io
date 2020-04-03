@@ -6,7 +6,7 @@ author: XL Team
 categories: AR
 author_id: xl
 banner_message: Interested in how AR can help your company?
-
+show: true
 ---
 
 Due to recent breakthroughs in AR technology, mobile AR has suddenly become valuable for several specific use cases. These use cases include employee training, product visualization, visual search, and communication. Enterprises that adopt AR today stand to gain significantly in cost and time savings, customer engagement and retention, as well as reduced time to close deals.

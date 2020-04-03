@@ -6,7 +6,7 @@ author: Diego Ernst
 categories: Swift, iOS, Eureka
 author_id: dernst
 markdown: redcarpet
-
+show: true
 ---
 
 Some days ago, we released the introduction to create custom rows for [Eureka](https://github.com/xmartlabs/Eureka), now we are going to go deeper and see how to build a complex row.
@@ -382,7 +382,7 @@ There are several ways to change this custom row. You should be able to reuse al
     }
     ```
     or
-    
+
     ```swift
     final class MyPasswordRow: _GenericPasswordRow, RowType {
         required init(tag: String?) {

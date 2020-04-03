@@ -5,6 +5,7 @@ date:   2016-03-07 10:00:00
 author: Miguel Revetria
 categories: Server,CI,Fastlane
 author_id: remer
+show: true
 ---
 
 In this post I'm going to write about my experience and the problems I faced when setting up Xcode Server for CI and automatic deployment to iTunes Connect at Xmartlabs. I'm going to let you know how I could solve some problems hoping it may help somebody in the same situation.
@@ -36,7 +37,7 @@ export PATH="$PATH:/var/_xcsbuildd/.gem/ruby/2.0.0/bin"
 
 {% endhighlight %}
 
-Now let's install these gems: 
+Now let's install these gems:
 
 {% highlight shell %}
 

@@ -1,9 +1,7 @@
 <div class="featured-container">
-  {% assign firstPost = site.posts | where: 'featured_position', '1' %}
-  {% assign secondPost = site.posts | where: 'featured_position', '2' %}
-  {% assign thirdPost = site.posts | where: 'featured_position', '3' %}
+  {% assign displayPosts = site.posts | where: 'show', true %}
 
-  {% for post in firstPost limit:1 %}
+  {% for post in displayPosts limit:1 offset:0 %}
     <div class="featured-post" style="background-image: url('{{ post.featured_image}}');">
       <a href="{{ post.url | prepend: site.baseurl }}">
         <h1 class="post-title">{{ post.title }}</h1>
@@ -11,14 +9,14 @@
     </div>
   {% endfor %}
   <div class="bottom-row">
-    {% for post in secondPost limit:1 %}
+    {% for post in displayPosts limit:1 offset:1 %}
       <div class="featured-post" style="background-image: url('{{ post.featured_image}}');">
         <a href="{{ post.url | prepend: site.baseurl }}">
           <h1 class="post-title">{{ post.title }}</h1>
         </a>
       </div>
     {% endfor %}
-    {% for post in thirdPost limit:1 %}
+    {% for post in displayPosts limit:1 offset:2 %}
       <div class="featured-post" style="background-image: url('{{ post.featured_image}}');">
         <a href="{{ post.url | prepend: site.baseurl }}">
           <h1 class="post-title">{{ post.title }}</h1>

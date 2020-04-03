@@ -5,7 +5,7 @@ date: 2017-10-11 09:00:00
 author: Joaquin Rocco
 categories: Design,Product,Sprint
 author_id: xl
-
+show: true
 ---
 
 <img src="/images/sprint1/cover.jpg"/>

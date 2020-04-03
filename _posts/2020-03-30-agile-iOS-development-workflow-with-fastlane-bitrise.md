@@ -6,7 +6,6 @@ author: Martin Barreto
 categories: CI, fastlane, bitrise
 author_id: mtnBarreto
 featured_image: /images/ios-fastlane-ci/featured.png
-search: exclude
 ---
 
 The only way to move faster in a dynamic environment is to automate everything that's repetitive and time-consuming.

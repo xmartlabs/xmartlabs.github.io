@@ -6,6 +6,7 @@ author: XL Team
 author_id: xl
 categories: Design, Product, Sprint
 markdown: redcarpet
+show: true
 ---
 
 <img src="/images/sam-mc-afee/Sam-Mc-Afee.jpg"/>
@@ -17,9 +18,9 @@ About 9 of every 10 of your business ideas are going to fail. Would you try to r
 The experiment-driven iterative approach methodology we developed at Neo, I think, is one of the most rigorous approaches to new product development around. Neo is no more, alas, but a lot of us still use the approach we developed there. **We’d go from an idea on a whiteboard to a working MVP in 12 weeks, using a combination of Design Thinking, Lean Startup, and Agile methodologies. We must have done dozens of these types of projects for Macy’s, Time Inc, Toyota, and others.**
 
 One in particular stands out for me. We built a social marketing application for Adobe, that was code named “Spruce”. The Neo team was able to **iterate through customer interviews, landing page experiments, and prototypes, all the way to a working system in 12 weeks. In that project we were able to validate and invalidate a set of assumptions that our clients had about what marketers wanted in a tool.** It was so successful, we were turning away calls from investors who thought it was a real startup. The output from that project was the inspiration (at least in part) for what is now known as Adobe Spark. That’s a really good example of the power of this MVP model.
- 
+
 We certainly saw some failures as well. But keep in mind that these were failed ideas, not teams. **Invalidating a bad idea is actually a successful outcome from the point of view of an experiment-minded entrepreneur. About 9 of every 10 of your ideas are going to fail. And I think nothing could be more efficient than quickly and cheaply invalidating the 9 bad ones with a process like a 12-week MVP. Often we were able to kill ideas way before we got to week 12. That’s considered a win because you’re saving the client money and time.**
- 
+
 <span class="color-title">After working in several companies for numerous years and having now the opportunity to asses them “from the outside”, which advice would you give to someone who is leading an innovation project in an already established company?</span>
 
 There are a few key things I’ve learned that would impart to any innovation leader. First, **make sure you organize your people into small dedicated, cross-functional teams. Innovation is hard, and no-one does a good job if they are split across different projects or dealing with hand-offs between functional silos.** Too often, we find IT over here, product management--or worse, project management--over there, and design somewhere else. That’s a recipe for disaster with regular delivery teams, much less for anything that has to move at the speed of startups.
@@ -44,7 +45,7 @@ As head of engineering at Change.org, I developed a robust delivery process that
 
 **I have participated in seven startups over the years, and coached countless others. I have also coached product teams in a number of large organizations.** That’s basically what I am doing now, as a consultant.
 
-I've given talks on team performance and executing experiments at scale at QCon NYC and SF, AgileCamp Silicon Valley and New York, and Lean Kanban North America. I literally wrote the [book on startup patterns](http://StartupPatterns.com), documenting what works and what doesn't in getting from an idea to product-market fit. 
+I've given talks on team performance and executing experiments at scale at QCon NYC and SF, AgileCamp Silicon Valley and New York, and Lean Kanban North America. I literally wrote the [book on startup patterns](http://StartupPatterns.com), documenting what works and what doesn't in getting from an idea to product-market fit.
 
 <span class="color-title">Would you recommend hiring an external team of highly qualified professionals to work together with the internal team in the development of your project? Why?</span>
 

@@ -5,8 +5,8 @@ date: 2019-07-04 17:00:00
 author: Rodrigo Baya
 categories: Data analysis, Data warehouse,
 author_id: pbt
-featured_position: 3
 featured_image: /images/redshift-snowflake/data_center_cloud.jpg
+show: true
 ---
 
 Well-informed, objective decisions have always been a key aspect of every successful business.

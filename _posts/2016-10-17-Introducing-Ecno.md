@@ -6,7 +6,7 @@ author: Diego Ernst
 categories: Swift, iOS
 author_id: dernst
 markdown: redcarpet
-
+show: true
 ---
 
 [Ecno]:        https://github.com/xmartlabs/Ecno

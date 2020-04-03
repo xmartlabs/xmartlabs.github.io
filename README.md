@@ -22,21 +22,13 @@ To set it up on your machine you have two options:
 2. Install docker and docker-compose
 3. Go to the folder for this repository and build the site with `docker-compose up`
 
-## Featured posts
-If you want a post to be among the 3 featured posts you need to set the following custom variables in its [front matter](https://jekyllrb.com/docs/front-matter/):
-- `featured_position: 1`
-These may take one of the following values:
-    - `1`: it will be displayed on the left column in Desktop, the image size needs to be around 574x385px
-    - `2`: it will be displayed at the top of the right column in Desktop, the image size needs to be around 706x187px
-    - `3`: it will be displayed at the bottom of the right column in Desktop, the image size needs to be around 706x187px
-- `featured_image: /images/my-new-post/featured.png`
-Remember to place the image inside the post's folder. A different name and format can be used, just assign the correct path to the variable.
 
-## Not listing the post in blog.xmatlabs.com but allow people to access o the url
 
-Add the search attribute to the blog file.
+## Make blogpost accessible but not listed in blog.xmatlabs.com allow
 
-`search: exclude`
+Make sure `show: true` is not present if you want to hide your from main blog post list. blog.xmartlabs.com
+
+`show: true`
 
 ```
 ---
@@ -47,12 +39,22 @@ author: Martin Barreto
 categories: CI, fastlane, bitrise
 author_id: mtnBarreto
 featured_image: /images/ios-fastlane-ci/featured.png
-search: exclude
+show: true
 ---
 ```
 
 **IMPORTANT:**
-If multiple posts have the same `featured_position` the newest will show on the featured section but the others won't show on the list of posts (since these are filtered to avoid repetition). **Please avoid this by deleting these variables from the post you want to replace.**
+Newest blogposts will be shown on the featured section.
+
+## Featured posts
+Last 3 posts are the featured posts.
+You need to set the following custom variables in its [front matter](https://jekyllrb.com/docs/front-matter/):
+These may take one of the following values:
+    - top position: the image size needs to be around 574x385px
+    - 2 blogposts in a secondary level position: the image size needs to be around 706x187px
+
+- `featured_image: /images/my-new-post/featured.png`
+Remember to place the image inside the post's folder. A different name and format can be used, just assign the correct path to the variable.
 
 ## What to do if the CSS changes aren't applied when releasing?
 Sometimes changes to the CSS aren't applied once the page is released to GitHub Pages, this means the old CSS will be used causing different problems that can't be reproduced locally.
