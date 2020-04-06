@@ -23,12 +23,23 @@ To set it up on your machine you have two options:
 3. Go to the folder for this repository and build the site with `docker-compose up`
 
 
+## Test your blogpost
 
-## Make blogpost accessible but not listed in blog.xmatlabs.com allow
+If you want to test your blogpost you have two options to try it out:
 
-Make sure `show: true` is not present if you want to hide your from main blog post list. blog.xmartlabs.com
+### Using the Staging environment
+The blog has a staging environment hosted in [blog-staging.xmartlabs.com](https://blog-staging.xmartlabs.com/), which can be used to test the blogposts you’re working on.
+That environment is the result of deploying the last commit of the [staging GitHub repository](https://github.com/xmartlabs/blog-staging).
+So, if you want to deploy a new staging version you have to add the staging [GitHub repository](https://github.com/xmartlabs/blog-staging) remote url and push the commit that you want to deploy.
 
-`show: true`
+```sh
+git remote add staging git@github.com:xmartlabs/blog-staging.git # Only the first time
+git push staging
+```
+
+### Make blogpost accessible but not listed in blog.xmatlabs.com allow
+
+Make sure `show: true` is not present if you want to hide your from main blog post list.
 
 ```
 ---
