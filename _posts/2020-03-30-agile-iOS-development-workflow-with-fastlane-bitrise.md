@@ -188,7 +188,7 @@ Explaining each parameter and details of each fastlane action is out of the scop
 Now a new TestFlight app version will be released each time we create a new tag named `version_<number>`.
 
 
-Although we could have accomplished the same result by using just Bitrise tasks, we prefer to do so in combination with Fastlane due to the following reasons:
+Although we could have accomplished the same result with Bitrise tasks alone, we prefer to do so in combination with Fastlane due to the following reasons:
 
 - Anyone in the team can run Fastlane lanes locally without the need of having CI/CD as a service.
 - We have more freedom to change our CI/CD platform at any time. In the real world, each customer has its own CI/CD preference. Migrating to another CI/CD platform like GitHub Actions or TravisCI should be very straightforward since we just need to run the fastlane lane.
