@@ -29,7 +29,7 @@ Why Continuous Integration and Deploy? It is a well-known technique, widely adop
 
 In the following sections we will configure a development workflow that goes like this:
 * A new PR is opened.
-* The repo is cloned and build steps are run in the CI server. A new release based on the latest PR is built and signed. In our case we also fetch external dependencies from Cocoapods. 
+* The repo is cloned and build steps are run in the CI server. A new release based on the latest PR is built and signed. In our case we also fetch external dependencies from Cocoapods.
 * The test suite is executed against the new build.
 * Optionally, the new build is released to beta testers through TestFlight.
 * We get notified (and can check the status in our Git management tool of choice) at every step of the process.
@@ -183,7 +183,17 @@ lane :release_appstore  do
 end
 ```
 
-Explaining each parameter and details of each fastlane action is out of the scope of this blogpost. I added a short inline comment in the code above to indicate the purpose of each action. Please visit specific fastlane action documentation references if needed.
+Let's see what each release_appstore's lane action does:
+
+`automatic_code_signing` allows us to configure how we are going to sign the binary.
+
+`cocoapods` installs cocoapods dependencies by running `pod install`.
+
+`build_ios_app` builds and signs our app.
+
+`deliver` uploads the build to to app store, we are actually sharing the app with TestFlight beta testers.
+
+> Explaining each parameter and details of each fastlane action is out of the scope of this blogpost. Please visit specific fastlane action documentation references if needed.
 
 Now a new TestFlight app version will be released each time we create a new tag named `version_<number>`.
 
