@@ -9,26 +9,30 @@ featured_image: /images/ios-fastlane-ci/featured.png
 show: false
 ---
 
-The only way to move faster in a dynamic environment is to automate everything that's repetitive and time-consuming.
-When it comes to the common development workflow, places to automate abound. In this post I'll talk about how our iOS team uses [Fastlane](https://https://fastlane.tools/) and [Bitrise](https://www.bitrise.io/) to automate the app release process to [TestFlight](https://developer.apple.com/testflight/), but also about how we make sure that we're not introducing errors in already implemented functionalities.
+In this post I'll walk you through the Continuous Integration and Deployment set up used by Xmartlabs iOS team. We will configure [Fastlane](https://https://fastlane.tools/) and [Bitrise](https://www.bitrise.io/) to automate the app release process to [TestFlight](https://developer.apple.com/testflight/).
+
+Why Continuous Integration and Deploy? It is a well-known technique, widely adopted by agile engineering teams. It's main benefits are: a) Reduce waste. You can free up time by automating repetitive and time-consuming tasks, b) Improve build quality. We can use automated tests to detect defects and regressions earlier in the development process, or use a linter to check compliance with coding standards c) Be more agile and boost team morale in the process (this is the killer benefit if you ask me). The team is proner to release more often because it's cheaper and less cumbersome, you can get product feedback earlier so you reduce risks and can adjust to deliver more value, users and other stakeholders are happier, team motivation improves.. you get the idea.
 
 
 ### What's Fastlane
 
-Basically Fastlane is an open-source platform that both simplifies and speeds up the development process by allowing teams to automate development workflows. It also has continuous integration support with multiple CI platforms like Bitrise, CircleCI, Jenkins, TravisCI, among others.
+[Fastlane](https://https://fastlane.tools/) is an open-source platform that both simplifies and speeds up the development process by automating development workflows. It also has Continuous Integration support through different CI platforms including Bitrise, CircleCI, Jenkins, and TravisCI.
 
 ### What's Bitrise
 
-Bitrise is a Continuous Integration and Delivery (CI/CD) Platform as a Service (PaaS) with a main focus on mobile app development.
+[Bitrise](https://www.bitrise.io/) is a Continuous Integration and Delivery (CI/CD) Platform as a Service (PaaS), focused in mobile app development.
 
-> This blog is not intended to explain these concepts but how we configure and set up these tools to optimize our development workflow. See their respective websites and docs to know more about each tool.
+> This blogpost is not intended to explain the products or underlaying concepts in detail. We will focus on the configuration and set up process instead. If you want to know more about each tool, we recommend their websites and official doccumentation.
 
-### So, why automate integrations and releases?
 
-There are several reasons but these are the most important:
+### How do we optimize our integration and release process?
 
-- Definition of the development workflow. We know exactly when an automatic build happens, when unit tests run and also also when a release process start.  
-- Save time and money. Nobody in an engineering team likes to do repetitive tasks, freeing us of these allows us to invest our precious time on what really matters.
+In the following sections we will configure a development workflow that goes like this:
+* A new PR is opened.
+* The repo is cloned and build steps are run in the CI server. A new release based on the latest PR is built and signed. In our case we also fetch external dependencies from Cocoapods. 
+* The test suite is executed against the new build.
+* Optionally, the new build is released to beta testers through TestFlight.
+* We get notified (and can check the status in our Git management tool of choice) at every step of the process.
 
 
 ## How to set up fastlane in an iOS project
@@ -41,7 +45,7 @@ From your terminal, navigate to your iOS project's directory and run:
 fastlane init
 ```
 
-This will automatically generate several Fastlane config files, with the most important being `Fastfile`, which is the file that stores the automation configuration where you'll see different lanes. Each lane is there to automate a different task, such as screenshots, code signing, or pushing new releases.
+This will automatically generate several Fastlane config files, with the most important being `Fastfile`, which is the file that stores the  configuration where you'll see different lanes. Each lane is there to automate a different task, such as screenshots, code signing, or pushing new releases.
 
 We can add as many lanes as we need. Each lane automates a development process and can be run through the command `fastlane <lane_name>`.
 So, let's create a test lane in order to run unit tests by running `fastlane test`.
@@ -179,17 +183,16 @@ lane :release_appstore  do
 end
 ```
 
-Explaining each parameter and details of each fastlane action is out of the scope of this blogpost. I added a short inline comment in the code above to indicate the purpose of each action. Please visit each fastlane action documentation reference if needed.
+Explaining each parameter and details of each fastlane action is out of the scope of this blogpost. I added a short inline comment in the code above to indicate the purpose of each action. Please visit specific fastlane action documentation references if needed.
 
 Now a new TestFlight app version will be released each time we create a new tag named `version_<number>`.
 
 
-Although we could've accomplished the same result just by using Bitrise tasks, we prefer to do so in combination with Fastlane due to the following reasons:
+Although we could have accomplished the same result with Bitrise tasks alone, we prefer to do so in combination with Fastlane due to the following reasons:
 
 - Anyone in the team can run Fastlane lanes locally without the need of having CI/CD as a service.
 - We have more freedom to change our CI/CD platform at any time. In the real world, each customer has its own CI/CD preference. Migrating to another CI/CD platform like GitHub Actions or TravisCI should be very straightforward since we just need to run the fastlane lane.
 
 
 
-Well, hope you have seen the benefits of having these automated tasks.
-This is all I have to share in this post. See you in the next one!
+Well, hope you now have a better idea of how to use automation to optimize your development workflow. We promise the benefits are worth it!
