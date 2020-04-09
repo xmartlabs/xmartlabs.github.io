@@ -67,6 +67,16 @@ These may take one of the following values:
 - `featured_image: /images/my-new-post/featured.png`
 Remember to place the image inside the post's folder. A different name and format can be used, just assign the correct path to the variable.
 
+
+## How to crosspost a post to medium
+
+We need to add `crosspost_to_medium: true` then set up `MEDIUM_USER_ID` and `MEDIUM_INTEGRATION_TOKEN` env variables in your computer.
+
+> you can check if the variables are properly set up by `printenv | grep MEDIUM`
+
+Next time you build or serve the locally the blog it will be sent to medium as draft story.
+
+
 ## What to do if the CSS changes aren't applied when releasing?
 Sometimes changes to the CSS aren't applied once the page is released to GitHub Pages, this means the old CSS will be used causing different problems that can't be reproduced locally.
 
