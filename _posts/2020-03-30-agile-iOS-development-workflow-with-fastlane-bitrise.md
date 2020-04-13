@@ -7,7 +7,7 @@ categories: CI, fastlane, bitrise
 author_id: mtnBarreto
 featured_image: /images/ios-fastlane-ci/featured.png
 show: false
-crosspost_to_medium: true
+crosspost_to_medium: false
 
 ---
 
