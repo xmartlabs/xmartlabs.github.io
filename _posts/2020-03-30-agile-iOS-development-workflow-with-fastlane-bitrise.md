@@ -7,9 +7,11 @@ categories: CI, fastlane, bitrise
 author_id: mtnBarreto
 featured_image: /images/ios-fastlane-ci/featured.png
 show: false
+crosspost_to_medium: false
+
 ---
 
-In this post I'll walk you through the Continuous Integration and Deployment set up used by Xmartlabs iOS team. We will configure [Fastlane](https://https://fastlane.tools/) and [Bitrise](https://www.bitrise.io/) to automate the app release process to [TestFlight](https://developer.apple.com/testflight/).
+In this post I'll walk you through the Continuous Integration and Deployment set up used by Xmartlabs iOS team. We will configure [Fastlane](https://fastlane.tools/) and [Bitrise](https://www.bitrise.io/) to automate the app release process to [TestFlight](https://developer.apple.com/testflight/).
 
 Why Continuous Integration and Deploy? It is a well-known technique, widely adopted by agile engineering teams. It's main benefits are: a) Reduce waste. You can free up time by automating repetitive and time-consuming tasks, b) Improve build quality. We can use automated tests to detect defects and regressions earlier in the development process, or use a linter to check compliance with coding standards c) Be more agile and boost team morale in the process (this is the killer benefit if you ask me). The team is proner to release more often because it's cheaper and less cumbersome, you can get product feedback earlier so you reduce risks and can adjust to deliver more value, users and other stakeholders are happier, team motivation improves.. you get the idea.
 
