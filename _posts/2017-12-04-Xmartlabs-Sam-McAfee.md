@@ -4,7 +4,7 @@ title: Sam McAfee - how to develop a game changer business idea in just 12 weeks
 date: 2017-12-04 10:30:00
 author: XL Team
 author_id: xl
-categories: Design, Product, Sprint
+categories: [Design, Product, Sprint]
 markdown: redcarpet
 show: true
 ---

@@ -4,7 +4,7 @@ title:  Ahoy - The Onboarding Library You Were Asking For
 date:   2017-09-11 13:40:00
 author: XL Team
 author_id: xl
-categories: Swift, iOS, Onboarding, Tutorial
+categories: [Swift, iOS, Onboarding, Tutorial]
 markdown: redcarpet
 show: true
 ---

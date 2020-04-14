@@ -3,7 +3,7 @@ layout: post
 title: Introducing Android Snapshot Plugin
 date: 2019-04-18 12:00:00
 author: Matías Irland
-categories: Android, Gradle Plugin, Snapshot, Google Play, Fabric Beta
+categories: [Android, Gradle Plugin, Snapshot, Google Play, Fabric Beta]
 author_id: mirland
 show: true
 ---
