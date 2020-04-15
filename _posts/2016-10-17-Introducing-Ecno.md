@@ -7,6 +7,7 @@ categories: [Swift, iOS]
 author_id: dernst
 markdown: redcarpet
 show: true
+category: development
 ---
 
 [Ecno]:        https://github.com/xmartlabs/Ecno

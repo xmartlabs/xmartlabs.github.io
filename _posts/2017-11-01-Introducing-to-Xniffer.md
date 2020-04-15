@@ -7,6 +7,7 @@ author_id: xl
 categories: [Swift, iOS, Tutorial, network]
 markdown: redcarpet
 show: true
+category: development
 ---
 
 Do you often want to debug or monitor external service responses in you app, recognize latency and work with the data you receive back? Same happens to us!

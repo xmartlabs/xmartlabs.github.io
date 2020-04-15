@@ -8,6 +8,7 @@ category: Machine Learning
 author_id: mathias
 featured_image: /images/tflite_coreml/featured.png
 show: true
+category: machine-learning
 ---
 
 It's been over a year since Apple has introduced [Create ML](https://developer.apple.com/documentation/createml), a framework that allows you to build neural network models in Swift and use them on iPhones and iPads with Core ML.

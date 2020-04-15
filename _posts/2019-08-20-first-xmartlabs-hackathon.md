@@ -8,6 +8,7 @@ category: Announcement
 author_id: bruno
 featured_image: /images/xmartlabs-first-hackathon/general_view_bbq.jpg
 show: true
+category: people-events
 ---
 
 Last month Xmartlabs held its very first hackathon!

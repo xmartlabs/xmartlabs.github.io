@@ -6,6 +6,7 @@ author: XL Team
 categories: Marketing
 author_id: xl
 show: true
+category: business-agile
 ---
 
 Xmartlabs is a product development firm that caters the demands of high-growth startups and forward-thinking companies aiming to build transformational, mobile-first software products. We follow a lightweight process guided by agile principles to foster collaboration and flexibility. Our team is distributed between San Francisco, Los Angeles and Montevideo. We embrace an Open Source ethos and our technology stack includes iOS, Android, Ruby & JavaScript.

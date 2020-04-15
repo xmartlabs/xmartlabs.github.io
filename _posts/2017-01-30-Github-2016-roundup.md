@@ -7,6 +7,7 @@ categories: [GitHub, Data Analysis]
 author_id: xl
 markdown: redcarpet
 show: true
+category: business-agile
 ---
 
 Almost a month into the new year, the yearly summaries and annual resolutions posts season is definitely over.

@@ -7,6 +7,7 @@ categories: [Data analysis, Data warehouse]
 author_id: pbt
 featured_image: /images/redshift-snowflake/data_center_cloud.jpg
 show: true
+category: development
 ---
 
 Well-informed, objective decisions have always been a key aspect of every successful business.

@@ -6,6 +6,7 @@ author: Matías Irland
 categories: [Android, Server, CI, Jenkins, Fabric]
 author_id: mirland
 show: true
+category: development
 ---
 
 Today I want to show how we can release Android *SNAPSHOT* versions using [Beta by Fabric](https://docs.fabric.io/android/beta/overview.html).

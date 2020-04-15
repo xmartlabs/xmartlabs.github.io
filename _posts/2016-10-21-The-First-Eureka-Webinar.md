@@ -7,6 +7,7 @@ categories: [Swift, iOS, Eureka, Form]
 author_id: esanchez
 markdown: redcarpet
 show: true
+category: people-events
 ---
 
 [Eureka]:        https://github.com/xmartlabs/Eureka

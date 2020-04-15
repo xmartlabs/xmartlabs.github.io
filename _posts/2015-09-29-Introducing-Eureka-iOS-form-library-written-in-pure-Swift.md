@@ -6,6 +6,7 @@ author: Martin Barreto
 categories: [Eureka, Forms]
 author_id: mtnBarreto
 show: true
+category: development
 ---
 
 We are incredibly excited to announce [Eureka!], our first Swift open source project designed to easily build dynamic table-view forms.

@@ -6,6 +6,7 @@ author: Miguel Revetria
 categories: [Server, CI, Fastlane]
 author_id: remer
 show: true
+category: development
 ---
 
 In this post I'm going to write about my experience and the problems I faced when setting up Xcode Server for CI and automatic deployment to iTunes Connect at Xmartlabs. I'm going to let you know how I could solve some problems hoping it may help somebody in the same situation.

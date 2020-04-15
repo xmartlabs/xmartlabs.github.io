@@ -7,6 +7,7 @@ categories: [UI, Swift, Flutter]
 author_id: jrocco
 featured_image: /images/swiftui-flutter/featured.jpg
 show: true
+category: development
 ---
 
 <p align="center">

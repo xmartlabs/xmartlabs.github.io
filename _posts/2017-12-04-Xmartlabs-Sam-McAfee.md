@@ -7,6 +7,7 @@ author_id: xl
 categories: [Design, Product, Sprint]
 markdown: redcarpet
 show: true
+category: product-design
 ---
 
 <img src="/images/sam-mc-afee/Sam-Mc-Afee.jpg"/>

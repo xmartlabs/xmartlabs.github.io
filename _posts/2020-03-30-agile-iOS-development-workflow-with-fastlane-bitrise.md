@@ -4,7 +4,7 @@ title: "Agile iOS development workflow using Fastlane & Bitrise"
 date: 2020-04-03 10:00:00
 author: Martin Barreto
 categories: [CI, fastlane, bitrise]
-category: App Development
+category: development
 author_id: mtnBarreto
 featured_image: /images/ios-fastlane-ci/featured.png
 show: false

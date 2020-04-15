@@ -6,6 +6,7 @@ author: Joaquin Rocco
 categories: [Design, Product, Sprint]
 author_id: xl
 show: true
+category: product-design
 ---
 
 <img src="/images/sprint1/cover.jpg"/>
