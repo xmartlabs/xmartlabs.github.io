@@ -9,6 +9,7 @@ markdown: redcarpet
 featured_image: /images/mlkit/featured.png
 show: true
 category: machine-learning
+crosspost_to_medium: true
 ---
 
 At Xmartlabs we have been closely involved in the nascent field of on-device Machine Learning.
