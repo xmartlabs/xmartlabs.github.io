@@ -3,9 +3,10 @@ layout: post
 title: Introducing Android Snapshot Plugin
 date: 2019-04-18 12:00:00
 author: Matías Irland
-categories: Android, Gradle Plugin, Snapshot, Google Play, Fabric Beta
+categories: [Android, Gradle Plugin, Snapshot, Google Play, Fabric Beta]
 author_id: mirland
 show: true
+category: development
 ---
 
 We're happy to announce the release of [**Android Snapshot Publisher**, our first open source Android Gradle Plugin](https://github.com/xmartlabs/android-snapshot-publisher), a plugin to **create Android Snapshot versions** in the simplest way we know!

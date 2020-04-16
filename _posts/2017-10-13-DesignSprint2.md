@@ -3,9 +3,10 @@ layout: post
 title: How to Make Quick Strategic Decisions With a 1 Week Design Sprint. Part 2
 date: 2017-10-11 10:00:00
 author: Joaquin Rocco
-categories: Design,Product,Sprint
+categories: [Design, Product, Sprint]
 author_id: xl
 show: true
+category: product-design
 ---
 
 <img src="/images/sprint2/cover.jpg"/>

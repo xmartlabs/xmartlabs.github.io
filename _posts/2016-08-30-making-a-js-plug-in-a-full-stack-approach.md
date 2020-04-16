@@ -3,10 +3,11 @@ layout: post
 title:  "Making a JS plug-in: a full-stack approach"
 date:   2016-08-30 17:00:00
 author: Miguel Revetria
-categories: JavaScript, Plugin, Widget, CORS, Ruby, Rails, CSS
+categories: [JavaScript, Plugin, Widget, CORS, Ruby, Rails, CSS]
 author_id: remer
 markdown: redcarpet
 show: true
+category: development
 ---
 
 In this occasion we will introduce a way to create a client side JavaScript plug-in that can be easily integrated in any third party websites.

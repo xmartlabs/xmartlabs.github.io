@@ -4,9 +4,10 @@ title:  Introducing Xniffer, the Swift network profiler built on top of URLSessi
 date:   2017-11-01 00:00:00
 author: XL Team
 author_id: xl
-categories: Swift, iOS, Tutorial, network
+categories: [Swift, iOS, Tutorial, network]
 markdown: redcarpet
 show: true
+category: development
 ---
 
 Do you often want to debug or monitor external service responses in you app, recognize latency and work with the data you receive back? Same happens to us!

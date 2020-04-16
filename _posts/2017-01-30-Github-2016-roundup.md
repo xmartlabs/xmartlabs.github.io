@@ -3,10 +3,11 @@ layout: post
 title:  GitHub 2016 round up
 date:   2017-01-30 10:23:24
 author: XL Team
-categories: GitHub, Data Analysis
+categories: [GitHub, Data Analysis]
 author_id: xl
 markdown: redcarpet
 show: true
+category: business-agile
 ---
 
 Almost a month into the new year, the yearly summaries and annual resolutions posts season is definitely over.

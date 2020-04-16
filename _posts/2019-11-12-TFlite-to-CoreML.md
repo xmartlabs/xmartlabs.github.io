@@ -3,10 +3,12 @@ layout: post
 title: "How to convert a NN model from TensorFlow Lite to CoreML"
 date: 2019-11-22 10:00:00
 author: Mathias Claassen
-categories: machine learning, tflite, coreml, xmartlabs
+categories: [machine learning, tflite, coreml, xmartlabs]
+category: Machine Learning
 author_id: mathias
 featured_image: /images/tflite_coreml/featured.png
 show: true
+category: machine-learning
 ---
 
 It's been over a year since Apple has introduced [Create ML](https://developer.apple.com/documentation/createml), a framework that allows you to build neural network models in Swift and use them on iPhones and iPads with Core ML.

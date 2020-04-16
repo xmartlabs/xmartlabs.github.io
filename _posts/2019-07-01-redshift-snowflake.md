@@ -3,10 +3,12 @@ layout: post
 title: "Put your data to work: Amazon Redshift vs Snowflake"
 date: 2019-07-04 17:00:00
 author: Rodrigo Baya
-categories: Data analysis, Data warehouse,
+categories: [Data analysis, Data warehouse]
 author_id: pbt
 featured_image: /images/redshift-snowflake/data_center_cloud.jpg
 show: true
+category: development
+crosspost_to_medium: true
 ---
 
 Well-informed, objective decisions have always been a key aspect of every successful business.

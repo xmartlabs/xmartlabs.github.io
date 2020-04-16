@@ -3,11 +3,13 @@ layout: post
 title:  ML Kit on iOS and how it performs against Core ML
 date:   2018-06-21 08:00:00
 author: Mathias Claassen
-categories: ML Kit, Core ML, iOS
+categories: [ML Kit, Core ML, iOS]
 author_id: mathias
 markdown: redcarpet
 featured_image: /images/mlkit/featured.png
 show: true
+category: machine-learning
+crosspost_to_medium: true
 ---
 
 At Xmartlabs we have been closely involved in the nascent field of on-device Machine Learning.

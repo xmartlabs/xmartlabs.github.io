@@ -3,10 +3,11 @@ layout: post
 title: URL Splitting and React (Part 1)
 date: 2019-05-17 09:00:00
 author: Matías Lorenzo
-categories: React, URL splitting
+categories: [React, URL splitting]
 author_id: mlorenzo
 featured_image: /images/url-splitting/banner.jpg
 show: true
+category: development
 ---
 
 As devices become more powerful, web apps tend to have heavier client-side logic. In particular, Single Page Applications (SPAs) have become very popular in these past years, with the advent of battle-tested frontend frameworks such as React, Angular or Vue.

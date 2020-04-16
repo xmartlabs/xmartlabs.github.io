@@ -3,10 +3,11 @@ layout: post
 title:  The First Eureka Webinar
 date:   2016-10-21 08:00:00
 author: Ezequiel Santiago Sanchez
-categories: Swift, iOS, Eureka, Form
+categories: [Swift, iOS, Eureka, Form]
 author_id: esanchez
 markdown: redcarpet
 show: true
+category: people-events
 ---
 
 [Eureka]:        https://github.com/xmartlabs/Eureka

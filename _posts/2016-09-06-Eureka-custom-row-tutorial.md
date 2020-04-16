@@ -3,10 +3,11 @@ layout: post
 title:  Creating your own rows for Eureka
 date:   2016-09-06 08:00:00
 author: Mathias Claassen
-categories: Swift, iOS, Eureka
+categories: [Swift, iOS, Eureka]
 author_id: mathias
 markdown: redcarpet
 show: true
+category: development
 ---
 
 It's been almost a year since Eureka's first release and many developers have been using it since then. We are thankful for all the valuable support and contributions received.

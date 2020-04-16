@@ -3,9 +3,10 @@ layout: post
 title: Easy Continuous Delivery in Android with Jenkins
 date: 2017-10-02 09:00:00
 author: Matías Irland
-categories: Android,Server,CI,Jenkins,Fabric
+categories: [Android, Server, CI, Jenkins, Fabric]
 author_id: mirland
 show: true
+category: development
 ---
 
 Today I want to show how we can release Android *SNAPSHOT* versions using [Beta by Fabric](https://docs.fabric.io/android/beta/overview.html).

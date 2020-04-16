@@ -1,0 +1,10 @@
+people-events:
+  display_name: People & Events
+business-agile:
+  display_name: Business & Agile
+product-design:
+  display_name: Product Design
+development:
+  display_name: Development
+machine-learning:
+  display_name: Machine Learning

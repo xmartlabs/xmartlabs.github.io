@@ -3,10 +3,11 @@ layout: post
 title:  Introducing Ecno!
 date:   2016-10-17 08:00:00
 author: Diego Ernst
-categories: Swift, iOS
+categories: [Swift, iOS]
 author_id: dernst
 markdown: redcarpet
 show: true
+category: development
 ---
 
 [Ecno]:        https://github.com/xmartlabs/Ecno
