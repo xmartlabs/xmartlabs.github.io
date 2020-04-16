@@ -209,3 +209,8 @@ Although we could have accomplished the same result with Bitrise tasks alone, we
 
 
 Well, hope you now have a better idea of how to use automation to optimize your development workflow. We promise the benefits are worth it!
+
+
+***Are you doing CI with Bitrise and Fastlane in your iOS projects and have learned something not covered in this post? Let me know in the comments. I'd be interested to get your perspective.***
+
+***Have questions about CI, Bitrise, Fastlane? I'd be happy to answer those in the comments if I can.***
