@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "Agile iOS development workflow using Fastlane & Bitrise"
-date: 2020-04-16 10:00:00
+title: "iOS Continuous Integration & Delivery using Fastlane and Bitrise"
+date: 2020-04-17 10:00:00
 author: Martin Barreto
 categories: [CI, fastlane, bitrise]
 category: development
 author_id: mtnBarreto
 featured_image: /images/ios-fastlane-ci/featured.png
 show: true
-crosspost_to_medium: true
+crosspost_to_medium: false
 
 ---
 
@@ -25,7 +25,7 @@ Why Continuous Integration and Deploy? It is a well-known technique, widely adop
 
 [Bitrise](https://www.bitrise.io/) is a Continuous Integration and Delivery (CI/CD) Platform as a Service (PaaS), focused in mobile app development.
 
-> This blogpost is not intended to explain the products or underlaying concepts in detail. We will focus on the configuration and set up process instead. If you want to know more about each tool, we recommend their websites and official doccumentation.
+> This blogpost is not intended to explain the products or underlaying concepts in detail. We will focus on the configuration and set up process instead. If you want to know more about each tool, we recommend their websites and official documentation.
 
 
 ### How do we optimize our integration and release process?
