@@ -3,7 +3,7 @@ layout: post
 title:  How NFC can help improve your business
 date: 2018-12-03 09:00:00
 author: Felipe de León
-categories: NFC
+tags: [Xmartlabs, NFC]
 author_id: felipe
 show: true
 category: development

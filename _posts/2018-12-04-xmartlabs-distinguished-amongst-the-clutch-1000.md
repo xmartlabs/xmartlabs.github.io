@@ -3,7 +3,7 @@ layout: post
 title:  Xmartlabs distinguished as top 10 mobile app developer in LATAM
 date: 2018-12-11 09:00:00
 author: XL Team
-categories: Marketing
+tags: [Xmartlabs, Marketing]
 author_id: xl
 show: true
 category: business-agile

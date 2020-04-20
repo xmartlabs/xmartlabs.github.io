@@ -187,7 +187,7 @@ So 2016 let amazing repos appear such as the new dependency manager **yarn**, **
 
 ### Top Languages
 
-Analyzing the Top Repos again, they roughly fall into one of the following tags: they are related to **JavaScript or Web Development**, they **come from a big tech company** or they are **general guides**.
+Analyzing the Top Repos again, they roughly fall into one of the following categories: they are related to **JavaScript or Web Development**, they **come from a big tech company** or they are **general guides**.
 Regarding the first category, we have: vue, react, You-Dont-Know-JS, yarn, react-native, boostrap, a JavaScript style guide from Airbnb, HEAD and create-react-app.
 So, is JavaScript the most popular language? Take a look at this table, that shows the stars received with respect to the language involved in each repo:
 

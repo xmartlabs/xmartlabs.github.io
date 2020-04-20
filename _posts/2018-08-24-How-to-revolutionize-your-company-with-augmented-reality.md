@@ -3,7 +3,7 @@ layout: post
 title:  How to revolutionize your company with augmented reality
 date: 2018-08-20 09:00:00
 author: XL Team
-categories: AR
+tags: [Xmartlabs, AR]
 author_id: xl
 show: true
 category: development
