@@ -3,7 +3,7 @@ layout: post
 title: Easy Continuous Delivery in Android with Jenkins
 date: 2017-10-02 09:00:00
 author: Matías Irland
-categories: [Android, Server, CI, Jenkins, Fabric]
+tags: [Android, Server, CI, Jenkins, Fabric]
 author_id: mirland
 show: true
 category: development

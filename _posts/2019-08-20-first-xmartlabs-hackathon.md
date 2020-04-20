@@ -3,7 +3,7 @@ layout: post
 title: "Our very first Hackathon!"
 date: 2019-09-10 10:00:00
 author: Bruno Ferrari
-categories: [hackathon, team, xmartlabs]
+tags: [hackathon, team, xmartlabs]
 category: Announcement
 author_id: bruno
 featured_image: /images/xmartlabs-first-hackathon/general_view_bbq.jpg

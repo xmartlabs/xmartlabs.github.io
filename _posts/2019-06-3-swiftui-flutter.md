@@ -3,7 +3,7 @@ layout: post
 title: SwiftUI looks quite… Fluttery
 date: 2019-06-03 17:00:00
 author: Joaquín Rocco
-categories: [UI, Swift, Flutter]
+tags: [UI, Swift, Flutter]
 author_id: jrocco
 featured_image: /images/swiftui-flutter/featured.jpg
 show: true

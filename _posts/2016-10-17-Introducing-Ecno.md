@@ -3,7 +3,7 @@ layout: post
 title:  Introducing Ecno!
 date:   2016-10-17 08:00:00
 author: Diego Ernst
-categories: [Swift, iOS]
+tags: [Swift, iOS]
 author_id: dernst
 markdown: redcarpet
 show: true
