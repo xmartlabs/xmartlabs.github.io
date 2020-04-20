@@ -3,7 +3,7 @@ layout: post
 title: "How to convert a NN model from TensorFlow Lite to CoreML"
 date: 2019-11-22 10:00:00
 author: Mathias Claassen
-tags: [machine learning, tflite, coreml, xmartlabs]
+tags: [Xmartlabs, machine learning, tflite, coreml, xmartlabs]
 category: Machine Learning
 author_id: mathias
 featured_image: /images/tflite_coreml/featured.png

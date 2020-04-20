@@ -3,7 +3,7 @@ layout: post
 title: Introducing Eureka! - Elegant iOS forms in Pure Swift 2
 date: '2015-09-29T10:00:00.000-03:00'
 author: Martin Barreto
-tags: [Eureka, Forms]
+tags: [Xmartlabs, Eureka, Forms]
 author_id: mtnBarreto
 show: true
 category: development

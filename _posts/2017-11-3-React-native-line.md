@@ -4,7 +4,7 @@ title:  react-native-line-sdk, the react-native wrapper for LINE
 date:   2017-11-27 10:30:00
 author: Mauricio Cousillas
 author_id: mcousillas
-tags: [React Native, JavaScript, Android, iOS, Tutorial]
+tags: [Xmartlabs, React Native, JavaScript, Android, iOS, Tutorial]
 markdown: redcarpet
 show: true
 category: development
