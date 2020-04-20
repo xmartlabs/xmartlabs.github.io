@@ -47,7 +47,7 @@ layout: post
 title: "Agile iOS development workflow using Fastlane & Bitrise"
 date: 2020-04-01 10:00:00
 author: Martin Barreto
-categories: CI, fastlane, bitrise
+tags: [Xmartlabs, CI, fastlane, bitrise, iOS]
 author_id: mtnBarreto
 featured_image: /images/ios-fastlane-ci/featured.png
 show: true

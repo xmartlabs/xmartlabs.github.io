@@ -4,7 +4,7 @@ title:  Introducing Xniffer, the Swift network profiler built on top of URLSessi
 date:   2017-11-01 00:00:00
 author: XL Team
 author_id: xl
-categories: [Swift, iOS, Tutorial, network]
+tags: [Xmartlabs, Swift, iOS, Tutorial, network]
 markdown: redcarpet
 show: true
 category: development

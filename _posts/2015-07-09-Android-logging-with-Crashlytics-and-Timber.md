@@ -3,7 +3,7 @@ layout: post
 title:  "Android logging with Crashlytics and Timber"
 date:   2015-07-09 15:53:14
 author: Santiago Castro
-categories: [Android, Logging, Timber, Crashlytics]
+tags: [Xmartlabs, Android, Logging, Timber, Crashlytics]
 author_id: santiago
 show: true
 category: development

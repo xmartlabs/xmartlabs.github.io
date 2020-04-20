@@ -3,7 +3,7 @@ layout: post
 title:  "XLForm: Using NSPredicates to change form structure."
 date:   2015-04-28 15:38:56
 author: Mathias Claassen
-categories: XLForm
+tags: [Xmartlabs, XLForm, iOS]
 author_id: mathias
 show: true
 category: development

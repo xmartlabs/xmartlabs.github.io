@@ -3,7 +3,7 @@ layout: post
 title: Xmartlabs Open Source Culture
 date: '2015-04-16T17:00:00.000-03:00'
 author: Martin Barreto
-categories: OSS
+tags: [Xmartlabs, OSS]
 author_id: mtnBarreto
 show: true
 category: people-events

@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "iOS Continuous Integration & Delivery using Fastlane and Bitrise"
+excerpt: "CI and CD set up used by Xmartlabs iOS team. We show how to configure Fastlane and Bitrise to automate the app release process to TestFlight."
 date: 2020-04-17 10:00:00
 author: Martin Barreto
-categories: [CI, fastlane, bitrise]
+tags: [Xmartlabs, CI, fastlane, bitrise, iOS]
 category: development
 author_id: mtnBarreto
 featured_image: /images/ios-fastlane-ci/featured.png

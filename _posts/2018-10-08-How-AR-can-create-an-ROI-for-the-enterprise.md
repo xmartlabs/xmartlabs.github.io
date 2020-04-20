@@ -3,7 +3,7 @@ layout: post
 title:  How AR can create an ROI for the enterprise
 date: 2018-10-08 09:00:00
 author: XL Team
-categories: AR
+tags: [Xmartlabs, AR]
 author_id: xl
 banner_message: Interested in how AR can help your company?
 show: true

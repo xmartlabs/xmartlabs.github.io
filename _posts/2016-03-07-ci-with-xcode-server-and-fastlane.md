@@ -3,7 +3,7 @@ layout: post
 title: "CI and automatic deployment to iTunes Connect with Xcode Server"
 date:   2016-03-07 10:00:00
 author: Miguel Revetria
-categories: [Server, CI, Fastlane]
+tags: [Xmartlabs, Server, CI, Fastlane]
 author_id: remer
 show: true
 category: development

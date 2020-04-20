@@ -3,7 +3,7 @@ layout: post
 title:  "Debugging an Annotation Processor in your project"
 date:   2016-03-28 12:46:00
 author: Santiago Castro
-categories: [Android, Annotation Processing, Android Studio, Debug]
+tags: [Xmartlabs, Android, Annotation Processing, Android Studio, Debug]
 author_id: santiago
 markdown: redcarpet
 show: true

@@ -3,7 +3,7 @@ layout: post
 title:  XMARTLABS chosen to speak at "Swift With The Best"
 date:   2016-06-24 17:00:00
 author: Agustion Hernandez
-categories: [Swift, iOS, Opera, UITableView, With the Best]
+tags: [Xmartlabs, Swift, iOS, Opera, UITableView, With the Best]
 author_id: agustin
 markdown: redcarpet
 show: true
