@@ -13,6 +13,7 @@
   {% endif %}
   {% if page.featured_image %}
     <meta property="og:image" content="https://blog.xmartlabs.com{{ page.featured_image }}">
+    <meta name="twitter:image" content="https://blog.xmartlabs.com{{ page.featured_image }}">
   {% endif %}
   <meta property="og:title" content="{{ page.title }} | Xmartlabs Blog" />
   <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
@@ -24,6 +25,7 @@
   <meta name="twitter:site" content="@xmartlabs">
   <meta name="twitter:title" content="{{ page.title }} | Xmartlabs Blog">
   <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
 
   <link rel="stylesheet" href="{{ "/css/main.css?id=12345678" | relative_url }}">
   <link rel="stylesheet" href="{{ "/css/xmartlabs-new-home.webflow.be16b59f1.min.css" | relative_url }}">
