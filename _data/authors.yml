@@ -102,3 +102,8 @@ bruno:
   image: members/bruno.jpg
   github: FerrariBruno
   profile_url: https://github.com/FerrariBruno
+nicoh:
+  display_name: Nicolas Hernandez
+  image: members/nicoh.png
+  github: nicoache1
+  profile_url: https://github.com/nicoache1
