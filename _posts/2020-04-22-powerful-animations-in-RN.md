@@ -71,8 +71,12 @@ We cannot use if-else, Views neither the + * == operators because they live in t
 > Explaining each parameter and details of each `Reanimated API` is out of the scope of this blogpost. Please visit specific reanimated documentation if needed.
 
 <style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg  {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+.tg td {
+  font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
 .tg .tg-l93j{font-weight:bold;font-size:16px;border-color:inherit;text-align:center;vertical-align:top}
 .tg .tg-zd5i{font-size:14px;border-color:inherit;text-align:left;vertical-align:top}
@@ -191,8 +195,16 @@ So if we apply this in a simple example this is how it looks.
       );
     };
 ```
-
-<img width="100%" src="/images/powerful-animations-rn/hide_and_show.gif" />
+<style type="text/css">
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 80%;
+}
+</style>
+<img class="center" src="/images/powerful-animations-rn/hide_and_show.gif" />
 
 ### **Conclusions**
 
