@@ -189,14 +189,14 @@ So if we apply this in a simple example this is how it looks.
 
 ### **Conclusions**
 
-As we can see in the example above it's easier to write the animation using the default Animated.API because the code is easier to write, understand and maintain.
-In this case it could work like a charm but when the animations get more complex and we need to guarantee they always run smoothly we're not able to achieve that by just using Animated.API.
+As we can see in the example above it's easier to write, understand and maintain the animation using the default Animated.API.
+For simple animations it could work like a charm but when the animations get more complex and we need to guarantee they always run smoothly we're not able to achieve that by just using Animated.API.
 
-In that cases reanimated could be like water in the desert but don't forget that nothing comes without a cost and with reanimated the cost is complexity and with complexity comes more development time because it could be a bit complex to adapt your coding style to use this API.
-At first it feels a bit awful and kind of antinatural, but when you get accustomed to that you will be able to create powerful animations.
+In that cases reanimated could be like water in the desert but don't forget that nothing comes without a cost and with reanimated the cost is complexity and more development time.
+At first, it might feels a bit awful and kind of antinatural, but when you get accustomed to it you will be able to create powerful animations.
 
-In resume, there are some way to achieve powerful animations in React Native that comes with a little trade off in complexity.
-So if you are looking to make an App that have some little animations and one or two powerful ones, maybe with React Native + Reanimated you could get a nice looking app but if you want to make an app in which the animations are the core of the product itself React Native it's not the best for you.
+In resume, we can achieve powerful animations in React Native but it comes with a little trade off in complexity.
+So if you are looking to make an App that has simple animations and just few complex ones, maybe with React Native + Reanimated you could get a nice looking app but if you want to make an app in which the animations are a core aspect of the product, React Native may not be best choice for you.
 
 
 Well, hope you now have a better idea of how to implement powerful animations in React Native!
