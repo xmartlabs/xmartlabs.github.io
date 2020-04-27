@@ -1,30 +1,26 @@
 ---
 layout: post
 title: "Powerful animations in React Native"
-excerpt: "Powerful animations with Reanimated. We show how to make powerful animations in React Native using this awesome library!"
-date: 2020-04-22 10:00:00
+excerpt: "Powerful animations with Reanimated. We will learn how to make powerful animations in React Native using this awesome library!"
+date: 2020-04-27 10:00:00
 author: Nicolas Hernandez
-tags: [Xmartlabs, ReactNative, Animations]
+tags: [Xmartlabs, ReactNative, Animations, Javascript]
 category: development
 author_id: nicoh
 featured_image: /images/powerful-animations-rn/featured.jpg
-show: false
+show: true
 crosspost_to_medium: false
 
 ---
-
-# Powerful animations in React Native, is possible?
-
-After reading this blogpost will have a better idea of the cost to achieve complex animations in react native and you will be able to determine if react native is a good technology to create your app according it's animations requirements. 
-Also you would see some the techniques to achieve this and trade offs that happens to us when we work in our apps for some clients here in Xmartlabs.
+In this blog post we're going to present the main issues we ran into implementing complex animations in React Native at Xmartlabs. We'll show how Reanimated helps in achieve smooth animations and at with cost. After reading this blog post you will be able to determine if react native is a proper choice to create your app considering its animations requirements.
 
 So let's start with a little introduction to the matter.
 
-***“When speaking of animations, the key to success is to avoid frame drops”*** 
+***“When speaking of animations, the key to success is to avoid frame drops”***
 
 What makes React Native so special regarding this topic of avoiding frame drops?
 
-To answer this question, first we need to get deep into React Native architecture that is shown in the image below. 
+To answer this question, first we need to get deep into React Native architecture that is shown in the image below.
 As we can see React Native has two main threads.
 
 - UI Thread - Where all the native code runs
@@ -37,12 +33,12 @@ These two threads communicate between each other through JSON messages that are 
 ### How does this have to do anything with animations?
 
 Well, since we want to have an awesome user experience, we would want animations to run at 60fps.
-This effectively means there's only ~16ms to calculate an animation windows frame between each screen rendering. 
-This is when the Bridge comes in the way of animations, the asynchronous communication between the two threads makes it difficult to guarantee that the next frame is calculated in such limited amount of time, JS thread might be busy working on another task or device CPU is too slow. 
+This effectively means there's only ~16ms to calculate an animation windows frame between each screen rendering.
+This is when the Bridge comes in the way of animations, the asynchronous communication between the two threads makes it difficult to guarantee that the next frame is calculated in such limited amount of time, JS thread might be busy working on another task or device CPU is too slow.
 
 ### **What impact has this in React Native?**
 
-It’s really huge, because if we have JavaScript driven animation using the [requestAnimationFrame()](https://reactnative.dev/docs/timers) we have no guarantees that we could achieve the frame calculation, especially in low grade Android devices, all taking into account that we also use the JavaScript Thread to do all the things in our React Native app, such as API requests, etc. 
+It’s really huge, because if we have JavaScript driven animation using the [requestAnimationFrame()](https://reactnative.dev/docs/timers) we have no guarantees that we could achieve the frame calculation, especially in low grade Android devices, all taking into account that we also use the JavaScript Thread to do all the things in our React Native app, such as API requests, etc.
 So it's very likely we aren't gonna make that time limit that we need and we're going to lost some frames and experience some animation freeze.
 
 ### **How can we solve this?**
@@ -127,7 +123,7 @@ So if we apply this in a simple example this is how it looks.
     import Animated from "react-native-reanimated";
     import { useMemoOne } from "use-memo-one";
     import { RectButton } from "react-native-gesture-handler";
-    
+
     export const Example = () => {
       const {
         Value,
@@ -160,7 +156,7 @@ So if we apply this in a simple example this is how it looks.
         outputRange: show ? [0, 1] : [1, 0],
         extrapolate: Extrapolate.CLAMP
       });
-    
+
       useCode(
         block([
           cond(not(clockRunning(clock)), [startClock(clock), set(time, clock)]),
@@ -176,7 +172,7 @@ So if we apply this in a simple example this is how it looks.
         ]),
         [show]
       );
-    
+
       return (
         <View style={styles.container}>
           <View style={styles.mainContent}>
@@ -208,13 +204,13 @@ So if we apply this in a simple example this is how it looks.
 
 ### **Conclusions**
 
-As we can see in the example above it's easier to write the animation using the default Animated.API because the code is easier to write, understand and maintain. 
+As we can see in the example above it's easier to write the animation using the default Animated.API because the code is easier to write, understand and maintain.
 In this case it could work like a charm but when the animations get more complex and we need to guarantee they always run smoothly we're not able to achieve that by just using Animated.API.
 
-In that cases reanimated could be like water in the desert but don't forget that nothing comes without a cost and with reanimated the cost is complexity and with complexity comes more development time because it could be a bit complex to adapt your coding style to use this API. 
+In that cases reanimated could be like water in the desert but don't forget that nothing comes without a cost and with reanimated the cost is complexity and with complexity comes more development time because it could be a bit complex to adapt your coding style to use this API.
 At first it feels a bit awful and kind of antinatural, but when you get accustomed to that you will be able to create powerful animations.
 
-In resume, there are some way to achieve powerful animations in React Native that comes with a little trade off in complexity. 
+In resume, there are some way to achieve powerful animations in React Native that comes with a little trade off in complexity.
 So if you are looking to make an App that have some little animations and one or two powerful ones, maybe with React Native + Reanimated you could get a nice looking app but if you want to make an app in which the animations are the core of the product itself React Native it's not the best for you.
 
 
