@@ -33,7 +33,7 @@ These two threads communicate between each other through JSON messages that are 
 ### What does this have to do with animations?
 
 Well, since we want to have an awesome user experience, we would need animations to run at 60fps.
-This means there's only ~16ms to calculate an animation and we have to render each animation frame within this 16ms otherwise we are going to lost frames.
+This means there's only ~16ms to calculate an animation and we have to render each animation frame within this 16ms otherwise we are going to lose frames.
 This is when the Bridge comes in the way of animations, the asynchronous communication between the two threads makes it difficult to guarantee that the next frame is calculated in such limited amount of time, JS thread might be busy working on another task or device CPU might be too slow.
 
 ### **What impact has this in React Native?**
