@@ -36,22 +36,22 @@ Well, since we want to have an awesome user experience, we would need animations
 This means there's only ~16ms to calculate an animation and we have to render each animation frame within this 16ms otherwise we are going to lose frames.
 This is when the Bridge comes in the way of animations, the asynchronous communication between the two threads makes it difficult to guarantee that the next frame is calculated in such limited amount of time, JS thread might be busy working on another task or device CPU might be too slow.
 
-### **What impact has this in React Native?**
+### What impact does this have in React Native?
 
 It’s really huge, because if we have JavaScript driven animation using the [requestAnimationFrame()](https://reactnative.dev/docs/timers) we have no guarantees that we could achieve the frame calculation, especially in low-grade Android devices, and taking into account that we also use the JavaScript Thread to do all the things in our React Native app, such as API requests, storage updates, etc.
 So it's very likely we're going to lose some frames and experience some animation freeze.
 
-### **How can we solve this?**
+### How can we solve this?
 
 <img width="100%" src="/images/powerful-animations-rn/declarative_way.png" />
 
 So if the bridge is our major "trade-off", how we can get rid of this? Well, there is a solution by using `react-native-reanimated` library which uses a declarative animations approach.
 
-### **What is the advantage of this?**
+### What is the advantage of this?
 
 If we do our animations in a declarative way, when we interact with the device through UI gestures everything is executed in the UI Native thread and with this we can achieve the magic number of 60fps and avoid the losing frames.
 
-### **Write animations in a declarative way, how can we achieve this in React Native?**
+### Write animations in a declarative way, how can we achieve this in React Native?
 
 React Native by default provides two API’s, one for gestures and one for animations, but please don’t ever use this because both rely on imperative code and on the communication between the JavaScript thread and the UI thread through the bridge.
 
@@ -195,7 +195,7 @@ For simple animations it could work like a charm but when the animations get mor
 In that cases reanimated could be like water in the desert but don't forget that nothing comes without a cost and with reanimated the cost is the code complexity and the increase in the development time.
 At first, it might feel a bit awful and kind of antinatural, but when you get accustomed to it you will be able to create powerful animations.
 
-In resume, we can achieve powerful animations in React Native but it comes with a little trade-off in complexity.
+In conclusion, we can achieve powerful animations in React Native but it comes with a little trade-off in complexity.
 So if you are looking to make an App that has simple animations and just few complex ones, maybe with React Native + Reanimated you could get a nice looking app but if you want to make an app in which the animations are a core aspect of the product, React Native may not be the best choice for you.
 
 
