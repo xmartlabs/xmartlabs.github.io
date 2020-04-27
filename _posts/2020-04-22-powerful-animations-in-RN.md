@@ -30,26 +30,26 @@ As we can see React Native has two main threads.
 
 These two threads communicate between each other through JSON messages that are sent and received asynchronously from which is called the React Native Asynchronous Bridge and all interactions between JavaScript and the UI are made in this way.
 
-### How does this have to do anything with animations?
+### What does this have to do with animations?
 
-Well, since we want to have an awesome user experience, we would want animations to run at 60fps.
-This effectively means there's only ~16ms to calculate an animation windows frame between each screen rendering.
-This is when the Bridge comes in the way of animations, the asynchronous communication between the two threads makes it difficult to guarantee that the next frame is calculated in such limited amount of time, JS thread might be busy working on another task or device CPU is too slow.
+Well, since we want to have an awesome user experience, we would need animations to run at 60fps.
+This means there's only ~16ms to calculate an animation and we have to render each animation frame within this 16ms otherwise we are going to lost frames.
+This is when the Bridge comes in the way of animations, the asynchronous communication between the two threads makes it difficult to guarantee that the next frame is calculated in such limited amount of time, JS thread might be busy working on another task or device CPU might be too slow.
 
 ### **What impact has this in React Native?**
 
-It’s really huge, because if we have JavaScript driven animation using the [requestAnimationFrame()](https://reactnative.dev/docs/timers) we have no guarantees that we could achieve the frame calculation, especially in low grade Android devices, all taking into account that we also use the JavaScript Thread to do all the things in our React Native app, such as API requests, etc.
-So it's very likely we aren't gonna make that time limit that we need and we're going to lost some frames and experience some animation freeze.
+It’s really huge, because if we have JavaScript driven animation using the [requestAnimationFrame()](https://reactnative.dev/docs/timers) we have no guarantees that we could achieve the frame calculation, especially in low grade Android devices, and taking into account that we also use the JavaScript Thread to do all the things in our React Native app, such as API requests, storage updates, etc.
+So it's very likely we're going to lost some frames and experience some animation freeze.
 
 ### **How can we solve this?**
 
 <img width="100%" src="/images/powerful-animations-rn/declarative_way.png" />
 
-So if the bridge is our major "trade-off" how we can get rid of this? Well, there is a solution by using `react-native-reanimated` library which uses a declarative animations approach.
+So if the bridge is our major "trade-off", how we can get rid of this? Well, there is a solution by using `react-native-reanimated` library which uses a declarative animations approach.
 
 ### **What is the advantage of this?**
 
-If we do our animations in a declarative way, when we interact with the gestures and animations on the phone everything is executed in the UI Native thread and with this we can achieve the magic number of 60fps and avoid the losing frames.
+If we do our animations in a declarative way, when we interact with the device through UI gestures everything is executed in the UI Native thread and with this we can achieve the magic number of 60fps and avoid the losing frames.
 
 ### **Write animations in a declarative way, how can we achieve this in React Native?**
 
@@ -62,9 +62,10 @@ As we mention before in order to do it declarative we are going to use these two
 
 First of all, our code needs to be written with the `Reanimated.API`, what does this mean?
 
-We cannot use if-else, Views neither the + * == operators because they live in the JavaScript thread, we need to use the auxiliary functions that are provided by the `Reanimated.API`, here are some examples of that there are a lot of more examples but these are the most important ones.
+We cannot use if-else, Views neither the + * == operators because they live in the JavaScript thread, we need to use the auxiliary functions that are provided by the `Reanimated.API`, let's see some examples of these auxiliary functions:
 
-> Explaining each parameter and details of each `Reanimated API` is out of the scope of this blogpost. Please visit specific reanimated documentation if needed.
+> Explaining each parameter and details of each `Reanimated API` is out of the scope of this blogpost.
+
 
 <style type="text/css">
 .tg  {
@@ -115,7 +116,6 @@ We cannot use if-else, Views neither the + * == operators because they live in t
 
 So if we apply this in a simple example this is how it looks.
 
-> This is a simple example to show the complexity of the `Reanimated API`, explaining the inner details of how this work is out of the scope of this blogpost. Please visit specific reanimated documentation if needed.
 
 ```javascript
     import React, { useState } from "react";
@@ -125,22 +125,7 @@ So if we apply this in a simple example this is how it looks.
     import { RectButton } from "react-native-gesture-handler";
 
     export const Example = () => {
-      const {
-        Value,
-        useCode,
-        block,
-        cond,
-        Clock,
-        not,
-        clockRunning,
-        startClock,
-        set,
-        interpolate,
-        Extrapolate,
-        add,
-        eq,
-        stopClock
-      } = Animated;
+      const { Value, useCode, block, cond, Clock, not, clockRunning, startClock, set, interpolate, Extrapolate, add, eq, stopClock } = Animated;
       const animationDuration = 500;
       const [show, updateShow] = useState<boolean>(true);
       const { time, clock, progress } = useMemoOne(
