@@ -17,7 +17,7 @@ In this post, we’ll debate the benefits of providing **Sign in with Apple** in
 
 ### In case you don’t know What’s Sign in with Apple yet...
 
-It is a new third party login service provided by Apple where users can sign in into your app using their Apple ID.
+It is a new third party login service provided by Apple where users can sign in into your app using their **Apple ID**.
 
 > Apple will make it mandatory by the end of June if you're already providing other third-party social media authentication such as Facebook, Google, Twitter, etc. You can visit [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/#sign-in-with-apple) for more info about Apple store review.
 
@@ -25,16 +25,15 @@ It is a new third party login service provided by Apple where users can sign in 
 
 ### What does *Sign in with Apple* put on the table?
 
-It provides a one tap frictionless login and authentication system to your app which means more people will login into your app and also a faster growth in the number of app users especially in Apple device owners who only need to check their identity through Touch Id or Face Id. By using Sign in with Apple, users don’t need to remember app credentials, apps don’t need to provide a password reset and identity and validation workflow in the app, neither provide a specific register and login form.
+It provides a one tap frictionless login and authentication system to your app which means more people will login into your app and also a faster growth in the number of app users especially in Apple device owners who only need to check their identity through **Touch ID** or **Face ID**. By using **Sign in with Apple**, users don’t need to remember app credentials, apps don’t need to provide a password reset and identity and validation workflow in the app, neither provide a specific register and login form.
 
-“Sign in with Apple” is FIDO U2F standard complaint, which means security aspects are met and we don’t need to care about it. Apple adds two-factor authentication support by default, providing an extra layer of security.
+**Sign in with Apple** is FIDO U2F standard complaint, which means security aspects are met and we don’t need to care about it. Apple adds two-factor authentication support by default, providing an extra layer of security.
 
-Something that might make an app user to prefer “Sign in with Apple” over other alternatives is the ability to hide its email, this still allows the app to reach the user, Apple provides a user’s private email that is only reachable from the app mailbox registered domains, so the user email doesn’t have value outside app servers and can’t be sold.
+Something that might make an app user to prefer **Sign in with Apple** over other alternatives is the ability to hide its email, this still allows the app to reach the user, Apple provides a user’s private email that is only reachable from the app mailbox registered domains, so the user email doesn’t have value outside app servers and can’t be sold.
 
 Even though **Sign in with Apple** is multiplatform which means we can make it work (in addition to the platforms provided by Apple) on the web, Android devices, and Windows apps. The user still needs to have an Apple device to complete the two-factor authentication, upon Apple Id login the user receives a 2FA code from apple in their device. So if your app is available for not Apple devices owners just allowing **Sign in with Apple** is not an option.
 
-Now, you should have a better idea of what's **Sign in with Apple** and .
-At this point you should have gotten the point of all the benefits in adopting Sign in with Apple in your app and be able to decide if it's useful for your app. So now let’s move on to a step by step integration guide.
+Now you should have a better idea of what's **Sign in with Apple** and at this point you should have gotten the point of all the benefits in adopting **Sign in with Apple** in your app and be able to decide if it's useful for your app. So now let’s move on to a step by step integration guide.
 
 ## Integration guide
 
@@ -148,7 +147,7 @@ We also need to handle authorization failed with this function:
 
 ### Handling changes
 
-Users could revoke permission for our app in "Setting →  Apple ID →  Password & Security → Apps Using Your Apple ID".
+Users could revoke permission for our app in *Setting →  Apple ID →  Password & Security → Apps Using Your Apple ID*.
 
 <div style="text-align: center"><img width="60%" src="/images/apple-sign-in/revoke.png" /></div>
 
@@ -184,21 +183,21 @@ We can check credential state with `getCredentialStateForUserID`. Remember that 
 ### Web and Android solution
 
 If your app is multiplatform and you add Sign in with Apple in your iOS app you should probably add it on the web (or Android) in order to allow the users to sign in on different platforms.
-Apple provides a JavaScript SDK for that. You can take a look in the [Sign in with Apple JS](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js) documentation.
+Apple provides a **JavaScript SDK** for that. You can take a look in the [Sign in with Apple JS](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js) documentation.
 
 ### Communication Apple servers
 
-Apple provides a REST API to communicate between your app servers and Apple’s authentication servers. You can use it to validate the tokens used to verify a user’s identity. You can read more in the [documentation](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api).
+Apple provides a **REST API** to communicate between your app servers and Apple’s authentication servers. You can use it to validate the tokens used to verify a user’s identity. You can read more in the [documentation](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api).
 
 
 ### Register your email domains
 
-As we mentioned before, to communicate with users who tap the “hide my email” option we must register our emails domain we’ll use to contact them.
-You need to configure it on Apple’s Developer Program. Go to "Certificates, Identifiers & Profile → More" and tap Configure button
+As we mentioned before, to communicate with users who tap the *hide my email* option we must register our emails domain we’ll use to contact them.
+You need to configure it on **Apple Developer Program**. Go to *Certificates, Identifiers & Profile → More* and tap *Configure* button
 
 <img width="100%" src="/images/apple-sign-in/emailComunication.png" />
 
-Tap "+" to register your email sources. In “Domains and Subdomains” section add your domain name, click “Next” and “Register”
+Tap *+* to register your email sources. In *Domains and Subdomains* section add your domain name, click *Next* and *Register*
 
 <img width="100%" src="/images/apple-sign-in/registerEmailSources.png" />
 
@@ -212,7 +211,7 @@ Once your domain has passed the verification and is registered to your account, 
 
 <img width="100%" src="/images/apple-sign-in/checkDomain.jpeg" />
 
-You can add an individual email address doing the same steps but adding on “Email Addresses” instead of “Domains and Subdomains”.
+You can add an individual email address doing the same steps but adding on *Email Addresses* instead of *Domains and Subdomains*.
 
 ### Aspects to keep in mind
 
@@ -220,12 +219,12 @@ There are some aspects you should consider if you’ll integrate it.
 
 As we mentioned before, developers only receive email and full name once, so if there is a connection issue and you don’t save this data locally you couldn't recover it.
 
-If users choose the “hide my email” option it could be difficult to identify them if they want to contact the support team and the contact is not provided through the app.
+If users choose the *hide my email* option it could be difficult to identify them if they want to contact the support team and the contact is not provided through the app.
 
-The “hide my email” option also has some issues, even though you registered your email domains if you were using a third-party mail service (like AmazonSES, SendGrid or MailChimp) it didn’t work. Apple worked on this and now it’s working.
+The *hide my email* option also has some issues, even though you registered your email domains if you were using a third-party mail service (like AmazonSES, SendGrid or MailChimp) it didn’t work. Apple worked on this and now it’s working.
 
 
-Well, hope you now have a better idea about Sign in with Apple and how integrate it!
+Well, hope you now have a better idea about **Sign in with Apple** and how integrate it!
 
 
 ***Are you integrating Sign in with Apple in your project and have learned something not covered in this post? Let me know in the comments. I'd be interested to get your perspective.***
