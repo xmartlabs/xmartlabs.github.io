@@ -115,7 +115,9 @@ We’ll receive an `ASAuthorizationAppleIDCredential`, here are the principal in
 * **User ID**: The unique user ID across all platforms
 * **Full name**: User could edit his full name before sharing it with your app
 * **Email**: A user’s email address, which could either be the official user email or an obscured one
-* **Authorization Code & Identity Token**: These are encrypted data you’ll send to your server. This is optional — it will only be available if this is a new user. Otherwise, you will only receive "User id"
+* **Authorization Code & Identity Token**: These are encrypted data you’ll send to your server. 
+
+The user information is optional — it will only be available if this is a new user. Otherwise, you will only receive "User id"
 
 ### How do we get this data?
 
@@ -192,8 +194,9 @@ Apple provides a **REST API** to communicate between your app servers and Apple�
 
 ### Register your email domains
 
-As we mentioned before, to communicate with users who tap the *hide my email* option we must register our emails domain we’ll use to contact them.
-You need to configure it on **Apple Developer Program**. Go to *Certificates, Identifiers & Profile → More* and tap *Configure* button
+As we mentioned before, to communicate with users who tap the *hide my email* option we must register our emails domain we’ll use to contact them. You must have already configured Sender Policy Framework (SPF) in order to use it at this point. 
+
+For configure your email domains enter to **Apple Developer Program**. Go to *Certificates, Identifiers & Profile → More* and tap *Configure* button
 
 <img width="100%" src="/images/apple-sign-in/emailComunication.png" />
 
