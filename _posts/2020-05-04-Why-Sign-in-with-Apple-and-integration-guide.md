@@ -122,7 +122,9 @@ We'll receive an `ASAuthorizationAppleIDCredential` instance, here are the princ
 * **User ID**: The unique user ID
 * **Full name**: User could edit his full name before sharing it with your app
 * **Email**: A user's email address, which could either be the real Apple Id user email or an obscured one
-* **Authorization Code & Identity Token**: These are encrypted data your client app will send to the app server. This is not always received, it will be available only if the authentication scopes changes (it might be a new app user). Otherwise, your app will only receive *User ID* data.
+* **Authorization Code & Identity Token**: These are encrypted data your client app should send to the backend so it  can validate the credentials.
+
+*Full name* and *Email* are optional and only available for new users, which means, users that are login into the app for the first time.
 
 ### How do we get this data?
 
