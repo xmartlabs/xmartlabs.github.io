@@ -1,0 +1,25 @@
+name: Staging deploy
+on:
+  pull_request:
+    types:
+      - reopened
+      - opened
+      - synchronize
+      - labeled
+      - unlabeled
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      if: ${{ !contains( github.event.pull_request.labels.*.name, 'not-deploy') }}
+      with:
+        github_token: ${{ secrets.STAGING_BLOG_TOKEN }}
+        repository: xmartlabs/blog-staging
+        branch: 'auto-deploy'
+        force: true

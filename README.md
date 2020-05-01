@@ -37,6 +37,11 @@ git remote add staging git@github.com:xmartlabs/blog-staging.git # Only the firs
 git push staging
 ```
 
+All pull requests are automatically deployed to the staging environment. 
+If you want to exclude it, you can add the label 'not-deploy' in your pull request.
+If you want to deploy a new version of your pull request, you can add a new commit or add a label, in both cases the deploy trigger will be executed.
+
+
 ### Make blogpost accessible but not listed in blog.xmatlabs.com allow
 
 Make sure `show: true` is not present if you want to hide your from main blog post list.
