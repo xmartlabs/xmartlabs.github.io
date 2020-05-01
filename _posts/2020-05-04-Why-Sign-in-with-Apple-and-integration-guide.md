@@ -2,7 +2,7 @@
 layout: post
 title: "Sign in with Apple! Is it necessary? at which cost?"
 excerpt: "In this blogpost we talk about the benefits of providing Sign in with Apple in your app. We also provide a step by step guid on how to integrate it"
-date: 2020-05-04 10:00:00
+date: 2020-04-30 10:00:00
 author: Cecilia Pirotto
 tags: [Xmartlabs, iOS, Apple, Swift, Sign in with Apple]
 category: development
@@ -13,7 +13,7 @@ crosspost_to_medium: false
 
 ---
 
-In this post, we'll debate the benefits of providing **Sign in with Apple** in your app so you can decide to offer it or not. In the second part of this post we'll provide a step by step **Sign in with Apple** integration guide and talk about all the issues we run into and had to overcome.
+In this post, we'll debate about the benefits of providing *Sign in with Apple* in your app so you can decide if it worth integrating it or not. In the second part of this post we'll provide a step by step *Sign in with Apple* integration guide and talk about all the issues we run into and had to overcome.
 
 
 ### In case you don't know What's Sign in with Apple yet...
@@ -26,33 +26,33 @@ It's a new third party login service provided by Apple where users can sign in i
 
 ### What does *Sign in with Apple* put on the table?
 
-It provides a one tap frictionless login and authentication system to your app which means more people will login into your app and also a faster growth in the number of app users especially in Apple device owners who only need to check their identity through Touch Id or Face Id. By using Sign in with Apple, users don't need to remember app credentials, apps don't need to provide a password reset and identity and validation workflow in the app, neither provide a specific register and login form.
+It provides a one tap frictionless login and authentication system to your app which means more people will login into your app and also a faster growth in the number of app users especially in Apple device owners who only need to check their identity through Touch Id or Face Id. By using *Sign in with Apple*, users don't need to remember app credentials, apps don't need to provide a password reset and identity and validation workflow in the app, neither provide a specific register and login form.
 
-“Sign in with Apple” is FIDO U2F standard complaint, which means security aspects are met and we don't need to care about it. Apple adds two-factor authentication support by default, providing an extra layer of security.
+*Sign in with Apple* is FIDO U2F standard complaint, which means security aspects are met and we don't need to care about it. Apple adds two-factor authentication support by default, providing an extra layer of security.
 
-Something that might make an app user to prefer “Sign in with Apple” over other alternatives is the ability to hide its email, this still allows the app to reach the user, Apple provides a user's private email that is only reachable from the app mailbox registered domains, so the user email doesn't have value outside app servers and can't be sold.
+Sometimes an app user would prefer *Sign in with Apple* over other alternatives because it has the ability to hide its real email, this still allows the app to reach the user real email through Apple servers. Apple provides a user's private email that is only reachable from the app registered email domains, so the user email doesn't have value outside app servers and can't be sold.
 
-Even though **Sign in with Apple** is multiplatform which means we can make it work (in addition to the platforms provided by Apple) on the web, Android devices, and Windows apps. The user still needs to have an Apple device to complete the two-factor authentication, upon Apple Id login the user receives a 2FA code from apple in their device. So if your app is available for not Apple devices owners just allowing **Sign in with Apple** is not an option.
+Even though *Sign in with Apple* is multiplatform which means we can make it work (in addition to the platforms provided by Apple) on the web, Android devices, and Windows apps. The user still needs to have an Apple device to complete the two-factor authentication, upon Apple Id login the user receives a 2FA code from apple in their device. So if your app is available for not Apple devices owners just allowing *Sign in with Apple* is not an option.
 
-Now, you should have a better idea of what's **Sign in with Apple** and .
+Now, you should have a better idea of what's *Sign in with Apple* and .
 At this point you should have gotten the point of all the benefits in adopting Sign in with Apple in your app and be able to decide if it's useful for your app. So now let's move on to a step by step integration guide.
 
 ## Integration guide
 
 ### Add Sign in with Apple capability
 
-First of all, we need to add **Sign in with Apple** capability to our project. Open the Xcode project file. In the project editor, select the target and open the *Signing & Capabilities* tab. In the toolbar, click the *+ Capability* button to open the Capabilities library and add the **Sign in with Apple** capability.
+First of all, we need to add *Sign in with Apple* capability to our project. Open the Xcode project file. In the project editor, select the target and open the *Signing & Capabilities* tab. In the toolbar, click the *+ Capability* button to open the Capabilities library and add the *Sign in with Apple* capability.
 
 <img width="100%" src="/images/apple-sign-in/addCapability.png" />
 
 ### Add capability on Apple Developer Account
 
 It's necessary to configure your project on **Apple Developer Program** portal. Go to *Certificates, Identifiers & Profiles* → *Identifiers* and search the identifier to the project.
-Search **Sign in with Apple** capability and if it's not enabled, enable it. Then, click *Edit* and choose *Enable as primary App ID* option as it's shown in the screenshot. Save the new configuration.
+Search *Sign in with Apple* capability and if it's not enabled, enable it. Then, click *Edit* and choose *Enable as primary App ID* option as it's shown in the screenshot. Save the new configuration.
 
 <img width="100%" src="/images/apple-sign-in/editAppleIDConf.png" />
 
-Go back to *Certificates, Identifiers & Profile* screen and go to the *Keys* page to register the new key. Press the *+* button and add the **Sign in with Apple** capability, then press the *Configure* button.
+Go back to *Certificates, Identifiers & Profile* screen and go to the *Keys* page to register the new key. Press the *+* button and add the *Sign in with Apple* capability, then press the *Configure* button.
 
 <img width="100%" src="/images/apple-sign-in/registerNewKey.png" />
 
@@ -122,7 +122,7 @@ We'll receive an `ASAuthorizationAppleIDCredential` instance, here are the princ
 * **User ID**: The unique user ID
 * **Full name**: User could edit his full name before sharing it with your app
 * **Email**: A user's email address, which could either be the real Apple Id user email or an obscured one
-* **Authorization Code & Identity Token**: These are encrypted data your client app will send to the app server. This is not always received, it will be available only if the authentication scopes changes (it might be a new app user). Otherwise, your app will only receive "User ID" data.
+* **Authorization Code & Identity Token**: These are encrypted data your client app will send to the app server. This is not always received, it will be available only if the authentication scopes changes (it might be a new app user). Otherwise, your app will only receive *User ID* data.
 
 ### How do we get this data?
 
@@ -193,14 +193,16 @@ We can check credential state with `getCredentialStateForUserID`. Remember that 
 
 Apple provides a JavaScript SDK for Android and Web integration. You can take a look at the [Sign in with Apple JS](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js) documentation.
 
+
 ### Communication between your backend and Apple
 
 Apple provides a REST API to communicate between your app servers and Apple's authentication servers. You can use it to validate the tokens used to verify a user's identity. You can read more about it in the following [documentation](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api).
 
 ### Register your email domains
 
-As we mentioned before, to communicate with users who tap the *hide my email* option we must register our emails domain we'll use to contact them.
-You need to configure it on Apple's Developer Program. Go to "Certificates, Identifiers & Profile → More" and tap Configure button
+As we mentioned before, to communicate with app users who taps the *hide my email* option we must register the app email server domain. You must have already configured Sender Policy Framework (SPF) in order to use it at this point.
+
+For configure your email domains enter to **Apple Developer Program**. Go to *Certificates, Identifiers & Profile → More* and tap *Configure* button
 
 <img width="100%" src="/images/apple-sign-in/emailComunication.png" />
 
@@ -231,6 +233,6 @@ If users choose the *hide my email* option, it could be difficult to identify th
 Well, hope now you have a better understanding about *Sign in with Apple*, it integration cost and if it's suitable for your app!
 
 
-***Are you integrating *Sign in with Apple* in your app and have learned something not covered in this post? Let me know in the comments. I'd be interested to add it to this blogpost.***
+***Are you integrating Sign in with Apple in your app and have learned something not covered in this post? Let me know in the comments. I'd be interested to add it to this blogpost.***
 
 ***Have questions about Sign in with Apple? I'd be happy to answer those in the comments if I can.***
