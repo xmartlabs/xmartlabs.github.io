@@ -15,6 +15,15 @@ jobs:
       with:
         persist-credentials: false
         fetch-depth: 0
+    - name: Make all posts availables
+      run: |
+        sh ./scripts/make_posts_available.sh
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add _posts/
+        git commit -m "[GH Actions] Make posts availables" || echo -e "\033[32m[GH Actions] Nothing to update!\033[0m"
     - name: Push changes
       uses: ad-m/github-push-action@master
       if: ${{ !contains( github.event.pull_request.labels.*.name, 'not-deploy') }}
