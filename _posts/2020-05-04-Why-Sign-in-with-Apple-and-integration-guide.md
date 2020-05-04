@@ -18,11 +18,9 @@ In this post, we'll debate about the benefits of providing *Sign in with Apple* 
 
 ### In case you don't know What's Sign in with Apple yet...
 
-It's a new third party login service provided by Apple where users can sign in into your app using their Apple ID.
+*Sign in with Apple* is a new Apple service that make it easy for users to sign in to your apps and websites using their Apple ID. Instead of filling out forms, verifying email addresses, and choosing new passwords, they can use Sign in with Apple to set up an account and start using your app right away.
 
 > Apple will make it mandatory by the end of June if you're already providing other third-party social media authentication such as Facebook, Google, Twitter, etc. You can visit [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/#sign-in-with-apple) for more info about Apple store review.
-
-
 
 ### What does *Sign in with Apple* put on the table?
 
