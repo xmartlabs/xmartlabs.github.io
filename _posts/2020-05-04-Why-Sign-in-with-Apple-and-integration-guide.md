@@ -79,7 +79,7 @@ It's necessary to import `AuthenticationServices` framework which provides `ASAu
 
 ### Handle button press
 
-After we add the button, we need to implement the button tap handler. We'll will request *Sign in with Apple* permissions using `ASAuthorizationAppleIDProvider` class and we will use `ASAuthorizationController` to to handle authentication interface flow.  
+After we add the button, we need to implement the button tap handler. We'll request *Sign in with Apple* permissions using `ASAuthorizationAppleIDProvider` class and we'll use `ASAuthorizationController` to handle the authentication interface flow.  
 <p></p>
 Let's implement the button handler
 
