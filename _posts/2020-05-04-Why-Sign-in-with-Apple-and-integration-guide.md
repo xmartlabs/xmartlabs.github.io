@@ -124,7 +124,7 @@ We'll receive an `ASAuthorizationAppleIDCredential` instance, here are the princ
 * **Email**: A user's email address, which could either be the real user email or an obscured one
 * **Authorization Code & Identity Token**: These are encrypted data your client app should send to the backend so it  can validate the credentials.
 
-*Full name* and *Email* are optional and only available for new users, which means, users that are login into the app for the first time.
+*Full name* and *Email* are optional and only available for new users, which means, users that are logging into the app for the first time.
 
 ### How do we get this data?
 
