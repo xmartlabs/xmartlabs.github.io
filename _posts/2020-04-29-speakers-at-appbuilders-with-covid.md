@@ -11,17 +11,8 @@ featured_image: /images/appbuilders2020/featured.png
 show: true
 crosspost_to_medium: false
 
-
-
-<!-- creo que lo principal es contar que vamos a estar en el evento
-yo tengo un par de sugerencias
-
-1- hacer un primer parrafo que sea: anunciamos que vamos a estar en appbuilders este dia / fecha / en esta URL, en este post les vamos a contar como hicimos para llegar y cual fue el impacto del covid.
-2- que las otras secciones esten divididas en "como llegamos a esto" y "que cambio por el covid", como para que tenga mas estructura (edited)
-3- capaz que mencionar speakers y empresas involucradas como para darle mas peso al evento (que es realmente groso) -->
-
-
 ---
+
 ## AppBuilders Speakers!
 We are happy to announce that we will take part of the AppBuilders conference on May 12th at 11:45 am (GMT+1) and in this post we will talk about how we got there and how Covid-19 impacted the whole process.
 It was mid January when we decided as a team to participate in conferences around the world for the first time. We met  to discuss what knowledge, tools and experience we currently had that could be helpful to the international community.  Given our successful experience in iOS software development and the creation of popular OSS libraries, I decided to give a presentation on how we constantly achieve these goals by following a set of principles. Such principles are Culture, Motivation, Finding the right idea, Reaching out, Community driven development and Solid programming foundations. Our goal was to communicate that through the expression of these pivotal characteristics in your work, you would  be able to accomplish greater achievements. For instance, we became one of the Top 10 Swift Github accounts and one of the most engaging ones. So with that in mind we sent pitches to different conferences and were overjoyed to hear we had been accepted. 
