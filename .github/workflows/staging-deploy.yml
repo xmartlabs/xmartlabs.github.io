@@ -1,11 +1,13 @@
 name: Staging deploy
 on:
   pull_request:
+    # label and unlabeled events are added to deploy the last commit again as you can force a branch to be deployed to staging by just adding a label to the PR.
+    # This can be useful when there are multiple pull requests in a working progress state and you want to deploy an older pr.
     types:
       - reopened
       - opened
       - synchronize
-      - labeled
+      - labeled 
       - unlabeled
 jobs:
   build:
