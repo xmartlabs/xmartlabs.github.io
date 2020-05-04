@@ -112,3 +112,8 @@ arsu:
   image: members/arsu.png
   github: rodriar
   profile_url: https://github.com/rodriar
+ceci:
+  display_name: Cecilia Pirotto
+  image: members/ceci.jpeg
+  github: cecipirotto
+  profile_url: https://github.com/cecipirotto
