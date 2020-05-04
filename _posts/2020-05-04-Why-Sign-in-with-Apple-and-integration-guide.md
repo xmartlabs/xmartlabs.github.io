@@ -52,7 +52,7 @@ Search *Sign in with Apple* capability and if it's not enabled, enable it. Then,
 
 Go back to *Certificates, Identifiers & Profile* screen and go to the *Keys* page to register the new key. Press the *+* button and add the *Sign in with Apple* capability, then press the *Configure* button.
 
-<img width="100%" src="/images/apple-sign-in/registerNewKey.png" />
+<img width="100%" src="/images/apple-sign-in/registerNewkey.png" />
 
 Make sure to select the correct Primary App ID and save the configuration key.
 
