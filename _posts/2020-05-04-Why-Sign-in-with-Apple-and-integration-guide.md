@@ -32,7 +32,7 @@ It provides a one tap frictionless login and authentication system to your app w
 
 Sometimes an app user would prefer *Sign in with Apple* over other alternatives because it has the ability to hide its real email, this still allows the app to reach the user real email through Apple servers. Apple provides a user's private email that is only reachable from the app registered email domains, so the user email doesn't have value outside app servers and can't be sold.
 
-Even though *Sign in with Apple* is multiplatform which means we can make it work (in addition to the platforms provided by Apple) on the web, Android devices, and Windows apps. The user still needs to have an Apple device to complete the two-factor authentication, upon Apple Id login the user receives a 2FA code from apple in their device. So if your app is available for not Apple devices owners just allowing *Sign in with Apple* is not an option.
+Even though *Sign in with Apple* is multiplatform which means we can make it work on the web, Android devices, Windows apps and platforms provided by Apple. The user still needs to have an Apple device to complete the two-factor authentication, upon Apple Id login the user receives a 2FA code from apple in their device. So if your app is available for not Apple devices owners just allowing *Sign in with Apple* is not an option.
 
 Now, you should have a better idea of what's *Sign in with Apple* and .
 At this point you should have gotten the point of all the benefits in adopting Sign in with Apple in your app and be able to decide if it's useful for your app. So now let's move on to a step by step integration guide.
