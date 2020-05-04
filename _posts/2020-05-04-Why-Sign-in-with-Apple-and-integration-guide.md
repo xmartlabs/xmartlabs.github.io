@@ -106,7 +106,7 @@ Let's implement the button handler
 As we can see int he code snippet above, it's required to conform to `ASAuthorizationControllerDelegate` and `ASAuthorizationControllerPresentationContextProviding` protocols.
 <p></p>
 
-we conform to `ASAuthorizationControllerPresentationContextProviding` to indicate the window that will contain "Sign in with Apple" SDK dialogs, as shown in the code below.
+We conform to `ASAuthorizationControllerPresentationContextProviding` to indicate the window that will contain "Sign in with Apple" SDK dialogs, as shown in the code below.
 
 ```swift
   // ASAuthorizationControllerPresentationContextProviding
