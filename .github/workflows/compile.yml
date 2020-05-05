@@ -5,8 +5,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build Jekyll
-      uses: jerryjvl/jekyll-build-action@v1
+    - name: Set up RVM
+      run: curl -sSL https://get.rvm.io | bash
+    - name: Set up Ruby
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        rvm install $(cat .ruby-version) --binary
+        rvm --default use $(cat .ruby-version)
+    - name: Install Bundler
+      run: gem install bundler
+    - name: Install Ruby dependencies
+      run: bundle install
+    - name: Jekyll build
+      run: jekyll build --trace --strict_front_matter
     - name: Check HTML
       uses: chabad360/htmlproofer@v1.1
       with:
