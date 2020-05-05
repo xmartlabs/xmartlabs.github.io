@@ -7,8 +7,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build
       uses: jerryjvl/jekyll-build-action@v1
-   # - name: Check HTML
-   #   uses: chabad360/htmlproofer@master
-    #  with:
-    #    directory: "./_posts/_site/"
-    #    arguments: --allow-missing-href
+    - name: Clean install dependencies and build
+      run: |
+        ls -lah  ./ 
+        ls -lah  ./ 
+    - name: Check HTML
+      uses: chabad360/htmlproofer@v1.1
+      with:
+        directory: "_site/"
+        arguments: --empty-alt-ignore --allow_hash_href --disable_external

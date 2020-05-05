@@ -2,7 +2,7 @@ version: '3.2'
 services:
   jekyll:
     image: jekyll/jekyll:3.8
-    command: jekyll build --trace
+    command: jekyll serve
     volumes:
       - .:/srv/jekyll
       - ./vendor/bundle:/usr/local/bundle
