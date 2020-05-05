@@ -169,7 +169,7 @@ $ fastlane before_integration
 
 {% endhighlight %}
 
-> Initially we attempted to use Keychain to pass the passwords to Fastlane `sigh` but it doesn't work, for further info about this see [here](#attempting_to_developer_password_to_fastlane_tools).
+> Initially we attempted to use Keychain to pass the passwords to Fastlane `sigh` but it doesn't work, for further info about this see [here](#attempting-to-developer-password-to-fastlane-tools).
 
 We will modify the deployer bot by adding a before trigger command on the *Triggers* tab, that will execute `before_integration` lane.
 

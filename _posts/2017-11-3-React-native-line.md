@@ -63,4 +63,4 @@ LineLogin.login()
 At this point, you should use the promise callbacks to handle the information returned by Line and continue your autentication flow as needed.
 
 ## Where to go from here
-We hope our article works as a good introduction to this open source library. On GitHub you'll find everything you need to get started. If you want to collaborate, feel free to [contribute](https://github.com/xmartlabs/react-native-line) with this library. If you need help to develop your project, drop us a [line](hi@xmartlabs.com)!
+We hope our article works as a good introduction to this open source library. On GitHub you'll find everything you need to get started. If you want to collaborate, feel free to [contribute](https://github.com/xmartlabs/react-native-line) with this library. If you need help to develop your project, drop us a [line](mailto:hi@xmartlabs.com)!
