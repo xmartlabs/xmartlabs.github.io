@@ -1,0 +1,70 @@
+name: CI and Deploy to staging
+on:
+  push:
+  pull_request:
+    # label and unlabeled events are added to deploy the last commit again as you can force a branch to be deployed to staging by just adding a label to the PR.
+    # This can be useful when there are multiple pull requests in a working progress state and you want to deploy an older pr.
+    types:
+      - reopened
+      - opened
+      - synchronize
+      - labeled
+      - unlabeled
+jobs:
+  build_and_check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install RVM
+      run: curl -sSL https://get.rvm.io | bash
+    - name: Install Ruby
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        rvm install $(cat .ruby-version) --binary
+        rvm --default use $(cat .ruby-version)
+    - name: Install Bundler
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        gem install bundler
+    - name: Install Ruby dependencies
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        bundle install
+    - name: Build Jekyll
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        jekyll build --trace --strict_front_matter
+    - name: Check HTML
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        htmlproofer --empty-alt-ignore --allow_hash_href --disable_external _site/
+
+  # The deploy job needs to be in the same workflow,
+  # because GH Actions requires workflow to have at least one job with no dependencies.
+  deploy:
+    if: ${{ github.event_name == 'pull_request'
+    needs: [build_and_check]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Check https://github.com/ad-m/github-push-action/issues/44#issuecomment-581706892
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of STAGING_BLOG_TOKEN
+          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+      - name: Make all posts availables
+        run: |
+          sh ./scripts/make_posts_available.sh
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _posts/
+          git commit -m "[GH Actions] Make posts availables" || echo -e "\033[32m[GH Actions] Nothing to update!\033[0m"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        if: ${{ !contains( github.event.pull_request.labels.*.name, 'not-deploy') }}
+        with:
+          github_token: ${{ secrets.STAGING_BLOG_TOKEN }}
+          repository: xmartlabs/blog-staging
+          branch: 'auto-deploy'
+          force: true
