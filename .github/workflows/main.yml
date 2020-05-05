@@ -28,9 +28,9 @@ jobs:
         bundle config path vendor/bundle
         bundle install
     - name: Build Jekyll
-      run: jekyll build --trace --strict_front_matter
+      run: bundle exec jekyll build --trace --strict_front_matter
     - name: Check HTML
-      run: htmlproofer --empty-alt-ignore --allow_hash_href --disable_external _site/
+      run: bundle exec htmlproofer --empty-alt-ignore --allow_hash_href --disable_external _site/
 
   # The deploy job needs to be in the same workflow,
   # because GH Actions requires workflow to have at least one job with no dependencies.
