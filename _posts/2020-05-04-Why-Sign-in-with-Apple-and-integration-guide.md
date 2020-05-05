@@ -18,7 +18,7 @@ In this post, we'll debate about the benefits of providing *Sign in with Apple* 
 
 ### In case you don't know What's Sign in with Apple yet...
 
-*Sign in with Apple* is a new Apple service that make it easy for users to sign in to your apps and websites using their Apple ID. Instead of filling out forms, verifying email addresses, and choosing new passwords, they can use Sign in with Apple to set up an account and start using your app right away.
+*Sign in with Apple* is a new Apple service that makes it easy for users to sign in to your apps and websites using their Apple ID. Instead of filling out forms, verifying email addresses, and choosing new passwords, they can use Sign in with Apple to set up an account and start using your app right away.
 
 > Apple will make it mandatory by the end of June if you're already providing other third-party social media authentication such as Facebook, Google, Twitter, etc. You can visit [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/#sign-in-with-apple) for more info about Apple store review.
 
@@ -32,7 +32,6 @@ Sometimes an app user would prefer *Sign in with Apple* over other alternatives 
 
 Even though *Sign in with Apple* is multiplatform which means we can make it work on the web, Android devices, Windows apps and platforms provided by Apple. The user still needs to have an Apple device to complete the two-factor authentication, upon Apple Id login the user receives a 2FA code from apple in their device. So if your app is available for not Apple devices owners just allowing *Sign in with Apple* is not an option.
 
-Now, you should have a better idea of what's *Sign in with Apple* and .
 At this point you should have gotten the point of all the benefits in adopting Sign in with Apple in your app and be able to decide if it's useful for your app. So now let's move on to a step by step integration guide.
 
 ## Integration guide
