@@ -6,8 +6,6 @@ on:
     # This can be useful when there are multiple pull requests in a working progress state and you want to deploy an older pr.
     types:
       - reopened
-      - opened
-      - synchronize
       - labeled
       - unlabeled
 jobs:
