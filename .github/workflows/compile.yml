@@ -1,0 +1,14 @@
+name: Compile
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      uses: jerryjvl/jekyll-build-action@v1
+   # - name: Check HTML
+   #   uses: chabad360/htmlproofer@master
+    #  with:
+    #    directory: "./_posts/_site/"
+    #    arguments: --allow-missing-href
