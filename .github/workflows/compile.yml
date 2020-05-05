@@ -1,16 +1,12 @@
-name: Compile
+name: Compile and check blog
 on: push
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build
+    - name: Build Jekyll
       uses: jerryjvl/jekyll-build-action@v1
-    - name: Clean install dependencies and build
-      run: |
-        ls -lah  ./ 
-        ls -lah  ./ 
     - name: Check HTML
       uses: chabad360/htmlproofer@v1.1
       with:
