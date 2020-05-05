@@ -1,25 +1,30 @@
 name: CI
 on: push
 jobs:
-  build:
+  build_and_check:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set up RVM
+    - name: Install RVM
       run: curl -sSL https://get.rvm.io | bash
-    - name: Set up Ruby
+    - name: Install Ruby
       run: |
         source $HOME/.rvm/scripts/rvm
         rvm install $(cat .ruby-version) --binary
         rvm --default use $(cat .ruby-version)
     - name: Install Bundler
-      run: gem install bundler
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        gem install bundler
     - name: Install Ruby dependencies
-      run: bundle install
-    - name: Jekyll build
-      run: jekyll build --trace --strict_front_matter
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        bundle install
+    - name: Build Jekyll
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        jekyll build --trace --strict_front_matter
     - name: Check HTML
-      uses: chabad360/htmlproofer@v1.1
-      with:
-        directory: "_site/"
-        arguments: --empty-alt-ignore --allow_hash_href --disable_external
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        htmlproofer --empty-alt-ignore --allow_hash_href --disable_external _site/
