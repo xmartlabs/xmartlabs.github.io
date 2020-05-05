@@ -27,7 +27,6 @@ jobs:
   # The deploy job needs to be in the same workflow,
   # because GH Actions requires workflow to have at least one job with no dependencies.
   deploy:
-    if: ${{ github.event_name == 'pull_request' }}
     needs: [build_and_check]
     runs-on: ubuntu-latest
     steps:
