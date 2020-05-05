@@ -13,29 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install RVM
-      run: curl -sSL https://get.rvm.io | bash
     - name: Install Ruby
-      run: |
-        source $HOME/.rvm/scripts/rvm
-        rvm install $(cat .ruby-version) --binary
-        rvm --default use $(cat .ruby-version)
+      uses: ruby/setup-ruby@v1
     - name: Install Bundler
-      run: |
-        source $HOME/.rvm/scripts/rvm
-        gem install bundler
+      run: gem install bundler
     - name: Install Ruby dependencies
-      run: |
-        source $HOME/.rvm/scripts/rvm
-        bundle install
+      run: bundle install
     - name: Build Jekyll
-      run: |
-        source $HOME/.rvm/scripts/rvm
-        jekyll build --trace --strict_front_matter
+      run: jekyll build --trace --strict_front_matter
     - name: Check HTML
-      run: |
-        source $HOME/.rvm/scripts/rvm
-        htmlproofer --empty-alt-ignore --allow_hash_href --disable_external _site/
+      run: htmlproofer --empty-alt-ignore --allow_hash_href --disable_external _site/
 
   # The deploy job needs to be in the same workflow,
   # because GH Actions requires workflow to have at least one job with no dependencies.
