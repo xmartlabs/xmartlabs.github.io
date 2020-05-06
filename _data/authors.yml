@@ -112,3 +112,8 @@ ceci:
   image: members/ceci.jpeg
   github: cecipirotto
   profile_url: https://github.com/cecipirotto
+arsu:
+  display_name: Rodrigo Arsuaga
+  image: members/arsu.png
+  github: rodriar
+  profile_url: https://github.com/rodriar
