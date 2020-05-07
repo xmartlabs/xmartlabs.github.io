@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Sign in with Apple! Is it necessary? at which cost?"
+title: "Sign in with Apple! Is it necessary? at what cost?"
 excerpt: "In this blogpost we talk about the benefits of providing Sign in with Apple in your app. We also provide a step by step guid on how to integrate it"
 date: 2020-05-04 10:00:00
 author: Cecilia Pirotto
