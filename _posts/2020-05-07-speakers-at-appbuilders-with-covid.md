@@ -17,7 +17,7 @@ crosspost_to_medium: false
 
 We are happy to announce that we will take part of the **AppBuilders conference** on May 12th at 11:45 am (GMT+1) and in this post we will talk about how we got there and how Covid-19 impacted the whole process.
 
-It was mid January when we decided as a team to participate in conferences around the world for the first time. We met  to discuss what knowledge, tools and experience we currently had that could be helpful to the international community.  Given our successful experience in iOS software development and the creation of popular OSS libraries, I decided to give a presentation on how we constantly achieve these goals by following a set of principles. Such principles are Culture, Motivation, Finding the right idea, Reaching out, Community driven development and Solid programming foundations. 
+It was mid January when we decided as a team to participate in conferences around the world for the first time. We met  to discuss what knowledge, tools and experience we currently had that could be helpful to the international community.  Given our successful experience in iOS software development and the creation of popular OSS libraries, I decided to give a presentation on how we constantly achieve these goals by following a set of principles. Such principles are Culture, Motivation, Finding the right idea, Reaching out, Community driven development and Solid programming foundations.
 
 Our goal was to communicate that through the expression of these pivotal characteristics in your work, you would  be able to accomplish greater achievements. For instance, we became one of the **Top 10 Swift Github accounts** and one of the most engaging ones. So with that in mind we sent pitches to different conferences and were overjoyed to hear we had been accepted.
 
@@ -43,6 +43,6 @@ We should regard this as motivation to keep working on our local communities, in
 
 ## Join us at this great event!
 
-So please come join us at [AppBuilders Conference](https://appbuilders.ch/)! There are a bunch of great speakers like Chris Eidhof (Founder @ objc.io) Peter Steinberger (Founder @ PSPDFKit),Shai Mishali (Creator of RxSwift) and other recognized people from the iOS community coming from big companies like Netflix, Calm, Raywenderlich and [more](https://appbuilders.ch/#speakers). Even Paul Hudson (HackingWithSwift) is chipping in! 
+So please come join us at [AppBuilders Conference](https://appbuilders.ch/)! There are a bunch of great speakers like Chris Eidhof (Founder @objc.io) Peter Steinberger (Founder @PSPDFKit),Shai Mishali (Creator of RxSwift) and other recognized people from the iOS community coming from big companies like Netflix, Calm, Raywenderlich and [more](https://appbuilders.ch/#speakers). Even Paul Hudson (HackingWithSwift) is chipping in! 
 
 The event is taking place from May 10th to 12th and my talk is the last day at  [11:45 am (GMT+1)](https://appbuilders.ch/#schedule). See you there! Let's spread the knowledge!
