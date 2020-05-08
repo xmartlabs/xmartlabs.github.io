@@ -117,3 +117,8 @@ arsu:
   image: members/arsu.png
   github: rodriar
   profile_url: https://github.com/rodriar
+tabu:
+  display_name: Jorge Gonzalez
+  image: members/tabu.jpg
+  github: jgonzalezalbisu
+  profile_url: https://github.com/jgonzalezalbisu
