@@ -89,3 +89,5 @@ It's all about strategy, not the same strategy works for all projects and not al
 Excecuting any strategy with no strong foundations will eventually fall apart.
 
 That is why we strongly believe that the automation testing role does not replace the manual one, on the contrary, they contribute to each other, and that’s why in Xmartlabs we are always seeking for the talents that can learn and collaborate among them.
+
+**Let me know about how you handle testing efforts in your team. Have questions about manual or automation testing? I’d be happy to answer those in the comments if I can.**
