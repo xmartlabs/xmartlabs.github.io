@@ -54,7 +54,7 @@ jobs:
       run: bundle exec htmlproofer --empty-alt-ignore --allow_hash_href --disable_external _site/
     - name: Check stopship comments
       run: |
-          sh ./scripts/check_todo_comments.sh
+          bash ./scripts/check_todo_comments.sh
   # The deploy job needs to be in the same workflow,
   # because GH Actions requires workflow to have at least one job with no dependencies.
   deploy:
