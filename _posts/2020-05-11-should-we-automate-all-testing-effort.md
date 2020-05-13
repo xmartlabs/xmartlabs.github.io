@@ -7,7 +7,7 @@ author: Jorge Gonzalez
 tags: [Xmartlabs, QA, Testing]
 category: business-agile
 author_id: tabu
-featured_image: /images/automate-manual-testing/featured.png
+featured_image: /images/automate-manual-testing/featured2.png
 show: true
 crosspost_to_medium: false
 
@@ -15,7 +15,7 @@ crosspost_to_medium: false
 
 Have you ever found yourself wanting full automation testing? Have you ever thought that everything should be automated? Then this post is for you.
 
-<div style="text-align: center"><img width="100%" src="/images/automate-manual-testing/featured.png" /></div>
+<div style="text-align: center"><img width="100%" src="/images/automate-manual-testing/featured2.png" /></div>
 
 # **What is testing?**
 
