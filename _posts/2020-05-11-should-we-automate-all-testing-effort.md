@@ -13,9 +13,6 @@ crosspost_to_medium: false
 
 ---
 
-<!--- STOPSHIP: Add image --->
-
-
 Have you ever found yourself wanting full automation testing? Have you ever thought that everything should be automated? Then this post is for you.
 
 <div style="text-align: center"><img width="100%" src="/images/automate-manual-testing/featured.png" /></div>
