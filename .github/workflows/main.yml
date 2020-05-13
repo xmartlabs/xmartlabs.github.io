@@ -31,7 +31,14 @@ jobs:
       run: bundle exec jekyll build --trace --strict_front_matter
     - name: Check HTML
       run: bundle exec htmlproofer --empty-alt-ignore --allow_hash_href --disable_external _site/
-
+  check_stop_ship_comments:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Check stopship comments
+      run: |
+        stop_ship_files=$(grep -rli '<!--.*STOPSHIP.*-->' _posts/*.md)
+        [ -z "$stop_ship_files" ] || echo "Stopship comment found" && exit 1
   # The deploy job needs to be in the same workflow,
   # because GH Actions requires workflow to have at least one job with no dependencies.
   deploy:
