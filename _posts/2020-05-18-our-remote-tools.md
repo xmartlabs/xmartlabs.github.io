@@ -1,3 +1,18 @@
+---
+layout: post
+title: "Remote tools for software distributed teams!"
+excerpt: ""
+date: 2020-05-18 10:00:00
+author: Martin Barreto
+tags: [Xmartlabs, Tools, Teams, Remote]
+category: business-agile
+author_id: mtnBarreto
+featured_image: /images/remote-tools/featured.jpg
+show: true
+crosspost_to_medium: false
+
+---
+
 Covid-19 pandemic has affected everyone. All countries are taking measures to stop the spread and adopting some form of lockdowns, some are more restrictive than others.
 
 
