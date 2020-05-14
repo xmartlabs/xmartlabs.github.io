@@ -9,7 +9,28 @@ on:
       - labeled
       - unlabeled
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Ruby
+      uses: ruby/setup-ruby@v1
+    - name: Install Bundler
+      run: gem install bundler
+    - uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+    - name: Install Ruby dependencies
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+    - name: Build Jekyll
+      run: bundle exec jekyll build --trace --strict_front_matter
   build_and_check:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -31,11 +52,13 @@ jobs:
       run: bundle exec jekyll build --trace --strict_front_matter
     - name: Check HTML
       run: bundle exec htmlproofer --empty-alt-ignore --allow_hash_href --disable_external _site/
-
+    - name: Check stopship comments
+      run: |
+          bash ./scripts/check_todo_comments.sh
   # The deploy job needs to be in the same workflow,
   # because GH Actions requires workflow to have at least one job with no dependencies.
   deploy:
-    needs: [build_and_check]
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

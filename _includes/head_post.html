@@ -12,8 +12,11 @@
     {% endif %}
   {% endif %}
   {% if page.featured_image %}
-    <meta property="og:image" content="https://blog.xmartlabs.com{{ page.featured_image }}">
+    <meta name="image" property="og:image" content="https://blog.xmartlabs.com{{ page.featured_image }}">
     <meta name="twitter:image" content="https://blog.xmartlabs.com{{ page.featured_image }}">
+  {% endif %}
+  {% if page.author_id %}
+  <meta name="author" content="{{ site.data.authors[page.author_id].display_name }}">
   {% endif %}
   <meta property="og:title" content="{{ page.title }} | Xmartlabs Blog" />
   <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
