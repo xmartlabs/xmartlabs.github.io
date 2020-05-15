@@ -5,8 +5,10 @@ date: 2020-05-12 10:00:00
 categories: android, architecture components, jetpack, navigation component
 author_id: mirland
 show: true
+featured_image: /images/android_navigation_blog_part_one/navigation_banner.jpg
+crosspost_to_medium: false
 ---
-<!--- STOPSHIP: Change date and add featured_image --->
+<!--- STOPSHIP: Change date --->
 
 This year the [Google I/O](https://events.google.com/io/) conference was canceled, so I think it's a good time to talk about one of [Jetpack's](https://developer.android.com/jetpack) biggest Architecture component introduced last year, the [Android Navigation Component](https://developer.android.com/guide/navigation).
 
@@ -114,6 +116,7 @@ Furthermore, if you want to create a deep link through a push notification, you 
 The second one, is to have the ability to define cool **transitions between fragments** by adding just a few lines of code.
 If you add the right transitions, you can improve the app's UX a lot.
 Additionally, a couple of months ago Material released the [motion system](https://material.io/design/motion/the-motion-system.html), a set of transition patterns that help users understand and navigate an app.
+The following image shown a clear example motion system proposes
 <img width="100%" src="/images/android_navigation_blog_part_one/motion_system.gif" />
 You can integrate these transitions easily in your app using the navigation library.
 
