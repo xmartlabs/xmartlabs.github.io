@@ -9,7 +9,7 @@ featured_image: /images/tflite_coreml/featured.png
 ---
 <!--- STOPSHIP: Change date and featured_image --->
 
-This year the [Google I/O](https://events.google.com/io/) conference was canceled, so I think it's a good time to talk a about one of [Jetpack's](https://developer.android.com/jetpack)  biggest Architecture component introduced last year, the [Android Navigation Component](https://developer.android.com/guide/navigation).
+This year the [Google I/O](https://events.google.com/io/) conference was canceled, so I think it's a good time to talk a about one of [Jetpack's](https://developer.android.com/jetpack) biggest Architecture component introduced last year, the [Android Navigation Component](https://developer.android.com/guide/navigation).
 
 The aim of this series of posts is to talk about two important items that will help you decide on whether to use this library or not:
 1. The expectations and conclusions of using it for more than 9 months.
@@ -39,7 +39,7 @@ Each node is able to declare arguments, which ends up being data shared within t
 I found the nav graph extremely useful, with two key advantages:
 - You can see the whole app flow represented as a navigation graph.
 It's useful not only for you but especially for new colleagues joining your project. 
-- The ability to define nested graphs, so that you can have big epics represented in nested graphs.
+- The ability to define nested graphs, so that you can include an epic into a graph without increasing its size or nodes significantly.
 The login is a common example: suppose that the login epic contains a login screen, a register screen and a terms and conditions screen.
 If you add all of these screens to your main graph, it'll make it grow too fast -risking its future maintainability- so I recommend including a login subgraph instead.
 Using this approach I found some advantages: the main graph is easier to understand and you can also re-utilize a given flow in multiple places in the app.
@@ -78,11 +78,11 @@ Although I didn't get to use it a lot, I found it useful and easy to use wheneve
 I will now talk about one of the most important points of this library.
 The integration between this and the other [Android Architecture Components](https://developer.android.com/guide/navigation/navigation-deep-link).
 As you may know, some years ago Google released the Android Arch Components, a collection of libraries that help you design robust, testable, and maintainable apps.
-In this post I will not delve into them, but there are some of these components that are very important in all new Android Applications, such as the [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel).
+In this post I will not dive into them, but there are some of these components that are very important in all new Android Applications, such as the [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel).
 In my opinion, if you combine all the Android Arch Components they always work like a charm, and this one is not the exception.
 
 All graphs have an associated [lifecycle scope](https://developer.android.com/topic/libraries/architecture/lifecycle), so that you can create ViewModels associated to the graph's scope.
-That means that you can share data through the screens using a ViewModel that's in turn associated to a graph.
+That means that you can share data through the screens using a ViewModel that's associated to a graph.
 
 Let me explain it with an example: suppose that you have an app that has a big register flow. It contains a screen with personal information, another screen for your picture, another for your address and so on. 
 A fine approach here would be to define a register nested graph.
