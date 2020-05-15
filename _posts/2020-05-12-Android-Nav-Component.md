@@ -74,17 +74,18 @@ To solve this issue we created a cool tool to log the current path, which I'll i
 The library includes a [**testing** module](https://developer.android.com/guide/navigation/navigation-testing), which lends a helping hand when testing your app's navigation logic.
 Although I didn't get to use it a lot, I found it useful and easy to use whenever I had to.
 
-### Jetpack & Android Architecture Component
+### Jetpack & Android Architecture Componentsponent
 
 <div style="display: inline-block;">
-  <div style="float: left; width: 25%; margin-right: 1em;">
+  <div style="float: left; width: 20%; margin-right: 1em;">
     <img src="/images/android_navigation_blog_part_one/jetpack_hero.svg" alt="">
   </div>
   <div markdown="1">
 I will now talk about one of the most important points of this library, its integration with other [Android Architecture Components](https://developer.android.com/topic/libraries/architecture).
-As you may know, some years ago Google released the Android Architecture Components, a collection of libraries that help you design robust, testable, and maintainable apps.
-In this post I will not dive into them, but there are some of these components that are very important in all new Android Applications, such as the [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel).
-In my opinion, if you combine all the Android Architecture Components they always work like a charm, and this one is not the exception.
+Android Architecture Components are libraries that help you design robust, testable, and maintainable apps. ViewModel is probably one of the most important components, in particular for new apps.
+ </div>
+</div>
+
 
 All graphs have an associated [lifecycle scope](https://developer.android.com/topic/libraries/architecture/lifecycle), so that you can create ViewModels associated to the graph's scope.
 That means that you can share data through the screens using a ViewModel that's associated to a graph.
@@ -96,34 +97,24 @@ We have two options to accomplish that: either create a lot of arguments on each
 Using the second approach, it will be cleaner while at the same time resulting both easier to handle and less verbose.
 All screens will store their specific data in the graph’s ViewModel, and at the end the last screen will combine the data to create the needed entity.
 As the ViewModel is associated to the graph’s lifecycle, when the flow finished it will be deleted.
- </div>
-</div>
 
 ### Bonus
 
 In the previous sections I talked about the most important points of this component. 
-However, I also want to talk a bit about a couple of additional good features that I didn't have the chance to mention yet.
+However, there are two more features worth mentioning.
 
-The first one is **deeplinking**, a cool feature that's present in most of our apps.
-If you tried to do it, you then know that opening an internal screen directly (that also implies opening up multiple screens that come before it) could be a bit hard. 
-That's where this component comes in and helps us!
-You can [define deeplinks](https://developer.android.com/guide/navigation/navigation-deep-link) easily inside the nav graph by adding a `deeplink` XML tag. 
-Furthermore, if you want to create a deep link through a push notification, you can create an [explicit intent](https://developer.android.com/guide/navigation/navigation-deep-link#explicit) and open exactly the section that you want. 
+The first one is deeplinking.
+Implementing deep linking was never easier, we just need to specify them in the navigation graph by adding a [deeplink XML tag](https://developer.android.com/guide/navigation/navigation-deep-link).
+Furthermore, we can deeplink from a push notification by creating an [explicit intent](https://developer.android.com/guide/navigation/navigation-deep-link#explicit) and open exactly the section that you want.
 
-The second one, is to have the ability to define cool **transitions between fragments** by adding just a few lines of code.
-If you add the right transitions, you can improve the app's UX a lot.
+The second one, it's how easy transitions can be implemented.
+We just need to write few lines of code to add transitions between fragments. 
 Additionally, a couple of months ago Material released the [motion system](https://material.io/design/motion/the-motion-system.html), a set of transition patterns that help users understand and navigate an app.
-The following image shown a clear example motion system proposes
-<img width="100%" src="/images/android_navigation_blog_part_one/motion_system.gif" />
-You can integrate these transitions easily in your app using the navigation library.
 
+<img width="100%" src="/images/android_navigation_blog_part_one/motion_system.gif" />
+You can easily integrate these smooth transitions in your app by using the navigation library .
 
 ## Conclusion
-In this post we covered a lot of items that are of great importance when it comes to deciding whether to use a library or not.
-The navigation is an essential part in all applications, so you need to be able to define all flows in a very clean way.
-As we saw, this library will assist us on doing just that, even if it does have some issues, like the ones we talked about.
-After you integrate this library, your application flow will become robust and a bit self-documented.
-Splitting the complex flows into nested graphs makes your app stronger, as well as more maintainable and understandable.
-The navigation component is combined perfectly with other Architecture Components, so if you are already using them, you will like it.
-To sum up: if you integrate it you will have a strong navigation architecture that will support you both on debugging issues as well as also moving forward at a sustained pace. 
-I recommend you give it a try.
+In this post we covered the most important advantages when using Android Navigation Component.
+App UI and flow are essential parts in all applications and a graphical representation helps everyone clearly understand how it works.
+If you want to quickly implement and maintain your app UI and navigation, Android Navigation Component is the way to go.
