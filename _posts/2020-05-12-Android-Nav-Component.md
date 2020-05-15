@@ -40,8 +40,10 @@ Each node is able to declare arguments, which ends up being data shared within t
 I found the nav graph extremely useful, with two key advantages:
 - You can see the whole app flow represented as a navigation graph.
 It's useful not only for you but especially for new colleagues joining your project. 
-- The ability to define nested graphs, so that you can include an epic into a graph without increasing its size or nodes significantly.
-The login is a common example: suppose that the login epic contains a login screen, a register screen and a terms and conditions screen.
+- The ability to define **nested graphs**, which are graphs that will be included by another graphs.
+So that you can define a specific app flow part in a nested graph to work with small diagrams and be able to handle complex app flow.
+
+> The login is a common example for both items: suppose that the login epic is a complex flow which contains a login screen, a register screen and a terms and conditions screen.
 If you add all of these screens to your main graph, it'll make it grow too fast -risking its future maintainability- so I recommend including a login subgraph instead.
 Using this approach I found some advantages: the main graph is easier to understand and you can also re-utilize a given flow in multiple places in the app.
 We know that reutilization is an excellent pattern: if you have to change something, you will do it just once.
@@ -57,18 +59,14 @@ As I commented before, you can [share data between the nodes (screens) using arg
 The navigation component includes a Gradle plugin which has a pretty self-explanatory name: [Safe Args](https://developer.android.com/guide/navigation/navigation-pass-data#Safe-args).
 That's really good because you can share arguments in a safe way and you don't have to care about the ugly key-value bundle used up until now.
 
-Although I mentioned that sharing data in that way is good, we found that sharing data between different nested graphs is neither good nor safe.
-If you want to do that, you'll have to declare the arguments manually in the graph's XML file, and if you ever happen to forget it, the app will end up crashing.
-The plugin should be checking for this but it currently doesn't.
+Although I mentioned that sharing data in that way is good, we found that sharing data among nested graphs is not safe yet, since we have to declare these arguments and if we forget the app crashes in runtime.
+This is something likely to improve in future version.
 
 ### Debug and test your app
 
 The navigation component is also a very useful asset when it comes to **debugging** and testing work in progress (WIP) features easily in your app.
-We found an interesting approach that proved to work very well for us: 
-Suppose you are working on a feature in some internal screen.
-When you run the application you have to navigate through the app to open the screen and test your progress in that feature.
-We realized that we were wasting a lot of time navigating inside the app to test how our new internal screen looks.
-If you use this library, you can change the `startDestination` property to be your WIP screen and if your screen does contain an argument, don't forget to declare default values in your navigation graph.
+It let us start the app in a particular screen and this is useful during development because we don't even need to navigate manually.
+In order to launch a particular screen we change the `startDestination` property and set up its default arguments in the navigation graph if needed.
 This way, when you run the app for the next time, this internal screen will be opened right away, awesome right?
 On the other hand, debugging the graph status is a bit hard, not being able to know what's the current graph path.
 To solve this issue we created a cool tool to log the current path, which I'll introduce in the next post.
@@ -83,8 +81,7 @@ Although I didn't get to use it a lot, I found it useful and easy to use wheneve
     <img src="/images/android_navigation_blog_part_one/jetpack_hero.svg" alt="">
   </div>
   <div markdown="1">
-I will now talk about one of the most important points of this library.
-The integration between this and the other [Android Architecture Components](https://developer.android.com/topic/libraries/architecture).
+I will now talk about one of the most important points of this library, its integration with other [Android Architecture Components](https://developer.android.com/topic/libraries/architecture).
 As you may know, some years ago Google released the Android Architecture Components, a collection of libraries that help you design robust, testable, and maintainable apps.
 In this post I will not dive into them, but there are some of these components that are very important in all new Android Applications, such as the [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel).
 In my opinion, if you combine all the Android Architecture Components they always work like a charm, and this one is not the exception.
