@@ -9,7 +9,7 @@ featured_image: /images/tflite_coreml/featured.png
 ---
 <!--- STOPSHIP: Change date and featured_image --->
 
-This year the [Google I/O](https://events.google.com/io/) conference was canceled, so I think it's a good time to talk a about one of [Jetpack's](https://developer.android.com/jetpack) biggest Architecture component introduced last year, the [Android Navigation Component](https://developer.android.com/guide/navigation).
+This year the [Google I/O](https://events.google.com/io/) conference was canceled, so I think it's a good time to talk about one of [Jetpack's](https://developer.android.com/jetpack) biggest Architecture component introduced last year, the [Android Navigation Component](https://developer.android.com/guide/navigation).
 
 The aim of this series of posts is to talk about two important items that will help you decide on whether to use this library or not:
 1. The expectations and conclusions of using it for more than 9 months.
@@ -48,7 +48,8 @@ We know that reutilization is an excellent pattern: if you have to change someth
 One disadvantage we found is related to how Android Studio stores the graph nodes position.
 These are saved in a huge and complex `.idea/navEditor.xml` file.
 If you want to save the positions of all graphs nodes -in order for the graph to be consistent among your team, for instance- you need to track this file and include it in your repo.
-Sometimes this file will be corrupted and you'll lose the positions of all nodes.
+Sometimes this file will be randomically corrupted and you'll lose the positions of all nodes.
+If that is your case, you can checkout last valid file and it'll be fixed.
 Moreover this file suffers of an awful lot of git conflicts, so it's a bit tedious to maintain it.
 
 As I commented before, you can [share data between the nodes (screens) using arguments](https://developer.android.com/guide/navigation/navigation-pass-data).
@@ -57,6 +58,7 @@ That's really good because you can share arguments in a safe way and you don't h
 
 Although I mentioned that sharing data in that way is good, we found that sharing data between different nested graphs is neither good nor safe.
 If you want to do that, you'll have to declare the arguments manually in the graph's XML file, and if you ever happen to forget it, the app will end up crashing.
+The plugin should be checking for this but it currently doesn't.
 
 ### Debug and test your app
 
@@ -65,21 +67,21 @@ We found an interesting approach that proved to work very well for us:
 Suppose you are working on a feature in some internal screen.
 When you run the application you have to navigate through the app to open the screen and test your progress in that feature.
 We realized that we were wasting a lot of time navigating inside the app to test how our new internal screen looks.
-If you use this library, you can change the `startDestination` property to be your WIP screen.
-This way when you run the app next time, this internal screen is opened right away, awesome right?
+If you use this library, you can change the `startDestination` property to be your WIP screen and if your screen does contain an argument, don't forget to declare default values in your navigation graph.
+This way, when you run the app for the next time, this internal screen will be opened right away, awesome right?
 On the other hand, debugging the graph status is a bit hard, not being able to know what's the current graph path.
 To solve this issue we created a cool tool to log the current path, which I'll introduce in the next post.
 
 The library includes a [**testing** module](https://developer.android.com/guide/navigation/navigation-testing), which lends a helping hand when testing your app's navigation logic.
 Although I didn't get to use it a lot, I found it useful and easy to use whenever I had to.
 
-### Jetpack & Android Arch Component
+### Jetpack & Android Architecture Component
 
 I will now talk about one of the most important points of this library.
-The integration between this and the other [Android Architecture Components](https://developer.android.com/guide/navigation/navigation-deep-link).
-As you may know, some years ago Google released the Android Arch Components, a collection of libraries that help you design robust, testable, and maintainable apps.
+The integration between this and the other [Android Architecture Components](https://developer.android.com/topic/libraries/architecture).
+As you may know, some years ago Google released the Android Architecture Components, a collection of libraries that help you design robust, testable, and maintainable apps.
 In this post I will not dive into them, but there are some of these components that are very important in all new Android Applications, such as the [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel).
-In my opinion, if you combine all the Android Arch Components they always work like a charm, and this one is not the exception.
+In my opinion, if you combine all the Android Architecture Components they always work like a charm, and this one is not the exception.
 
 All graphs have an associated [lifecycle scope](https://developer.android.com/topic/libraries/architecture/lifecycle), so that you can create ViewModels associated to the graph's scope.
 That means that you can share data through the screens using a ViewModel that's associated to a graph.
@@ -87,7 +89,7 @@ That means that you can share data through the screens using a ViewModel that's 
 Let me explain it with an example: suppose that you have an app that has a big register flow. It contains a screen with personal information, another screen for your picture, another for your address and so on. 
 A fine approach here would be to define a register nested graph.
 As you can see, all screens have a piece of information that should be combined in the end. 
-We have two options to accomplish that: either create a lot of arguments on each screen to share the all of the information or just use a shared ViewModel.
+We have two options to accomplish that: either create a lot of arguments on each screen to share all of the information or just use a shared ViewModel.
 Using the second approach, it will be cleaner while at the same time resulting both easier to handle and less verbose.
 All screens will store their specific data in the graph’s ViewModel, and at the end the last screen will combine the data to create the needed entity.
 As the ViewModel is associated to the graph’s lifecycle, when the flow finished it will be deleted.
@@ -101,14 +103,15 @@ However, I also want to talk a bit about a couple of additional good features th
 The first one is **deeplinking**, a cool feature that's present in most of our apps.
 If you tried to do it, you then know that opening an internal screen directly (that also implies opening up multiple screens that come before it) could be a bit hard. 
 That's where this component comes in and helps us!
-You can [define the deeplinks](https://developer.android.com/guide/navigation/navigation-deep-link) easily inside the nav graph by adding a `deeplink` XML tag. 
-Furthermore, if you want to create a deep link through a push notification, you can create an [explicit intent](https://developer.android.com/guide/navigation/navigation-deep-link) and open exactly the section that you want. 
+You can [define deeplinks](https://developer.android.com/guide/navigation/navigation-deep-link) easily inside the nav graph by adding a `deeplink` XML tag. 
+Furthermore, if you want to create a deep link through a push notification, you can create an [explicit intent](https://developer.android.com/guide/navigation/navigation-deep-link#explicit) and open exactly the section that you want. 
 
 The second one, is to have the ability to define cool **transitions between fragments** by adding just a few lines of code.
 If you add the right transitions, you can improve the app's UX a lot.
 Additionally, a couple of months ago Material released the [motion system](https://material.io/design/motion/the-motion-system.html), a set of transition patterns that help users understand and navigate an app.
 You can integrate these transitions easily in your app using the navigation library.
 
+<!--- STOPSHIP: Add image showing the transitions --->
 
 ## Conclusion
 In this post we covered a lot of items that are of great importance when it comes to deciding whether to use a library or not.
