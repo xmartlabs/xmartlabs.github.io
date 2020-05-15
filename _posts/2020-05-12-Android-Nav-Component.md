@@ -5,9 +5,8 @@ date: 2020-05-12 10:00:00
 categories: android, architecture components, jetpack, navigation component
 author_id: mirland
 show: true
-featured_image: /images/tflite_coreml/featured.png
 ---
-<!--- STOPSHIP: Change date and featured_image --->
+<!--- STOPSHIP: Change date and add featured_image --->
 
 This year the [Google I/O](https://events.google.com/io/) conference was canceled, so I think it's a good time to talk about one of [Jetpack's](https://developer.android.com/jetpack) biggest Architecture component introduced last year, the [Android Navigation Component](https://developer.android.com/guide/navigation).
 
@@ -30,8 +29,8 @@ The **integration** is very easy, you can follow [Android's documentation](https
 
 After the integration, you'll have to define the app's main **navigation graph**, one of the most important components of this library.
 
-<!--- STOPSHIP: Add image --->
-[IMAGE](TODO)
+<img width="100%" src="/images/android_navigation_blog_part_one/nav_graph.png" />
+
 
 The graph is stored in a simple XML file, where the nodes are the app's screens (fragments, dialogs, etc) and the actions are the edges that allow for navigating between nodes.
 Each node is able to declare arguments, which ends up being data shared within the navigation flow.
@@ -77,6 +76,11 @@ Although I didn't get to use it a lot, I found it useful and easy to use wheneve
 
 ### Jetpack & Android Architecture Component
 
+<div style="display: inline-block;">
+  <div style="float: left; width: 25%; margin-right: 1em;">
+    <img src="/images/android_navigation_blog_part_one/jetpack_hero.svg" alt="">
+  </div>
+  <div markdown="1">
 I will now talk about one of the most important points of this library.
 The integration between this and the other [Android Architecture Components](https://developer.android.com/topic/libraries/architecture).
 As you may know, some years ago Google released the Android Architecture Components, a collection of libraries that help you design robust, testable, and maintainable apps.
@@ -93,7 +97,8 @@ We have two options to accomplish that: either create a lot of arguments on each
 Using the second approach, it will be cleaner while at the same time resulting both easier to handle and less verbose.
 All screens will store their specific data in the graph’s ViewModel, and at the end the last screen will combine the data to create the needed entity.
 As the ViewModel is associated to the graph’s lifecycle, when the flow finished it will be deleted.
-
+ </div>
+</div>
 
 ### Bonus
 
@@ -109,9 +114,9 @@ Furthermore, if you want to create a deep link through a push notification, you 
 The second one, is to have the ability to define cool **transitions between fragments** by adding just a few lines of code.
 If you add the right transitions, you can improve the app's UX a lot.
 Additionally, a couple of months ago Material released the [motion system](https://material.io/design/motion/the-motion-system.html), a set of transition patterns that help users understand and navigate an app.
+<img width="100%" src="/images/android_navigation_blog_part_one/motion_system.gif" />
 You can integrate these transitions easily in your app using the navigation library.
 
-<!--- STOPSHIP: Add image showing the transitions --->
 
 ## Conclusion
 In this post we covered a lot of items that are of great importance when it comes to deciding whether to use a library or not.
