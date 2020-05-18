@@ -15,6 +15,7 @@ crosspost_to_medium: false
 
 Did you obtain good accuracy with your deep learning model only to find out that inference time isn't enough to deploy on production? Are you lost on how to optimize your model's inference speed? Then this post is for you.
 
+<!--- TODO: Change date and featured:_image ---> 
 <div style="text-align: center"><img width="100%" src="/images/automate-manual-testing/featured2.png" /></div>
 
 Data Science projects have the peculiarity that your focus must constantly shift across completely different requirements.
