@@ -18,7 +18,7 @@ The aim of this series of posts is to talk about two important items that will h
 
 ## What were we expecting from a new navigation library?
 That was the first question that came to my mind when we first thought about using it.
-There are a bunch of navigation libraries in existence for Android, and at that moment we already had a solid navigation architecture based on the Router pattern, so, what were we expecting of it?
+There are a bunch of navigation libraries in existence for Android, and at that moment we already had a solid navigation architecture based on the Router pattern, so, what were we expecting from it?
 
 - A library that's easy to integrate and debug.
 - A library that could provide us with a better understanding of the app's main flows and features. 
@@ -51,7 +51,7 @@ We know that re-utilization is an excellent pattern: if you have to change somet
 One disadvantage we found is related to how Android Studio stores the graph nodes position.
 These are saved in a huge and complex `.idea/navEditor.xml` file.
 If you want to save the positions of all graphs nodes -in order for the graph to be consistent among your team, for instance- you need to track this file and include it in your repo.
-Sometimes this file will be randomically corrupted and you'll lose the positions of all nodes.
+Sometimes this file will be randomly corrupted and you'll lose the positions of all nodes.
 If that is your case, you can check out the last valid file and it'll be fixed.
 Moreover this file suffers from an awful lot of git conflicts, so it's a bit tedious to maintain it.
 
@@ -64,7 +64,7 @@ This is something likely to improve in future version.
 
 ### Debug and test your app
 
-The navigation component is also a very useful asset when it comes to **debugging** and testing work in progress (WIP) features easily in your app.
+The navigation component is also a very useful asset when it comes to **debugging** and testing work-in-progress (WIP) features easily in your app.
 It let us start the app on a particular screen and this is useful during development because we don't even need to navigate manually.
 In order to launch a particular screen we change the `startDestination` property and set up its default arguments in the navigation graph if needed.
 This way, when you run the app for the next time, this internal screen will be opened right away, awesome right?
@@ -74,7 +74,7 @@ To solve this issue we created a cool tool to log the current path, which I'll i
 The library includes a [**testing** module](https://developer.android.com/guide/navigation/navigation-testing), which lends a helping hand when testing your app's navigation logic.
 Although I didn't get to use it a lot, I found it useful and easy to use whenever I had to.
 
-### Jetpack & Android Architecture Componentsponent
+### Jetpack & Android Architecture Components
 
 <div style="display: inline-block;">
   <div style="float: left; width: 20%; margin-right: 1em;">
