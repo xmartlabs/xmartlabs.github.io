@@ -16,7 +16,7 @@ The aim of this series of posts is to talk about two important items that will h
 1. The expectations and conclusions of using it for more than 9 months.
 1. Some tips and helper classes that are very helpful if you do want to start using it (next post). 
 
-## What were we expecting of a new navigation library?
+## What were we expecting from a new navigation library?
 That was the first question that came to my mind when we first thought about using it.
 There are a bunch of navigation libraries in existence for Android, and at that moment we already had a solid navigation architecture based on the Router pattern, so, what were we expecting of it?
 
