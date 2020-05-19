@@ -5,7 +5,8 @@ $pink: #d91965;
 $light-grey: #a0a0a0;
 $lighter-grey: #ececec;
 $grey: #525252;
-$body: 'Source Sans Pro', sans-serif;
+$body: 'Graphik', sans-serif;
+$title-font-family: 'Libre Baskerville', sans-serif;
 
 a {
   color: $grey;
@@ -25,17 +26,26 @@ div.header {
   color: $black;
   background-size: cover;
   .header-title {
-    letter-spacing: 0px;
-    font-size: 3em;
+
+    font-family: $body;
+    font-size: 48px;
     font-weight: bold;
-    line-height: 1em;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.91px;
     color: $black;
-    margin-bottom: 0;
   }
   .header-subtitle {
-    font-size: 3em;
-    font-weight: 300;
-    line-height: 1.2em;
+
+    font-family: $body;
+    font-size: 32px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.61px;
+    color: $black;
     @include media-query($on-palm) {
       font-size: 20px;
     }
@@ -48,7 +58,7 @@ div.header {
     max-width: 940px;
     margin: auto;
     text-align: left;
-    padding: 50px 15px 20px;
+    padding: 35px 15px 20px;
     @include media-query($md-width) {
       max-width: $md-content-width;
     }
@@ -96,17 +106,6 @@ div.header {
     img {
       box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .5);
     }
-    .post-title {
-      position: absolute;
-      bottom: 20px;
-      left: 30px;
-      font-size: 3em;
-      @include media-query($on-palm) {
-        font-size: 20px;
-        bottom: 5px;
-        left: 15px;
-      }
-    }
     @include media-query($on-palm) {
       height: 200px;
     }
@@ -140,43 +139,79 @@ div.header {
   padding-left: 0;
   list-style: none;
   >li {
-    margin-bottom: 50px;
+    margin-bottom: 15px;
     @include media-query($on-palm) {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
   }
   >li:last-child {
     margin-bottom: 20px;
   }
-  article {
-    display: block;
-    padding: 30px 50px;
-    box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .2);
-    .post-time-info {
-      text-align: right;
+  article.post-item {
+    .post-title {
+      color: $black;
+      font-family: $title-font-family;
+      font-size: 32px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.34;
+      letter-spacing: normal;
+      margin-top: 10px;
+      @include media-query($on-palm) {
+        font-size: 20px;
+        letter-spacing: 2px;
+        margin-top: 0;
+      }
+    }
+    a {
+      color: $black;
+    }
+    .author {
       font-family: $body;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+    }
+    display: block;
+    padding: 30px 50px 30px 30px;
+    // box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .2);
+    .post-time-info {
+      text-align: left;
+      font-family: $body;
+      margin-bottom: 10px;
+      font-size: 14px;
       @include media-query(767px) {
         font-size: 1.1em;
         text-align: left;
         margin-bottom: 15px;
       }
     }
-    .post-info {
-      float: left;
+    .blog-category {
+      text-transform: uppercase;
+      font-size: 17px;
+      font-weight: bold;
       display: block;
-      width: 77%;
+      margin-bottom: 10px;
+      font-family: $body;
+    }
+    .post-info {
+      display: block;
       word-break: break-word;
-      h1.post-title {
-        margin-top: 4px;
-        color: $black;
-        @include media-query($on-palm) {
-          margin-bottom: 5px;
-        }
-      }
       h2 {
         font-size: 1.2em;
       }
       p {
+        font-family: $body;
+        font-size: 18px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: 0.34px;
         margin-bottom: 20px;
         @include media-query($on-palm) {
           margin-bottom: 15px;
@@ -204,7 +239,7 @@ div.header {
 
 .post-meta {
   font-size: $base-font-size;
-  color: $grey-color;
+  color: $black;
 }
 
 .page-content {
@@ -258,35 +293,8 @@ div.header {
     width: 100%;
     text-align: left;
   }
-  .post-title {
-    color: $black;
-    font-size: 40px;
-    font-weight: bold;
-    line-height: 1.2em;
-    letter-spacing: 0px;
-    @include media-query($on-palm) {
-      font-size: 25px;
-      letter-spacing: 2px;
-      margin-top: 0;
-    }
-  }
   @include media-query($on-palm) {
     padding: 0;
-  }
-}
-
-.post-title {
-  font-family: $body;
-  font-size: 2.5em;
-  letter-spacing: 0px;
-  line-height: 1.2;
-  font-weight: bold;
-  color: $white;
-  a {
-    color: $black;
-  }
-  @include media-query($on-palm) {
-    font-size: 20px;
   }
 }
 
