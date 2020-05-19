@@ -23,7 +23,7 @@ Data Science projects have the peculiarity that your focus must constantly shift
 - How will you obtain the data? Are you creating the dataset? (if so what exactly should you label? how many samples should you invest in?)
 - How will you make use of the model? A model is nice and fine, but how do you make a product that adds value to the user?
 - What model will you implement? There are many scientific papers out there, and often from the time you begin research until you are in the middle of implementation, the state of the art has already changed.
-- But the most important question of all. Is all this viable? Can a model be trained using the data your budget allows? Will it perform sufficiently good for the use we intend the model to?
+- But the most important question of all. Is all of this viable? Can a model be trained using the data your budget allows? Will it perform sufficiently good for the use case we intend to apply it to?
 
 And it is often that in this last question we focus mostly on obtaining the best accuracy for the dataset.
 This makes the most sense, as it allows us to validate if the project is feasible.
