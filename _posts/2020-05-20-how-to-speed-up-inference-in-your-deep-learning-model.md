@@ -71,7 +71,7 @@ Some users have managed to solve their issues during conversion by downgrading P
 However, this limits the ONNX `opset` you can access, which in turn also limits what TensorRT version will you be able to run your engine with.
 
 Hopefully, all these issues will be solved in the near future...
-But considering that all these frameworks have high development speed it's likely that there always be short time incompatibilities.
+But considering that all these frameworks have high development speed it's likely that there will always be short-lived incompatibility periods.
 
 Post-training quantization is definitely a powerful tool, and although we experienced issues when quantizing a PyTorch [Faster R-CNN](https://arxiv.org/abs/1506.01497) model, you should still give it a shot, considering that after exporting your model to ONNX it doesn't take much effort trying to convert it via command line using `trtexec`, which is readily available along with TensorRT in [Nvidia TensorRT docker container](https://ngc.nvidia.com/catalog/containers/nvidia:tensorrt).
 If this still doesn't work then we'd advise on looking for a TensorFlow implementation if quantization is still an approach you want to go for.
