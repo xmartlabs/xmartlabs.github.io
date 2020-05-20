@@ -2,7 +2,7 @@
 layout: post
 title: "How to speed up inference in your deep learning model"
 excerpt: "Did you obtain good accuracy with your deep learning model only to find out that inference time isn't enough to deploy on production? Are you lost on how to optimize your model's inference speed? Then this post is for you."
-date: 2020-05-21 10:00:00
+date: 2020-06-01 10:00:00
 author: Renzo Gambone
 tags: [Xmartlabs, Deep Learning, Optimization]
 category: machine-learning
