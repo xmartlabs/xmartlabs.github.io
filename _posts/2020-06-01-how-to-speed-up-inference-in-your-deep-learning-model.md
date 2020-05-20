@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to speed up inference in your deep learning model"
+title: "5 Practical Ways to Speed Up your Deep Learning Model"
 excerpt: "Did you obtain good accuracy with your deep learning model only to find out that inference time isn't enough to deploy on production? Are you lost on how to optimize your model's inference speed? Then this post is for you."
 date: 2020-06-01 10:00:00
 author: Renzo Gambone
