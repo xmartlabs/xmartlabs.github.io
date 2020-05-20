@@ -1,14 +1,13 @@
 ---
 layout: post
 title: "Android Navigation Component - Expectations, Conclusions & Tips - Part 1"
-date: 2020-05-12 10:00:00
+date: 2020-05-25 10:00:00
 categories: android, architecture components, jetpack, navigation component
 author_id: mirland
 show: true
 featured_image: /images/android_navigation_blog_part_one/navigation_banner.jpg
 crosspost_to_medium: false
 ---
-<!--- STOPSHIP: Change date --->
 
 This year the [Google I/O](https://events.google.com/io/) conference was canceled, so I think it's a good time to talk about one of [Jetpack's](https://developer.android.com/jetpack) biggest Architecture component introduced last year, the [Android Navigation Component](https://developer.android.com/guide/navigation).
 
