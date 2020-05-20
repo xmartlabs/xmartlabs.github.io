@@ -62,7 +62,7 @@ As of now, the only way to achieve this conversion is to first convert our PyTor
 
 On paper, all this makes sense and should be easy enough to do.
 However, in practice issues may occur from all these conversions.
-This is mainly due to the fact that the development of PyTorch, ONNX, and TensorRT goes in different ways. 
+This is mainly due to the fact that the development of PyTorch, ONNX, and TensorRT goes in multiple directions when a feature is added into one an old integration won't necessarily support it. 
 
 - You may be able to run the model on ONNX, but [issues may occur when converting ONNX to TensorRT](https://github.com/onnx/onnx-tensorrt/issues/302), especially with some layers, [such as the Resize layer in PyTorch](https://github.com/NVIDIA/TensorRT/issues/284).
 - At the time we tried to do this conversion, it happened to us that [models built with PyTorch v1.3 or higher can be converted and run in ONNX Runtime, but can't be run through the ONNX optimizer](https://github.com/onnx/onnx/issues/2417) (which makes important improvements in the converted network).
