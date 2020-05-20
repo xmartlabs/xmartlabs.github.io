@@ -2,25 +2,92 @@
   {% assign displayPosts = site.posts | where: 'show', true %}
 
   {% for post in displayPosts limit:1 offset:0 %}
-    <div class="featured-post" style="background-image: url('{{ post.featured_image}}');">
-      <a href="{{ post.url | prepend: site.baseurl }}">
-        <h1 class="post-title">{{ post.title }}</h1>
-      </a>
+  {% assign category = site.data.categories[post.category] %}
+  {% assign author = site.data.authors[post.author_id] %}
+    <div class="featured-column">
+      <div class="featured-post" style="background-image: url('{{ post.featured_image}}');">
+        <a href="{{ post.url | prepend: site.baseurl }}">
+          <!-- <h1 class="post-title">{{ post.title }}</h1> -->
+        </a>
+      </div>
+      <article class="post-item">
+        <a href="" class="blog-category"># {{ category.display_name}}</a>
+        <a href="{{ post.url | prepend: site.baseurl }}">
+          <div class="post-info">
+            <div class="post-time-info">
+              <time class="post-meta" datetime="{{ post.date }}">
+                {{ post.date | date: "%b %-d, %Y" }}
+              </time>
+            </div>
+            <h1 class="post-title">
+              {{ post.title }}
+            </h1>
+            <p class="paragraph">
+              {{ post.content | truncatewords:20 | strip_html}}
+            </p>
+          </div>
+        </a>
+        <span class="author">By <a href="{{author.profile_url}}" class="author" target="_blank" >{{ author.display_name }}</a></span>
+      </article>
     </div>
   {% endfor %}
   <div class="bottom-row">
     {% for post in displayPosts limit:1 offset:1 %}
-      <div class="featured-post" style="background-image: url('{{ post.featured_image}}');">
-        <a href="{{ post.url | prepend: site.baseurl }}">
-          <h1 class="post-title">{{ post.title }}</h1>
-        </a>
+    {% assign category = site.data.categories[post.category] %}
+    {% assign author = site.data.authors[post.author_id] %}
+      <div class="featured-column">
+        <div class="featured-post" style="background-image: url('{{ post.featured_image}}');">
+          <a href="{{ post.url | prepend: site.baseurl }}">
+          </a>
+        </div>
+        <article class="post-item">
+          <a href="" class="blog-category"># {{ category.display_name}}</a>
+          <a href="{{ post.url | prepend: site.baseurl }}">
+            <div class="post-info">
+              <div class="post-time-info">
+                <time class="post-meta" datetime="{{ post.date }}">
+                  {{ post.date | date: "%b %-d, %Y" }}
+                </time>
+              </div>
+              <h1 class="post-title">
+                {{ post.title }}
+              </h1>
+              <p class="paragraph">
+                {{ post.content | truncatewords:20 | strip_html}}
+              </p>
+            </div>
+          </a>
+          <span class="author">By <a href="{{author.profile_url}}" class="author" target="_blank" >{{ author.display_name }}</a></span>
+        </article>
       </div>
     {% endfor %}
     {% for post in displayPosts limit:1 offset:2 %}
-      <div class="featured-post" style="background-image: url('{{ post.featured_image}}');">
-        <a href="{{ post.url | prepend: site.baseurl }}">
-          <h1 class="post-title">{{ post.title }}</h1>
-        </a>
+    {% assign category = site.data.categories[post.category] %}
+    {% assign author = site.data.authors[post.author_id] %}
+      <div class="featured-column">
+        <div class="featured-post" style="background-image: url('{{ post.featured_image}}');">
+          <a href="{{ post.url | prepend: site.baseurl }}">
+          </a>
+        </div>
+        <article class="post-item">
+          <a href="" class="blog-category"># {{ category.display_name}}</a>
+          <a href="{{ post.url | prepend: site.baseurl }}">
+            <div class="post-info">
+              <div class="post-time-info">
+                <time class="post-meta" datetime="{{ post.date }}">
+                  {{ post.date | date: "%b %-d, %Y" }}
+                </time>
+              </div>
+              <h1 class="post-title">
+                {{ post.title }}
+              </h1>
+              <p class="paragraph">
+                {{ post.content | truncatewords:20 | strip_html}}
+              </p>
+            </div>
+          </a>
+          <span class="author">By <a href="{{author.profile_url}}" class="author" target="_blank" >{{ author.display_name }}</a></span>
+        </article>
       </div>
     {% endfor %}
   </div>

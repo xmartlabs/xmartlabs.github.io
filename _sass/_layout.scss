@@ -73,13 +73,20 @@ div.header {
   margin-right: auto;
   margin-left: auto;
   padding: 0 15px;
-  display: flex;
+  // display: flex;
   flex-direction: column;
   .bottom-row {
     margin-top: 10px;
     display: flex;
     @include media-query($on-palm) {
       flex-direction: column;
+    }
+    .featured-column:last-of-type {
+        margin-left: 10px;
+        @include media-query($on-palm) {
+          margin-top: 10px;
+          margin-left: 0;
+        }
     }
     .featured-post {
       height: 270px;
@@ -108,13 +115,6 @@ div.header {
     }
     @include media-query($on-palm) {
       height: 200px;
-    }
-  }
-  .featured-post:last-of-type {
-    margin-left: 10px;
-    @include media-query($on-palm) {
-      margin-top: 10px;
-      margin-left: 0;
     }
   }
   @include media-query($md-width) {
@@ -147,95 +147,100 @@ div.header {
   >li:last-child {
     margin-bottom: 20px;
   }
-  article.post-item {
-    .post-title {
-      color: $black;
-      font-family: $title-font-family;
-      font-size: 32px;
-      font-weight: bold;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 1.34;
-      letter-spacing: normal;
-      margin-top: 10px;
-      @include media-query($on-palm) {
-        font-size: 20px;
-        letter-spacing: 2px;
-        margin-top: 0;
-      }
+}
+
+article.post-item {
+  .post-title {
+    color: $black;
+    font-family: $title-font-family;
+    font-size: 32px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.34;
+    letter-spacing: normal;
+    margin-top: 10px;
+    @include media-query($on-palm) {
+      font-size: 20px;
+      letter-spacing: 2px;
+      margin-top: 0;
     }
-    a {
-      color: $black;
+  }
+  a {
+    color: $black;
+  }
+  .author {
+    font-family: $body;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+  display: block;
+  padding: 30px 50px 30px 30px;
+  // box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .2);
+  .post-time-info {
+    text-align: left;
+    font-family: $body;
+    margin-bottom: 10px;
+    font-size: 14px;
+    @include media-query(767px) {
+      font-size: 1.1em;
+      text-align: left;
+      margin-bottom: 15px;
     }
-    .author {
+  }
+  .blog-category {
+    text-transform: uppercase;
+    font-size: 17px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    font-family: $body;
+  }
+  .post-info {
+    display: block;
+    word-break: break-word;
+    h2 {
+      font-size: 1.2em;
+    }
+    p {
       font-family: $body;
-      font-size: 14px;
+      font-size: 18px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
-      line-height: normal;
-      letter-spacing: normal;
-    }
-    display: block;
-    padding: 30px 50px 30px 30px;
-    // box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .2);
-    .post-time-info {
-      text-align: left;
-      font-family: $body;
-      margin-bottom: 10px;
-      font-size: 14px;
-      @include media-query(767px) {
-        font-size: 1.1em;
-        text-align: left;
+      line-height: 1.5;
+      letter-spacing: 0.34px;
+      margin-bottom: 20px;
+      @include media-query($on-palm) {
         margin-bottom: 15px;
       }
     }
-    .blog-category {
-      text-transform: uppercase;
-      font-size: 17px;
-      font-weight: bold;
-      display: block;
-      margin-bottom: 10px;
-      font-family: $body;
-    }
-    .post-info {
-      display: block;
-      word-break: break-word;
-      h2 {
-        font-size: 1.2em;
-      }
-      p {
-        font-family: $body;
-        font-size: 18px;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.5;
-        letter-spacing: 0.34px;
-        margin-bottom: 20px;
-        @include media-query($on-palm) {
-          margin-bottom: 15px;
-        }
-      }
-      @include media-query($on-palm) {
-        width: 100%;
-      }
-    }
-    .read-more {
-      color: $blue;
-      font-family: $body;
-      font-size: 1.4em;
-      font-weight: 300;
-      letter-spacing: .02em;
-      @include media-query($on-palm) {
-        font-size: 1.1em;
-      }
-    }
     @include media-query($on-palm) {
-      padding: 20px;
+      width: 100%;
     }
   }
+  .read-more {
+    color: $blue;
+    font-family: $body;
+    font-size: 1.4em;
+    font-weight: 300;
+    letter-spacing: .02em;
+    @include media-query($on-palm) {
+      font-size: 1.1em;
+    }
+  }
+  @include media-query($on-palm) {
+    padding: 20px;
+  }
 }
+
+
+
+
 
 .post-meta {
   font-size: $base-font-size;
