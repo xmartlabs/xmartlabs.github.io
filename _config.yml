@@ -12,6 +12,7 @@ url_team: 'https://xmartlabs.com/#our_team'
 url_blog: 'https://blog.xmartlabs.com'
 twitter_username: xmartlabs
 github_username: xmartlabs
+plugins: [jekyll-paginate]
 
 jekyll-crosspost_to_medium:
   status: draft
@@ -27,6 +28,11 @@ permalink: /:year/:month/:day/:title/
 
 # sass:
 #   style: :compressed
+
+# Pagination
+paginate: 6
+paginate_path: "/page/page:num/"
+
 
 defaults:
   # Default layout and language to everything

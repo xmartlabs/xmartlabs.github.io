@@ -5,15 +5,16 @@ $pink: #d91965;
 $light-grey: #a0a0a0;
 $lighter-grey: #ececec;
 $grey: #525252;
-$body: 'Source Sans Pro', sans-serif;
+$body: 'Graphik', sans-serif;
+$title-font-family: 'Libre Baskerville', sans-serif;
 
 a {
-  color: $grey;
+  color: $black;
   &:visited {
-    color: $grey;
+    color: $black;
   }
   &:hover {
-    color: $grey;
+    color: $black;
   }
   text-decoration: none;
 }
@@ -25,17 +26,26 @@ div.header {
   color: $black;
   background-size: cover;
   .header-title {
-    letter-spacing: 0px;
-    font-size: 3em;
+
+    font-family: $body;
+    font-size: 48px;
     font-weight: bold;
-    line-height: 1em;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.91px;
     color: $black;
-    margin-bottom: 0;
   }
   .header-subtitle {
-    font-size: 3em;
-    font-weight: 300;
-    line-height: 1.2em;
+
+    font-family: $body;
+    font-size: 32px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.61px;
+    color: $black;
     @include media-query($on-palm) {
       font-size: 20px;
     }
@@ -48,7 +58,7 @@ div.header {
     max-width: 940px;
     margin: auto;
     text-align: left;
-    padding: 50px 15px 20px;
+    padding: 35px 15px 20px;
     @include media-query($md-width) {
       max-width: $md-content-width;
     }
@@ -63,13 +73,20 @@ div.header {
   margin-right: auto;
   margin-left: auto;
   padding: 0 15px;
-  display: flex;
+  // display: flex;
   flex-direction: column;
   .bottom-row {
     margin-top: 10px;
     display: flex;
     @include media-query($on-palm) {
       flex-direction: column;
+    }
+    .featured-column:last-of-type {
+        margin-left: 10px;
+        @include media-query($on-palm) {
+          margin-top: 10px;
+          margin-left: 0;
+        }
     }
     .featured-post {
       height: 270px;
@@ -96,26 +113,8 @@ div.header {
     img {
       box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .5);
     }
-    .post-title {
-      position: absolute;
-      bottom: 20px;
-      left: 30px;
-      font-size: 3em;
-      @include media-query($on-palm) {
-        font-size: 20px;
-        bottom: 5px;
-        left: 15px;
-      }
-    }
     @include media-query($on-palm) {
       height: 200px;
-    }
-  }
-  .featured-post:last-of-type {
-    margin-left: 10px;
-    @include media-query($on-palm) {
-      margin-top: 10px;
-      margin-left: 0;
     }
   }
   @include media-query($md-width) {
@@ -130,7 +129,6 @@ div.header {
 .post-author-avatar {
   float: left;
   border-radius: 50%;
-  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 1);
   margin-right: 20px;
   margin-bottom: 10px;
 }
@@ -140,71 +138,114 @@ div.header {
   padding-left: 0;
   list-style: none;
   >li {
-    margin-bottom: 50px;
+    margin-bottom: 15px;
     @include media-query($on-palm) {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
   }
   >li:last-child {
     margin-bottom: 20px;
   }
-  article {
-    display: block;
-    padding: 30px 50px;
-    box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .2);
-    .post-time-info {
-      text-align: right;
-      font-family: $body;
-      @include media-query(767px) {
-        font-size: 1.1em;
-        text-align: left;
-        margin-bottom: 15px;
-      }
-    }
-    .post-info {
-      float: left;
-      display: block;
-      width: 77%;
-      word-break: break-word;
-      h1.post-title {
-        margin-top: 4px;
-        color: $black;
-        @include media-query($on-palm) {
-          margin-bottom: 5px;
-        }
-      }
-      h2 {
-        font-size: 1.2em;
-      }
-      p {
-        margin-bottom: 20px;
-        @include media-query($on-palm) {
-          margin-bottom: 15px;
-        }
-      }
-      @include media-query($on-palm) {
-        width: 100%;
-      }
-    }
-    .read-more {
-      color: $blue;
-      font-family: $body;
-      font-size: 1.4em;
-      font-weight: 300;
-      letter-spacing: .02em;
-      @include media-query($on-palm) {
-        font-size: 1.1em;
-      }
-    }
-    @include media-query($on-palm) {
-      padding: 20px;
-    }
+}
+
+a.blog-category {
+  text-transform: uppercase;
+  font-size: 17px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+  font-family: $body;
+}
+
+.post-title {
+  color: $black;
+  font-family: $title-font-family;
+  font-size: 32px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.34;
+  letter-spacing: normal;
+  margin-top: 10px;
+  @include media-query($on-palm) {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-top: 0;
   }
 }
 
+article.post-item {
+  a {
+    color: $black;
+  }
+  .author {
+    font-family: $body;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+  display: block;
+  padding: 30px 50px 30px 30px;
+  // box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .2);
+  .post-time-info {
+    text-align: left;
+    font-family: $body;
+    margin-bottom: 10px;
+    font-size: 14px;
+    @include media-query(767px) {
+      font-size: 1.1em;
+      text-align: left;
+      margin-bottom: 15px;
+    }
+  }
+  .post-info {
+    display: block;
+    word-break: break-word;
+    h2 {
+      font-size: 1.2em;
+    }
+    p {
+      font-family: $body;
+      font-size: 18px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: 0.34px;
+      margin-bottom: 20px;
+      @include media-query($on-palm) {
+        margin-bottom: 15px;
+      }
+    }
+    @include media-query($on-palm) {
+      width: 100%;
+    }
+  }
+  .read-more {
+    color: $blue;
+    font-family: $body;
+    font-size: 1.4em;
+    font-weight: 300;
+    letter-spacing: .02em;
+    @include media-query($on-palm) {
+      font-size: 1.1em;
+    }
+  }
+  @include media-query($on-palm) {
+    padding: 20px;
+  }
+}
+
+
+
+
+
 .post-meta {
   font-size: $base-font-size;
-  color: $grey-color;
+  color: $black;
 }
 
 .page-content {
@@ -251,6 +292,8 @@ div.header {
 }
 
 .post-header {
+  margin-top: 35px;
+  margin-bottom: 20px;
   text-align: center;
   .wrapper {
     height: 100%;
@@ -258,35 +301,8 @@ div.header {
     width: 100%;
     text-align: left;
   }
-  .post-title {
-    color: $black;
-    font-size: 40px;
-    font-weight: bold;
-    line-height: 1.2em;
-    letter-spacing: 0px;
-    @include media-query($on-palm) {
-      font-size: 25px;
-      letter-spacing: 2px;
-      margin-top: 0;
-    }
-  }
   @include media-query($on-palm) {
     padding: 0;
-  }
-}
-
-.post-title {
-  font-family: $body;
-  font-size: 2.5em;
-  letter-spacing: 0px;
-  line-height: 1.2;
-  font-weight: bold;
-  color: $white;
-  a {
-    color: $black;
-  }
-  @include media-query($on-palm) {
-    font-size: 20px;
   }
 }
 
@@ -330,11 +346,18 @@ div.header {
     }
     .post-author {
       margin-top: 20px;
+      font-family: $body;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5em;
+      letter-spacing: normal;
       a {
         color: $black;
       }
       span {
-        color: $light-grey;
+        color: $black;
       }
       @include media-query($on-palm) {
         margin-top: 10px;
@@ -400,7 +423,7 @@ div.header {
     .post-footer {
       .dots {
         font-family: $body;
-        color: $light-grey;
+        color: $black;
         letter-spacing: 15px;
       }
       .share-list {
@@ -421,27 +444,40 @@ div.header {
 }
 
 .post_container {
-  color: #555;
+  color: $black;
   font-size: $text-size;
   line-height: $line-height;
   font-family: $body;
+  letter-spacing: 0.34px;
   p {
+    font-family: $body;
     margin-bottom: 1.4em;
+    font-size: 16px;
+    line-height: 1.7;
   }
   h2 {
-    font-size: 32px;
+    font-family: $title-font-family;
+    font-size: 29px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     @include media-query($on-laptop) {
       font-size: 28px;
     }
   }
   h3 {
-    font-size: 26px;
+    font-family: $title-font-family;
+    font-size: 24px;
+    margin-top: 25px;
+    margin-bottom: 16px;
     @include media-query($on-laptop) {
       font-size: 22px;
     }
   }
   h4 {
+    font-family: $title-font-family;
     font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 13px;
     @include media-query($on-laptop) {
       font-size: 18px;
     }
