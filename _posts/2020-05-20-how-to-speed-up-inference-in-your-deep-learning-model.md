@@ -84,13 +84,14 @@ In a similar fashion to the previous approach, this alternative aims to trade-of
 It offers a middle point between FP32 and UInt8, where:
 
 - The model size is reduced by up to half (instead of by up to 75%)
-- The difference of accuracy is negligible compared to FP32, this means not sacrificing as much accuracy as when applying model quantization.
+- The diminish of accuracy is less than UInt8, which brings the accuracy trade-off even more closer to FP32.
+- Most neural network weights [already fall into this range](https://devblogs.nvidia.com/mixed-precision-training-deep-neural-networks/), although doing this conversion risks gradient underflow (small gradient values becoming zeroes) and thus the network never learning anything.
 
 Considering that nowadays the architecture of the GPUs is shifted to being optimized for FP16 operations, especially using tensor cores, this approach offers a great trade-off for increasing speed.
 
 Moreover, it turns out that not all layers of the network take a significant time during inference.
 This means that we can find an even better trade-off by using half-precision only in the layers that need a speed boost (such as convolutions) and leave the rest in FP32.
-Having layers in FP32 not only increments precision in some operations but also prevents gradient underflow (small gradient values becoming zeroes).
+Even better, having some layers in FP32 helps preventing gradient underflow.
 
 This approach is called [Automatic Mixed Precision](https://arxiv.org/abs/1710.03740), and it differs on quantization in that rather than post-processing the weights of a trained model, the model should be trained, using mixed precision from the get-go.
 
