@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "5 Practical Ways to Speed Up your Deep Learning Model"
-excerpt: "Did you obtain good accuracy with your deep learning model only to find out that inference time isn't enough to deploy on production? Are you lost on how to optimize your model's inference speed? Then this post is for you."
+excerpt: "Did you obtain good accuracy with your deep learning model only to find out that running it on production takes too long for your use case? Are you lost on how to optimize your model's inference speed? Then this post is for you."
 date: 2020-06-01 10:00:00
 author: Renzo Gambone
 tags: [Xmartlabs, Deep Learning, Optimization]
@@ -26,7 +26,7 @@ Data Science projects have the peculiarity that your focus must constantly shift
 
 And it is often that in this last question we focus mostly on obtaining the best accuracy for the dataset.
 This makes the most sense, as it allows us to validate if the project is feasible.
-If we need to invest in more data for the model to fulfil the goal we intend it to.
+If we need to invest in more data for the model to fulfill its goal.
 
 For some projects, slow inference speed is not a dealbreaker.
 But what happens when it is?
