@@ -7,7 +7,7 @@ author: Rodrigo Arsuaga
 tags: [Xmartlabs, iOS Conference]
 category: people-events
 author_id: arsu
-featured_image: /images/recap-appbuilders/featured.jpeg
+featured_image: /images/recap-appbuilders/featured.jpg
 show: true
 crosspost_to_medium: false
 
@@ -31,7 +31,7 @@ That being said, now I want to share my thoughts about each talk, starting with 
 
 ### Small teams, Big OSS
 
-<div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/featured.jpeg" /></div>
+<div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/featured.jpg" /></div>
 
 "Small teams, Big OSS"  shares multiple tips and insight on how to run OSS, either with your company or personally.
 Going through key points like motivation and how to make OSS a part of your daily life to how to work with the community and promote your OSS.
