@@ -109,6 +109,21 @@ Whereas if you're using PyTorch, [NVIDIA Apex](https://github.com/NVIDIA/apex) i
 Integrating Apex is advertised as a mere addition of three lines to your code.
 And actually, it is not much more than that.
 You must initialize it, change the backward pass call to use Apex's scaled loss, and modify the way you save and load checkpoints.
+
+```python
+from apex.fp16_utils import *
+from apex import amp, optimizers
+...
+# Initialization
+opt_level = 'O1'
+model, optimizer = amp.initialize(model, optimizer, opt_level=opt_level)
+# Train your model
+...
+with amp.scale_loss(loss, optimizer) as scaled_loss:
+    scaled_loss.backward()
+...
+```
+
 The results are pretty good as well.
 How much speedup you get will strongly depend on the model you are training, but we got over 30% speed improvement without any impact on the accuracy of our Faster R-CNN model.
 
