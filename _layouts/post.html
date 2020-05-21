@@ -33,6 +33,11 @@ layout: default_post
         </div>
         <div class="post-footer">
           <p class="dots">• • • • • •</p>
+        </div>
+        {% assign post = page %}
+        {% include related_posts.html %}
+        <div class="post-footer">
+          <p class="dots">• • • • • •</p>
           {% include social_media.html %}
         </div>
         <div class="clear"></div>

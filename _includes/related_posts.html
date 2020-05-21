@@ -1,0 +1,42 @@
+{% assign displayPosts = site.posts | where: 'show', true | where: 'category', post.category  %}
+<div class="related-blogs-container">
+    <h1 class="more">More From Xmartlabs Blog</h1>
+    <div class="featured-column">
+      <div class="bottom-row">
+        {% assign sameCategoryCount = 0 %}
+        {% for relatedPost in displayPosts %}
+          {% if relatedPost.url == post.url %}
+            {% continue %}
+          {% endif %}
+          {% assign sameCategoryCount = sameCategoryCount | plus: 1 %}
+          {% if sameCategoryCount > 2 %}
+            {% break %}
+          {% endif %}
+          {% assign category = site.data.categories[relatedPost.category] %}
+          {% assign author = site.data.authors[relatedPost.author_id] %}
+          <div class="featured-column">
+            <div class="featured-post" style="background-image: url('{{ relatedPost.featured_image}}');">
+              <a href="{{ relatedPost.url | prepend: site.baseurl }}">
+              </a>
+            </div>
+            <article class="post-item">
+              <a href="" class="blog-category"># {{ category.display_name}}</a>
+              <a href="{{ relatedPost.url | prepend: site.baseurl }}">
+                <div class="post-info">
+                  <div class="post-time-info">
+                    <time class="post-meta" datetime="{{ relatedPost.date }}">
+                      {{ relatedPost.date | date: "%b %-d, %Y" }}
+                    </time>
+                  </div>
+                  <h1 class="post-title">
+                    {{ relatedPost.title }}
+                  </h1>
+                </div>
+              </a>
+              <span class="author">By <a href="{{author.profile_url}}" class="author" target="_blank" >{{ author.display_name }}</a></span>
+            </article>
+          </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
