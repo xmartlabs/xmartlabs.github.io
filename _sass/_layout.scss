@@ -68,6 +68,85 @@ div.header {
   }
 }
 
+.related-blogs-container{
+  max-width: $content-width;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  .more {
+    text-transform: uppercase;
+    font-size: 27px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    font-family: "Graphik", sans-serif;
+    color: $black;
+    @include media-query($on-palm) {
+      font-size: 23px;
+    }
+  }
+  .bottom-row {
+    margin-top: 10px;
+    display: flex;
+    @include media-query($on-palm) {
+      flex-direction: column;
+    }
+    .featured-column {
+      flex-basis: 100%;
+      .post-item {
+        .post-title  {
+          font-size: 20px;
+        }
+         padding: 30px 20px 30px 20px;
+         @include media-query($on-palm) {
+           padding: 15px 0px 30px 0px;
+         }
+      }
+    }
+    .featured-column:last-of-type {
+        margin-left: 10px;
+        @include media-query($on-palm) {
+          margin-top: 10px;
+          margin-left: 0;
+        }
+    }
+    .featured-post {
+      height: 200px;
+      @include media-query($on-palm) {
+        height: 200px;
+      }
+      @media (min-width: $on-palm + 1) {
+        flex: 0.5;
+      }
+    }
+  }
+  .featured-post {
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    a {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+    img {
+      box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .5);
+    }
+    @include media-query($on-palm) {
+      height: 200px;
+    }
+  }
+  @include media-query($md-width) {
+    max-width: $md-content-width;
+  }
+  @include media-query($on-palm) {
+    flex-direction: column;
+  }
+}
+
 .featured-container {
   max-width: $content-width;
   margin-right: auto;
@@ -80,6 +159,14 @@ div.header {
     display: flex;
     @include media-query($on-palm) {
       flex-direction: column;
+    }
+    .featured-column {
+      .post-item {
+         padding: 30px 20px 30px 20px;
+         @include media-query($on-palm) {
+           padding: 15px 0px 30px 0px;
+         }
+      }
     }
     .featured-column:last-of-type {
         margin-left: 10px;
@@ -155,6 +242,10 @@ a.blog-category {
   display: block;
   margin-bottom: 10px;
   font-family: $body;
+  @include media-query($on-palm) {
+    font-size: 13px;
+    margin-bottom: 3px;
+  }
 }
 
 .post-title {
@@ -198,7 +289,7 @@ article.post-item {
     @include media-query(767px) {
       font-size: 1.1em;
       text-align: left;
-      margin-bottom: 15px;
+      margin-bottom: 6px;
     }
   }
   .post-info {
