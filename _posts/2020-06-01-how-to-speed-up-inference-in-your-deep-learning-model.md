@@ -51,21 +51,27 @@ The first step on optimizing our model runtime is to make the most out of our mo
 
 Converting the model's weights from floating point (32-bits) to integers (8-bits) will degrade accuracy, but it significantly decreases model size in memory, while also improving CPU and hardware accelerator latency.
 
+How to implement this approach will vary greatly depending on what framework is the model implemented on.
+
+If the model is implemented on TensorFlow that's great! Fortunately for you TensorFlows [gives native support to model quantization on GPU](https://www.tensorflow.org/api_docs/python/tf/quantization/quantize).
+
+If the model is implemented on PyTorch... Well, then it's not that great. At the moment of writing this article PyTorch's support to quantization is only on a CPU backend. Future PyTorch development aims to provide support for quantization on GPU, but at the time this is not the case in the [stable version](https://pytorch.org/docs/stable/quantization.html)
+
+So in order to quantize a PyTorch model, it must be run on [NVIDIA TensorRT](https://developer.nvidia.com/tensorrt), but for running it in TensorRT runtime the PyTorch model must be converted.
+As of now, the only way to achieve this conversion is to first convert the PyTorch model to [ONNX](https://github.com/onnx/onnx), and then finally convert it to TensorRT.
+
 **Our experience**
 
 When we tried to quantize a PyTorch [Faster R-CNN](https://arxiv.org/abs/1506.01497) model we, unfortunately, run into multiple issues.
 
-At the time of writing this article, PyTorch doesn't natively support model quantization for GPUs [as TensorFlow does](https://www.tensorflow.org/api_docs/python/tf/quantization/quantize).
-
-So in order to quantize a PyTorch model, we must run it on [NVIDIA TensorRT](https://developer.nvidia.com/tensorrt), but for running it in TensorRT runtime we must convert our PyTorch model.
-As of now, the only way to achieve this conversion is to first convert our PyTorch model to [ONNX](https://github.com/onnx/onnx), and then convert it to TensorRT.
-
-On paper, all this makes sense and should be easy enough to do.
+On paper, all this process makes sense and should be easy enough to do.
 However, in practice issues may occur from all these conversions.
-This is mainly due to the fact that the development of PyTorch, ONNX, and TensorRT goes in multiple directions when a feature is added into one an old integration won't necessarily support it. 
+This is mainly due to the fact that the development of PyTorch, ONNX, and TensorRT goes in multiple directions when a feature is added into one an old integration won't necessarily support it.
 
 - You may be able to run the model on ONNX, but [issues may occur when converting ONNX to TensorRT](https://github.com/onnx/onnx-tensorrt/issues/302), especially with some layers, [such as the Resize layer in PyTorch](https://github.com/NVIDIA/TensorRT/issues/284).
 - At the time we tried to do this conversion, it happened to us that [models built with PyTorch v1.3 or higher can be converted and run in ONNX Runtime, but can't be run through the ONNX optimizer](https://github.com/onnx/onnx/issues/2417) (which makes important improvements in the converted network).
+
+Do keep in mind that these issues may or may not arise depending in the architecture of our model, we had no issue converting a simple CNN network, however with the [Faster R-CNN](https://arxiv.org/abs/1506.01497) implementation we were working with, that's another story.
 
 Some users have managed to solve their issues during conversion by downgrading PyTorch.
 However, this limits the ONNX `opset` you can access, which in turn also limits what TensorRT version will you be able to run your engine with.
@@ -73,8 +79,8 @@ However, this limits the ONNX `opset` you can access, which in turn also limits 
 Hopefully, all these issues will be solved in the near future...
 But considering that all these frameworks have high development speed it's likely that there will always be short-lived incompatibility periods.
 
-Post-training quantization is definitely a powerful tool, and although we experienced issues when quantizing a PyTorch [Faster R-CNN](https://arxiv.org/abs/1506.01497) model, you should still give it a shot, considering that after exporting your model to ONNX it doesn't take much effort trying to convert it via command line using `trtexec`, which is readily available along with TensorRT in [Nvidia TensorRT docker container](https://ngc.nvidia.com/catalog/containers/nvidia:tensorrt).
-If this still doesn't work then we'd advise on looking for a TensorFlow implementation if quantization is still an approach you want to go for.
+Post-training quantization is definitely a powerful tool, and although some PyTorch models can't be quantized with this method, you should still give it a shot, considering that after exporting your model to ONNX it doesn't take much effort trying to convert it via command line using `trtexec`, which by the way is readily available along with TensorRT in the [Nvidia TensorRT docker container](https://ngc.nvidia.com/catalog/containers/nvidia:tensorrt).
+If PyTorch quantization fails then we'd advise on looking for a TensorFlow implementation if quantization is still an approach you want to go for.
 
 ---
 
