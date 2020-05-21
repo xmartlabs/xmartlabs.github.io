@@ -2,7 +2,8 @@
 layout: post
 title: "Android Navigation Component - Expectations, Conclusions & Tips - Part 1"
 date: 2020-05-25 10:00:00
-categories: android, architecture components, jetpack, navigation component
+tags: [Android, Architecture Components, Jetpack, Navigation Component, Xmartlabs]
+category: development
 author_id: mirland
 show: true
 featured_image: /images/android_navigation_blog_part_one/navigation_banner.jpg
