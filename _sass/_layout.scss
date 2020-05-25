@@ -581,6 +581,7 @@ article.post-item {
     li {
       padding-bottom: 0.25em;
       list-style-type: disc;
+      font-size: 16px;
     }
     @include media-query($on-palm) {
       padding-left: 0;
@@ -591,6 +592,9 @@ article.post-item {
     padding-bottom: 0.25em;
     &.alphabetical {
       list-style-type: lower-alpha;
+    }
+    li {
+      font-size: 16px;
     }
     @include media-query($on-palm) {
       padding-left: 0;
