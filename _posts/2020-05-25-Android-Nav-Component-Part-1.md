@@ -60,7 +60,7 @@ The navigation component includes a Gradle plugin that has a pretty self-explana
 That's really good because you can share arguments in a safe way and you don't have to care about the ugly key-value bundle used up until now.
 
 Although I mentioned that sharing data in that way is good, we found that sharing data among nested graphs is not safe yet, since we have to declare these arguments and if we forget the app crashes in runtime.
-This is something likely to improve in future version.
+This is something likely to improve in a future version.
 
 ### Debug and test your app
 
