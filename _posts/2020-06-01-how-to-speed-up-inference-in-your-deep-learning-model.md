@@ -17,6 +17,7 @@ Did you obtain good accuracy with your deep learning model only to find out that
 
 <div style="text-align: center"><img width="100%" src="/images/how-to-speed-up-inference-in-your-deep-learning-model/speed-up.jpg" /></div>
 
+
 Data Science projects have the peculiarity that your focus must constantly shift across completely different requirements.
 
 - How will you obtain the data? Are you creating the dataset? (if so what exactly should you label? how many samples should you invest in?)
@@ -45,7 +46,7 @@ Here at Xmartlabs we experienced this issue, researched what options we had avai
 
 ## Altering the model's weights
 
-The first step on optimizing our model runtime is to make the most out of our model's architecture. 
+The first step on optimizing our model runtime is to make the most out of our model's architecture.
 
 ### Post-training quantization
 
@@ -55,7 +56,7 @@ How to implement this approach will vary greatly depending on what framework is 
 
 If the model is implemented on TensorFlow that's great! Fortunately for you TensorFlows [gives native support to model quantization on GPU](https://www.tensorflow.org/api_docs/python/tf/quantization/quantize).
 
-If the model is implemented on PyTorch... Well, then it's not that great. At the moment of writing this article PyTorch's support to quantization is only on a CPU backend. Future PyTorch development aims to provide support for quantization on GPU, but at the time this is not the case in the [stable version](https://pytorch.org/docs/stable/quantization.html)
+If the model is implemented on PyTorch... Well, then it's not that great. At the moment of writing this article PyTorch's support to quantization is only on a CPU backend. Future PyTorch development aims to provide support for quantization on GPU, but at the time this is not the case in the [stable version](https://pytorch.org/docs/stable/quantization.html).
 
 So in order to quantize a PyTorch model, it must be run on [NVIDIA TensorRT](https://developer.nvidia.com/tensorrt), but for running it in TensorRT runtime the PyTorch model must be converted.
 As of now, the only way to achieve this conversion is to first convert the PyTorch model to [ONNX](https://github.com/onnx/onnx), and then finally convert it to TensorRT.
@@ -91,7 +92,7 @@ It offers a middle point between FP32 and UInt8, where:
 
 - The model size is reduced by up to half (instead of by up to 75%)
 - The diminish of accuracy is less than UInt8, which brings the accuracy trade-off even more closer to FP32.
-- Most neural network weights [already fall into this range](https://devblogs.nvidia.com/mixed-precision-training-deep-neural-networks/), although doing this conversion risks gradient underflow (small gradient values becoming zeroes) and thus the network never learning anything.
+- Most neural network weights [already fall into this range](https://devblogs.nvidia.com/mixed-precision-training-deep-neural-networks/), although doing this conversion risks gradient underflow (small gradient values becoming zeroes), which prevents the network from correctly learning anything.
 
 Considering that nowadays the architecture of the GPUs is shifted to being optimized for FP16 operations, especially using tensor cores, this approach offers a great trade-off for increasing speed.
 
@@ -194,3 +195,6 @@ In this blog, we've described five approaches to improve the inference time of y
 In particular, we'd advise you to implement them in the order we also listed them in, because any coding we do to implement model quantization and automatic mixed-precision is of great value to any further changes we make on our model.
 
 We hope that this article was of value to you, either by giving you guidance on an issue you're currently facing or by arming you with our knowledge should the need arise for it!
+
+
+**Let us know if you have an approach to speed up your model's inference not covered in this blogpost... Have any question about model's inference speed optimization? We'd be happy to answer those in the comments if we can.**
