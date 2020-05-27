@@ -99,7 +99,7 @@ In this talk, Chris Eidhof shared some tips on how to design custom components i
 
 ### Making your voice heard
 
-<div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/swift-ui.jpeg" />
+<div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/voice-hear.jpeg" />
 <p class="small">Sketchnote: Courtesy of <a href="http://twitter.com/felibe444">@felibe444</a></p>
 </div>
 
@@ -108,7 +108,7 @@ Inspiring words by Erica Sadun on how we should constantly engage with the Swift
 
 ### Practical machine learning
 
-<div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/swift-ui.jpeg" />
+<div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/machine-learning.jpeg" />
 <p class="small">Sketchnote: Courtesy of <a href="http://twitter.com/felibe444">@felibe444</a></p>
 </div>
 
