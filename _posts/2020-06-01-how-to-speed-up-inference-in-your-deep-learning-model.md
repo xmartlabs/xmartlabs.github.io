@@ -197,4 +197,4 @@ In particular, we'd advise you to implement them in the order we also listed the
 We hope that this article was of value to you, either by giving you guidance on an issue you're currently facing or by arming you with our knowledge should the need arise for it!
 
 
-**Let us know if you have an approach to speed up your model's inference not covered in this blogpost... Have any question about model's inference speed optimization? We'd be happy to answer those in the comments if we can.**
+**Let us know if you have an approach to speed up your model's inference that wasn't covered in this blogpost... Have any question about model's inference speed optimization? We'd be happy to answer those in the comments if we can.**
