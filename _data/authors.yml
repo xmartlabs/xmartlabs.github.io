@@ -122,3 +122,8 @@ tabu:
   image: members/tabu.jpg
   github: jgonzalezalbisu
   profile_url: https://github.com/jgonzalezalbisu
+renzo:
+  display_name: Renzo Gambone
+  image: members/renzo.jpeg
+  github: renzodgc
+  profile_url: https://github.com/renzodgc
