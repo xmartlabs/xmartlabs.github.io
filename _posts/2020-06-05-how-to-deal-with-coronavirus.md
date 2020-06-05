@@ -42,4 +42,4 @@ You may want to go out and see all the people you couldn’t see for a while, bu
 
 Last but not least, remember that we have a responsibility to our society to do the best we can, but the virus is nobody’s fault. So don’t feel guilty if you go to visit someone and they suddenly get sick, don’t feel guilty if you go out and things get bad in your country. Be responsible but don’t feel guilty if things don’t result as we wish.
 
-Also, remember that there are a lot of mental health professionals willing to help you if you need it, so ask for help if necessary!
+Also, remember that there are a lot of mental health professionals willing to help you if you need it! So don't hesitate to ask for help if necessary!
