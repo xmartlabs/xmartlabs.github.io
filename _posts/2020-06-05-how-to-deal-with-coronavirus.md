@@ -17,7 +17,7 @@ We are now in the midst of a globalized pandemic, which is pretty much new for a
 That's why every day we find ourselves feeling exhausted by trying to make it to the end of it.
 We can't change that COVID-19 has arrived and our lives have changed dramatically, that's a fact we must cope with. What we can do is to put our effort into what we can change, such as how we perceive quarantine, and what impacts the most in our health.
 
-This situation, a sanitary and economical crisis threatens our physical health and our mental health to the same extent.
+This situation, a sanitary and economical crisis, threatens our physical and mental health to the same extent.
 We are not used to talking about our mental health but sometimes it’s even more important than our physical one. Some of the risks that COVID-19 and the lockdown carry are: you’re more likely to feel depressed, anxious, abuse substances, having sleeping problems, and social withdrawal.
 
 ## First things first: Accept the outer context
