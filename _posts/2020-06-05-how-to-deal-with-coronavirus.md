@@ -34,12 +34,12 @@ Second recommendation, the lockdown or social distancing exhorts us to stay at h
 
 Third recommendation, don’t waste your time reading fake news or extremely negative information. Not all news is useful to keep us informed, some of them just make us anxious or sad. Remain with the official media, and don’t be “overinformed”.
 
-**Fourth recommendation: Find meaning in what’s happening. Ask yourself: Why am I staying at home? Which is my main motivation? Why are the other people staying at home? Transform this experience into something meaningful and positive. There are a lot of good reasons to stay at home, such as taking care of the elderly, preventing the virus from spreading too fast, and supporting the health care personnel...
+Fourth recommendation, find meaning in what’s happening. Ask yourself: Why am I staying at home? Which is my main motivation? Why are the other people staying at home? Transform this experience into something meaningful and positive. There are a lot of good reasons to stay at home, such as taking care of the elderly, preventing the virus from spreading too fast, and supporting the health care personnel...
 
 There is another thing that we should take into consideration. Some countries are leaving the lockdown behind and they are starting to go out again. If this is your case, stay as calm as you can. There is no need to rush, it’s not the time to make up for lost time, it’s time to recover and to adapt to the new normal.
 
-You may want to go out and see all the people you couldn’t see for a while, but it’s important for you to be progressive. Go out and see people as long as you feel comfortable, don’t make risky decisions, take care of yourself, and of the people around you. Wash your hands, keep social distancing, and if you have COVID-19 symptoms you should stay at home.
+You may want to go out and see all the people you couldn’t see for a while, but it’s important for you to be progressive. Go out and see people as long as you feel comfortable. Don’t make risky decisions, take care of yourself, and of the people around you. Wash your hands, keep social distancing, and if you have COVID-19 symptoms you should stay at home.
 
-Last but not least, remember that we have a responsibility to our society to do the best we can, but the virus is nobody’s fault. So don’t feel guilty if you go to visit someone and they suddenly get sick, don’t feel guilty if you go out and things get bad in your country. Be responsible but don’t feel guilty if things don’t result as we wish.
+Last but not least, remember that we have a responsibility towards our society to do the best we can, but the virus is nobody’s fault. So don’t feel guilty if you go to visit someone and they suddenly get sick, don’t feel guilty if you go out and things get bad in your country. Be responsible but don’t feel guilty if things don't go as we wish.
 
 Also, remember that there are a lot of mental health professionals willing to help you if you need it! So don't hesitate to ask for help if necessary!
