@@ -13,7 +13,7 @@ crosspost_to_medium: false
 
 ---
 
-We are in the midst of a globalized pandemic and this is kind of new for all of us.
+We are now in the midst of a globalized pandemic, which is pretty much new for all of us.
 So we are every day trying to make it to the end of it.
 COVID-19 has arrived and our lives have changed dramatically so we’re having to do a lot to put up with it.
 
