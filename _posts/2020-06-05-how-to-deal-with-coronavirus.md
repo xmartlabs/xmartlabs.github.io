@@ -36,7 +36,7 @@ Third recommendation, don’t waste your time reading fake news or extremely neg
 
 **Fourth recommendation: Find meaning in what’s happening. Ask yourself: Why am I staying at home? Which is my main motivation? Why are the other people staying at home? Transform this experience into something meaningful and positive. There are a lot of good reasons to stay at home, such as taking care of the elderly, preventing the virus from spreading too fast, and supporting the health care personnel...
 
-There is another thing that we should take into consideration, some countries are leaving the lockdown behind and they are starting to go out again. If this is your case, stay as calm as you can. There is no need to rush, it’s not time to make up for lost time, it’s time to recover and to adapt to the new normal.
+There is another thing that we should take into consideration. Some countries are leaving the lockdown behind and they are starting to go out again. If this is your case, stay as calm as you can. There is no need to rush, it’s not the time to make up for lost time, it’s time to recover and to adapt to the new normal.
 
 You may want to go out and see all the people you couldn’t see for a while, but it’s important for you to be progressive. Go out and see people as long as you feel comfortable, don’t make risky decisions, take care of yourself, and of the people around you. Wash your hands, keep social distancing, and if you have COVID-19 symptoms you should stay at home.
 
