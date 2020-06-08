@@ -13,6 +13,9 @@ crosspost_to_medium: false
 
 ---
 
+<div style="text-align: center"><img width="100%" src="/images/dealing-with-covid/dealing-with-covid.jpg" /></div>
+<br>
+
 We are now in the midst of a globalized pandemic, which is pretty much new for all of us.
 That's why every day we find ourselves feeling exhausted by trying to make it to the end of it.
 We can't change that COVID-19 has arrived and our lives have changed dramatically, that's a fact we must cope with. What we can do is to put our effort into what we can change, such as how we perceive quarantine, and what impacts the most in our health.
