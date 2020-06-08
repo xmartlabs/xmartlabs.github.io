@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "How to remain mentally and physically healthy during covid-19 quarantine"
+title: "How to stay mentally and physically healthy during covid-19 quarantine"
 excerpt: "In this blogpost I share some useful behaviour tips to overcame physically and mentally healthy the COVID-19 quarantine"
-date: 2020-06-05 10:00:00
+date: 2020-06-08 10:00:00
 author: Fernanda Barrios
 tags: [Xmartlabs, COVID-19, Mental Health, Physical Health]
 category: people-events
