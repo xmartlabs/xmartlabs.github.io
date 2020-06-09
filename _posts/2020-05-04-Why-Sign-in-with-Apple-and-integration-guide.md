@@ -160,15 +160,15 @@ Users could revoke permission for your app in *Setting →  Apple ID →  Passwo
 
 Apple provides a way to know when that happens through an explicit notification so our app can handle it.
 
-We need to register for `NSNotification.Name.ASAuthorizationAppleIDProviderCredentialRevoked` notification.
+We need to register for `ASAuthorizationAppleIDProvider.credentialRevokedNotification` notification.
 
 ```swift
-NotificationCenter.default.addObserver(self, selector: #selector(appleIDCredentialRevoked), name: NSNotification.Name.ASAuthorizationAppleIDProviderCredentialRevoked, object: nil)
+NotificationCenter.default.addObserver(self, selector: #selector(appleIDCredentialRevoked(_:)), name: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil)
 ```
-We can check credential state with `getCredentialStateForUserID`. Remember that we should have saved the user identifier in our app keychain. Let's implement the function to handle 'NSNotification.Name.ASAuthorizationAppleIDProviderCredentialRevoked'.
+We can check credential state with `getCredentialStateForUserID`. Remember that we should have saved the user identifier in our app keychain. Let's implement the function to handle `ASAuthorizationAppleIDProvider.credentialRevokedNotification`.
 
 ```swift
-  @objc func appleIDCredentialRevoked() {
+  @objc func appleIDCredentialRevoked(_ notification: Notification) {
     let appleIDProvider = ASAuthorizationAppleIDProvider()
     appleIDProvider.getCredentialState(forUserID: userIdentifier) { (credentialState, error) in
         switch credentialState {
@@ -209,7 +209,7 @@ Tap *+* to register your email sources. In *Domains and Subdomains* section add 
 
 <img width="100%" src="/images/apple-sign-in/registerEmailSources.png" />
 
-> The register will fail if you don't use SPF. If you're using Google to send mails, [here](https://support.google.com/a/answer/33786?hl=en) you hav a configuration guide.
+> The register will fail if you don't use SPF. If you're using Google to send mails, [here](https://support.google.com/a/answer/33786?hl=en) you have a configuration guide.
 
 After you get your domain registered, click *Download* and place the file in the specified location (https://YourDomain/.well-known/apple-developer-domain-association.txt) and click *Verify*.
 
