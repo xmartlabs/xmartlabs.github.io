@@ -31,7 +31,7 @@ We need to remember that we are in a crisis so our first goal is to survive! We 
 
 Although we can’t do much to change the entire situation, there are some things that we can do in our lives. So next, we are giving you some recommendations to put up with this coronavirus situation:
 
-### Time-box companining time
+### Time-box complaining time
 
 Don’t be complaining about everything the entire day. That’s exhausting for you and for the people living with you. A solution for this is to save 15 minutes a day for complaining. So, instead of being the whole day crying and grumbling, you have your “15-minute complaining time”.
 
