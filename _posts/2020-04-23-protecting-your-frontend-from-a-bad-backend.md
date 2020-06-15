@@ -224,7 +224,7 @@ Just go to the serializer and change how the name is obtained: `name: data.Produ
 Commit, open a PR and you're done for the day.
 
 What's more, note how serializers are also resilient against changes in structure.
-APIs can change where the data is stored in the response tree, but serializers can just go and fetch it from where they need.
+APIs can change how the data is organized in the response JSON, but serializers can quickly be updated to just read it from the correct place.
 You don't need to refactor your whole app if some data is moved.
 Naturally, if information you need is removed then serializers won't be of any use, you'll have to solve the problem by fetching that data from somewhere else (the controller can probably do this).
 
