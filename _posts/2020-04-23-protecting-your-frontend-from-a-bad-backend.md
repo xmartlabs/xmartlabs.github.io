@@ -10,17 +10,17 @@ show: true
 category: development
 ---
 
-As a developer, you'll probably have to consume services provided by code of other developers.
+As a developer, you'll probably have to consume services provided by third-party code.
 This is true in many aspects of the trade: using a third-party library, interfacing with OS components, consuming web services.
 I'd even wager that in today's development environment it's highly unlikely that you won't do one of the previously listed things.
 
-Relying on other people's code can be great: it allows us to manage and maintain less code, and also rely on the community for support.
+Relying on other people's code can be great: it allows us not only to manage and maintain less code, but also to rely on the community for support.
 It can also be challenging.
 Not all code is great, and not all code works like we want it to.
 
-This post tackles one of such challenges: a frontend app that must consume services and data from a "bad" backend.
-We'll look at a way to define the architecture of frontend apps to be resilient against backends that change frecuently, or that don't serve structured data.
-Also, by implementing this architecture, your project will be less tightly coupled to the backend, allowing for some freedom of technical choices (keep reading to find out more!).
+This post tackles how to overcome one of such challenges: a frontend app that must consume services and data from a "bad" backend.
+We'll look at a way to define the architecture of frontend apps to be resilient against backends that change frequently, or that don't serve structured data.
+Moreover, by implementing this architecture, your project will be less tightly coupled to the backend, allowing for some freedom of technical choices (keep reading to find out more!).
 
 ## Motivation
 
@@ -215,7 +215,7 @@ class ProductSerializer {
 Our serializer has taken a single product and returned a new object with only the information we need, using a key nomenclature that is easier to read, and has also changed the type of the `hasStock` field to boolean.
 Notice how the database timestamps are nowhere to be seen, we don't need them so we just ignore them.
 Serializers are great since they automatically document the data we're using from our API.
-No more "do we even use this field?" questions anymore, just go to the appropriate serializer and look it up.
+No more "do we even use this field?" questions anymore, just go to the appropriate serializer and look it up. You are the one in control!
 
 What if, in a few months, the API decides that `Product_Name` should be changed to `Product_name` (lower case "n").
 If we've been using this field everywhere in our app, then we might be at risk of introducing bugs by mass-replacing (this is quite a simple example, I know, but bear with me).
@@ -223,7 +223,7 @@ With serializers, this is a trivial issue.
 Just go to the serializer and change how the name is obtained: `name: data.Product_name` and *voilà*.
 Commit, open a PR and you're done for the day.
 
-Also note how serializers are also resilient agains changes in structure.
+What's more, note how serializers are also resilient against changes in structure.
 APIs can change where the data is stored in the response tree, but serializers can just go and fetch it from where they need.
 You don't need to refactor your whole app if some data is moved.
 Naturally, if information you need is removed then serializers won't be of any use, you'll have to solve the problem by fetching that data from somewhere else (the controller can probably do this).
@@ -233,16 +233,16 @@ Given a certain model, they'll serialize it so that the backend receives the app
 This is useful, for example, if the user is allowed to edit their data, or is allowed to create a product.
 
 What if my API is great and they return exactly the data I need with the perfect nomenclature of keys?
-Serializers are also useful in this case.
+Serializers are also useful in this case!
 They will still act as a protector of your data in case the API changes in the future, so I'd recommend using these no matter what.
 
 ### Models
 
-Up to now we've seen how our controllers help us encapsulate requests to our API and also how serializers protect our app by acting as firewalls of data.
+Up to now, we've seen how our controllers help us encapsulate requests to our API, and also how serializers protect our app by acting as firewalls of data.
 You might think that we should be done with this.
 Our frontend is protected and decoupled from our API as much as we can.
 And that assumption is... true.
-Models are not used to decouple our frontend from the backend, nor protect the data.
+Models are not meant to decouple our frontend from the backend, nor protect our data.
 They are used to inject *meaning* and *value* into our data.
 Simply speaking, they are classes that represent concepts on our frontend.
 The advantage of models is that they are, in a certain way, **owned** by the frontend.
@@ -251,7 +251,7 @@ Throwing around Javascript objects everywhere is all good and fine.
 We can probably just grab the objects the serializer returns and use those, right?
 Well... what if there's a very complex logic for how to know if we should the product as "available" or not?
 In our example, maybe just because the product has stock does not mean we should show it as available.
-Maybe it depends on other factors and data, and the API should not really care about that, it's a frontend thing.
+Maybe it depends on other factors and data, which the API should not really care about since it's a frontend thing.
 That's where a product model can come in handy:
 
 ```js
@@ -270,33 +270,33 @@ class Product {
 }
 ```
 
-Having a model that represents our data allows us to encapsulate business logic related to the data right along the data itself.
-Also, it allows us to store calculated attributes (for example, data that is derived from the initial data but that we pre-compute to avoid unnecessary computations later).
+Having a model that represents our data allows us to encapsulate business logic right along with the data itself.
+Moreover, it allows us to store calculated attributes (for example, data that's derived from the initial data but that we pre-compute to avoid unnecessary computations later).
 You might have noticed the constructor is quite silly.
 We're just storing the parameters that were passed.
-And if you look closely you'll find out the parameters have the same structure as what the serializer creates when deserializing the data.
-This might seem repetitive and kinda pointless but I think it's really worth it, and the cost of implementing a model is almost zero.
+And if you look closely you'll find out that the parameters have the same structure as what the serializer creates when deserializing the data.
+This might seem repetitive and kinda pointless but I think it's really worth it. And the cost of implementing a model is almost zero.
 
-One of the greatest things about models is that you no longer work with plain Javscript objects. Your data has meaning and structure now. Data logging is now a bit more clear, as I can instantly know what type of data I'm logging. If some data I'm handling doesn't have a model prototype, then I know something went wrong somewhere.
+One of the greatest things about models is that you no longer work with plain Javascript objects. Your data has meaning and structure now. Data logging is now a bit more clear, as I can instantly know what type of data I'm logging. If some data I'm handling doesn't have a model prototype, then I know something went wrong.
 
 ### Putting all together
 
 Let's summarize what each part of the pattern provides:
 
 * **Controllers**: provide an abstraction of our API (or a portion of it) and allow other components to forget where the data comes from and how it is fetched.
-* **Serializers**: protect data by acting as an adapter and a firewall. They transform and remove data according to our needs and document what we're using.
+* **Serializers**: protect data by acting as an adapter and a firewall. They transform and remove data according to our needs, while at the same time documenting what we're using.
 * **Models**: add meaning to our data. They aid us by allowing the frontend to inject its own logic and value to data, without needing support from the API.
 
 Remember that the idea of the pattern is to be versatile and applicable in many different cases.
 I've shown a possible minimal implementation with Javascript, but you can certainly use it in other languages with any framework.
 As long as you have *something* in your code that acts as a part of the pattern, then you're implementing it!
 I recommend (if you want to apply it) to experiment and see what suits you best.
-In my experience in my team I've seen that people tend to make this pattern their own by implementing it slightly differently, which is awesome and helps us learn from others.
+In my experience, I've seen that people tend to make this pattern their own by implementing it slightly differently, which is awesome and helps us learn from others.
 
 ### Error handling
 
 We haven't discussed yet how to handle errors or unhappy paths in our app.
-I'm not going to go into full detail as this post is already quite packed, so I'm just going to quickly explain how we handle errors in our projects with this pattern.
+I'm not going to go into full detail, as this post is already quite packed. So I'm just going to quickly explain how we handle errors in our projects with this pattern.
 
 Typically we implement some kind of networking service that acts as an adapter with the networking library we're using (fetch, axios, whatever you like).
 In the controller we discussed above, this service would be the implementation of the `makeRequest` method.
@@ -307,7 +307,7 @@ You could even switch networking libraries without changing anything but the net
 
 Error handling is sometimes hard, and it requires support from the backend.
 We must know how errors are categorized and come up with a certain "contract" for how the backend communicates these errors.
-This is sadly unavoidable, but using this pattern you can also protect yourself from bad errors by deserializing them.
+This is sadly unavoidable, but using this pattern you can also protect yourself from badly formatted errors by deserializing them.
 Failure to deserialize an error will be interpreted as an unexpected error from the backend, and you can track those and find out what happened, even in production.
 
 ## Conclusion
