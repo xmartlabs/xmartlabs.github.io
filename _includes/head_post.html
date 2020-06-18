@@ -2,7 +2,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>{% if page.title %}{{ page.title }} | Xmartlabs{% else %}{{ site.title }}{% endif %}</title>
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }} | Xmartlabs Blog{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   <meta name="keywords" content="{{ page.tags | join: ', '  }}">
   {% if page.show %}
@@ -19,9 +19,9 @@
   <meta name="author" content="{{ site.data.authors[page.author_id].display_name }}">
   {% endif %}
   <meta property="og:title" content="{{ page.title }} | Xmartlabs Blog" />
-  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }} | Xmartlabs Blog{% endif %}">
   <meta property="og:type" content="article">
-  <meta property="og:updated_time" content="{{ page.date |  }}">
+  <meta property="og:updated_time" content="{{ page.date }}">
   <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url_blog }}">
 
   <meta name="twitter:card" content="summary_large_image">
