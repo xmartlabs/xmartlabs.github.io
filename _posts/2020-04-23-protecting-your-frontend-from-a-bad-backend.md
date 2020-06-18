@@ -249,7 +249,7 @@ The advantage of models is that they are, in a certain way, **owned** by the fro
 
 Throwing around Javascript objects everywhere is all good and fine.
 We can probably just grab the objects the serializer returns and use those, right?
-Well... what if there's a very complex logic for how to know if we should the product as "available" or not?
+Well... what if there's a very complex logic for how to know if we should present the product as "available" or not?
 In our example, maybe just because the product has stock does not mean we should show it as available.
 Maybe it depends on other factors and data, which the API should not really care about since it's a frontend thing.
 That's where a product model can come in handy:
