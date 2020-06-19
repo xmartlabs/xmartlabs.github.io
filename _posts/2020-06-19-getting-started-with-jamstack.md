@@ -3,7 +3,7 @@ layout: post
 title: "New to Jamstack? Everything you need to know to get started"
 date: 2020-06-19 10:00:00
 tags: [Jamstack, Markup, Static Site Generator, Static Website, web stack, Xmartlabs]
-excerpt: "In this blogpost, we cover all you need to know to get started with Jamstack, from its meaning and best practices to what caused the Jamstack rapid adoption as a web stack alternative."
+excerpt: "In this blogpost, we cover all you need to get started with Jamstack. From its meaning and best practices to what caused Jamstack's rapid adoption as a web stack alternative."
 category: development
 author_id: mtnBarreto
 show: true
