@@ -10,7 +10,7 @@ layout: null
   </url>
   {% for post in site.posts %}
   <url>
-    <loc>{{ post.url | prepend: site.url_blog }}</loc>
+    <loc>{{ post.url | prepend: site.url }}</loc>
     <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
