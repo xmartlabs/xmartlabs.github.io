@@ -283,6 +283,6 @@ We'll be glad if you provide feedback :)
 [Fountain]: https://github.com/xmartlabs/fountain
 [LiveData]: https://developer.android.com/topic/libraries/architecture/livedata
 [LiveData]: https://developer.android.com/topic/libraries/architecture/livedata
-[Retrofit]: http://square.github.io/retrofit/
+[Retrofit]: https://square.github.io/retrofit/
 [Room Persistence Library]: https://developer.android.com/topic/libraries/architecture/room
 [Rxjava]: https://github.com/ReactiveX/RxJava

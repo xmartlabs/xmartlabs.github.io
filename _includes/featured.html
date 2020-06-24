@@ -6,9 +6,7 @@
   {% assign author = site.data.authors[post.author_id] %}
     <div class="featured-column">
       <div class="featured-post" style="background-image: url('{{ post.featured_image}}');">
-        <a href="{{ post.url | prepend: site.baseurl }}">
-          <!-- <h1 class="post-title">{{ post.title }}</h1> -->
-        </a>
+        <a href="{{ post.url | prepend: site.baseurl }}"></a>
       </div>
       <article class="post-item">
         <a href="" class="blog-category"># {{ category.display_name}}</a>

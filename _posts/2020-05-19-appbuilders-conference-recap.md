@@ -32,7 +32,7 @@ That being said, now I want to share my thoughts about each talk, starting with 
 ### Small teams, Big OSS
 
 <div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/featured.jpg" />
-<p class="small">Sketchnote: Courtesy of <a href="http://twitter.com/felibe444">@felibe444</a></p>
+<p class="small">Sketchnote: Courtesy of <a href="https://twitter.com/felibe444">@felibe444</a></p>
 </div>
 
 "Small teams, Big OSS"  shares multiple tips and insight on how to run OSS, either with your company or personally.
@@ -45,7 +45,7 @@ So if you want to know our take on how to run a successful OSS project watch my 
 ### UITesting over the years
 
 <div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/ui-testing.jpeg" />
-<p class="small">Sketchnote: Courtesy of <a href="http://twitter.com/felibe444">@felibe444</a></p>
+<p class="small">Sketchnote: Courtesy of <a href="https://twitter.com/felibe444">@felibe444</a></p>
 </div>
 
 In the conference keynote, Peter Steinberger shared what he learned in 5 years of testing at PSPDFKit.
@@ -57,7 +57,7 @@ Finally, he shared a bunch of tips! For example how to speed up testing by speed
 ### Property Wrappers
 
 <div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/property-wrappers.jpeg" />
-<p class="small">Sketchnote: Courtesy of <a href="http://twitter.com/felibe444">@felibe444</a></p>
+<p class="small">Sketchnote: Courtesy of <a href="https://twitter.com/felibe444">@felibe444</a></p>
 </div>
 
 Property wrappers were a very required swift language feature.
@@ -68,7 +68,7 @@ If you know nothing about property wrappers yet, this is a very comprehensive in
 ### Getting started with combine
 
 <div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/combine.jpeg" />
-<p class="small">Sketchnote: Courtesy of <a href="http://twitter.com/felibe444">@felibe444</a></p>
+<p class="small">Sketchnote: Courtesy of <a href="https://twitter.com/felibe444">@felibe444</a></p>
 </div>
 
 In this talk Shai Mishali introduced the Combine framework.
@@ -79,7 +79,7 @@ It went from reactive programming fundamentals to some async programming problem
 
 <div style="text-align: left">
 <img width="90%" src="/images/recap-appbuilders/quantum.jpeg" />
-<p class="small">Sketchnote: Courtesy of <a href="http://twitter.com/felibe444">@felibe444</a></p>
+<p class="small">Sketchnote: Courtesy of <a href="https://twitter.com/felibe444">@felibe444</a></p>
 </div>
 
 
@@ -91,7 +91,7 @@ A really mind-blowing talk about the state of quantum computers by Sebastian Wei
 ### Custom UI components in SwiftUI
 
 <div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/swift-ui.jpeg" />
-<p class="small">Sketchnote: Courtesy of <a href="http://twitter.com/felibe444">@felibe444</a></p>
+<p class="small">Sketchnote: Courtesy of <a href="https://twitter.com/felibe444">@felibe444</a></p>
 </div>
 
 
@@ -100,7 +100,7 @@ In this talk, Chris Eidhof shared some tips on how to design custom components i
 ### Making your voice heard
 
 <div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/voice-hear.jpeg" />
-<p class="small">Sketchnote: Courtesy of <a href="http://twitter.com/felibe444">@felibe444</a></p>
+<p class="small">Sketchnote: Courtesy of <a href="https://twitter.com/felibe444">@felibe444</a></p>
 </div>
 
 Inspiring words by Erica Sadun on how we should constantly engage with the Swift forums, posting what Swift issues we have and propose new changes. And why wouldn't we? We are the ones that are always using the damn thing,  might as well make Swift work for us for a change. That's why we should be aware of the possibility to think about what changes we find important and express them to the team working on Swift year after year. So please go to [https://forums.swift.org/](https://forums.swift.org/) and be part of the evolution.
@@ -109,7 +109,7 @@ Inspiring words by Erica Sadun on how we should constantly engage with the Swift
 ### Practical machine learning
 
 <div style="text-align: left"><img width="90%" src="/images/recap-appbuilders/machine-learning.jpeg" />
-<p class="small">Sketchnote: Courtesy of <a href="http://twitter.com/felibe444">@felibe444</a></p>
+<p class="small">Sketchnote: Courtesy of <a href="https://twitter.com/felibe444">@felibe444</a></p>
 </div>
 
 In this talk presented by Paris Buttfield-Addison, we learned how easy can it be to incorporate AI into your iOS app. You don't need to be an AI expert as Apple has enough tools for you. You only need a dataset to get started and then with CoreML you can train a model for your specific use case. You can do all of this using Swift and a GUI.
