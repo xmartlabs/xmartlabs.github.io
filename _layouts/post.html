@@ -29,7 +29,7 @@ layout: default_post
     <div class="post-content">
       <div class="post">
         <div class="post_container">
-          {{ content }}
+          {{ content | replace: '<a href="http', '<a rel="nofollow noopener noreferrer" target="_blank" href="http' }}
         </div>
         <div class="post-footer">
           <p class="dots">• • • • • •</p>
