@@ -24,7 +24,7 @@ Moreover, by implementing this architecture, your project will be less tightly c
 
 ## Motivation
 
-Frontends, by nature, have an enormous flaw: they strictly depend on some kind of backend.
+Frontends, by nature, have an enormous flaw: they strictly depend on some kind of backend service (an API, microservices, or any other data provider).
 This is not the case *always*, I know, but I feel like it's the case most of the time with medium to large apps.
 That dependency is a blessing, but also a curse.
 If the backend changes its API or re-structures data in some other way, the frontend **has** to be refactored, there's no way around it.
