@@ -283,7 +283,7 @@ One of the greatest things about models is that you no longer work with plain Ja
 
 Let's summarize what each part of the pattern provides:
 
-* **Controllers**: provide an abstraction of our API (or a portion of it) and allow other components to forget where the data comes from and how it is fetched.
+* **Controllers**: provide an abstraction of our API (or a portion of it) which allows other components to not care about where the data comes from and how it is fetched.
 * **Serializers**: protect data by acting as an adapter and a firewall. They transform and remove data according to our needs, while at the same time documenting what we're using.
 * **Models**: add meaning to our data. They aid us by allowing the frontend to inject its own logic and value to data, without needing support from the API.
 
