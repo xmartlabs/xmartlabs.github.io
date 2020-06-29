@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Protecting your frontend from a bad backend
-date: 2020-04-23 09:00:00
+date: 2020-06-29 10:00:00
 author: Matías Lorenzo
 tags: [Xmartlabs, Architectural Patterns, Frontend]
 author_id: mlorenzo
@@ -30,7 +30,7 @@ That dependency is a blessing, but also a curse.
 If the backend changes its API or re-structures data in some other way, the frontend **has** to be refactored, there's no way around it.
 
 With such a glaring vulnerability, one would think frontends are actively protected and secured against an unexpected third-party dependency change.
-Sadly, my personal experience maintaining frontend projects has proven otherwise.
+Sadly, my personal experience in maintaining frontend projects has proven otherwise.
 This motivated us to create and document a pattern that helps us isolate our frontends as much as possible from the backend, reducing the surface of our code affected by unexpected (or even expected) changes.
 Let's look at what kind of issues this pattern could solve.
 
