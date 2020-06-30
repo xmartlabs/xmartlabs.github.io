@@ -56,7 +56,9 @@ We already know these are products, we certainly don't need the `Product_` prefi
 And I most certainly don't want to be using those field names all over my app, it would be extremely confusing.
 
 And what if I've been using `product.Product_Name` everywhere and suddenly the backend starts serializing that field differently?
-I'll probably have to mass-replace all usages of that key, which is prone to cause bugs.
+Ideally, the backend would have API versioning and release a new version with these changes, so that the frontend would have time to address it eventually.
+Sadly, I've had to experience these kinds of changes in backends that don't support versioning.
+To fix the issues I'll probably have to mass-replace all usages of that key, which is prone to cause bugs.
 
 ### Data Structure
 
@@ -90,7 +92,8 @@ The tree is inverted! Ignoring the duplication of information everywhere, this t
 ### Unnecessary Information
 
 Some APIs are really generic, and are expected to be consumed by a wide variety of applications, so the information they provide is vast.
-But sometimes you only need two or three fields. Should I hold all that information in memory to be never used?
+But sometimes you only need two or three fields.
+Should I hold all that information in memory to be never used?
 
 ### Conceptual Difference
 
