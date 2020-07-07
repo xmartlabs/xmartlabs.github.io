@@ -153,7 +153,7 @@ At this point you should have enough information on Jamstack to define if it wou
 [Vercel](https://vercel.com/) is an alternative to Netlify.
 
 [staticgen.com](https://www.staticgen.com) lists all SSG alternatives including the frameworks to build a static site with react or vue.js web frameworks.  
-[Hugo](https://gohugo.io/) and [Eleventry](https://www.11ty.dev/) seems to me the most interesting SSG. Hugo because is super fast pre-building the entire website markup and Eleventy because is easy to use and flexible in terms of template system language.
+[Hugo](https://gohugo.io/) and [Eleventy](https://www.11ty.dev/) seems to me the most interesting SSG. Hugo because is super fast pre-building the entire website markup and Eleventy because is easy to use and flexible in terms of template system language.
 
 [nextjs](https://nextjs.org/) and [gatsbyjs](https://www.gatsbyjs.org/) are popular static site generators for react.js.  
 [nuxtjs](https://nuxtjs.org/) and [gridsome](https://gridsome.org/) allows us to generate a static site using vue.js.
