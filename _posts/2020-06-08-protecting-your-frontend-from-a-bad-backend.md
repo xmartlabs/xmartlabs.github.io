@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Protecting your frontend from a bad backend
-date: 2020-06-29 10:00:00
+date: 2020-07-08 10:00:00
 author: Matías Lorenzo
 tags: [Xmartlabs, Architectural Patterns, Frontend]
 author_id: mlorenzo
