@@ -38,7 +38,7 @@ Let's assume we're developing a web frontend in Javascript (framework-agnostic) 
 Our app is an online shopping platform (creative, right?).
 FYI: all these next examples have happened to me first-hand (naturally I've adapted them for this post, but the concept is the same).
 
-### Field Naming
+### Key That Are Not Concise
 
 Let's say we query our backend for products and this is the response:
 
@@ -60,7 +60,7 @@ Ideally, the backend would have API versioning and release a new version with th
 Sadly, I've had to experience these kinds of changes in backends that don't support versioning.
 To fix the issues I'll probably have to mass-replace all usages of that key, which is prone to cause bugs.
 
-### Data Structure
+### How Data is Presented
 
 Say our products are categorized and there's a category tree of three levels (*Home* -> *Electronics* -> *Fans*, for example). We want to show a visual representation of the category tree, so we query the backend for it. This is a subset of the response for brevity:
 
@@ -89,13 +89,13 @@ Say our products are categorized and there's a category tree of three levels (*H
 
 The tree is inverted! Ignoring the duplication of information everywhere, this tree is very hard to process and read naturally. Also, as with field names, unexpected structural changes in data will most likely crash your app and make it unusable, and these are even harder to fix than field names!
 
-### Unnecessary Information
+### I Don't Need all that Data
 
 Some APIs are really generic, and are expected to be consumed by a wide variety of applications, so the information they provide is vast.
 But sometimes you only need two or three fields.
 Should I hold all that information in memory to be never used?
 
-### Conceptual Difference
+### What Data Means
 
 APIs tend to have their own understanding of the reality they want to model, and that's fine.
 The disadvantage here is that sometimes frontends that consume those APIs are forced to adapt to that reality, and base development around it.
