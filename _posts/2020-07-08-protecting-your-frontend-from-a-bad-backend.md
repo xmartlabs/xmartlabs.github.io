@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Protecting your frontend from a bad backend
+title: Frontend architecture and best practices for consuming APIs
 date: 2020-07-08 10:00:00
 author: Matías Lorenzo
 tags: [Xmartlabs, Architectural Patterns, Frontend]
 author_id: mlorenzo
-featured_image: /images/url-splitting/banner.jpg
+featured_image: /images/2020-07-08/frontend-architecture-and-best-practices.jpg
 show: true
 category: development
 ---
@@ -120,7 +120,7 @@ Besides, it perfectly describes what the pattern introduces into the code!
 Let's start with a representation of how this pattern comes into play in an imaginary scenario.
 Our e-commerce needs to show products, so this next diagram represents how our frontend app would fetch them.
 
-<div style="text-align: center"><img width="100%" src="/images/protecting-your-frontend-from-a-bad-backend/diagram-1.jpg" /></div>
+<div style="text-align: center"><img width="100%" src="/images/2020-07-08/architecture-diagram.png" /></div>
 
 Let's break down what's going on and then explain what each piece of the pattern is.
 
