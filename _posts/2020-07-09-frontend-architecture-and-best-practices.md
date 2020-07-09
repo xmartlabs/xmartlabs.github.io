@@ -109,7 +109,7 @@ It would be ideal if frontends could have some more freedom on how they model th
 
 * Adaptation of field names should be trivial.
 * Adaptation of data structure should be as trivial as possible.
-* Decouple frontend business logic from the backend's as much as we can.
+* Decouple frontend business logic from the backend as much as we can.
 
 For the sake of simplicity, the code and examples we're going to see next are implemented in Javascript, but they can perfectly be implemented in any language.
 Also, we'll cover the happy paths (no errors or error handling), but include an afterword with some considerations about this.
@@ -147,7 +147,7 @@ Should it know what headers to send on the request?
 That seems like a responsibility of some other entity.
 Controllers are the main point of contact with our API, and are the entities that know *how* to make a certain request.
 
-In this particular scenario our `ProductsController` is the one that knows how to do all product-related requests to our API.
+In this particular scenario, our `ProductsController` is the one that knows how to do all product-related requests to our API.
 A certain component that wants to get products from the API must only call its `fetchProduct` method and await results.
 How the actual request is sent and how it's structured doesn't matter to the consumer.
 Let's list the responsibilities of a controller:
@@ -157,7 +157,7 @@ Let's list the responsibilities of a controller:
 3. Instantiate models from the data (could be only one or a collection of them).
 
 We'll explain serializers and models later, but let's assume we have a `ProductSerializer` and a `Product` (serializer and model respectively).
-Here's very simple code to implement our current ProductsController.
+Here's a very simple code to implement our current ProductsController.
 
 ```js
 class ProductsController {
@@ -233,7 +233,7 @@ Commit, open a PR and you're done for the day.
 What's more, note how serializers are also resilient against changes in structure.
 APIs can change how the data is organized in the response JSON, but serializers can quickly be updated to just read it from the correct place.
 You don't need to refactor your whole app if some data is moved.
-Naturally, if information you need is removed then serializers won't be of any use, you'll have to solve the problem by fetching that data from somewhere else (the controller can probably do this).
+Naturally, if the information you need is removed then serializers won't be of any use, you'll have to solve the problem by fetching that data from somewhere else (the controller can probably do this).
 
 Serializers are also in charge of, eventually, serializing data to send to the API.
 Given a certain model, they'll serialize it so that the backend receives the appropriate names on keys and structure!
@@ -308,7 +308,7 @@ I'm not going to go into full detail, as this post is already quite packed. So I
 Typically we implement some kind of networking service that acts as an adapter with the networking library we're using (fetch, axios, whatever you like).
 In the controller we discussed above, this service would be the implementation of the `makeRequest` method.
 When any kind of error happens, we catch it and attempt to deserialize it (this typically happens when the error has status 4xx, meaning it was a client error) to understand what happened.
-The deserialized error is then thrown again to be catched by the entity that called on the controller.
+The deserialized error is then thrown again to be caught by the entity that called on the controller.
 That way the calling entity doesn't have to know what underlying networking library we're using, since we intercept those errors, extract relevant information and create a new error.
 You could even switch networking libraries without changing anything but the networking service!
 
