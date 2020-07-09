@@ -3,7 +3,7 @@ layout: post
 title: Frontend architecture and best practices for consuming APIs
 date: 2020-07-08 10:00:00
 author: Matías Lorenzo
-tags: [Xmartlabs, Architectural Patterns, Frontend]
+tags: [Frontend architecture, Frontend best practices, How to consume APIs, Frontend architecture patterns, Frontend, Js]
 author_id: mlorenzo
 featured_image: /images/2020-07-08/frontend-architecture-and-best-practices.jpg
 show: true
@@ -104,7 +104,7 @@ APIs tend to have their own understanding of the reality they want to model, and
 The disadvantage here is that sometimes frontends that consume those APIs are forced to adapt to that reality, and base development around it.
 It would be ideal if frontends could have some more freedom on how they model the reality and adapt that model to the frontend's needs without requiring the backend to make changes.
 
-## Goals Of The Proposed Architecture
+## Goals of the Proposed Architecture
 
 * Adaptation of field names should be trivial.
 * Adaptation of data structure should be as trivial as possible.
