@@ -3,6 +3,7 @@ layout: post
 title: Frontend architecture and best practices for consuming APIs
 date: 2020-07-09 10:00:00
 author: Matías Lorenzo
+excerpt: "Having headache when integrating with apis? The architecture and good practices that we share in this blog post can help you!"
 tags: [Frontend architecture, Frontend best practices, How to consume APIs, Frontend architecture patterns, Frontend, Js]
 author_id: mlorenzo
 featured_image: /images/2020-07-08/frontend-architecture-and-best-practices.jpg
