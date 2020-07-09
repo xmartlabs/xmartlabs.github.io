@@ -561,7 +561,7 @@ article.post-item {
   }
   h3 {
     font-family: $title-font-family;
-    font-size: 24px;
+    font-size: 22px;
     margin-top: 25px;
     margin-bottom: 16px;
     @include media-query($on-laptop) {
@@ -570,7 +570,7 @@ article.post-item {
   }
   h4 {
     font-family: $title-font-family;
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 20px;
     margin-bottom: 13px;
     @include media-query($on-laptop) {

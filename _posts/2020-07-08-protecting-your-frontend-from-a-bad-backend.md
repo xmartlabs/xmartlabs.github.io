@@ -38,6 +38,9 @@ Let's assume we're developing a web frontend in Javascript (framework-agnostic) 
 Our app is an online shopping platform (creative, right?).
 FYI: all these next examples have happened to me first-hand (naturally I've adapted them for this post, but the concept is the same).
 
+
+## Main Issues We Run Into When Integrating APIs
+
 ### Key That Are Not Concise
 
 Let's say we query our backend for products and this is the response:
@@ -101,7 +104,7 @@ APIs tend to have their own understanding of the reality they want to model, and
 The disadvantage here is that sometimes frontends that consume those APIs are forced to adapt to that reality, and base development around it.
 It would be ideal if frontends could have some more freedom on how they model the reality and adapt that model to the frontend's needs without requiring the backend to make changes.
 
-## Objectives of our Pattern
+## Goals Of The Proposed Architecture
 
 * Adaptation of field names should be trivial.
 * Adaptation of data structure should be as trivial as possible.
@@ -111,7 +114,7 @@ For the sake of simplicity, the code and examples we're going to see next are im
 Also, we'll cover the happy paths (no errors or error handling), but include an afterword with some considerations about this.
 Let's introduce the pattern then!
 
-## Model-Controller-Serializer
+## The Architecture: Model-Controller-Serializer
 
 Yes, that's the name we gave it.
 At least we didn't use a recursive acronym (*cough, Linux, cough, GNU*).
