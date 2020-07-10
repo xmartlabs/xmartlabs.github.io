@@ -56,10 +56,12 @@ tags: [Xmartlabs, CI, fastlane, bitrise, iOS]
 author_id: mtnBarreto
 featured_image: /images/ios-fastlane-ci/featured.png
 show: true
+permalink: /:title/
 ---
 ```
 
 **IMPORTANT:**
+
 Newest blogposts will be shown on the featured section.
 
 ## Featured posts
@@ -72,6 +74,7 @@ These may take one of the following values:
 - `featured_image: /images/my-new-post/featured.png`
 Remember to place the image inside the post's folder. A different name and format can be used, just assign the correct path to the variable.
 
+Also make sure your blogpost has `permalink: /:title/` in the blog post's front matter. We're no longer using the date in the blog post url.
 
 ## How to crosspost a post to medium
 
