@@ -131,4 +131,9 @@ fer-barrios:
   display_name: Fernanda Barrios
   image: members/fer-barrios.png
   profile_url: https://www.linkedin.com/in/maría-fernanda-barrios-sánchez-560a08b1/
+nicolantean:
+  display_name: Nicolás Lantean
+  image: members/nicolantean.jpg
+  github: nicolantean
+  profile_url: https://github.com/nicolantean
 
