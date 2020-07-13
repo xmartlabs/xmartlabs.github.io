@@ -1,10 +1,10 @@
 ---
 layout: post
 title: What's new on Apple Machine Learning at WWDC 2020?
-date: 2020-07-10 10:00:00
+date: 2020-07-13 10:00:00
 author: Nicolas Lantean
-excerpt: "Having headache when integrating with apis? The architecture and good practices that we share in this blog post can help you!"
-tags: [Frontend architecture, Frontend best practices, How to consume APIs, Frontend architecture patterns, Frontend, Js]
+excerpt: "Discover the new updates on Apple Machine Learning frameworks at WWDC 2020"
+tags: [Mobile, Machine learning, iOS, Apple, WWDC2020]
 author_id: nicolantean
 featured_image: /images/whats-new-on-apple-machine-learning-at-wwdc-2020/0-preview.png
 show: true
