@@ -142,7 +142,7 @@ As we mentioned in the other blogpost, *Sign in with Apple* provides multiple be
 
 Also, this API provides you support of adding your UI in case in which security verification should be completed before asking for a Sign in with Apple credential.
 
-Well, I hope now you have a better understanding of *Sign in with Apple* making the most out of it.
+Well, I hope now you have a better understanding of *Sign in with Apple* and make the most out of it.
 
 
 ***Are you integrating Sign in with Apple in your app and have learned something not covered in this post? Let me know in the comments. I'd be interested to add it to this blogpost.***
