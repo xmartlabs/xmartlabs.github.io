@@ -4,24 +4,24 @@ title: What's new on Apple Machine Learning at WWDC 2020?
 date: 2020-07-13 10:00:00
 author: Nicolas Lantean
 excerpt: "Discover the new updates on Apple Machine Learning frameworks at WWDC 2020"
-tags: [Mobile, Machine learning, iOS, Apple, WWDC2020]
+tags: [Machine learning, CoreML, CreateML, Vision, WWDC20]
 author_id: nicolantean
 featured_image: /images/whats-new-on-apple-machine-learning-at-wwdc-2020/0-preview.png
 show: true
 category: development
+permalink: /blog/:title/
 ---
-
-# Introduction
 
 Every day we have greater incorporation of machine learning tools into the mobile world. Apple knows this and every year it improves its frameworks in different ways and it also allows the ML integration into their platforms to become easier and easier, to the point that we don't even need to know machine learning fundamentals to start using these capabilities. This year was no exception since Apple announced some interesting new features on its machine learning frameworks and that's what I am gonna cover in this blog.
 
 At Xmartlabs we have been closely involved in the field of on-device Machine Learning. Our main focus has been Machine Learning on iOS and we have been exploring different use cases including style-transfer, human body pose detection and medical imaging classification. Not only have we built some cool almost magical apps, but we have also rolled our sleeves  to create first of its kind development tools like **[Bender](https://xmartlabs.github.io/Bender/)** a few days before WWDC 17.
 
-# Vision Framework
+
+So now let's get into the new capabilities released by Apple at the WWDC 2020.
+
+## What's new in Vision Framework?
 
 The Vision framework provides solutions to computer vision challenges through a consistent interface, it performs face and face landmark detection, text detection, barcode recognition, image registration, and general feature tracking. Vision also allows the use of custom Core ML models.
-
-## What's new?
 
 Apple added two new capabilities to the Vision framework, both to detect human poses, one that recognizes body poses and one that recognizes the hand and its gestures.
 
@@ -110,9 +110,9 @@ If you like to detect more than one hand, you have to set the **maximumHandCount
 
 The code to perform a request and process the result data is analog to the body pose detection unlike the name of the request and the body landmarks keys.
 
-# Use Model Deployment and Security with Core ML
+## Use Model Deployment and Security with Core ML
 
-## Model Deployment
+### Model Deployment
 
 Apple also announced Model Deployment which allows developers to update the CoreML model without the need to update the app. Before Model Deployment, developers were forced to submit an app update even though the only update was the machine learning model. As you may know, every submit to App Store requires an Appleeview which takes time. Using Model Deployment machine learning specialists are able to keep improving the model accuracy and don't need to care about when the next app version comes out.
 
@@ -128,7 +128,7 @@ That's good because your app doesn't have to store all the models for the differ
 
 But what about the security of my models when being updated?
 
-## Security with Core ML
+### Security with Core ML
 
 In regards to CoreML models security, Xcode is now able to encrypt your model at build time. With this new feature, you can distribute your models knowing that they are end to end encrypted. The only time where the model is decrypted its when it is loaded on the device's memory to be used by the app.
 
@@ -136,7 +136,7 @@ In regards to CoreML models security, Xcode is now able to encrypt your model at
 
 But how do we take this new encryption capabilities to our app?
 
-### **How to encrypt and secure CoreML models in Xcode 12**
+#### **How to encrypt and secure CoreML models in Xcode 12**
 
 First, create a key (.mlmodelkey file) for the model in the **Utilities** section at the model file in Xcode. 
 
@@ -162,9 +162,9 @@ FlowerStylizer.load { [self] result in
 
 So we learned a bunch from security so far but what about building our own CoreML models? That's where CreateML (Apple framework designed to easily build machine learning models using Swift and Xcode) comes in...
 
-# Build new CoreML models using **Create ML**
+## Build new CoreML models using **Create ML**
 
-## **Build an Action Classifier**
+### **Build an Action Classifier**
 
 There are some new models you can train in Create ML, for example, if you want to classify different types of actions from videos now you can do it. This new feature is powered by Vision's body pose estimation, so humans are the target of these actions, not animals or objects. 
 
@@ -180,7 +180,7 @@ Since the model takes a prediction window with poses of the frames recorded in t
 
 <div style="text-align: center"><img width="80%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/8-action-classifier-making-prediction.png" /><p class="small">Steps for making a prediction.</p></div>
 
-## Build Image and Video Style Transfer models
+### Build Image and Video Style Transfer models
 
 Another new type of model is the Image and Video Style Transfer model (a model based on two input images, one representing the artistic style and one representing the content). After selecting that option on Create ML, you only have to set a Training Style Image which gives the style patterns you want to transfer, a Validation Image to validate the transfer while the trining is running and Content Images to train the model with images that represent the type of images you will use in your app.
 
@@ -188,7 +188,7 @@ The default settings works very well but you can improve them. In order to do th
 
 <div style="text-align: center"><img width="90%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/9-style-transfer-model.png" /><p class="small">Style and Stylized result with a high Style Strength and low Style Density.</p></div>
 
-## Control training in Create ML with Swift
+### Control training in Create ML with Swift
 
 Although Create ML gives us a very straightforward way to create Core ML models, it's very limited for more sophisticated machine learning models. In order to overcome that,  Apple adds the possibility to control training through Swift code to save time and obtain better results while creating a new model. The best thing to do is to use  Xcode Playground where it instantly shows the results of the code that you write. With the new API, you can call a training method that will train the model and return a job. Before doing that, you have to specify the session parameters. These parameters consist of **sessionDirectory**, **reportInterval**, **checkpointInterval**, and **iterations**. The job returned in the training method, contains progress, checkpoint, and result publishers. It also has a cancel method that allows you to stop the training at any point. Using the result and progress publishers, you can handle success and errors, obtain the resulting model, and also observe how the training process is going.
 
@@ -196,7 +196,7 @@ Although Create ML gives us a very straightforward way to create Core ML models,
 
 Now with checkpoints, you can capture the state of your model over time. One benefit of that is when your model stop training but you notice that the accuracy is still growing up, so you can resume the training increasing the number of iterations without having to train the model again from scratch. 
 
-## Get models on device using Core ML Converters
+### Get models on device using Core ML Converters
 
 Create ML is an intuitive and easy tool for training models but doesn't cut it for complex projects with models that are not available on the framework. In these cases, often we use another tool, like TensorFlow or PyTorch, but these tools can't create .mlmodel by themselves to use in Core ML. That's where coremltools (we have taken about it in the blog [How to convert a NN model from TensorFlow Lite to CoreML](https://blog.xmartlabs.com/2019/11/22/TFlite-to-CoreML/)) appears, an Apple framework that allows you to export your model in .mlmodel format.
 
