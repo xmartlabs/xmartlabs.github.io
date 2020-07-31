@@ -13,7 +13,7 @@ category: development
 
 # Introduction
 
-Every day we have greater incorporation of machine learning tools into the mobile world. Apple knows this and every year it improves its frameworks in different ways and it also allows the ML integration into their platforms to become easier and easier, to the point that we don't even need to know machine learning fundamentals to start using these capabilities. This year was no exception since Apple announced some interesting new features on its machine learning frameworks and that's what I am gonna talk about in this blog.
+Every day we have greater incorporation of machine learning tools into the mobile world. Apple knows this and every year it improves its frameworks in different ways and it also allows the ML integration into their platforms to become easier and easier, to the point that we don't even need to know machine learning fundamentals to start using these capabilities. This year was no exception since Apple announced some interesting new features on its machine learning frameworks and that's what I am gonna cover in this blog.
 
 At Xmartlabs we have been closely involved in the field of on-device Machine Learning. Our main focus has been Machine Learning on iOS and we have been exploring different use cases including style-transfer, human body pose detection and medical imaging classification. Not only have we built some cool almost magical apps, but we have also rolled our sleeves  to create first of its kind development tools like **[Bender](https://xmartlabs.github.io/Bender/)** a few days before WWDC 17.
 
