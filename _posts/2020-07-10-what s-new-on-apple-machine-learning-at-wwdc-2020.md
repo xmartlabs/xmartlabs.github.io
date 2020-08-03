@@ -2,7 +2,7 @@
 layout: post
 title: What's new on Apple Machine Learning at WWDC 2020?
 date: 2020-07-13 10:00:00
-author: Nicolas Lantean
+author: Nicolás Lantean
 excerpt: "Discover the new updates on Apple Machine Learning frameworks at WWDC 2020"
 tags: [Machine learning, CoreML, CreateML, Vision, WWDC20]
 author_id: nicolantean
@@ -12,16 +12,21 @@ category: development
 permalink: /blog/:title/
 ---
 
-Every day we have greater incorporation of machine learning tools into the mobile world. Apple knows this and every year it improves its frameworks in different ways and it also allows the ML integration into their platforms to become easier and easier, to the point that we don't even need to know machine learning fundamentals to start using these capabilities. This year was no exception since Apple announced some interesting new features on its machine learning frameworks and that's what I am gonna cover in this blog.
+Every day we more and more machine learning tools at our disposal.
+Apple knows this and every year it improves its frameworks in different ways, also allowing integrating ML on their platforms to become easier and easier, up to the point that we don't even need to know machine learning fundamentals in order to start using these capabilities.
+This year was no exception since Apple announced some interesting new features on its machine learning frameworks and that's what we are going to cover in this blog.
 
-At Xmartlabs we have been closely involved in the field of on-device Machine Learning. Our main focus has been Machine Learning on iOS and we have been exploring different use cases including style-transfer, human body pose detection and medical imaging classification. Not only have we built some cool almost magical apps, but we have also rolled our sleeves  to create first of its kind development tools like **[Bender](https://xmartlabs.github.io/Bender/)** a few days before WWDC 17.
+At Xmartlabs we have been closely involved in the field of on-device Machine Learning.
+Our main focus has been Machine Learning on iOS and we have been exploring different use cases including style-transfer, human body pose detection and medical imaging classification.
+Not only have we built some cool almost magical apps, but we have also rolled our sleeves  to create first of its kind development tools like **[Bender](https://xmartlabs.github.io/Bender/)** a few days before WWDC 17.
 
 
 So now let's get into the new capabilities released by Apple at the WWDC 2020.
 
 ## What's new in Vision Framework?
 
-The Vision framework provides solutions to computer vision challenges through a consistent interface, it performs face and face landmark detection, text detection, barcode recognition, image registration, and general feature tracking. Vision also allows the use of custom Core ML models.
+The Vision framework provides solutions to computer vision challenges through a consistent interface, it performs face and face landmark detection, text detection, barcode recognition, image registration, and general feature tracking.
+Vision also allows the use of custom Core ML models.
 
 Apple added two new capabilities to the Vision framework, both to detect human poses, one that recognizes body poses and one that recognizes the hand and its gestures.
 
@@ -35,7 +40,9 @@ The result of human body detection, is a struct data with 19 unique body points 
 
 <div style="text-align: center"><img width="60%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/1-body-pose.png" /><p class="small">A human body with all the 19 unique body points illustrated.</p></div>
 
-There are different applications that might be interested in using this data. For example, in a **[Swing Profile Golf Analyzer](https://apps.apple.com/us/app/swing-profile-golf-analyzer/id1039981052)** app, you can obtain the form of the person at the exact time of the shot, and then analyze it to show how well it was and make suggestions to improve the technique. Another VNDetectHumanBodyPoseRequest application could be to use the landmark points of a person's body to animate a caricature with its movements giving the possibility to create entertaining content.
+There are different applications that might be interested in using this data.
+For example, in a **[Swing Profile Golf Analyzer](https://apps.apple.com/us/app/swing-profile-golf-analyzer/id1039981052)** app, you can obtain the form of the person at the exact time of the shot, and then analyze it to show how well it was and make suggestions to improve the technique.
+Another VNDetectHumanBodyPoseRequest application could be to use the landmark points of a person's body to animate a caricature with its movements giving the possibility to create entertaining content.
 
 The following snippet shows an example of how easy it is to perform the request for an image so you have a better sense of how easy it is to incorporate these pose detection ML functionality into your app:
 
@@ -106,7 +113,8 @@ The response provides 21 landmarks in total, four landmarks for each finger and 
 
 <div style="text-align: center"><img width="60%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/2-hand-pose.png" /><p class="small">A hand with the 21 landmarks illustrated.</p></div>
 
-If you like to detect more than one hand, you have to set the **maximumHandCount** to the number of hands you want to detect. Consider that this variable will affect the performance of your app, especially on older devices.
+If you like to detect more than one hand, you have to set the **maximumHandCount** to the number of hands you want to detect.
+Consider that this variable will affect the performance of your app, especially on older devices.
 
 The code to perform a request and process the result data is analog to the body pose detection unlike the name of the request and the body landmarks keys.
 
@@ -114,15 +122,23 @@ The code to perform a request and process the result data is analog to the body 
 
 ### Model Deployment
 
-Apple also announced Model Deployment which allows developers to update the CoreML model without the need to update the app. Before Model Deployment, developers were forced to submit an app update even though the only update was the machine learning model. As you may know, every submit to App Store requires an Appleeview which takes time. Using Model Deployment machine learning specialists are able to keep improving the model accuracy and don't need to care about when the next app version comes out.
+Apple also announced Model Deployment which allows developers to update the CoreML model without the need to update the app.
+Before Model Deployment, developers were forced to submit an app update even though the only update was the machine learning model.
+As you may know, every submit to App Store requires an Appleeview which takes time.
+Using Model Deployment machine learning specialists are able to keep improving the model accuracy and don't need to care about when the next app version comes out.
 
-Model Deployment allows you to develop your model, adding new classes or retraining with more data for instance, without thinking in the updates plans of your app. You can have two different calendars for updates which will be independent of each other.  As the model is uploaded in the cloud, the first time you try to get it with the new Core ML API, the model will try to download it in background. You will have to manage the error if the download fails due to network connection issues, for example, a common solution for this is to use the default bundle model and log the error.
+Model Deployment allows you to develop your model, adding new classes or retraining with more data for instance, without thinking in the updates plans of your app.
+You can have two different calendars for updates which will be independent of each other.
+As the model is uploaded in the cloud, the first time you try to get it with the new Core ML API, the model will try to download it in background.
+You will have to manage the error if the download fails due to network connection issues, for example, a common solution for this is to use the default bundle model and log the error.
 
 <div style="text-align: center"><img width="70%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/3-without-model-deployment.png" /><p class="small">Without Model Deployment.</p></div>
 
 <div style="text-align: center"><img width="70%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/4-with-model-deployment.png" /><p class="small">With Model Deployment.</p></div>
 
-To prepare your model for Model Deployment Xcode has now an option to create a Model Archive from your CoreML model. Then you only have to upload the archive through the Model Deployment Dashboard. Additionally, before making the deployment you can add some targeting rules to assign different models to specific device class (iPhone / iPad / TV / Watch).  For example, the iPad's screen is bigger than the iPhone's one, so if you are working with a model that gets a drawing as an input, you can create two models in order to train them with the correct inputs.
+To prepare your model for Model Deployment Xcode has now an option to create a Model Archive from your CoreML model. Then you only have to upload the archive through the Model Deployment Dashboard.
+Additionally, before making the deployment you can add some targeting rules to assign different models to specific device class (iPhone / iPad / TV / Watch).
+For example, the iPad's screen is bigger than the iPhone's one, so if you are working with a model that gets a drawing as an input, you can create two models in order to train them with the correct inputs.
 
 That's good because your app doesn't have to store all the models for the different devices, reducing the app download size from the AppStore. 
 
@@ -130,7 +146,9 @@ But what about the security of my models when being updated?
 
 ### Security with Core ML
 
-In regards to CoreML models security, Xcode is now able to encrypt your model at build time. With this new feature, you can distribute your models knowing that they are end to end encrypted. The only time where the model is decrypted its when it is loaded on the device's memory to be used by the app.
+In regards to CoreML models security, Xcode is now able to encrypt your model at build time.
+With this new feature, you can distribute your models knowing that they are end to end encrypted.
+The only time where the model is decrypted its when it is loaded on the device's memory to be used by the app.
 
 <div style="text-align: center"><img width="70%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/5-model-encryption.png" /><p class="small">Model encryption.</p></div>
 
@@ -166,15 +184,20 @@ So we learned a bunch from security so far but what about building our own CoreM
 
 ### **Build an Action Classifier**
 
-There are some new models you can train in Create ML, for example, if you want to classify different types of actions from videos now you can do it. This new feature is powered by Vision's body pose estimation, so humans are the target of these actions, not animals or objects. 
+There are some new models you can train in Create ML, for example, if you want to classify different types of actions from videos now you can do it.
+This new feature is powered by Vision's body pose estimation, so humans are the target of these actions, not animals or objects. 
 
 <div style="text-align: center"><img width="70%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/7-action-classifier.png" /><p class="small">How to create an Action Classifier.</p></div>
 
-The videos have to have one action type per video, several seconds per video and, only one person, framing the entire body. If you have a video with different types of actions, you can split up the video with a video editor application, or also you can create an annotation file indicating the time of the different actions in the video.
+The videos have to have one action type per video, several seconds per video and, only one person, framing the entire body.
+If you have a video with different types of actions, you can split up the video with a video editor application, or also you can create an annotation file indicating the time of the different actions in the video.
 
 It's a good practice to train the model with an extra class called **Other**, where you place the videos in which the person is doing nothing and you don't want to recognize the action to prevent obtaining false results (i.e: people walking or just standing).
 
-Before we start training the model, there are few parameters you can tweak. Action duration represents the length of the action you try to recognize. You have to analyze your actions to recognize and set that parameter correctly to obtain better results on your model. Also, there is a horizontal flip option for data augmentation to increase the training data without adding new videos which use the flipped version as a train data apart of the original one.
+Before we start training the model, there are few parameters you can tweak.
+Action duration represents the length of the action you try to recognize.
+You have to analyze your actions to recognize and set that parameter correctly to obtain better results on your model.
+Also, there is a horizontal flip option for data augmentation to increase the training data without adding new videos which use the flipped version as a train data apart of the original one.
 
 Since the model takes a prediction window with poses of the frames recorded in the last X seconds set as action duration, as input, you have to make **VNDetectHumanBodyPoseRequest**, to extract these poses.
 
@@ -182,29 +205,46 @@ Since the model takes a prediction window with poses of the frames recorded in t
 
 ### Build Image and Video Style Transfer models
 
-Another new type of model is the Image and Video Style Transfer model (a model based on two input images, one representing the artistic style and one representing the content). After selecting that option on Create ML, you only have to set a Training Style Image which gives the style patterns you want to transfer, a Validation Image to validate the transfer while the trining is running and Content Images to train the model with images that represent the type of images you will use in your app.
+Another new type of model is the Image and Video Style Transfer model (a model based on two input images, one representing the artistic style and one representing the content).
+After selecting that option on Create ML, you only have to set a Training Style Image which gives the style patterns you want to transfer, a Validation Image to validate the transfer while the trining is running and Content Images to train the model with images that represent the type of images you will use in your app.
 
-The default settings works very well but you can improve them. In order to do that you have to select if you will use the model for images or videos, then you can select the number of iterations in the training which has two parameters that will define your model. Style Strength indicates how much style the model will transfer from the image and Style Density determines how much detail of the style the model will transfer.
+The default settings works very well but you can improve them.
+In order to do that you have to select if you will use the model for images or videos, then you can select the number of iterations in the training which has two parameters that will define your model.
+Style Strength indicates how much style the model will transfer from the image and Style Density determines how much detail of the style the model will transfer.
 
 <div style="text-align: center"><img width="90%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/9-style-transfer-model.png" /><p class="small">Style and Stylized result with a high Style Strength and low Style Density.</p></div>
 
 ### Control training in Create ML with Swift
 
-Although Create ML gives us a very straightforward way to create Core ML models, it's very limited for more sophisticated machine learning models. In order to overcome that,  Apple adds the possibility to control training through Swift code to save time and obtain better results while creating a new model. The best thing to do is to use  Xcode Playground where it instantly shows the results of the code that you write. With the new API, you can call a training method that will train the model and return a job. Before doing that, you have to specify the session parameters. These parameters consist of **sessionDirectory**, **reportInterval**, **checkpointInterval**, and **iterations**. The job returned in the training method, contains progress, checkpoint, and result publishers. It also has a cancel method that allows you to stop the training at any point. Using the result and progress publishers, you can handle success and errors, obtain the resulting model, and also observe how the training process is going.
+Although Create ML gives us a very straightforward way to create Core ML models, it's very limited for more sophisticated machine learning models.
+In order to overcome that, Apple adds the possibility to control training through Swift code to save time and obtain better results while creating a new model.
+The best thing to do is to use Xcode Playground where it instantly shows the results of the code that you write.
+With the new API, you can call a training method that will train the model and return a job.
+Before doing that, you have to specify the session parameters.
+These parameters consist of **sessionDirectory**, **reportInterval**, **checkpointInterval**, and **iterations**.
+The job returned in the training method, contains progress, checkpoint, and result publishers.
+It also has a cancel method that allows you to stop the training at any point.
+Using the result and progress publishers, you can handle success and errors, obtain the resulting model, and also observe how the training process is going.
 
 <div style="text-align: center"><img width="65%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/10-control-training.png" /><p class="small">Checkpoint availability on different model types.</p></div>
 
-Now with checkpoints, you can capture the state of your model over time. One benefit of that is when your model stop training but you notice that the accuracy is still growing up, so you can resume the training increasing the number of iterations without having to train the model again from scratch. 
+Now with checkpoints, you can capture the state of your model over time.
+One benefit of that is when your model stop training but you notice that the accuracy is still growing up, so you can resume the training increasing the number of iterations without having to train the model again from scratch. 
 
 ### Get models on device using Core ML Converters
 
-Create ML is an intuitive and easy tool for training models but doesn't cut it for complex projects with models that are not available on the framework. In these cases, often we use another tool, like TensorFlow or PyTorch, but these tools can't create .mlmodel by themselves to use in Core ML. That's where coremltools (we have taken about it in the blog [How to convert a NN model from TensorFlow Lite to CoreML](https://blog.xmartlabs.com/2019/11/22/TFlite-to-CoreML/)) appears, an Apple framework that allows you to export your model in .mlmodel format.
+Create ML is an intuitive and easy tool for training models but doesn't cut it for complex projects with models that are not available on the framework.
+In these cases, often we use another tool, like TensorFlow or PyTorch, but these tools can't create .mlmodel by themselves to use in Core ML.
+That's where coremltools (we have taken about it in the blog [How to convert a NN model from TensorFlow Lite to CoreML](https://blog.xmartlabs.com/2019/11/22/TFlite-to-CoreML/)) appears, an Apple framework that allows you to export your model in .mlmodel format.
 
 This year Apple focused on the two most commonly used frameworks, TensorFlow and PyTorch. To convert TensorFlow, tf.keras, and PyTorch models, now you have to use the new single conversion API with its new unified interface.
 
 <div style="text-align: center"><img width="65%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/11-coremltools4.png" /><p class="small">New unified convert() method.</p></div>
 
-What the new **convert** function is doing under the hood is to inspect the model format and choose the correct converter for it. Then it converts the model into an intermediate representation called **MIL**. Having the model in a **MIL** format gives us the possibility to optimize the model in different ways, for example removing unnecessary operations. The interesting part of **MIL** is that allows you to deal with layers that are not directly supported by Core ML, you can split it up into more primitive MIL operations, like matrix multiplications, or other arithmetic.
+What the new **convert** function is doing under the hood is to inspect the model format and choose the correct converter for it.
+Then it converts the model into an intermediate representation called **MIL**.
+Having the model in a **MIL** format gives us the possibility to optimize the model in different ways, for example removing unnecessary operations.
+The interesting part of **MIL** is that allows you to deal with layers that are not directly supported by Core ML, you can split it up into more primitive MIL operations, like matrix multiplications, or other arithmetic.
 
 ## My final thoughts
 
@@ -212,7 +252,8 @@ Apple has done a really great job improving its machine learning frameworks.
 
 **Vision** with the new body and hand pose detectors brings a huge of possibilities to your app like recognize different types of gestures and do some cool stuff like take pictures without pressing a button or analyze body poses doing different sports to improve your form on some technique. 
 
-By adding Model Deployment and model encryption, **CreateML** will make developers feel more comfortable using it. It will help them save time by avoiding to update their app frequently only to modify its models and it will make them feel more secure to use models not available on the machine learning community which has a great value without the risk of being stolen.
+By adding Model Deployment and model encryption, **CreateML** will make developers feel more comfortable using it.
+It will help them save time by avoiding to update their app frequently only to modify its models and it will make them feel more secure to use models not available on the machine learning community which has a great value without the risk of being stolen.
 
 **Create ML** keeps extending the available models with the addition of Action classifier and style transfer models.
 
