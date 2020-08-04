@@ -21,7 +21,7 @@ Our main focus has been Machine Learning on iOS and we have been exploring diffe
 Not only have we built some cool almost magical apps, but we have also rolled up our sleeves to create first of its kind development tools like **[Bender](https://xmartlabs.github.io/Bender/)** a few days before WWDC 17.
 
 
-So now let's get into what new capabilities released Apple at the WWDC 2020.
+So now let's get into what new capabilities were released by Apple at the WWDC 2020.
 
 ## What's new in Vision Framework?
 
@@ -261,4 +261,4 @@ It will help them save time by avoiding to update their app frequently only to m
 
 And talking about control training and Core ML converters, Create ML is less limited than before, and **coremltools** with its new version allows developers to convert its customs models created in other tools easier.
 
-To sum up, nowadays having a Machine Learning Expert can be a really nice to have, but by no means a necessity (at least for most basic models), which opens up incredible opportunities for mobile development, considering that adapting ML models requires less effort as time passes, and users are starting to grow accustomed to the topic. There is no doubt Apple witll continue introducing more capabilities and lowering the barrier of adoption, which is amazing for developers and Apple device users!
+To sum up, nowadays having a Machine Learning Expert can be a really nice to have, but by no means a necessity (at least for most basic models), which opens up incredible opportunities for mobile development, considering that adapting ML models requires less effort as time passes, and users are starting to grow accustomed to the topic. There is no doubt Apple will continue introducing more capabilities and lowering the barrier of adoption, which is amazing for developers and Apple device users!
