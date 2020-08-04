@@ -1,7 +1,7 @@
 ---
 layout: post
-title: What's new on Apple Machine Learning at WWDC 2020?
-date: 2020-07-13 10:00:00
+title: Latest updates on Apple machine learning!
+date: 2020-08-04 10:00:00
 author: Nicolás Lantean
 excerpt: "Discover the new updates on Apple Machine Learning frameworks at WWDC 2020"
 tags: [Machine learning, CoreML, CreateML, Vision, WWDC20]
@@ -69,19 +69,19 @@ And then we can process the result like this:
 func bodyPoseHandler(request: VNRequest, error: Error?) {
     guard let observations =
             request.results as? [VNRecognizedPointsObservation] else { return }
-    
+
     // Process each observation to find the recognized body pose points.
     observations.forEach { processObservation($0) }
 }
 
 private func processObservation(_ observation: VNRecognizedPointsObservation) {
-    
+
     // Retrieve all torso points.
     guard let recognizedPoints =
             try? observation.recognizedPoints(forGroupKey: .bodyLandmarkRegionKeyTorso) else {
         return
     }
-    
+
     // Torso point keys in a clockwise ordering.
     let torsoKeys: [VNRecognizedPointKey] = [
         .bodyLandmarkKeyNeck,
@@ -91,17 +91,17 @@ private func processObservation(_ observation: VNRecognizedPointsObservation) {
         .bodyLandmarkKeyLeftHip,
         .bodyLandmarkKeyLeftShoulder
     ]
-    
+
     // Retrieve the CGPoints containing the normalized X and Y coordinates.
     let imagePoints: [CGPoint] = torsoKeys.compactMap {
         guard let point = recognizedPoints[$0], point.confidence > 0 else { return nil }
-        
+
         // Translate the point from normalized-coordinates to image coordinates.
         return VNImagePointForNormalizedPoint(point.location,
                                               Int(imageSize.width),
                                               Int(imageSize.height))
     }
-    
+
     // Draw the points onscreen.
     draw(points: imagePoints)
 }
@@ -142,7 +142,7 @@ To prepare your model for Model Deployment Xcode has now an option to create a M
 Additionally, before making the deployment you can add some targeting rules to assign different models to specific device class (iPhone / iPad / TV / Watch).
 For example, the iPad's screen is bigger than the iPhone's one, so if you are working with a model that gets a drawing as an input, you can create two models in order to train them with the correct inputs.
 
-That's good because your app doesn't have to store all the models for the different devices, reducing the app download size from the AppStore. 
+That's good because your app doesn't have to store all the models for the different devices, reducing the app download size from the AppStore.
 
 But what about the security of my models when they are updated?
 
@@ -158,7 +158,7 @@ But how do we take this new encryption capabilities to our app?
 
 #### **How to encrypt and secure CoreML models in Xcode 12**
 
-First, create a key (.mlmodelkey file) for the model in the **Utilities** section at the model file in Xcode. 
+First, create a key (.mlmodelkey file) for the model in the **Utilities** section at the model file in Xcode.
 
 <div style="text-align: center"><img width="85%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/6-model-key.png" /></div>
 
@@ -187,7 +187,7 @@ We learned a bunch from security so far, but what about building our own CoreML 
 ### **Build an Action Classifier**
 
 There are some new models you can train in **[Create ML](https://developer.apple.com/documentation/createml)**, for example, if you want to classify different types of actions from videos now you can do it.
-This new feature is powered by Vision's body pose estimation, so humans are the target of these actions, not animals or objects. 
+This new feature is powered by Vision's body pose estimation, so humans are the target of these actions, not animals or objects.
 
 <div style="text-align: center"><img width="70%" src="/images/whats-new-on-apple-machine-learning-at-wwdc-2020/7-action-classifier.png" /><p class="small">How to create an Action Classifier.</p></div>
 
@@ -250,7 +250,7 @@ The interesting part of **MIL** is that allows you to deal with layers that are 
 
 ## My final thoughts
 
-Apple has done a really great job improving its machine learning frameworks. 
+Apple has done a really great job improving its machine learning frameworks.
 
 **Vision** with the new body and hand pose detectors brings a huge of possibilities to your app like recognizing different types of gestures and do some cool stuff like taking pictures without pressing a button or analyzing body poses when doing sports in order to improve your form on some technique.
 
@@ -261,7 +261,4 @@ It will help them save time by avoiding to update their app frequently only to m
 
 And talking about control training and Core ML converters, Create ML is less limited than before, and **coremltools** with its new version allows developers to convert its customs models created in other tools easier.
 
-To sum this up, here are some thoughts on the great new features and improvements on Apple's frameworks:
-* Machine learning apps no longer need deep expertise in the feed, nor to train some basic models.
-* Machine learning is commonly used in apps, app users are familiar with ML solutions and will used more as time goes on.
-* Most common application of Machine learning are already provided by Apple.
+To sum up, nowadays having a Machine Learning Expert can be a really nice to have, but by no means a necessity (at least for most basic models), which opens up incredible opportunities for mobile development, considering that adapting ML models requires less effort as time passes, and users are starting to grow accustomed to the topic. There is no doubt Apple witll continue introducing more capabilities and lowering the barrier of adoption, which is amazing for developers and Apple device users!
