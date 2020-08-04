@@ -248,7 +248,7 @@ Then it converts the model into an intermediate representation called **MIL**.
 Having the model in a **MIL** format gives us the possibility to optimize the model in different ways, for example removing unnecessary operations.
 The interesting part of **MIL** is that allows you to deal with layers that are not directly supported by Core ML, you can split it up into more primitive MIL operations, like matrix multiplications, or other arithmetic.
 
-## My final thoughts
+## Final thoughts
 
 Apple has done a really great job improving its machine learning frameworks.
 
