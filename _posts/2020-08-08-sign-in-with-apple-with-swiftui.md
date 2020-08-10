@@ -1,21 +1,21 @@
 ---
 layout: post
 title: Sign in with Apple with SwiftUI
-date: 2020-08-08 10:00:00
+date: 2020-08-11 10:00:00
 author: Cecilia Pirotto
 excerpt: "Sign in with Apple in SwiftUI"
-tags: [Xmartlabs, iOS, Apple, Swift, Sign in with Apple, SwiftUI]
+tags: [Sign in with Apple, SwiftUI, Apple, Xmartlabs]
 category: development
 author_id: ceci
 featured_image: /images/apple-sign-in/signInWithApple.jpg
 show: true
 crosspost_to_medium: false
-
+permalink: /blog/:title/
 ---
 
-Apple recently added support to Sign In With Apple in Swift UI which means we can easily add a Sign In with Apple button in our SwiftUI views. This and all other SwiftUI improvements and support added recently is an indication that Apple is taking seriously the new state-driven, reactive and declarative way of creating Apple apps and also motivates us to update [our guide](https://blog.xmartlabs.com/2020/05/04/Why-Sign-in-with-Apple-and-integration-guide/) about integrating Sign in with Apple and show how to integrate it with SwuftUI.  
+Apple recently added support to *Sign In With Apple* in Swift UI which means we can easily add *Sign In with Apple* to our SwiftUI app. This and all other SwiftUI improvements added recently is an indication that Apple is taking seriously the new state-driven, reactive and declarative way of creating Apple apps and also motivates us to update [our guide](https://blog.xmartlabs.com/2020/05/04/Why-Sign-in-with-Apple-and-integration-guide/) about integrating Sign in with Apple, but now using SwiftUI.  
 
-In the first part of the blogpost, we cover the benefits of providing *Sign in with Apple* in your app so you can decide if it worth integrating it or not, then in the latter part, we provide a step by step  *Sign in with Apple* integration guide for a SwiftUI app. 
+In the first part of the blogpost, we cover the benefits of providing *Sign in with Apple* in your app so you can decide if it worth integrating it or not, then in the latter part, we provide a step by step  *Sign in with Apple* integration guide for a SwiftUI app.
 
 ### What’s Sign in with Apple, in case you don’t know yet…
 
@@ -69,13 +69,13 @@ Now, we have the environment setup done, let’s get into the code.
 
 ### Sign in with Apple button for Swift UI
 
-By using the *Sign in with Apple* *button* for Swift UI you can create the authorization request and handle the response as the code snippet below shows. 
+By using the *Sign in with Apple* *button* for Swift UI you can create the authorization request and handle the response as the code snippet below shows.
 
 ```swift
         VStack {
             SignInWithAppleButton(.signIn,              //1
                   onRequest: { (request) in             //2
-				    //Set up request 
+				    //Set up request
                   },
                   onCompletion: { (result) in           //3
                     switch result {
@@ -93,17 +93,17 @@ By using the *Sign in with Apple* *button* for Swift UI you can create the autho
 Unlike UIKit implementation, there is no need to conform to protocols to handle responses. Let's elaborate more in the *SignInWithAppleButton* init parameters (comment 1, 2, 3) and *signInWithAppleButtonStyle* modifier.
 
 1. First parameter allows us to select the button title, choosing between *sign in*, *sign up* or *continue*.
-2. Second parameter, `onRequest` closure, allows us to set up the request and scopes. 
+2. Second parameter, `onRequest` closure, allows us to set up the request and scopes.
 3. The third parameter, `onCompletion` closure, provides a way to handle the result of the authorization process.
 4. `signInWithAppleButtonStyle(Style)` set up the button's color and style.
 
 ### Request Authorization with Apple ID
 
-Once the app user taps the button, authorization flow starts displaying the request dialog which is completely handled by Apple, we just need to configure the request in `onRequest` closure. 
+Once the app user taps the button, authorization flow starts displaying the request dialog which is completely handled by Apple, we just need to configure the request in `onRequest` closure.
 
 ```swift
 onRequest: { (request) in  //2           
-    request.requestedScopes = [.fullName, .email] 
+    request.requestedScopes = [.fullName, .email]
     request.nonce = myNonceString()               
     request.state = myStateString()
  },
@@ -113,7 +113,7 @@ onRequest: { (request) in  //2
 
 Including `nonce` and `state` value in the request is optional,  they're used to make our request even more secure.
 
-Both values are an optional opaque blob of data, sent as String in the request and will be verified later to prevent replay attacks. It’s important to generate a unique value every time you create a new request. 
+Both values are an optional opaque blob of data, sent as String in the request and will be verified later to prevent replay attacks. It’s important to generate a unique value every time you create a new request.
 
 ### Which user authentication data does we get from Apple?
 
@@ -126,7 +126,7 @@ We’ll receive an `ASAuthorization`  which has an `ASAuthorizationCredential`  
 - **Identity Token**: This is a JWT that contains relevant information about user's authentication.  It should be sent to the backend so it can validate and get the information’s authenticity.
 - **State**: The state value mentioned before, it must match with state value configured in the request.
 
-We only receive *state* value if it was sent in the request. 
+We only receive *state* value if it was sent in the request.
 
 **nonce** value, if set up in the request, is returned embedded in the **identity token** and should be verified in your server.
 
@@ -193,7 +193,7 @@ We can check the credential state with `getCredentialState` as the notification 
             // No credential was found. Show login UI.
             break
         case .transferred:
-            // The application was transferred from one development team to another. 
+            // The application was transferred from one development team to another.
 					  // You can use the same code used to authenticate the user adding the locally saved user identifier in the request.
         default:
             break
@@ -202,7 +202,7 @@ We can check the credential state with `getCredentialState` as the notification 
 }
 ```
 
-**Transferred** is the less common credential state since it represents that the application was recently transferred from one development team to another. **UserIDs** are unique within a development team so it must be migrated. For more information about how to migrate, see Apple official documentation. 
+**Transferred** is the less common credential state since it represents that the application was recently transferred from one development team to another. **UserIDs** are unique within a development team so it must be migrated. For more information about how to migrate, see Apple official documentation.
 
 ## Web and Android solution
 
@@ -210,13 +210,11 @@ Apple provides a JavaScript SDK for Android and Web integration. You can take a 
 
 ## Communication between your backend and Apple
 
-Apple provides a REST API to communicate between your app servers and Apple’s authentication servers. You can use it to validate the tokens used to verify a user’s identity. You can read more about it in the following [documentation](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api).
+Apple provides a REST API to communicate between your app server and Apple’s authentication servers. You can use it to validate the tokens used to verify a user’s identity. You can read more about it in the following [documentation](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api).
 
 ### Server to server developer notifications
 
-There is a new feature introduced this year for *Sign in with Apple*. Listening to this notification you will be allowed to monitor the state changes and know if some user modify in Settings something related to their Apple ID or your application credentials.
-
-To start listening to these notifications you have to register your *server endpoint* on the *Apple developer’s Website*. Events will be sent as JSON web tokens signed by Apple. We can receive some of these events:
+This is a new feature introduced this year which allows us to monitor the users' authentication state. To start listening to these notifications you have to register your *server endpoint* on the *Apple developer’s Website*. Events will be sent as JSON web tokens signed by Apple. We can receive some of these events:
 
 - **consent-revoked:** when a user decides to stop using their Apple ID with your application. It should be triggered as a sign out by the user.
 - **account-deleted:** when a user deletes their Apple ID. When the user deletes their account the user identifier associated will no longer be valid.
@@ -226,7 +224,7 @@ If the user previously decided to use a private email relay for their account yo
 - **email-disabled:** when a user has decided to stop receiving emails on their email relay.
 - **email-enabled:** when the user opted back into receiving emails.
 
-Here we can see how this JWT looks like
+Here we can see how this JWT looks like:
 
 <div style="text-align: center"><img width="60%" src="/images/sign-in-with-apple-swiftui/JWT-server-to-server-notification.png" /></div>
 
@@ -248,15 +246,15 @@ After you get your domain registered, click *Download* and place the file in the
 
 <img width="100%" src="/images/sign-in-with-apple-swiftui/downloadRegister.jpeg" />
 
-Once your domain has passed the verification and is registered to your account, a green checkmark will appear.
+You will see a green checkmark if your domain passes the verification:
 
 <img width="100%" src="/images/sign-in-with-apple-swiftui/checkDomain.jpeg" />
 
 ## Upgrading users to Sign in with Apple
 
-*Sign in with Apple* provides multiple benefits to users who could want to start using it. If these users were registered in our app using another login system they were going to lose their account information and we would have repeated users in our app. Apple introduced in iOS 14 a new API to help users upgrade to Sign in with Apple ensuring the user to maintain their account information and preventing the duplication of accounts.
+*Sign in with Apple* provides multiple benefits to current app users as we have discussed, so at a certain point some app users would be interested in start using Sign in with Apple over its current authentication system. Before iOS 14, there wasn't a simple way to do so, normally we ended up losing their account information or having a duplicated user.
 
-Also, this API provides you the support of adding your UI in case in which security verification should be completed before asking for a Sign in with Apple credential. 
+iOS 14 introduced a new API to help users migrate to Sign in with Apple. This new API provides you the support for adding your custom UI in case any custom security verification needs to be completed before asking for a Sign in with Apple credential.
 
 ## Aspects to keep in mind
 
