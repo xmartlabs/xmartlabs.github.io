@@ -264,7 +264,7 @@ As we mentioned before, developers only receive the user's email and full name o
 
 If users choose the *hide my email* option, it could be difficult to identify the user since the app only holds its apple identifier and its apple private email. So any communication should be done through the app.
 
-Well, I hope now you have a better understanding about *Sign in with Apple*, its integration cost and if it’s suitable for your app!
+Well, I hope now you have a better understanding of *Sign in with Apple*, what's its integration cost, and if it’s desirable for your app!
 
 ***Are you integrating Sign in with Apple in your app and have learned something not covered in this post? Let me know in the comments. I’d be interested to add it to this blogpost.***
 
