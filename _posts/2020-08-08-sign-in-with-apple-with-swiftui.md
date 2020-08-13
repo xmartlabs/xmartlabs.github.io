@@ -13,7 +13,7 @@ crosspost_to_medium: false
 permalink: /blog/:title/
 ---
 
-Apple recently added support to *Sign In With Apple* in Swift UI which means we can easily add *Sign In with Apple* to our SwiftUI app. This and all other SwiftUI improvements added recently is an indication that Apple is taking seriously the new state-driven, reactive and declarative way of creating Apple apps and also motivates us to update [our guide](https://blog.xmartlabs.com/2020/05/04/Why-Sign-in-with-Apple-and-integration-guide/) about integrating Sign in with Apple, but now using SwiftUI.  
+Apple recently updated Swift UI so that integrating *Sign In With Apple* through it is as seamless as it gets. This and all other new SwiftUI improvements are an indication that Apple is taking seriously the new state-driven, reactive, and declarative way of creating Apple apps. Which also motivates us to update [our guide](https://blog.xmartlabs.com/2020/05/04/Why-Sign-in-with-Apple-and-integration-guide/) about integrating Sign in with Apple, but now using SwiftUI.
 
 First, we'll cover the benefits of integrating *Sign in with Apple* in your app, so you can decide if it's worth a feature, then in the latter part, we'll provide a step by step *Sign in with Apple* integration guide for a SwiftUI app.
 
