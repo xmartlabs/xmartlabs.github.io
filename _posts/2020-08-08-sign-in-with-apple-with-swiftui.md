@@ -266,6 +266,6 @@ If users choose the *hide my email* option, it could be difficult to identify th
 
 Well, I hope now you have a better understanding of *Sign in with Apple*, what's its integration cost, and if it’s desirable for your app!
 
-***Are you integrating Sign in with Apple in your app and have learned something not covered in this post? Let me know in the comments. I’d be interested to add it to this blogpost.***
+***Are you integrating Sign in with Apple in your app and did you encounter something that wasn't covered in this post? Let me know in the comments. I’d be interested to add it to this blogpost.***
 
 ***Have questions about Sign in with Apple? I’d be happy to answer those in the comments if I can.***
