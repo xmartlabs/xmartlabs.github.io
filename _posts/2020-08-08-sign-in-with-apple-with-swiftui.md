@@ -25,7 +25,7 @@ First, we'll cover the benefits of integrating *Sign in with Apple* in your app,
 
 ### What does *Sign in with Apple* put on the table?
 
-It provides a one-tap frictionless login and authentication system to your app which means more people will login into your app and also a faster growth in the number of app users especially in Apple device owners who only need to check their identity through Touch Id or Face Id. By using *Sign in with Apple*, users don’t need to remember app credentials, apps don’t need to provide a password reset and identity and validation workflow in the app, neither provide a specific register and login form.
+It provides a one-tap frictionless login and authentication system to your app, which means more users will log in after downloading your app, securing a faster growth in the number of app users, especially for Apple device owners who only need to check their identity through Touch Id or Face Id. By using *Sign in with Apple*, users don’t need to remember app credentials, apps don’t need to provide a password reset and identity and validation workflow in the app, neither provide a specific register and login form.
 
 
 <div style="text-align: center"><img width="60%" src="/images/sign-in-with-apple-swiftui/sign-in-with-apple.gif" /></div>
