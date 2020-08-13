@@ -260,7 +260,7 @@ iOS 14 introduced a new API to help users migrate to Sign in with Apple. This ne
 
 There are some aspects you should consider if you’ll integrate it.
 
-As we mentioned before, developers only receive email and full name once, so if there is a connection issue and you don’t save this data locally you won’t be able to recover it.
+As we mentioned before, developers only receive the user's email and full name once, so if there is a connection issue and you don’t save this data locally you won’t be able to recover it.
 
 If users choose the *hide my email* option, it could be difficult to identify the user since the app only holds its apple identifier and its apple private email. So any communication should be done through the app.
 
