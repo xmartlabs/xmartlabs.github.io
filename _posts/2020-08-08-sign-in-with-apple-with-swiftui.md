@@ -33,7 +33,7 @@ It provides a one-tap frictionless login and authentication system to your app w
 
 *Sign in with Apple* is FIDO U2F standard complaint, which means security aspects are met and we don’t need to care about it. Apple adds two-factor authentication support by default, providing an extra layer of security.
 
-Sometimes an app user would prefer *Sign in with Apple* over other alternatives because it has the ability to hide its real email, this still allows the app to reach the user real email through Apple servers. Apple provides a user’s private email that is only reachable from the app registered email domains, so the user's email doesn’t have value outside app servers and can’t be sold.
+Sometimes an app user would prefer *Sign in with Apple* over the alternatives because it provides the ability to hide its real email. This still allows the app to reach the user real email through Apple servers, the difference is that Apple provided private emails are only reachable from the app registered email domains, so not a single user's email has value outside app servers (which protects the user from spam servers purchasing your email address).
 
 Even though *Sign in with Apple* is multiplatform which means we can make it work on the web, Android devices, Windows apps and platforms provided by Apple. The user still needs to have an Apple device to complete the two-factor authentication, upon Apple Id login the user receives a 2FA code from apple in their device. So if your app is available for non-Apple devices owners just allowing *Sign in with Apple* is not an option.
 
