@@ -254,7 +254,7 @@ You will see a green checkmark if your domain passes the verification:
 
 *Sign in with Apple* provides multiple benefits to current app users as we have discussed, so at a certain point some app users would be interested in start using Sign in with Apple over its current authentication system. Before iOS 14, there wasn't a simple way to do so, normally we ended up losing their account information or having a duplicated user.
 
-iOS 14 introduced a new API to help users migrate to Sign in with Apple. This new API provides you the support for adding your custom UI in case any custom security verification needs to be completed before asking for a Sign in with Apple credential.
+iOS 14 introduced a new API to help users migrate to Sign in with Apple. This new API provides you with the support for adding your custom UI in case any custom security verification needs to be completed before asking for a Sign in with Apple credential.
 
 ## Aspects to keep in mind
 
