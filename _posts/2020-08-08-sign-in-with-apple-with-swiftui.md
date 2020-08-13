@@ -258,7 +258,7 @@ iOS 14 introduced a new API to help users migrate to Sign in with Apple. This ne
 
 ## Aspects to keep in mind
 
-There are some aspects you should consider if you’ll integrate it.
+There are some aspects you should consider if you decide to integrate Sign in with Apple.
 
 As we mentioned before, developers only receive the user's email and full name once, so if there is a connection issue and you don’t save this data locally you won’t be able to recover it.
 
