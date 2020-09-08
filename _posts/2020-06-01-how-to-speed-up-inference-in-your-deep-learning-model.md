@@ -199,4 +199,4 @@ We hope that this article was of value to you, either by giving you guidance on 
 
 **Let us know if you have an approach to speed up your model's inference that wasn't covered in this blogpost... Have any question about model's inference speed optimization? We'd be happy to answer those in the comments if we can.**
 
-**We have covered more ML topics such as `How to convert a NN model from TensorFlow Lite to CoreML` and you can read it [here](https://blog.xmartlabs.com/2019/11/22/TFlite-to-CoreML/)**
+**If you liked this blog post, We’ve covered more mobile ML topics such as [How to convert a NN model from TensorFlow Lite to CoreML](https://blog.xmartlabs.com/2019/11/22/TFlite-to-CoreML/) and [Latest updates on apple machine learning](https://blog.xmartlabs.com/blog/latest-updates-on-apple-machine-learning/).**
