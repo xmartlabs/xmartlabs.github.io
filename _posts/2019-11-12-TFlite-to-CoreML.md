@@ -88,7 +88,7 @@ We can now create a function to extract them from the interpreter:
 def get_variable(interpreter, index, transposed=False):
     var = interpreter.get_tensor(index)
     if transposed:
-        var = np.transpose(var, (1, 0))    
+        var = np.transpose(var, (1, 0))
     return var
 ```
 
@@ -227,3 +227,10 @@ Some takeaways from this post:
 
 
 The source code used in this tutorial can be found in [this GitHub gist](https://gist.github.com/mats-claassen/f76520dd32108b65d57113fd7ac99bf9).
+
+Need help with ML tasks like converting models to CoreML? We're glad to help!
+Get in touch at hi@xmartlabs.com
+
+We have also written other posts about ML topics.
+If you want to check out the **latest updates from WWDC 2020** jump over to [this post](/blog/latest-updates-on-apple-machine-learning/).
+And if you'd like to know `5 Practical Ways to Speed Up your Deep Learning Model` check it out [here](/2020/06/01/how-to-speed-up-inference-in-your-deep-learning-model/).
