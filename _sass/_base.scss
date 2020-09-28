@@ -133,10 +133,9 @@ a {
   color: $brand-color;
   text-decoration: none;
   &:visited {
-    color: darken($brand-color, 15%);
+    text-decoration: none;
   }
   &:hover {
-    color: $text-color;
     text-decoration: none;
   }
 }
