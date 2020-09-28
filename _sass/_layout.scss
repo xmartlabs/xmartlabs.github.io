@@ -19,6 +19,24 @@ a {
   text-decoration: none;
 }
 
+.button-text {
+  font-weight: 700;
+  border-radius: 0;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+  white-space: nowrap;
+  &:hover, &:visited, &:focus, &:active, &:focus-within {
+    color: #FFFFFF;
+  }
+}
+
+.button{
+  &.is-nav {
+    border-radius: 0;
+  }
+}
+
 div.header {
   font-family: $body;
   background-color: $white;
@@ -145,6 +163,13 @@ div.header {
   @include media-query($on-palm) {
     flex-direction: column;
   }
+}
+
+.list-container {
+  position: relative;
+  z-index: 1;
+  background-color: #FFFFFF;
+  margin-top: 100px;
 }
 
 .featured-container {
@@ -339,7 +364,12 @@ article.post-item {
 }
 
 .page-content {
+  margin-top: 100px;
+  position: relative;
+  z-index: 1;
+  background-color: #FFFFFF;
   padding: 0;
+  padding-bottom: 70px;
 }
 
 .page-heading {
@@ -613,6 +643,11 @@ pre code {
 
 div.post_container a {
   color: $pink;
+}
+
+footer {
+  position: fixed;
+  z-index: 0;
 }
 
 .container.footer {
