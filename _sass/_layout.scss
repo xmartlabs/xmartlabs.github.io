@@ -8,6 +8,15 @@ $grey: #525252;
 $body: 'Graphik', sans-serif;
 $title-font-family: 'Libre Baskerville', sans-serif;
 
+header {
+  .container{
+    &:before, &:after {
+      display: none;
+    }
+  }
+}
+
+
 a {
   color: $black;
   &:visited {
