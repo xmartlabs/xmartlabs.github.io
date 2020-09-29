@@ -195,6 +195,7 @@ div.header {
       flex-direction: column;
     }
     .featured-column {
+      flex: 50%;
       .post-item {
          padding: 30px 20px 30px 20px;
          @include media-query($on-palm) {
@@ -373,7 +374,7 @@ article.post-item {
 }
 
 .page-content {
-  margin-top: 100px;
+  margin-top: 140px;
   position: relative;
   z-index: 1;
   background-color: #FFFFFF;
