@@ -7,7 +7,7 @@ excerpt: "In this blog post we talk about the new React Native Line release!"
 tags: [React Native Line, React Native, LineSDK, Xmartlabs]
 category: development
 author_id: emi
-featured_image: /images/react-native-line/banner.jpg
+featured_image: /images/react-native-line/banner.png
 show: true
 crosspost_to_medium: false
 permalink: /blog/:title/
