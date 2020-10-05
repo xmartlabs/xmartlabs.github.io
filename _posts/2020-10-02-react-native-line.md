@@ -152,7 +152,7 @@ If you want to update to the latest version, please check out our fined-tuned [m
 
 # Final thoughts
 
-We hope you find it useful. Please contact us if you need any help, find an issue, or struggle with anything.  We are open to any suggestions and to provide help with any issue you might have using the library.
+We hope you find it useful. Please contact us if you need any help, encounter an issue, or struggle with anything.  We are open to any suggestions and to provide help with any issue you might face using the library.
 
 Don't hesitate to [propose](https://github.com/xmartlabs/react-native-line/issues) or [collaborate](https://github.com/xmartlabs/react-native-line/pulls) with any feature you would like to add. We will be more than happy to keep this project growing!
 
