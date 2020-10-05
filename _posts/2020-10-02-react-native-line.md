@@ -132,7 +132,7 @@ Follow [LINE's instructions for more information](https://developers.line.biz/en
 
 ### Implementation
 
-This native module, unlike how usually are made the modules in the React Native community, it's implemented using Swift and Kotlin at a low level.
+Natives modules in the React Native community are mostly developed in Objective-C and Java. For this library we implemented it's core functionalities using Swift and Kotlin at a low level.
 
 One of our strongest reasons for choosing Swift as the iOS language is strongly related to some statements LINE has made over the latest version of LineSDK. It is the last version that would be using Objective-C, so they recommend using `Line SDK for iOS Swift` which will be  continuously updated with new features as you can see in the following [page](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/):
 
