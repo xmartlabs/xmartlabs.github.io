@@ -3,7 +3,7 @@ layout: post
 title: React Native Line release
 date: 2020-10-02 10:00:00
 author: Emiliano Botti
-excerpt: "In this blog post we talk about the new React Native Line release!"
+excerpt: "In this blog post we talk about our new React Native Line release!"
 tags: [React Native Line, React Native, LineSDK, Xmartlabs]
 category: development
 author_id: emi
