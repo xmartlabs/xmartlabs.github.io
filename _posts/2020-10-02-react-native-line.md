@@ -88,7 +88,7 @@ try {
 
 ### Get logged user information
 
-If you want to get information from the logged user, just run this piece of code
+If you want to get information from the logged user, just run this snippet of code:
 
 ```jsx
 try {
