@@ -3,7 +3,7 @@ layout: post
 title: React Native Line release
 date: 2020-10-02 10:00:00
 author: Emiliano Botti
-excerpt: "In this blog post we talk about the new React Native Line release!"
+excerpt: "In this blog post we talk about our new React Native Line release!"
 tags: [React Native Line, React Native, LineSDK, Xmartlabs]
 category: development
 author_id: emi
@@ -16,11 +16,11 @@ permalink: /blog/:title/
 We are happy to announce a new [react-native-line](https://github.com/xmartlabs/react-native-line) version that supports the latest updates on the [LINE SDK](https://developers.line.biz/en/docs/line-login/overview/) and it's available to download via [npm](https://www.npmjs.com/package/@xmartlabs/react-native-line)!
 
 
-In the beginning, the motivation to make this library was given that one of our clients had a user base in Japan, and as you may know, Line has a [large number of users](https://www.statista.com/statistics/735063/japan-number-of-line-users/#:~:text=Number%20of%20LINE%20users%20in%20Japan%202016%2D2021&text=In%202016%2C%20approximately%2045.5%20million,58.5%20million%20users%20in%202021.) in that country so it was decided to provide the possibility of logging in with Line in the project.
+When one of our projects called  for an integration of sign in with [Line](https://line.me/en/) (which as you may know [lit's pretty popular in Japan](https://www.statista.com/statistics/735063/japan-number-of-line-users/#:~:text=Number%20of%20LINE%20users%20in%20Japan%202016%2D2021&text=In%202016%2C%20approximately%2045.5%20million,58.5%20million%20users%20in%202021.)
 
-At that time there were no maintained alternatives in the React Native community to do that, so we decided to develop one.
+At the time there were no maintained alternatives in the React Native community to achieve that, so we decided to develop our own!
 
-A few years after the first release, being more specific in 2019, an [issue](https://github.com/xmartlabs/react-native-line/issues/31) was reported asking us for support to versions of React Native greater than 0.58.
+A few years after the first release, being more specific in 2019, an [issue](https://github.com/xmartlabs/react-native-line/issues/31) was reported asking us for supporting versions of React Native greater than 0.58.
 The newest React Native version introduced some breaking changes so we spent some time making it compatible again with the latest libraries.
 
 Let's get into its functionality and how how it works....
@@ -84,7 +84,7 @@ try {
 
 ### Get logged user information
 
-If you want to get information from the logged user, just run this piece of code
+If you want to get information from the logged user, just run this snippet of code:
 
 ```jsx
 try {
@@ -134,7 +134,7 @@ Follow [LINE's instructions for more information](https://developers.line.biz/en
 
 This native module, unlike how usually are made the modules in the React Native community, it's implemented using Swift and Kotlin at a low level.
 
-One of the strongest reasons for choosing Swift as the iOS language is strongly related to some statements LINE has made over the latest version of LineSDK. It is the last version that would be using Objective-C, so they recommend using `Line SDK for iOS Swift` which will be  continuously updated with new features as you can see in the following [page](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/):
+One of our strongest reasons for choosing Swift as the iOS language is strongly related to some statements LINE has made over the latest version of LineSDK. It is the last version that would be using Objective-C, so they recommend using `Line SDK for iOS Swift` which will be  continuously updated with new features as you can see in the following [page](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/):
 
 <img src="/images/react-native-line/migrate.png" alt="deprecation advertisement" >
 
@@ -144,11 +144,11 @@ Furthermore, Swift and Kotlin are modern languages that are more intuitive than 
 
 If you're using LineSDK for the first time, you can check the [installation guide](https://github.com/xmartlabs/react-native-line#installation).
 
-If you want to update to the latest version, please check out our fined-tuned [migration guide](Were you already using the library? Well, just check out our fined-tune migration guide.).
+If you want to update to the latest version, please check out our fined-tuned [migration guide](Were you already using the library? Well, just check out our fined-tune migration guide.)
 
 # Final thoughts
 
-We hope you find it useful. Please contact us if you need any help, find an issue, or struggle with anything.  We are open to any suggestions and to provide help with any issue you might have using the library.
+We hope you find it useful. Please contact us if you need any help, encounter an issue, or struggle with anything.  We are open to any suggestions and to provide help with any issue you might face using the library.
 
 Don't hesitate to [propose](https://github.com/xmartlabs/react-native-line/issues) or [collaborate](https://github.com/xmartlabs/react-native-line/pulls) with any feature you would like to add. We will be more than happy to keep this project growing!
 
