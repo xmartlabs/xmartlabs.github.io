@@ -138,7 +138,7 @@ Follow [LINE's instructions for more information](https://developers.line.biz/en
 
 This native module, unlike how usually are made the modules in the React Native community, it's implemented using Swift and Kotlin at a low level.
 
-One of the strongest reasons for choosing Swift as the iOS language is strongly related to some statements LINE has made over the latest version of LineSDK. It is the last version that would be using Objective-C, so they recommend using `Line SDK for iOS Swift` which will be  continuously updated with new features as you can see in the following [page](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/):
+One of our strongest reasons for choosing Swift as the iOS language is strongly related to some statements LINE has made over the latest version of LineSDK. It is the last version that would be using Objective-C, so they recommend using `Line SDK for iOS Swift` which will be  continuously updated with new features as you can see in the following [page](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/):
 
 <img src="/images/react-native-line/migrate.png" alt="deprecation advertisement" >
 
