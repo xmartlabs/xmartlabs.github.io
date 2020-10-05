@@ -16,7 +16,7 @@ permalink: /blog/:title/
 We are happy to announce a new [react-native-line](https://github.com/xmartlabs/react-native-line) version that supports the latest updates on the [LINE SDK](https://developers.line.biz/en/docs/line-login/overview/) and it's available to download via [npm](https://www.npmjs.com/package/@xmartlabs/react-native-line)!
 
 
-When one of our projects called  for an integration of sign in with [Line](https://line.me/en/) (which as you may know [lit's pretty popular in Japan](https://www.statista.com/statistics/735063/japan-number-of-line-users/#:~:text=Number%20of%20LINE%20users%20in%20Japan%202016%2D2021&text=In%202016%2C%20approximately%2045.5%20million,58.5%20million%20users%20in%202021.)
+When one of our projects called  for an integration of sign in with [Line](https://line.me/en/) (which as you may know [lit's pretty popular in Japan](https://www.statista.com/statistics/735063/japan-number-of-line-users/#:~:text=Number%20of%20LINE%20users%20in%20Japan%202016%2D2021&text=In%202016%2C%20approximately%2045.5%20million,58.5%20million%20users%20in%202021.))
 
 At the time there were no maintained alternatives in the React Native community to achieve that, so we decided to develop our own!
 
