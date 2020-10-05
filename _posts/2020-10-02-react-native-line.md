@@ -144,7 +144,7 @@ Furthermore, Swift and Kotlin are modern languages that are more intuitive than 
 
 If you're using LineSDK for the first time, you can check the [installation guide](https://github.com/xmartlabs/react-native-line#installation).
 
-If you want to update to the latest version, please check out our fined-tuned [migration guide](Were you already using the library? Well, just check out our fined-tune migration guide.)
+If you want to update to the latest version, please check out our fined-tuned [migration guide](https://github.com/xmartlabs/react-native-line#migration-from-v1xx).
 
 # Final thoughts
 
