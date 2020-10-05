@@ -24,7 +24,7 @@ When one of our projects called  for an integration of sign in with [Line](https
 
 At that time there were no maintained alternatives in the React Native community to do that, so we decided to develop one.
 
-A few years after the first release, being more specific in 2019, an [issue](https://github.com/xmartlabs/react-native-line/issues/31) was reported asking us for support to versions of React Native greater than 0.58.
+A few years after the first release, being more specific in 2019, an [issue](https://github.com/xmartlabs/react-native-line/issues/31) was reported asking us for supporting versions of React Native greater than 0.58.
 The newest React Native version introduced some breaking changes so we spent some time making it compatible again with the latest libraries.
 
 Let's get into its functionality and how how it works....
