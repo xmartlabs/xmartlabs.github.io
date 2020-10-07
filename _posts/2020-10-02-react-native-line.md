@@ -1,9 +1,9 @@
 ---
 layout: post
-title: React Native Line release
+title: We are happy to announce React Native Line v2!
 date: 2020-10-02 10:00:00
 author: Emiliano Botti
-excerpt: "In this blog post we talk about our new React Native Line release!"
+excerpt: "In this blog we announce the React Native Line new version, present every new functionality and share all technical decisions made."
 tags: [React Native Line, React Native, LineSDK, Xmartlabs]
 category: development
 author_id: emi
@@ -23,7 +23,7 @@ At the time there were no maintained alternatives in the React Native community 
 A few years after the first release, being more specific in 2019, an [issue](https://github.com/xmartlabs/react-native-line/issues/31) was reported asking us for supporting versions of React Native greater than 0.58.
 The newest React Native version introduced some breaking changes so we spent some time making it compatible again with the latest libraries.
 
-Let's get into its functionality and how how it works....
+Let's get into its functionality and how it works....
 
 # Functionalities
 
