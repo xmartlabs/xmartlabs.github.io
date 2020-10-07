@@ -1,6 +1,6 @@
 ---
 layout: post
-title: We are happy to announce React Native Line v2!
+title: Announcing React Native Line v2!
 date: 2020-10-02 10:00:00
 author: Emiliano Botti
 excerpt: "In this blog we announce the React Native Line new version, present every new functionality and share all technical decisions made."
