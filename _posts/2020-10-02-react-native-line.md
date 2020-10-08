@@ -130,7 +130,7 @@ Follow [LINE's instructions for more information](https://developers.line.biz/en
 
 Unlike most natives modules in the React Native community which are developed in Objective-C and Java, new React Native Line version is implemented using Swift and Kotlin at a low level.
 
-This was an easy decision to make, first we have been using Swift and Kotlin since their first release. Secondly, Line SDK is deprecating Obj-c and Java versions in behalf of Swift and Kotlin (see image below). Lastly, and this is more obvious, Swift and Kotlin are modern, more intuitive, easy to read and maintain than Obj-c and Java respectively.
+This was an easy decision to make. First, we have been using Swift and Kotlin since their first release. Secondly, Line SDK is deprecating the Objective-C version on behalf of Swift (see image below). Lastly, and this is more obvious, Swift and Kotlin are modern, more intuitive, easy to read, and maintain than Obj-c and Java respectively.
 
 <img src="/images/react-native-line/migrate.png" alt="deprecation advertisement" >
 
