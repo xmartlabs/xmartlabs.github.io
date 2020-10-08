@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Announcing React Native Line v2!
-date: 2020-10-02 10:00:00
+date: 2020-10-08 10:00:00
 author: Emiliano Botti
-excerpt: "In this blog we announce the React Native Line new version, present every new functionality and share all technical decisions made."
+excerpt: "In this blog we announce the React Native Line new version, present every new functionality and share technical decisions we made."
 tags: [React Native Line, React Native, LineSDK, Xmartlabs]
 category: development
 author_id: emi
@@ -16,11 +16,9 @@ permalink: /blog/:title/
 We are happy to announce a new [react-native-line](https://github.com/xmartlabs/react-native-line) version that supports the latest updates on the [LINE SDK](https://developers.line.biz/en/docs/line-login/overview/) and it's available to download via [npm](https://www.npmjs.com/package/@xmartlabs/react-native-line)!
 
 
-When one of our projects called  for an integration of sign in with [Line](https://line.me/en/) (which as you may know [it's pretty popular in Japan](https://www.statista.com/statistics/735063/japan-number-of-line-users/#:~:text=Number%20of%20LINE%20users%20in%20Japan%202016%2D2021&text=In%202016%2C%20approximately%2045.5%20million,58.5%20million%20users%20in%202021.))
+When one of our projects called  for an integration of sign in with [Line](https://line.me/en/) (which [is pretty popular in Japan](https://www.statista.com/statistics/735063/japan-number-of-line-users/#:~:text=Number%20of%20LINE%20users%20in%20Japan%202016%2D2021&text=In%202016%2C%20approximately%2045.5%20million,58.5%20million%20users%20in%202021.)), there were not any maintained alternative in the React Native community so we decided to develop our own!
 
-At the time there were no maintained alternatives in the React Native community to achieve that, so we decided to develop our own!
-
-A few years after the first release, being more specific in 2019, an [issue](https://github.com/xmartlabs/react-native-line/issues/31) was reported asking us for supporting versions of React Native greater than 0.58.
+A few years after the first release, being more specific in 2019, an [issue](https://github.com/xmartlabs/react-native-line/issues/31) was reported asking us for supporting React Native versions greater than 0.58.
 The newest React Native version introduced some breaking changes so we spent some time making it compatible again with the latest libraries.
 
 Let's get into its functionality and how it works....
@@ -68,9 +66,7 @@ This means your application would have the ability to get specific logged user i
 
 ### Logout
 
-It's pretty reasonable that if you log into an application you would like to logout someday. Same as the previous version, this library includes logout functionality.
-
-Simply trigger this piece of code and you will be out:
+Simply trigger this piece of code to logout the user:
 
 ```jsx
 try {
@@ -132,13 +128,11 @@ Follow [LINE's instructions for more information](https://developers.line.biz/en
 
 ### Implementation
 
-Natives modules in the React Native community are mostly developed in Objective-C and Java. For this library we implemented it's core functionalities using Swift and Kotlin at a low level.
+Unlike most natives modules in the React Native community which are developed in Objective-C and Java, new React Native Line version is implemented using Swift and Kotlin at a low level.
 
-One of our strongest reasons for choosing Swift as the iOS language is strongly related to some statements LINE has made over the latest version of LineSDK. It is the last version that would be using Objective-C, so they recommend using `Line SDK for iOS Swift` which will be  continuously updated with new features as you can see in the following [page](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/):
+This was an easy decision to make, first we have been using Swift and Kotlin since their first release. Secondly, Line SDK is deprecating Obj-c and Java versions in behalf of Swift and Kotlin (see image below). Lastly, and this is more obvious, Swift and Kotlin are modern, more intuitive, easy to read and maintain than Obj-c and Java respectively.
 
 <img src="/images/react-native-line/migrate.png" alt="deprecation advertisement" >
-
-Furthermore, Swift and Kotlin are modern languages that are more intuitive than Objective-C and Java. So we considered the opportunity to challenge us in the use of these two amazing technologies.
 
 # Integration Guide
 
