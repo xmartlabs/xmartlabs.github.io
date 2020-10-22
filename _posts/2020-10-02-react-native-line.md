@@ -15,7 +15,9 @@ permalink: /blog/:title/
 
 We are happy to announce a new [react-native-line](https://github.com/xmartlabs/react-native-line) version that supports the latest updates on the [LINE SDK](https://developers.line.biz/en/docs/line-login/overview/) and it's available to download via [npm](https://www.npmjs.com/package/@xmartlabs/react-native-line)!
 
-
+<img src="/images/react-native-line/example1.png" alt="Example app main" width="300">
+<img src="/images/react-native-line/example2.png" alt="Example app permissions" width="300">
+<p style="text-align: center; color: gray; font-size: 14px; font-style: italic;">(Example app with <code>react-native-line</code> integration)</p>
 When one of our projects called for an integration of sign in with [Line](https://line.me/en/) (which [is pretty popular in Japan](https://www.statista.com/statistics/735063/japan-number-of-line-users/#:~:text=Number%20of%20LINE%20users%20in%20Japan%202016%2D2021&text=In%202016%2C%20approximately%2045.5%20million,58.5%20million%20users%20in%202021.)), there were not any maintained alternatives in the React Native community so we decided to develop our own!
 
 A few years after the first release, being more specific in 2019, an [issue](https://github.com/xmartlabs/react-native-line/issues/31) was reported asking us for supporting React Native versions greater than 0.58.
@@ -130,7 +132,7 @@ Follow [LINE's instructions for more information](https://developers.line.biz/en
 
 Unlike most natives modules in the React Native community which are developed in Objective-C and Java, new React Native Line version is implemented using Swift and Kotlin at a low level.
 
-This was an easy decision to make. First, we have been using Swift and Kotlin since their first release. Secondly, Line SDK is deprecating the Objective-C version on behalf of Swift (see image below). Lastly, and this is more obvious, Swift and Kotlin are modern, more intuitive, easy to read, and maintain than Obj-c and Java respectively.
+This was an easy decision to make. First, we have been using Swift and Kotlin since their first release. Secondly, [Line SDK is deprecating the Objective-C version](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/) on behalf of Swift (see image below). Lastly, and this is more obvious, Swift and Kotlin are modern, more intuitive, easy to read, and maintain than Obj-c and Java respectively.
 
 <img src="/images/react-native-line/migrate.png" alt="deprecation advertisement" >
 
@@ -142,7 +144,7 @@ If you want to update to the latest version, please check out our fined-tuned [m
 
 # Final thoughts
 
-We hope you find it useful. Please contact us if you need any help, encounter an issue, or struggle with anything.  We are open to any suggestions and to provide help with any issue you might face using the library.
+We hope you find it useful. Please contact us if you need any help, encounter an issue, or struggle with anything. We are open to any suggestions and to provide help with any issue you might face using the library.
 
 Don't hesitate to [propose](https://github.com/xmartlabs/react-native-line/issues) or [collaborate](https://github.com/xmartlabs/react-native-line/pulls) with any feature you would like to add. We will be more than happy to keep this project growing!
 
