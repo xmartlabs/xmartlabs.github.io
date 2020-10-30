@@ -144,8 +144,8 @@ If you want to update to the latest version, please check out our fined-tuned [m
 
 # Final thoughts
 
-We hope you find it useful. Please contact us if you need any help, encounter an issue, or struggle with anything. We are open to any suggestions and to provide help with any issue you might face using the library.
-
-Don't hesitate to [propose](https://github.com/xmartlabs/react-native-line/issues) or [collaborate](https://github.com/xmartlabs/react-native-line/pulls) with any feature you would like to add. We will be more than happy to keep this project growing!
+We hope you find it useful. Don't hesitate to contact us if you need any help or have a great new feature idea. We will be more than happy to keep this project growing!
 
 Finally, we also want to thank [everyone](https://github.com/xmartlabs/react-native-line#contributors) that helps create and maintain this library.
+
+
