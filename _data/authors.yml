@@ -136,4 +136,9 @@ nicolantean:
   image: members/nicolantean.jpg
   github: nicolantean
   profile_url: https://github.com/nicolantean
+emi:
+  display_name: Emiliano Botti
+  image: members/emi.jpeg
+  github: eb16
+  profile_url: https://github.com/eb16
 
