@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Announcing React Native Line v2!
-date: 2020-10-08 10:00:00
+date: 2020-10-30 10:00:00
 author: Emiliano Botti
-excerpt: "In this blog we announce the React Native Line new version, present every new functionality and share technical decisions we made."
+excerpt: "We are happy to announce a React Native Line new version. In this blog we introduce every new functionality and share technical decisions we made."
 tags: [React Native Line, React Native, LineSDK, Xmartlabs]
 category: development
 author_id: emi
