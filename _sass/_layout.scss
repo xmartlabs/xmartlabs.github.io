@@ -8,6 +8,15 @@ $grey: #525252;
 $body: 'Graphik', sans-serif;
 $title-font-family: 'Libre Baskerville', sans-serif;
 
+header {
+  .container{
+    &:before, &:after {
+      display: none;
+    }
+  }
+}
+
+
 a {
   color: $black;
   &:visited {
@@ -17,6 +26,24 @@ a {
     color: $black;
   }
   text-decoration: none;
+}
+
+.button-text {
+  font-weight: 700;
+  border-radius: 0;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+  white-space: nowrap;
+  &:hover, &:visited, &:focus, &:active, &:focus-within {
+    color: #FFFFFF;
+  }
+}
+
+.button{
+  &.is-nav {
+    border-radius: 0;
+  }
 }
 
 div.header {
@@ -147,6 +174,13 @@ div.header {
   }
 }
 
+.list-container {
+  position: relative;
+  z-index: 1;
+  background-color: #FFFFFF;
+  margin-top: 100px;
+}
+
 .featured-container {
   max-width: $content-width;
   margin-right: auto;
@@ -161,6 +195,7 @@ div.header {
       flex-direction: column;
     }
     .featured-column {
+      flex: 50%;
       .post-item {
          padding: 30px 20px 30px 20px;
          @include media-query($on-palm) {
@@ -339,7 +374,12 @@ article.post-item {
 }
 
 .page-content {
+  margin-top: 140px;
+  position: relative;
+  z-index: 1;
+  background-color: #FFFFFF;
   padding: 0;
+  padding-bottom: 70px;
 }
 
 .page-heading {
@@ -613,6 +653,11 @@ pre code {
 
 div.post_container a {
   color: $pink;
+}
+
+footer {
+  position: fixed;
+  z-index: 0;
 }
 
 .container.footer {

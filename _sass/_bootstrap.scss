@@ -206,8 +206,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #2a6496;
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:focus {
   outline: thin dotted #333;
@@ -637,8 +636,8 @@ pre code {
 .container {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  // padding-left: 15px;
+  // padding-right: 15px;
 }
 .container:before,
 .container:after {

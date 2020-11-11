@@ -1,24 +1,38 @@
 ---
 layout: default
 ---
-{% include featured.html %}
 
-<div class="page-content">
-  <div class="wrapper">
-    <div class="home">
-      <h1 class="page-heading">
-      </h1>
-      <section>
-        <ul class="post-list">
-          {% assign displayPosts = site.posts | where: 'show', true %}
-          {% for post in displayPosts offset:3 %}
-            <li>
-              {% include post.html post=post %}
-            </li>
-          {% endfor %}
-        </ul>
-      </section>
+<div class="list-container">
+  {% if page.dir == "/" %}
+    <div class="header">
+      <div class="scrim-layer">
+        <h1 class="header-title">Xmartlabs Blog</h1>
+        <h4 class="subtitle header-subtitle">
+          Design. Engineering. Lessons learned on our journey.
+        </h4>
+      </div>
     </div>
-    <iframe src="https://xmartlabs.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+  {% endif %}
+
+  {% include featured.html %}
+
+  <div class="page-content">
+    <div class="container">
+      <div class="home">
+        <h1 class="page-heading">
+        </h1>
+        <section>
+          <ul class="post-list">
+            {% assign displayPosts = site.posts | where: 'show', true %}
+            {% for post in displayPosts offset:3 %}
+              <li>
+                {% include post.html post=post %}
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+      <iframe src="https://xmartlabs.substack.com/embed" width="100%" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+    </div>
   </div>
 </div>
