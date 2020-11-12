@@ -636,8 +636,6 @@ pre code {
 .container {
   margin-right: auto;
   margin-left: auto;
-  // padding-left: 15px;
-  // padding-right: 15px;
 }
 .container:before,
 .container:after {
@@ -1544,7 +1542,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .form-control::-webkit-input-placeholder {
   color: #FFFFFF;
 }
-// changed by martin barreto
+
 .form-control {
   display: block;
   width: 100%;
