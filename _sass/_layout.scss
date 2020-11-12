@@ -186,7 +186,6 @@ div.header {
   margin-right: auto;
   margin-left: auto;
   padding: 0 15px;
-  // display: flex;
   flex-direction: column;
   .bottom-row {
     margin-top: 10px;
@@ -314,7 +313,6 @@ article.post-item {
   }
   display: block;
   padding: 30px 50px 30px 30px;
-  // box-shadow: 0 5px 20px -5px rgba(0, 0, 0, .2);
   .post-time-info {
     text-align: left;
     font-family: $body;
