@@ -141,4 +141,8 @@ emi:
   image: members/emi.jpeg
   github: eb16
   profile_url: https://github.com/eb16
-
+robert:
+  display_name: Roberto Sosa
+  image: members/robert.png
+  github: xl-rsosa
+  profile_url: https://github.com/xl-rsosa
