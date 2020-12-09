@@ -44,7 +44,7 @@ As a startup, your customer acquisition funnel is defined by your growth model, 
 
 ## Using A/B testing to improve funnels
 
-If you think the funneling of customers is a static process, then let me tell you that is not the case. Each acquisition and engagement strategy needs to adapt to trends and the needs of your customers, which means constantly experimenting with new features in your products. A/B Testing is the tool that can help you with this, as it offer the possibility of comparing the performance of the current funnel process (control group) with a modified process which you suspect is better (experimental group).
+If you think the funneling of customers is a static process, then let me tell you that is not the case. Each acquisition and engagement strategy needs to adapt to trends and the needs of your customers, which means constantly experimenting with new features in your products. A/B Testing is the tool that can help you with this, as it offers the possibility of comparing the performance of the current funnel process (control group) with a modified process which you suspect is better (experimental group).
 
 Different flows means that you can measure changes in the performance indicators of the users, for example their conversion rate. Does it change between the users in experimental flow and control one? How? Did their churn rate or abandon rate went up? why? There are common hypothetical questions that allow you to understand if the implemented features in your product are working as you theorized before you released to you whole customer base and risking the loss of customers by having a wrong understanding of your customer's needs.
 
