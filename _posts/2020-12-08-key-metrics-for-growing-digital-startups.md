@@ -26,7 +26,7 @@ Our focus will be explaining what are the key numerical indicators you should be
 
 ### Gauging the customer acquisition funnel
 
-As a startup, your customer acquisition funnel is defined by your growth model, which can vary from paid models that invest in ads, to demoing or going viral in a time window so people can know your company and possibly interact with your product. Whatever model you choose to go with, they all have common metrics that can give you really good insight on how good the funnel is performing.
+As a startup, your customer acquisition funnel is defined by your growth model, which can vary from paid models that invest in ads, to demoing or going viral in a time window so people can get to know your company and possibly interact with your product. Whatever model you choose to go with, they all have common metrics that can give you really good insight on how good the funnel is performing.
 
 - **Cost Per Acquisition (CPA)**
 
