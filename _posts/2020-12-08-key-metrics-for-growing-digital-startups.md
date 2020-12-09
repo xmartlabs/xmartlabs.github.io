@@ -48,7 +48,7 @@ If you think the funneling of customers is a static process, then let me tell yo
 
 Different flows means that you can measure changes in the performance indicators of the users, for example their conversion rate. Does it change between the users in experimental flow and control one? How? Did their churn rate or abandon rate went up? why? There are common hypothetical questions that allow you to understand if the implemented features in your product are working as you theorized before you released to you whole customer base and risking the loss of customers by having a wrong understanding of your customer's needs.
 
-These process of understanding empirically your customers and the way they interact with your product is what nowadays is called data-driven product development. But in order to this in the most efficient way possible you will need the right analytics tool.
+This process of understanding empirically your customers and the way they interact with your product is what nowadays is called data-driven product development. But in order to this in the most efficient way possible you will need the right analytics tool.
 
 ## Implement the correct analytics tools to track your funnels and tests
 
