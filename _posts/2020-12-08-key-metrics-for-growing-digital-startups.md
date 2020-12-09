@@ -13,7 +13,7 @@ crosspost_to_medium: false
 permalink: /blog/:title/
 ---
 
-Ever since the bigger tech companies like Google, Amazon and Facebook realized how powerful data can be to design impactful products that attract new users and retain older ones, they started paying more attention to which metrics they should be tracking in order to refine their products and take assertive business decisions. This resulted in the investment of these huge companies in developing analytics solutions with more reasonable pricing so smaller companies and startups could have the benefit of using data.
+Ever since the bigger tech companies like Google, Amazon and Facebook realized the powerful role data plays in designing impactful products that attracts new users and retains older ones, they started paying more attention to which metrics they should be tracking in order to refine their products and take assertive business decisions. This resulted in the investment of these huge companies in developing analytics solutions with more reasonable pricing so smaller companies and startups could have the benefit of using data.
 
 If you are in the process of growing your startup or digital product, you may be interested in getting to know how to use data the same way the biggest tech companies do to grow their own products. That is, tracking key performance indicators of two fundamental customer funnels and implementing experimental flows for different users, commonly known as A/B Testing.
 
