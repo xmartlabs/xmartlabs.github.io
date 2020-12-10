@@ -56,7 +56,7 @@ All these numbers should be tracked in the most efficient way possible. This not
 
 Having the best analytics platform that fits your needs and makes well-rounded dashboards that display information in a digestible and non-time-consuming way is a key technical requirement. The problem with this, is that startups maybe don't have the budget for an analytics platform when they are starting. This can be solved using the free version of current Google Analytics (Merge between GA and Firebase Analytics) or open-source analytics platforms.
 
-Google Analytics for Firebase can cover most needs that a startup can have when starting to develop their product. The best part is, that it works on tracking both mobile and web apps as also being very user friendly. Also, the setup is very simple in comparison to others.
+Google Analytics for Firebase can cover most startups needs when starting to develop their product. The best part is that it works for both mobile and web apps while also being very user friendly. Additionally, the setup is very simple in comparison to others.
 
 The disclaimer here is that, if your startup scales maybe you should start considering better product analytics tools like Amplitude, Mixpanel, Looker, or even Tableau for interconnecting all your data sources.
 
