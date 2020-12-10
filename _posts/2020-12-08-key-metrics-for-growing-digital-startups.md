@@ -52,7 +52,7 @@ This process of understanding empirically your customers and the way they intera
 
 ## Implement the correct analytics tools to track your funnels and tests
 
-All these numbers should be tracked in the most efficient way possible. This not also means keeping an eye on the numbers, but also analyzing them and taking action. For this the data should reach out to the correct persons in daily, weekly, monthly cycles.
+All these numbers should be tracked in the most efficient way possible. This not only means keeping an eye on the numbers, but also analyzing them and taking action. For this, data should get to the correct stakeholder in daily, weekly, monthly cycles.
 
 Having the best analytics platform that fits your needs and makes well-rounded dashboards that display information in a digestible and non-time-consuming way is a key technical requirement. The problem with this, is that startups maybe don't have the budget for an analytics platform when they are starting. This can be solved using the free version of current Google Analytics (Merge between GA and Firebase Analytics) or open-source analytics platforms.
 
