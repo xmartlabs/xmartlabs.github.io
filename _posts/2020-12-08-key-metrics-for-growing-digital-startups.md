@@ -72,6 +72,6 @@ As a startup, one of your constant goals and possibly a big challenge is refinin
 
 The metrics mentioned in this post are not the only ones you should be tracking, but it's usually a good starting point since most of these KPIs are -almost- standard between businesses. Another important thing to mention is that you should not be tracking a hundred indicators because you will inevitably lose attention of the important things. The goal of all this, is to be able to quickly analyze the big picture of the interactions with your customers and take decisions that help you mitigate problems and discover new opportunities.
 
-Overall, using analytics and A/B testing tools brings a lot of possibilities to the table and the cost of implementing them is now cheaper than ever, some of the tools mentioned in this blog are even free! As a digital startup, if you are not implementing any of this, you are losing a lot of potential in product refinement as algo possibly being at a disadvantage against the competition.
+Overall, using analytics and A/B testing tools brings a lot of possibilities to the table and the cost of implementing them is now cheaper than ever: some of the tools mentioned in this post are even free! As a digital startup, if you are not implementing any of this then you are potentially losing a lot of opportunities regarding product refinement as well as possibly being at a disadvantage against the competition.
 
 After reading this: **Are you implementing analytics for your startup to increase the chances of success with your product?**
