@@ -21,7 +21,7 @@ If you are in the process of growing your startup or digital product, you may be
 
 Funnels are not a new concept in the world of sales and marketing. Funnel is a term used to describe the process of obtaining customers through different interactions with the company and it's commonly divided into different stages. Although in this article we are not going to talk about how to build a funnel, there is plenty of information out there on how to design and implement one.
 
-Our focus will be explaining what are the key numerical indicators you should be tracking to determine the effectiveness of the two most important funnels, the **customer acquisition funnel** and the **customer engagement funnel** as also explain how can **A/B Testing** help you improve them even further.
+Our focus will be explaining what are the key numerical indicators you should be tracking to determine the effectiveness of the two most important funnels, the **customer acquisition funnel** and the **customer engagement funnel** and also explain how can **A/B Testing** help you improve them even further.
 
 
 ### Gauging the customer acquisition funnel
