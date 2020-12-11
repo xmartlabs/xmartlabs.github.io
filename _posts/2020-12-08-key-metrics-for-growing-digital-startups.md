@@ -7,7 +7,7 @@ excerpt: "Which metrics should I track to refine my products and take assertive 
 tags: [digital product development, product metrics, Analytics, A/B testing, Xmartlabs]
 category: development
 author_id: robert
-featured_image: /images/jamstack-intro/featured.jpeg
+featured_image: /images/key-metrics-for-growing-digital-startups/featured.png
 show: true
 crosspost_to_medium: false
 permalink: /blog/:title/
