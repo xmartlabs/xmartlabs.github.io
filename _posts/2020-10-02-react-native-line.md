@@ -7,7 +7,7 @@ excerpt: "Connecting to Line SDK from a React Native app? We're super excited to
 tags: [React Native Line, React Native, LineSDK, Xmartlabs]
 category: development
 author_id: emi
-featured_image: /images/react-native-line/banner.png
+featured_image: /images/react-native-line/banner2.png
 show: true
 crosspost_to_medium: false
 permalink: /blog/:title/
@@ -148,5 +148,3 @@ If you want to update to the latest version, please check out our fined-tuned [m
 We hope you find it useful. Don't hesitate to contact us if you need any help or have a great new feature idea. We will be more than happy to keep this project growing!
 
 Finally, we also want to thank [everyone](https://github.com/xmartlabs/react-native-line#contributors) that helps create and maintain this library.
-
-
