@@ -13,7 +13,6 @@ url_blog: 'https://blog.xmartlabs.com'
 twitter_username: xmartlabs
 github_username: xmartlabs
 plugins: [jekyll-paginate]
-
 jekyll-crosspost_to_medium:
   status: draft
   backdate: true
