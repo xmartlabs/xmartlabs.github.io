@@ -9,7 +9,6 @@ category: people-events
 author_id: arsu
 featured_image: /images/recap-appbuilders/featured.jpg
 show: true
-crosspost_to_medium: false
 
 ---
 

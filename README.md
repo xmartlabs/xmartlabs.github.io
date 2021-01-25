@@ -37,7 +37,7 @@ git remote add staging git@github.com:xmartlabs/blog-staging.git # Only the firs
 git push staging
 ```
 
-All pull requests are automatically deployed to the staging environment. 
+All pull requests are automatically deployed to the staging environment.
 If you want to exclude it, you can add the label 'not-deploy' in your pull request.
 If you want to deploy a new version of your pull request, you can add a new commit or add a label, in both cases the deploy trigger will be executed.
 
@@ -75,10 +75,6 @@ These may take one of the following values:
 Remember to place the image inside the post's folder. A different name and format can be used, just assign the correct path to the variable.
 
 Also make sure your blogpost has `permalink: /:title/` in the blog post's front matter. We're no longer using the date in the blog post url.
-
-## How to crosspost a post to medium
-
-We need to add `crosspost_to_medium: true` then set up `MEDIUM_USER_ID` and `MEDIUM_INTEGRATION_TOKEN` env variables in your computer.
 
 > you can check if the variables are properly set up by `printenv | grep MEDIUM`
 

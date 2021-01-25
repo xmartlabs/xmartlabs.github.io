@@ -9,7 +9,6 @@ category: development
 author_id: mtnBarreto
 featured_image: /images/ios-fastlane-ci/featured.png
 show: true
-crosspost_to_medium: false
 
 ---
 

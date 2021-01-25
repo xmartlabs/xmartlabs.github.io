@@ -9,7 +9,7 @@ category: development
 author_id: emi
 featured_image: /images/react-native-line/banner2.png
 show: true
-crosspost_to_medium: false
+
 permalink: /blog/:title/
 ---
 

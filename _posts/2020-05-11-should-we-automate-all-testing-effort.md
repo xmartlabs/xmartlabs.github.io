@@ -9,7 +9,6 @@ category: business-agile
 author_id: tabu
 featured_image: /images/automate-manual-testing/featured2.png
 show: true
-crosspost_to_medium: false
 
 ---
 

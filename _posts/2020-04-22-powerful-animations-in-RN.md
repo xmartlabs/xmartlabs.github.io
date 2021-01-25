@@ -9,7 +9,6 @@ category: development
 author_id: nicoh
 featured_image: /images/powerful-animations-rn/featured.jpg
 show: true
-crosspost_to_medium: false
 
 ---
 In this blog post we're going to present the main issues we ran into implementing complex animations in React Native at Xmartlabs. We'll show how Reanimated helps achieving smooth animations and at which cost. After reading this blog post you will be able to determine if react native is a proper choice to create your app considering its animations requirements.

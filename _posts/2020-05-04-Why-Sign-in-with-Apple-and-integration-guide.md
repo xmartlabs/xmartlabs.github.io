@@ -9,7 +9,6 @@ category: development
 author_id: ceci
 featured_image: /images/apple-sign-in/signInWithApple.jpg
 show: true
-crosspost_to_medium: false
 
 ---
 
