@@ -9,6 +9,7 @@ author_id: mlorenzo
 featured_image: /images/2020-07-08/frontend-architecture-and-best-practices.jpg
 show: true
 category: development
+permalink: /:year/:month/:day/:title/
 ---
 
 As a developer, you'll probably have to consume services provided by third-party code.

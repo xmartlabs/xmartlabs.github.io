@@ -8,7 +8,7 @@ category: development
 author_id: mtnBarreto
 show: true
 featured_image: /images/jamstack-intro/featured.jpeg
-crosspost_to_medium: false
+permalink: /:year/:month/:day/:title/
 ---
 
 Jamstack is a top trend in web development nowadays. Everyone is talking about the modern web development architecture. In this blogpost, I'm gonna cover what caused JAMSTack quick's adoption, how's the JAMStack community and ecosystem, and of course, what does JAMStack mean.

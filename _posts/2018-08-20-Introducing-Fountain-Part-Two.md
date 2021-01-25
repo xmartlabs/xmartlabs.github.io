@@ -7,7 +7,7 @@ tags: [Xmartlabs, Android, Android Jetpack, Android Paging Library, Live Data, A
 author_id: mirland
 category: development
 show: true
-
+permalink: /:year/:month/:day/:title/
 ---
 
 In the [previous part] we presented **[Fountain]** and shown a way, using the `Listing` component, to make the paging as cool and simple as possible.

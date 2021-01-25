@@ -9,8 +9,7 @@ category: people-events
 author_id: arsu
 featured_image: /images/recap-appbuilders/featured.jpg
 show: true
-crosspost_to_medium: false
-
+permalink: /:year/:month/:day/:title/
 ---
 
 After months of the uncertainty of how a fully online conference would work, and a lot of hard work from multiple teams around the world in order to make it work.

@@ -9,8 +9,7 @@ category: machine-learning
 author_id: renzo
 featured_image: /images/how-to-speed-up-inference-in-your-deep-learning-model/speed-up.jpg
 show: true
-crosspost_to_medium: false
-
+permalink: /:year/:month/:day/:title/
 ---
 
 Did you obtain good accuracy with your deep learning model only to find out that inference time isn't enough to deploy on production? Are you lost on how to optimize your model's inference speed? Then this post is for you.

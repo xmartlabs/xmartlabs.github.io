@@ -8,6 +8,7 @@ author_id: mathias
 markdown: redcarpet
 show: true
 category: development
+permalink: /:year/:month/:day/:title/
 ---
 
 It's been almost a year since Eureka's first release and many developers have been using it since then. We are thankful for all the valuable support and contributions received.

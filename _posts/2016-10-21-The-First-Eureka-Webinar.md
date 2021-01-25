@@ -8,6 +8,7 @@ author_id: esanchez
 markdown: redcarpet
 show: true
 category: people-events
+permalink: /:year/:month/:day/:title/
 ---
 
 [Eureka]:        https://github.com/xmartlabs/Eureka

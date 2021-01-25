@@ -7,6 +7,7 @@ tags: [Xmartlabs, NFC]
 author_id: felipe
 show: true
 category: development
+permalink: /:year/:month/:day/:title/
 ---
 
 NFC is a communication protocol that enables two devices to share data within a range of up to 4 cm, launched to the public in 2004. This technology is usually used to share personal or critical data between two devices, since its range restrictions make it more secure than Bluetooth.

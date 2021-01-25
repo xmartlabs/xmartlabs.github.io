@@ -12,26 +12,19 @@ url_team: 'https://xmartlabs.com/#our_team'
 url_blog: 'https://blog.xmartlabs.com'
 twitter_username: xmartlabs
 github_username: xmartlabs
-plugins: [jekyll-paginate]
-
-jekyll-crosspost_to_medium:
-  status: draft
-  backdate: true
-  license: all-rights-reserved
-  text: '<section class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="cbef" class="graf graf--p graf--leading is-selected"><em class="markup--em markup--p-em">Are you </em><strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">xyz</em></strong><em class="markup--em markup--p-em"> and have learned something not covered in this post? Let me know in the comments. I’d be interested to get your perspective.</em></p><p name="425f" class="graf graf--p graf-after--p graf--trailing"><em class="markup--em markup--p-em">Have questions about </em><strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">xyz</em></strong><em class="markup--em markup--p-em">? I’d be happy to answer those in the comments if I can.</em></p></div></div></section><section name="1231" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><figure tabindex="0" contenteditable="false" name="9fd4" class="graf graf--figure is-defaultValue graf--leading"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 89px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 12.7%;"></div><img class="graf-image" data-image-id="1*XoUmVES4jwlkQ_EXfz_Iaw.jpeg" data-width="1400" data-height="178" src="https://cdn-images-1.medium.com/max/800/1*XoUmVES4jwlkQ_EXfz_Iaw.jpeg"><div class="crosshair u-ignoreBlock"></div></div><figcaption class="imageCaption" contenteditable="true" data-default-value="Type caption for image (optional)"><span class="defaultValue">Type caption for image (optional)</span><br></figcaption></figure><h3 name="6dcb" class="graf graf--h3 graf-after--figure">Technical expertise for great products.</h3><p name="4966" class="graf graf--p graf-after--h3">We provide exceptional strategy, design and technology to create innovative and high-value software.</p><p name="654b" class="graf graf--p graf-after--p graf--trailing">Know more about our services and how we can help you at <a href="https://medium.com/r/?url=https%3A%2F%2Fwww.xmartlabs.com" data-href="https://medium.com/r/?url=https%3A%2F%2Fwww.xmartlabs.com" class="markup--anchor markup--p-anchor" data-tooltip="https://medium.com/r/?url=https%3A%2F%2Fwww.xmartlabs.com" data-tooltip-position="bottom" data-tooltip-type="link" target="_blank">xmartlabs.com</a>.</p></div></div></section>'
-
+plugins: []
 # Build settings
 markdown: kramdown
 future: false
 timezone: America/Montevideo
-permalink: /:year/:month/:day/:title/
+permalink: /blog/:title/
 
 # sass:
 #   style: :compressed
 
 # Pagination
-paginate: 6
-paginate_path: "/page/page:num/"
+# paginate: 6
+# paginate_path: "/page/page:num/"
 
 
 defaults:

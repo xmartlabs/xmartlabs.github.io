@@ -9,8 +9,7 @@ category: development
 author_id: ceci
 featured_image: /images/apple-sign-in/signInWithApple.jpg
 show: true
-crosspost_to_medium: false
-
+permalink: /:year/:month/:day/:title/
 ---
 
 In this post, we'll debate about the benefits of providing *Sign in with Apple* in your app so you can decide if it worth integrating it or not. In the second part of this post we'll provide a step by step *Sign in with Apple* integration guide and talk about all the issues we run into and had to overcome.

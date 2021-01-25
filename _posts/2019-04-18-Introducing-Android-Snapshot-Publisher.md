@@ -7,6 +7,7 @@ tags: [Xmartlabs, Android, Gradle Plugin, Snapshot, Google Play, Fabric Beta]
 author_id: mirland
 show: true
 category: development
+permalink: /:year/:month/:day/:title/
 ---
 
 We're happy to announce the release of [**Android Snapshot Publisher**, our first open source Android Gradle Plugin](https://github.com/xmartlabs/android-snapshot-publisher), a plugin to **create Android Snapshot versions** in the simplest way we know!

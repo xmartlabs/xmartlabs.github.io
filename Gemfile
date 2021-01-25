@@ -1,6 +1,5 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 3.8.4"
-gem "jekyll-paginate", "~> 1.1.0"
-
+gem "jekyll", "3.9.0"
+gem "kramdown-parser-gfm"
 gem "html-proofer", "~> 3.15.3", require: false

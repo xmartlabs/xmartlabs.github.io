@@ -9,8 +9,7 @@ category: people-events
 author_id: arsu
 featured_image: /images/appbuilders2020/featured.png
 show: true
-crosspost_to_medium: false
-
+permalink: /:year/:month/:day/:title/
 ---
 
 ## AppBuilders Speakers!
@@ -43,6 +42,6 @@ We should regard this as motivation to keep working on our local communities, in
 
 ## Join us at this great event!
 
-So please come join us at [AppBuilders Conference](https://appbuilders.ch/)! There are a bunch of great speakers like Chris Eidhof (Founder @objc.io) Peter Steinberger (Founder @PSPDFKit),Shai Mishali (Creator of RxSwift) and other recognized people from the iOS community coming from big companies like Netflix, Calm, Raywenderlich and [more](https://appbuilders.ch/#speakers). Even Paul Hudson (HackingWithSwift) is chipping in! 
+So please come join us at [AppBuilders Conference](https://appbuilders.ch/)! There are a bunch of great speakers like Chris Eidhof (Founder @objc.io) Peter Steinberger (Founder @PSPDFKit),Shai Mishali (Creator of RxSwift) and other recognized people from the iOS community coming from big companies like Netflix, Calm, Raywenderlich and [more](https://appbuilders.ch/#speakers). Even Paul Hudson (HackingWithSwift) is chipping in!
 
 The event is taking place from May 10th to 12th and my talk is the last day at  [11:45 am (GMT+1)](https://appbuilders.ch/#schedule). See you there! Let's spread the knowledge!

@@ -9,8 +9,7 @@ category: business-agile
 author_id: tabu
 featured_image: /images/automate-manual-testing/featured2.png
 show: true
-crosspost_to_medium: false
-
+permalink: /:year/:month/:day/:title/
 ---
 
 Have you ever found yourself wanting full automation testing? Have you ever thought that everything should be automated? Then this post is for you.

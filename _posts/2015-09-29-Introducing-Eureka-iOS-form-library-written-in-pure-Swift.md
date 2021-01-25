@@ -7,6 +7,7 @@ tags: [Xmartlabs, Eureka, Forms]
 author_id: mtnBarreto
 show: true
 category: development
+permalink: /:year/:month/:day/:title/
 ---
 
 We are incredibly excited to announce [Eureka!], our first Swift open source project designed to easily build dynamic table-view forms.
