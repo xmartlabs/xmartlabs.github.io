@@ -7,6 +7,7 @@ tags: [Xmartlabs, Design, Product, Sprint]
 author_id: xl
 show: true
 category: product-design
+permalink: /:year/:month/:day/:title/
 ---
 
 <img src="/images/sprint1/cover.jpg"/>

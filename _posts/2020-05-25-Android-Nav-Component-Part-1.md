@@ -7,21 +7,21 @@ category: development
 author_id: mirland
 show: true
 featured_image: /images/android_navigation_blog_part_one/navigation_banner.jpg
-
+permalink: /:year/:month/:day/:title/
 ---
 
 This year the [Google I/O](https://events.google.com/io/) conference was canceled, so I think it's a good time to talk about one of [Jetpack's](https://developer.android.com/jetpack) biggest Architecture component introduced last year, the [Android Navigation Component](https://developer.android.com/guide/navigation).
 
 The aim of this series of posts is to talk about two important items that will help you decide on whether to use this library or not:
 1. The expectations and conclusions of using it for more than 9 months.
-1. Some tips and helper classes that are very helpful if you do want to start using it (next post). 
+1. Some tips and helper classes that are very helpful if you do want to start using it (next post).
 
 ## What were we expecting from a new navigation library?
 That was the first question that came to my mind when we first thought about using it.
 There are a bunch of navigation libraries in existence for Android, and at that moment we already had a solid navigation architecture based on the Router pattern, so, what were we expecting from it?
 
 - A library that's easy to integrate and debug.
-- A library that could provide us with a better understanding of the app's main flows and features. 
+- A library that could provide us with a better understanding of the app's main flows and features.
 - Share data between views easily.
 - A good integration between all of Jetpack's Components.
 
@@ -39,7 +39,7 @@ Each node is able to declare arguments, which ends up being data shared within t
 
 I found the nav graph extremely useful, with two key advantages:
 - You can see the whole app flow represented as a navigation graph.
-It's useful not only for you but especially for new colleagues joining your project. 
+It's useful not only for you but especially for new colleagues joining your project.
 - The ability to define **nested graphs**, which are graphs that will be included by other graphs.
 So that you can define a specific app flow part in a nested graph to work with small diagrams and be able to handle complex app flow.
 
@@ -90,9 +90,9 @@ Android Architecture Components are libraries that help you design robust, testa
 All graphs have an associated [lifecycle scope](https://developer.android.com/topic/libraries/architecture/lifecycle), so that you can create ViewModels associated to the graph's scope.
 That means that you can share data through the screens using a ViewModel that's associated with a graph.
 
-Let me explain it with an example: suppose that you have an app that has a big register flow. It contains a screen with personal information, another screen for your picture, another for your address, and so on. 
+Let me explain it with an example: suppose that you have an app that has a big register flow. It contains a screen with personal information, another screen for your picture, another for your address, and so on.
 A fine approach here would be to define a register nested graph.
-As you can see, all screens have a piece of information that should be combined in the end. 
+As you can see, all screens have a piece of information that should be combined in the end.
 We have two options to accomplish that: either create a lot of arguments on each screen to share all of the information or just use a shared ViewModel.
 Using the second approach, it will be cleaner while at the same time resulting in both easier to handle and less verbose.
 All screens will store their specific data in the graph’s ViewModel, and at the end the last screen will combine the data to create the needed entity.
@@ -100,7 +100,7 @@ As the ViewModel is associated to the graph’s lifecycle, when the flow finishe
 
 ### Bonus
 
-In the previous sections I talked about the most important points of this component. 
+In the previous sections I talked about the most important points of this component.
 However, there are two more features worth mentioning.
 
 The first one is deep-linking.
@@ -108,7 +108,7 @@ Implementing deep linking was never easier, we just need to specify them in the 
 Furthermore, we can deep link from a push notification by creating an [explicit intent](https://developer.android.com/guide/navigation/navigation-deep-link#explicit) and open exactly the section that you want.
 
 The second one, it's how easy transitions can be implemented.
-We just need to write a few lines of code to add transitions between fragments. 
+We just need to write a few lines of code to add transitions between fragments.
 Additionally, a couple of months ago Material released the [motion system](https://material.io/design/motion/the-motion-system.html), a set of transition patterns that help users understand and navigate an app.
 
 <img width="100%" src="/images/android_navigation_blog_part_one/motion_system.gif" />

@@ -9,8 +9,7 @@ category: people-events
 author_id: fer-barrios
 featured_image: /images/dealing-with-covid/dealing-with-covid.jpg
 show: true
-
-
+permalink: /:year/:month/:day/:title/
 ---
 
 <div style="text-align: center"><img width="100%" src="/images/dealing-with-covid/dealing-with-covid.jpg" /></div>

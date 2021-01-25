@@ -8,6 +8,7 @@ tags: [Xmartlabs, Swift, iOS, Tutorial, network]
 markdown: redcarpet
 show: true
 category: development
+permalink: /:year/:month/:day/:title/
 ---
 
 Do you often want to debug or monitor external service responses in you app, recognize latency and work with the data you receive back? Same happens to us!

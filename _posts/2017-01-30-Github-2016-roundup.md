@@ -8,6 +8,7 @@ author_id: xl
 markdown: redcarpet
 show: true
 category: business-agile
+permalink: /:year/:month/:day/:title/
 ---
 
 Almost a month into the new year, the yearly summaries and annual resolutions posts season is definitely over.

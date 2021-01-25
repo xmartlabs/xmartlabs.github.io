@@ -8,6 +8,7 @@ author_id: dernst
 markdown: redcarpet
 show: true
 category: development
+permalink: /:year/:month/:day/:title/
 ---
 
 [Ecno]:        https://github.com/xmartlabs/Ecno

@@ -17,7 +17,7 @@ plugins: []
 markdown: kramdown
 future: false
 timezone: America/Montevideo
-permalink: /:year/:month/:day/:title/
+permalink: /blog/:title/
 
 # sass:
 #   style: :compressed

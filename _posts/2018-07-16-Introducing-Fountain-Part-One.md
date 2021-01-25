@@ -7,6 +7,7 @@ tags: [Xmartlabs, Android, Android Jetpack, Android Paging Library, Live Data, A
 author_id: mirland
 show: true
 category: development
+permalink: /:year/:month/:day/:title/
 ---
 
 There are plenty of articles out there talking about the amazing Android Architecture Components, how we can combine them in an MVVM architecture and make them work as a charm.

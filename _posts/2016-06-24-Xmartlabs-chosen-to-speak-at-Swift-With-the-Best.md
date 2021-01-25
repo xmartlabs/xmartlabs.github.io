@@ -8,6 +8,7 @@ author_id: agustin
 markdown: redcarpet
 show: true
 category: people-events
+permalink: /:year/:month/:day/:title/
 ---
 
 This Saturday, June 25th, the world's top Swift developers will unite at [Swift With The Best](http://swift.withthebest.com/), the largest online conference series for mobile developers. Our team will have two speakers at the conference.

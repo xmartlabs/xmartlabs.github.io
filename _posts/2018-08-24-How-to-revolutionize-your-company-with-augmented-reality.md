@@ -7,6 +7,7 @@ tags: [Xmartlabs, AR]
 author_id: xl
 show: true
 category: development
+permalink: /:year/:month/:day/:title/
 ---
 
 We at Xmartlabs have built an expert team around computer vision, machine learning, and augmented reality. In this segment, we’ll be sharing specific AR use cases we believe to be immediately practical and valuable for a range of industries.
