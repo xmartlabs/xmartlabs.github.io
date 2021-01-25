@@ -23,8 +23,8 @@ permalink: /:year/:month/:day/:title/
 #   style: :compressed
 
 # Pagination
-paginate: 6
-paginate_path: "/page/page:num/"
+# paginate: 6
+# paginate_path: "/page/page:num/"
 
 
 defaults:
