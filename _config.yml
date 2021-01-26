@@ -19,6 +19,10 @@ future: false
 timezone: America/Montevideo
 permalink: /blog/:title/
 
+webrick:
+  headers:
+    Cache-Contol: no-cache, no-store
+
 # sass:
 #   style: :compressed
 
