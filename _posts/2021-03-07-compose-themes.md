@@ -16,15 +16,15 @@ It's great, but sometimes Material is a bit limited and strict.
 In this post, we'll analyze how to adapt and extend the Material theme to  your product's style guidelines.
 
 # What an application theme is?
-The definition is not complex, Themes are a collection of named resources, useful broadly across an app.
+The definition is not complex, themes are a collection of named resources, useful broadly across an app.
 More information can be found in [Android's themes documentation], but themes assign semantic names, like `colorPrimary`, to Android resources, and they will be used through the app.
 
 Most Android applications, flow or should follow, [Material Design Guidelines], so Material created the `MaterialTheme`.
 It's a systematic way to customize Material Design to better reflect your product’s brand.
-A Material Theme comprises [color], [typography], and [shape] attributes.
+Material Theme comprises [color], [typography], and [shape] attributes.
 
 
-### The fantastic world is not so fantastic
+### Sounds good, but does it perfect?
 Material does a great job, but from my point of view, it's too strict.
 So, here is the **first problem**, you have to adapt your look and feel to the material guidelines, and if not, it's a bit hard to use it.
 The **second issue** is that Material comprises only [color], [typography], and [shape] attributes, but if we check the theme definition, we could want to define more resources in a theme, for example, dimensions or icons.
@@ -48,7 +48,7 @@ val Colors.subtitleTextColor: Color
 If you take a look at this code, you can see that the `subtitleTextColor` is based only on material color's light property.
 However, what about if we want to handle multiple color pallets in the same app, how can I do that?
 
-The approach that we will use is defining a new color class, the `AppColor`, witch will hold the material color.
+The approach that we will use is defining a new color class, the `AppColor`, witch will hold the material color and it will add our custom colors.
 
 ```kotlin
 @Stable
@@ -63,7 +63,7 @@ class AppColors(
 ```
 
 `AppColors` holds all app's colors.
-Each application can define different color palettes, and choose one of them based on the app state.
+Each application can define different color palettes, and you can choose one of them based on the app state.
 Suppose that we define two color palettes, blue and pink colors. 
 Moreover, using this approach you can define blind colors improving the accessibility of the app.
 
@@ -146,7 +146,7 @@ The full implementation of these classes can be found [here].
 
 To extend these classes, we can follow the same idea, we can create a [`AppShapes`] and a [`AppTypography`] classes in the same way and declare custom theme properties.
 
-I will not explain the code because it's analog, you can found it on [GitHub] and if you have a question you can post a comment!
+I will not explain the code because it's analog, you can found it on [GitHub] and if you have any question, don't forget to post a comment!
 
 
 # Adding custom resource to your theme
@@ -154,8 +154,69 @@ I will not explain the code because it's analog, you can found it on [GitHub] an
 In the previous section we checked how we can extend the properties provided by Material, but what about if we want to define new properties?
 Remember, a theme is a semantic resource set, so we could have some dimensions, icons or another resource that will be used in the app.
 
-## Adding custom dimension resources
+## Defining dimensions in our theme
 
+Dimensions are something that I usually define in my theme, some dimensions have a semantic meaning, for example a list item padding, a small size, a container margin and so on.
+
+We can use a similar approach here and defining a dimension class:
+
+
+```kotlin
+@Immutable
+data class AppDims(
+    val textSizeSmall: TextUnit,
+    val textSizeMedium: TextUnit,
+    val textSizeRegular: TextUnit,
+
+    val listItemVerticalPadding: Dp,
+    val listItemHorizontalPadding: Dp,
+)
+
+```
+
+That's fine, but you may be asking a small question, what are the advantages of doing that?
+The first one is that your theme will be robust, you can reuse the dimensions in multiple places in your app.
+The second advantage is that you gain flexibility, you can define custom dimensions based on your device state or specs.
+A practical example can be the dimensions in a small device, you may have two sets of dimensions to improve the app experience in small devices.
+
+```kotlin
+@Composable
+fun appDims() = if (LocalConfiguration.current.screenWidthDp < 300) {
+  smallDeviceAppDims
+} else {
+  regularAppDims
+}
+
+
+private val regularAppDims = AppDims(
+    textSizeSmall = 12.sp,
+    textSizeMedium = 14.sp,
+    textSizeRegular = 16.sp,
+
+    listItemVerticalPadding = 27.dp,
+    listItemHorizontalPadding = 30.dp,
+)
+
+private val smallDeviceAppDims = AppDims(
+    textSizeSmall = 12.sp,
+    textSizeMedium = 13.sp,
+    textSizeRegular = 14.sp,
+
+    listItemVerticalPadding = 15.dp,
+    listItemHorizontalPadding = 14.dp,
+)
+```
+
+Then, you have to add the `AppDims` to your `AppTheme` following the same idea that we did with the `AppColors`.
+You can check the [final code here].
+
+
+# Conclusions
+UI/UX is one of the most important things in a mobile app, Material has some guides to improve it and it also allows you to have similar and consistent UI/UX in the same platform ecosystem.
+Themes makes it possible, if you define the theme at the beginning, using minor configurations its makes the material components consistent between the whole app.
+However, we saw that the Material theme is not flexible, and if the design team doesn't stick 100% to the material guidelines, you may be in troubles, you may have the material theme and the other app theme stuff.
+In this post we presented some ideas to avoid these issues, a way to extend the Material theme, make it flexible, and the most important thing, adaptable to your product.
+[The code in this blog should be useful for most application, I recommend you to check the full implementation on Github], and adapt the main ideas to your problem.
 
 [Android's themes documentation]: https://developer.android.com/guide/topics/ui/look-and-feel/themes
 [Material Design Guidelines]: https://material.io/design/introduction
