@@ -7,20 +7,20 @@ category: development
 author_id: mirland
 show: true
 featured_image: /images/recap2020/look-back-2020-featured.jpg
-permalink: /blog/extending-material-them-in-jetpack-compose/
+permalink: /blog/extending-material-theme-in-jetpack-compose/
 ---
 ​
 If you are a Jetpack Compose user you may already know that one of its advantages is that it's easier to give your app a consistent look & feel by applying themes.
 Additionally, Material already provides a theme that allows apps based on Material Design to reflect your own product’s branding and styles.
 And that is great, but it oftentimes lacks in that it's a bit too strict and limited on what you can and cannot do with it.
-In this post, we'll analyze how to adapt, extend and make more flexible the Material theme so that it can stick to your product's style guidelines.
+In this post, we'll analyze how to adapt, extend and make Metrial Theme more flexible so that it can stick to your product's style guidelines.
 ​
 # What's an application theme?
 The definition is not complex.
 Themes are a collection of named resources that are useful all throughout a given application.
 More information can be found in [Android's themes documentation], but themes assign semantic names like `colorPrimary` to Android resources, that can be later used as references in different places on the app.
 ​
-Most Android applications already follow (or should be following) [Material Design Guidelines], and that's why Material created the `MaterialTheme`.
+Most Android applications already follow (or should be following) [Material Design Guidelines], and that's why Material created `MaterialTheme`.
 It's a systematic way to customize Material Design to better reflect your product’s design needs.
 Material Theme comprises [color], [typography], and [shape] attributes.
 ​
@@ -215,11 +215,11 @@ You can check the [final code here].
 ​
 # Conclusions
 UI/UX is one of the most important things in a mobile app.
-Material has some guides to help improve that and it also allows to have consistency wit other apps on the same platform.
-Themes allow for consistency throughout our own application, especially if you define it at the beginning, just by applying minor configurations.
-However, we saw that the Material theme is not really all that flexible, and if designers don't stick 100% to the their guidelines, you may be in trouble as you may now have a mix of Material and other theme not really related to it.
+Material has some guides to help improve that and it also allows to have consistency with other apps on the same platform.
+Themes allow for consistency throughout an application, especially if you define it at the beginning, just by applying minor configurations.
+However, we saw that Material theme is not really all that flexible, and if designers don't stick 100% to the their guidelines, you may be in trouble as you may now have a mix of Material and other theme not really related to it.
 In this post we presented some ideas to avoid these issues, a way to extend the Material theme while making it flexible, and the most important thing, adaptable to your product.
-[The code in this blog should be useful for most application, I recommend you check the full implementation on GitHub], and adapt the general ideas to your specific use case.
+[The code in this blog should be useful for most applications, but I recommend you check out the full implementation on GitHub], and adapt the general ideas to your specific use case.
 ​
 
 [Android's themes documentation]: https://developer.android.com/guide/topics/ui/look-and-feel/themes
