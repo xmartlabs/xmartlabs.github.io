@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Extending Material theme in Jetpack Compose.
+title: Extending Material theme in Jetpack Compose
 date: 2021-03-06 10:00:00
 tags: [Android, Jetpack Compose, Material, Themes, Material Theme]
 category: development
@@ -18,7 +18,7 @@ In this post, we'll analyze how to adapt, extend and make Material Theme more fl
 # What's an application theme?
 The definition is not complex.
 Themes are a collection of resources that are useful throughout a given application.
-More information can be found in [Android's themes documentation], but themes assign semantic names like `colorPrimary` to Android resources, that can be later used as references in different places on the app.
+More information can be found in [Android's themes documentation], but themes assign semantic names such as `colorPrimary` to Android resources, that can be later used as references in different places on the app.
 ​
 Most Android applications already follow (or should be following) [Material Design Guidelines], and that's why Material created `MaterialTheme`.
 It's a systematic way to customize Material Design to better reflect your product’s design needs.
