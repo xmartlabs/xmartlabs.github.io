@@ -103,7 +103,7 @@ fun appColors(colorPalette: AppColorPalette, darkTheme: Boolean): AppColors =
 As an additional note, using this approach you may also define blind colors, improving the app's accesibility.
 ​
 Given a color palette and the UI mode, the `appColors` method returns an `AppColors` instance.
-The complete implementation of these classes can be found [here].
+The complete implementation of these classes can be found [here](https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppColors.kt).
 ​
 Right now we have a method that provides a `AppColors` palette, but then how can we get the current app color palette?
 Material provides a way of obtaining the current Material color palette, by invoking a `composable` method named `MaterialTheme.colors`.
@@ -141,14 +141,14 @@ fun AppTheme(
 ```
 ​
 These lines define two things, a Composable app theme to handle our custom colors, and static class which provides them.
-The full implementation of these classes can be found [here].
+The full implementation of these classes can be found [here](https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppTheme.kt#L10).
 ​
 ​
 ### Extending [shape] and [typography].
 ​
-To extend these classes, we can follow the same idea, we can create a [`AppShapes`] class and a [`AppTypography`] class the same way and declare custom theme properties.
+To extend these classes, we can follow the same idea, we can create a [`AppShapes`] class and a [`AppTypographies`] class the same way and declare custom theme properties.
 ​
-I will not explain the code because it's analogue, you can find it on [GitHub] and if you have any questions, don't forget to post a comment!
+I will not explain the code because it's analogue, you can find it on [GitHub](https://github.com/xmartlabs/gong/tree/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme) and if you have any questions, don't forget to post a comment!
 ​
 ​
 # Adding custom resources to your theme
@@ -210,7 +210,7 @@ private val smallDeviceAppDims = AppDims(
 ```
 ​
 Then, you have to add the `AppDims` to your `AppTheme` just like we did with the `AppColors` example.
-You can check the [final code here].
+You can check the [final code here](https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppDims.kt).
 ​
 ​
 # Conclusions
@@ -219,13 +219,15 @@ Material has some guides to help improve that and it also allows to have consist
 Themes allow for consistency throughout an application, especially if you define it at the beginning, just by applying minor configurations.
 However, we saw that Material theme is not really all that flexible, and if designers don't stick 100% to the their guidelines, you may be in trouble as you may now have a mix of Material and other theme not really related to it.
 In this post we presented some ideas to avoid these issues, a way to extend the Material theme while making it flexible, and the most important thing, adaptable to your product.
-[The code in this blog should be useful for most applications, but I recommend you check out the full implementation on GitHub], and adapt the general ideas to your specific use case.
+[The code in this blog should be useful for most applications, but I recommend you check out the full implementation on GitHub](https://github.com/xmartlabs/gong/tree/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme), and adapt the general ideas to your specific use case.
 ​
 
-[Android's themes documentation]: https://developer.android.com/guide/topics/ui/look-and-feel/themes
-[Material Design Guidelines]: https://material.io/design/introduction
-[color]:https://material.io/design/color/
-[typography]: https://material.io/design/typography
-[shape]: https://material.io/design/shape/
+[`AppShapes`]: https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppShapes.kt
+[`AppTypographies`]: https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppTypographies.kt
 [`Colors`]: https://developer.android.com/reference/kotlin/androidx/compose/material/Colors
+[Android's themes documentation]: https://developer.android.com/guide/topics/ui/look-and-feel/themes
+[color]:https://material.io/design/color/
 [Material color system]: https://material.io/design/color/
+[Material Design Guidelines]: https://material.io/design/introduction
+[shape]: https://material.io/design/shape/
+[typography]: https://material.io/design/typography
