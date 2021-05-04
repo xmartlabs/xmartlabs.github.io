@@ -28,13 +28,13 @@ Material Theme comprises [color], [typography], and [shape] attributes.
 ### Sounds good, but is it perfect?
 Material does a great job, but from my point of view, it lacks flexibility.
 So, here lies the **first problem**: you have to adapt your look and feel to the Material guidelines, and if you don't, then it becomes hard to use it.
-The **second issue** is that Material comprises only [color], [typography], and [shape] attributes, but what if we want to define more resources in a theme, like dimensions or icons?
+The **second issue** is that Material comprises only [color], [typography], and [shape] attributes, but what if we want to define more resources in a theme, such as dimensions or icons?
 ​
 # Extending Material Colors
 Compose provides the [`Colors`] class to model the [Material color system].
 It's a class that defines the 9 main Material colors, and it also provides two functions to define both the light and dark color sets.
 ​
-In my experience, 9 colors are not enough, as design teams usually define more than that amount of colors in their palette.
+In my experience, 9 colors are not enough, as design teams usually define many more.
 For example, a text link color or a subheader background color are common cases that signal the need for more colors.
 ​
 An important comment here is that all of these colors should be defined in your color palette because they could change depending on the system's configuration (light or dark mode) or your app's state.
@@ -100,14 +100,14 @@ fun appColors(colorPalette: AppColorPalette, darkTheme: Boolean): AppColors =
 ​
 ```
 ​
-As an additional note, using this approach you may also define blind colors, improving the app's accessibility.
+Note that, by using this approach, you may also define a colorblind-friendly palette, improving your app's accessibility.
 ​
 Given a color palette and the UI mode, the `appColors` method returns an `AppColors` instance.
-The complete implementation of these classes can be found [here](https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppColors.kt).
+The complete implementation of these classes can be found [in Xmartlabs Gong template project code](https://github.com/xmartlabs/gong/blob/b0b617e/app/src/main/java/com/xmartlabs/gong/ui/theme/AppColors.kt).
 ​
-Right now we have a method that provides a `AppColors` palette, but then how can we get the current app color palette?
+Right now we have a method that provides an `AppColors` palette, but then how can we get the current app color palette?
 Material provides a way of obtaining the current Material color palette, by invoking a `composable` method named `MaterialTheme.colors`.
-To get our custom color palette, we will use the same idea: we will want to invoke `AppTheme.colors` and get it.
+To get our custom color palette, we will use the same idea: we will invoke `AppTheme.colors` and get it.
 For that we will have to create our app theme, a custom theme that is the result of composing the `MaterialTheme`:
 ​
 ```kotlin
@@ -144,11 +144,12 @@ These lines define two things, a Composable app theme to handle our custom color
 The full implementation of these classes can be found [here](https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppTheme.kt#L10).
 ​
 ​
-### Extending [shape] and [typography].
+### Extending [shape] and [typography]
 ​
-To extend these classes, we can follow the same idea, we can create a [`AppShapes`] class and a [`AppTypographies`] class the same way and declare custom theme properties.
+To extend these classes, we can follow the same idea.
+We create an [`AppShapes`] class and an [`AppTypographies`] class the same way and declare custom theme properties.
 ​
-I will not explain the code because it's analog, you can find it on [GitHub](https://github.com/xmartlabs/gong/tree/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme) and if you have any questions, don't forget to post a comment!
+I will not explain the code because it's analog, you can also find it on [Gong repo](https://github.com/xmartlabs/gong/tree/b0b617e/app/src/main/java/com/xmartlabs/gong/ui/theme) and if you have any questions, don't forget to comment!
 ​
 ​
 # Adding custom resources to your theme
@@ -158,7 +159,8 @@ Remember, a theme is a semantic resource set, so we could also have dimensions, 
 ​
 ## Defining dimensions in our theme
 ​
-Dimensions are something that I usually define in my theme, as some dimensions like a list item padding, a small size, and a container margin, among others, have semantic meanings.
+I usually define dimensions in my theme since many of them have a meaning for me.
+Examples are list items' padding, a "small size", and a container margin.
 ​
 We can use a similar approach here and define a dimension class:
 ​
@@ -176,10 +178,11 @@ data class AppDims(
 ​
 ```
 ​
-That's all fine, but you may be asking yourself a small question which is: what are the advantages of actually doing that?
-The first one is that your theme will be robust, you can reuse the dimensions in multiple places throughout your app.
-The second advantage is that you gain flexibility as you can define custom dimensions based on the device's state or specs.
-A practical example could be the dimensions for a small device, where you may have two different sets of dimensions to improve the user experience for small devices.
+That's all fine, but you may be asking yourself a question which is: what are the actual advantages?
+First, your theme will be consistent.
+You can reuse the dimensions in multiple places throughout your app and thus make sure the correct values are enforced.
+Second, you gain flexibility as you can define custom dimensions based on the device's state or specs.
+A practical example, considering devices with small screens, is to define a separate set of dimensions for them to improve the user experience.
 ​
 ```kotlin
 @Composable
@@ -210,16 +213,16 @@ private val smallDeviceAppDims = AppDims(
 ```
 ​
 Then, you have to add the `AppDims` to your `AppTheme` just like we did with the `AppColors` example.
-You can check the [final code here](https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppDims.kt).
+Check out [the complete code in Gong repo](https://github.com/xmartlabs/gong/blob/b0b617e/app/src/main/java/com/xmartlabs/gong/ui/theme/AppDims.kt).
 ​
 ​
-# Conclusions
-UI/UX is one of the most important things in a mobile app.
-Material has some guides to help improve that and it also allows to have consistency with other apps on the same platform.
+# Conclusion
+UI/UX is one of the most important aspects of a mobile app.
+Material has some guides to help improve it and also allows you to be consistent with other apps on the same platform.
 Themes allow for consistency throughout an application, especially if you define it at the beginning, just by applying minor configurations.
 However, we saw that Material theme lacks flexibility, and if designers don't stick 100% to their guidelines, you may be in trouble as you may now have a mix of Material and another theme not related to it.
-In this post, we presented some ideas to avoid these issues, a way to extend the Material theme while making it flexible, and the most important thing, adaptable to your product.
-The code in this blog should be useful for most applications, but I recommend you check out the full implementation on [GitHub](https://github.com/xmartlabs/gong/tree/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme), and adapt the general ideas to your specific use case.
+In this post, we presented some ideas to avoid these issues, a way to extend the Material theme while making it flexible, and the most important aspect of all, how to adapt it to your product.
+The code in this blog should be useful for most applications, but I recommend you check out [the full implementation on GitHub](https://github.com/xmartlabs/gong/tree/b0b617e/app/src/main/java/com/xmartlabs/gong/ui/theme), and adapt the general ideas to your specific use case.
 ​
 
 [`AppShapes`]: https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppShapes.kt
