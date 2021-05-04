@@ -13,11 +13,11 @@ permalink: /blog/extending-material-theme-in-jetpack-compose/
 If you are a Jetpack Compose user you may already know that one of its advantages is that it's easier to give your app a consistent look & feel by applying themes.
 Additionally, Material already provides a theme that allows apps based on it to reflect your own product’s branding and styles.
 And that is great, but it oftentimes lacks in that it's a bit too strict and limited on what you can and cannot do with it.
-In this post, we'll analyze how to adapt, extend and make Metrial Theme more flexible so that it can stick to your product's style guidelines.
+In this post, we'll analyze how to adapt, extend and make Material Theme more flexible so that it can stick to your product's style guidelines.
 ​
 # What's an application theme?
 The definition is not complex.
-Themes are a collection of resources that are useful all throughout a given application.
+Themes are a collection of resources that are useful throughout a given application.
 More information can be found in [Android's themes documentation], but themes assign semantic names like `colorPrimary` to Android resources, that can be later used as references in different places on the app.
 ​
 Most Android applications already follow (or should be following) [Material Design Guidelines], and that's why Material created `MaterialTheme`.
@@ -39,7 +39,7 @@ For example, a text link color or a subheader background color are common cases 
 ​
 An important comment here is that all of these colors should be defined in your color palette because they could change depending on the system's configuration (light or dark mode) or your app's state.
 ​
-Suppose that we want to define a `subtitleTextColor`, in this case Google recommends a way to do that:
+Suppose that we want to define a `subtitleTextColor`, in this case, Google recommends a way to do that:
 ​
 ```kotlin
 @get:Composable
@@ -100,7 +100,7 @@ fun appColors(colorPalette: AppColorPalette, darkTheme: Boolean): AppColors =
 ​
 ```
 ​
-As an additional note, using this approach you may also define blind colors, improving the app's accesibility.
+As an additional note, using this approach you may also define blind colors, improving the app's accessibility.
 ​
 Given a color palette and the UI mode, the `appColors` method returns an `AppColors` instance.
 The complete implementation of these classes can be found [here](https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppColors.kt).
@@ -140,7 +140,7 @@ fun AppTheme(
 }
 ```
 ​
-These lines define two things, a Composable app theme to handle our custom colors, and static class which provides them.
+These lines define two things, a Composable app theme to handle our custom colors and a static class that provides them.
 The full implementation of these classes can be found [here](https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppTheme.kt#L10).
 ​
 ​
@@ -148,17 +148,17 @@ The full implementation of these classes can be found [here](https://github.com/
 ​
 To extend these classes, we can follow the same idea, we can create a [`AppShapes`] class and a [`AppTypographies`] class the same way and declare custom theme properties.
 ​
-I will not explain the code because it's analogue, you can find it on [GitHub](https://github.com/xmartlabs/gong/tree/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme) and if you have any questions, don't forget to post a comment!
+I will not explain the code because it's analog, you can find it on [GitHub](https://github.com/xmartlabs/gong/tree/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme) and if you have any questions, don't forget to post a comment!
 ​
 ​
 # Adding custom resources to your theme
 ​
-In the previous section we learned how to extend the properties provided by Material, but what if we wanted to define new ones?
-Remember, a theme is a semantic resource set, so we could also have dimensions, icons or any another resource that will be used in the app.
+In the previous section, we learned how to extend the properties provided by Material, but what if we wanted to define new ones?
+Remember, a theme is a semantic resource set, so we could also have dimensions, icons, or any other resource that will be used in the app.
 ​
 ## Defining dimensions in our theme
 ​
-Dimensions are something that I usually define in my theme, as some dimensions like a list item padding, a small size and a container margin, among others, have semanting meanings.
+Dimensions are something that I usually define in my theme, as some dimensions like a list item padding, a small size, and a container margin, among others, have semantic meanings.
 ​
 We can use a similar approach here and define a dimension class:
 ​
@@ -179,7 +179,7 @@ data class AppDims(
 That's all fine, but you may be asking yourself a small question which is: what are the advantages of actually doing that?
 The first one is that your theme will be robust, you can reuse the dimensions in multiple places throughout your app.
 The second advantage is that you gain flexibility as you can define custom dimensions based on the device's state or specs.
-A practical example could be the dimensions for a small device, where you may have two different sets of dimensions to improve user experience for small devices.
+A practical example could be the dimensions for a small device, where you may have two different sets of dimensions to improve the user experience for small devices.
 ​
 ```kotlin
 @Composable
@@ -217,8 +217,8 @@ You can check the [final code here](https://github.com/xmartlabs/gong/blob/b0b61
 UI/UX is one of the most important things in a mobile app.
 Material has some guides to help improve that and it also allows to have consistency with other apps on the same platform.
 Themes allow for consistency throughout an application, especially if you define it at the beginning, just by applying minor configurations.
-However, we saw that Material theme lacks flexibility, and if designers don't stick 100% to the their guidelines, you may be in trouble as you may now have a mix of Material and other theme not really related to it.
-In this post we presented some ideas to avoid these issues, a way to extend the Material theme while making it flexible, and the most important thing, adaptable to your product.
+However, we saw that Material theme lacks flexibility, and if designers don't stick 100% to their guidelines, you may be in trouble as you may now have a mix of Material and another theme not related to it.
+In this post, we presented some ideas to avoid these issues, a way to extend the Material theme while making it flexible, and the most important thing, adaptable to your product.
 The code in this blog should be useful for most applications, but I recommend you check out the full implementation on [GitHub](https://github.com/xmartlabs/gong/tree/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme), and adapt the general ideas to your specific use case.
 ​
 
