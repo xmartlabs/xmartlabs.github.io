@@ -11,13 +11,13 @@ permalink: /blog/extending-material-theme-in-jetpack-compose/
 ---
 ​
 If you are a Jetpack Compose user you may already know that one of its advantages is that it's easier to give your app a consistent look & feel by applying themes.
-Additionally, Material already provides a theme that allows apps based on Material Design to reflect your own product’s branding and styles.
+Additionally, Material already provides a theme that allows apps based on it to reflect your own product’s branding and styles.
 And that is great, but it oftentimes lacks in that it's a bit too strict and limited on what you can and cannot do with it.
 In this post, we'll analyze how to adapt, extend and make Metrial Theme more flexible so that it can stick to your product's style guidelines.
 ​
 # What's an application theme?
 The definition is not complex.
-Themes are a collection of named resources that are useful all throughout a given application.
+Themes are a collection of resources that are useful all throughout a given application.
 More information can be found in [Android's themes documentation], but themes assign semantic names like `colorPrimary` to Android resources, that can be later used as references in different places on the app.
 ​
 Most Android applications already follow (or should be following) [Material Design Guidelines], and that's why Material created `MaterialTheme`.
@@ -26,7 +26,7 @@ Material Theme comprises [color], [typography], and [shape] attributes.
 ​
 ​
 ### Sounds good, but is it perfect?
-Material does a great job, but from my point of view, it's too strict.
+Material does a great job, but from my point of view, it lacks flexibility.
 So, here lies the **first problem**: you have to adapt your look and feel to the Material guidelines, and if you don't, then it becomes hard to use it.
 The **second issue** is that Material comprises only [color], [typography], and [shape] attributes, but what if we want to define more resources in a theme, like dimensions or icons?
 ​
@@ -217,7 +217,7 @@ You can check the [final code here](https://github.com/xmartlabs/gong/blob/b0b61
 UI/UX is one of the most important things in a mobile app.
 Material has some guides to help improve that and it also allows to have consistency with other apps on the same platform.
 Themes allow for consistency throughout an application, especially if you define it at the beginning, just by applying minor configurations.
-However, we saw that Material theme is not really all that flexible, and if designers don't stick 100% to the their guidelines, you may be in trouble as you may now have a mix of Material and other theme not really related to it.
+However, we saw that Material theme lacks flexibility, and if designers don't stick 100% to the their guidelines, you may be in trouble as you may now have a mix of Material and other theme not really related to it.
 In this post we presented some ideas to avoid these issues, a way to extend the Material theme while making it flexible, and the most important thing, adaptable to your product.
 [The code in this blog should be useful for most applications, but I recommend you check out the full implementation on GitHub](https://github.com/xmartlabs/gong/tree/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme), and adapt the general ideas to your specific use case.
 ​
