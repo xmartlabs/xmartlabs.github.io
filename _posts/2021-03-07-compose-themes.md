@@ -219,7 +219,7 @@ Material has some guides to help improve that and it also allows to have consist
 Themes allow for consistency throughout an application, especially if you define it at the beginning, just by applying minor configurations.
 However, we saw that Material theme lacks flexibility, and if designers don't stick 100% to the their guidelines, you may be in trouble as you may now have a mix of Material and other theme not really related to it.
 In this post we presented some ideas to avoid these issues, a way to extend the Material theme while making it flexible, and the most important thing, adaptable to your product.
-[The code in this blog should be useful for most applications, but I recommend you check out the full implementation on GitHub](https://github.com/xmartlabs/gong/tree/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme), and adapt the general ideas to your specific use case.
+The code in this blog should be useful for most applications, but I recommend you check out the full implementation on [GitHub](https://github.com/xmartlabs/gong/tree/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme), and adapt the general ideas to your specific use case.
 ​
 
 [`AppShapes`]: https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppShapes.kt
