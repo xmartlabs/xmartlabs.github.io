@@ -2,7 +2,7 @@
 layout: post
 title: Extending Material theme in Jetpack Compose
 date: 2021-03-06 10:00:00
-tags: [Android, Jetpack Compose, Material, Themes, Material Theme]
+tags: [Material, Themes, Material theme, Custom material theme, theming compose, customizing themes, Jetpack Compose]
 category: development
 author_id: mirland
 show: true
@@ -11,9 +11,11 @@ permalink: /blog/extending-material-theme-in-jetpack-compose/
 ---
 
 If you have tried [Jetpack Compose], the new framework for building user interfaces for Android (and in early steps for [Desktop](https://www.jetbrains.com/lp/compose/) and [Web](https://blog.jetbrains.com/kotlin/2021/05/technology-preview-jetpack-compose-for-web/)), you may know it's now easier to give your app a consistent look and feel by applying themes.
-Additionally, Material already provides a theme that allows apps based on it to reflect your own product’s branding and styles.
-And that is great, but it oftentimes lacks in that it's a bit too strict and limited on what you can and cannot do with it.
-In this post, we'll analyze how to adapt, extend and make Material Theme more flexible so that it can stick to your product's style guidelines.
+Additionally, Material already provides a theme that allows apps based on it to reflect your own product's branding and styles.
+If you haven't tried it, I'd recommend you to check out [Android's documentation](https://developer.android.com/jetpack/compose/themes), it's very simple and clear how you can use it in your app.
+Material theme is great, but it oftentimes lacks in that it's a bit too strict and limited on what you can and cannot do with it.
+
+In this post, we'll not talk about how can you apply the Material theme in your app, we'll analyze how to adapt, customize, extend and make Material Theme more flexible so that it can stick to your product's style guidelines.
 
 # What's an application theme?
 The definition is not complex.
