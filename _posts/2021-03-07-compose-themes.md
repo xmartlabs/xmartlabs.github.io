@@ -98,7 +98,6 @@ fun appColors(colorPalette: AppColorPalette, darkTheme: Boolean): AppColors =
       AppColorPalette.BLUE -> if (darkTheme) darkBlueColors else lightBlueColors
       AppColorPalette.PINK -> if (darkTheme) darkPinkColors else lightPinkColors
     }
-
 ```
 
 Note that, by using this approach, you may also define a colorblind-friendly palette, improving your app's accessibility.
@@ -174,7 +173,6 @@ data class AppDims(
     val listItemVerticalPadding: Dp,
     val listItemHorizontalPadding: Dp,
 )
-
 ```
 
 That's all fine, but you may be asking yourself a question which is: what are the actual advantages?
@@ -191,7 +189,6 @@ fun appDims() = if (LocalConfiguration.current.screenWidthDp < 300) {
 } else {
   regularAppDims
 }
-
 
 private val regularAppDims = AppDims(
     textSizeSmall = 12.sp,
