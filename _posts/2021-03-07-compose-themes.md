@@ -6,7 +6,7 @@ tags: [Material, Themes, Material theme, Custom material theme, theming compose,
 category: development
 author_id: mirland
 show: true
-featured_image: /images/recap2020/look-back-2020-featured.jpg
+featured_image: /images/extending-material-theme-in-jetpack-compose/banner.jpeg
 permalink: /blog/extending-material-theme-in-jetpack-compose/
 ---
 
