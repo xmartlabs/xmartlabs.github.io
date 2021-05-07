@@ -174,10 +174,13 @@ data class AppDims(
 ```
 
 That's all fine, but you may be asking yourself a question which is: what are the actual advantages?
+
 First, your theme will be consistent.
 You can reuse the dimensions in multiple places throughout your app and thus make sure the correct values are enforced.
+
 Second, you gain flexibility as you can define custom dimensions based on the device's state or specs.
 A practical example, considering devices with small screens, is to define a separate set of dimensions for them to improve the user experience.
+
 Last but not least, you avoid magic numbers making your codebase more maintainable and readable.
 
 ```kotlin
