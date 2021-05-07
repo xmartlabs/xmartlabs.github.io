@@ -21,8 +21,7 @@ In this post, we'll learn how to adapt, customize and extend Compose Material Th
 [Android Theme] is just a collection of resources that are useful throughout a given application.
 Each resource has a semantic name such as `colorPrimary` that can be used as a reference from different places on the app.
 
-Most Android apps already follow [Material Design Guidelines], that's the reason Jetpack Compose provides the `MaterialTheme` implementation for Compose apps.
-It's a systematic way to customize Material Design to better reflect your product’s design needs.
+Most Android apps already follow [Material Design Guidelines], that's the reason Jetpack Compose provides the `MaterialTheme` implementation for Compose apps, which is a systematic way to customize Material Design to better reflect your app style and branding.
 Material Theme comprises [color], [typography], and [shape] attributes.
 
 ### Sounds good, but is it perfect?
