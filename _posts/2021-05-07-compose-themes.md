@@ -10,7 +10,7 @@ featured_image: /images/extending-material-theme-in-jetpack-compose/banner.jpeg
 permalink: /blog/extending-material-theme-in-jetpack-compose/
 ---
 
-Building Android UIs with a consistent look and feel is easier than ever by using the new [Jetpack Compose] framework and setting up themes.
+Building Android UIs with a consistent look and feel is easier than ever by using the new [Jetpack Compose] framework and setting up [themes](https://developer.android.com/jetpack/compose/themes).
 Compose offers an implementation of the Material design that makes it easy to use Material style throughout the whole app just by adding few lines of code.
 You can read more about Compose themes at the [official documentation](https://developer.android.com/jetpack/compose/themes).
 As you may already know, Material theme allows us to have a consistent and uniform UI that follows Android UI best practices and guidelines, but at the same time, it's super rigid and limited when the app needs a more complex UI customization level.
