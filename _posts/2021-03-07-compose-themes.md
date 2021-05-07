@@ -222,7 +222,7 @@ The code in this blog should be useful for most applications, but I recommend yo
 [`AppShapes`]: https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppShapes.kt
 [`AppTypographies`]: https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppTypographies.kt
 [`Colors`]: https://developer.android.com/reference/kotlin/androidx/compose/material/Colors
-[Android's themes documentation]: https://developer.android.com/guide/topics/ui/look-and-feel/themes
+[Android Theme]: https://developer.android.com/guide/topics/ui/look-and-feel/themes
 [color]:https://material.io/design/color/
 [Jetpack Compose]: https://developer.android.com/jetpack/compose
 [Material color system]: https://material.io/design/color/
