@@ -10,32 +10,30 @@ featured_image: /images/recap2020/look-back-2020-featured.jpg
 permalink: /blog/extending-material-theme-in-jetpack-compose/
 ---
 
-If you have tried [Jetpack Compose], the new framework for building user interfaces for Android (and in early steps for [Desktop](https://www.jetbrains.com/lp/compose/) and [Web](https://blog.jetbrains.com/kotlin/2021/05/technology-preview-jetpack-compose-for-web/)), you may know it's now easier to give your app a consistent look and feel by applying themes.
+Building Android UIs with a consistent look and feel is easier than ever by using the new [Jetpack Compose] framework and setting up themes.
 Additionally, Material already provides a theme that allows apps based on it to reflect your own product's branding and styles.
 If you haven't tried it, I'd recommend you to check out [Android's documentation](https://developer.android.com/jetpack/compose/themes), it's very simple and clear how you can use it in your app.
 Material theme is great, but it oftentimes lacks in that it's a bit too strict and limited on what you can and cannot do with it.
 
-In this post, we'll not talk about how can you apply the Material theme in your app, we'll analyze how to adapt, customize, extend and make Material Theme more flexible so that it can stick to your product's style guidelines.
+In this post, we'll learn how to adapt, customize and extend Compose Material Theme in order to fulfill your app UI requirement and get rid of material limitations. 
 
 # What's an application theme?
-The definition is not complex.
-Themes are a collection of resources that are useful throughout a given application.
-More information can be found in [Android's themes documentation], but themes assign semantic names such as `colorPrimary` to Android resources, that can be later used as references in different places on the app.
+[Android Theme] is just a collection of resources that are useful throughout a given application.
+Each resource has a semantic name such as `colorPrimary` that can be used as references from different places on the app.
 
-Most Android applications already follow (or should be following) [Material Design Guidelines], and that's why Material created `MaterialTheme`.
+Most Android apps already follow [Material Design Guidelines], and that's the reason Jetpack Compose already provides the `MaterialTheme` for Compose apps.
 It's a systematic way to customize Material Design to better reflect your product’s design needs.
 Material Theme comprises [color], [typography], and [shape] attributes.
 
 ### Sounds good, but is it perfect?
-Material does a great job, but from my point of view, it lacks flexibility.
-So, here lies the **first problem**: you have to adapt your look and feel to the Material guidelines, and if you don't, then it becomes hard to use it.
-The **second issue** is that Material comprises only [color], [typography], and [shape] attributes, but what if we want to define more resources in a theme, such as dimensions or icons?
+Material does a great job making sure every app follows android UI guidelines, but it clearly lacks flexibility.
+So, here lies the first problem: you have to adapt your look and feel to the Material guidelines, and if you don't, then it becomes hard to use it.
+Secondly, Material comprises only [color], [typography], and [shape] attributes, but what if your app needs more resources, such as dimensions or icons?
 
 # Extending Material Colors
-Compose provides the [`Colors`] class to model the [Material color system].
-It's a class that defines the 9 main Material colors, and it also provides two functions to define both the light and dark color sets.
+Compose provides the [`Colors`] class to model the [Material color system] which includes nine colors and two functions to define light and dark color sets.
 
-In my experience, 9 colors are not enough, as design teams usually define many more.
+According to our experience, most apps need way more than 9 colors.
 For example, a text link color or a subheader background color are common cases that signal the need for more colors.
 
 An important comment here is that all of these colors should be defined in your color palette because they could change depending on the system's configuration (light or dark mode) or your app's state.
@@ -152,8 +150,8 @@ I will not explain the code because it's , you can also find it on [Gong repo](h
 
 # Adding custom resources to your theme
 
-In the previous section, we learned how to extend the properties provided by Material, but what if we wanted to define new ones?
-Remember, a theme is a semantic resource set, so we could also have dimensions, icons, or any other resource that will be used in the app.
+So far, we've learned how to extend the properties provided by Material, but what if our app requires new ones?
+Remember, a theme is a semantic resource set, so we could also need dimensions, icons, or any other resource to build the custom app UI.
 
 ## Defining dimensions in our theme
 
