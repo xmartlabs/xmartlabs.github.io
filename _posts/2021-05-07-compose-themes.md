@@ -216,7 +216,7 @@ Check out [the complete code in Gong repo](https://github.com/xmartlabs/gong/blo
 # Conclusion
 UI/UX is one of the most important aspects of a mobile app.
 Material helps in that regard by ensuring every Android app follows Android's UI practices and its overall guidelines. 
-Themes allow for consistency throughout an application, especially if you define it at the beginning, just by applying minor configurations.
+Themes allow consistency throughout your application, especially if it's configured at the beginning of the app development.
 
 However, we saw that Material themes lack flexibility, and if designers don't stick 100% to their guidelines, you may be in trouble as you will have to maintain many separate theme components not handled directly by your app theme.
 
