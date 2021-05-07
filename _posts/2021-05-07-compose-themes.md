@@ -15,7 +15,7 @@ Compose offers a Material theme implementation that makes it easy to use Materia
 
 As you may already know, Material allows us to have a uniform UI that follows Android UI best practices and guidelines, but at the same time, it's super rigid and limited when the app needs a more complex UI customization level.
 
-In this post, we'll learn how to adapt, customize and extend Compose Material Theme in order to fulfill your app UI requirement and get rid of material limitations. 
+In this post, we'll learn how to adapt, customize and extend Compose Material Theme in order to fulfill your app UI requirements and get rid of material limitations. 
 
 # What's an application theme?
 [Android Theme] is just a collection of resources that are useful throughout a given application.
