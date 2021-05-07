@@ -26,7 +26,7 @@ It's a systematic way to customize Material Design to better reflect your produc
 Material Theme comprises [color], [typography], and [shape] attributes.
 
 ### Sounds good, but is it perfect?
-Material does a great job making sure every app follows android UI guidelines, but it clearly lacks flexibility.
+Material does a great job making sure every app follows Android UI guidelines, but it clearly lacks flexibility.
 So, here lies the first problem: you have to adapt your look and feel to the Material guidelines, and if you don't, then it becomes hard to use it.
 Secondly, Material comprises only [color], [typography], and [shape] attributes, but what if your app needs more resources, such as dimensions or icons?
 
