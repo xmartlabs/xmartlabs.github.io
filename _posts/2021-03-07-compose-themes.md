@@ -11,9 +11,9 @@ permalink: /blog/extending-material-theme-in-jetpack-compose/
 ---
 
 Building Android UIs with a consistent look and feel is easier than ever by using the new [Jetpack Compose] framework and setting up themes.
-Additionally, Material already provides a theme that allows apps based on it to reflect your own product's branding and styles.
-If you haven't tried it, I'd recommend you to check out [Android's documentation](https://developer.android.com/jetpack/compose/themes), it's very simple and clear how you can use it in your app.
-Material theme is great, but it oftentimes lacks in that it's a bit too strict and limited on what you can and cannot do with it.
+Compose offers an implementation of the Material design that makes it easy to use Material style throughout the whole app just by adding few lines of code.
+You can read more about Compose themes at the [official documentation](https://developer.android.com/jetpack/compose/themes).
+As you may already know, Material theme allows us to have a consistent and uniform UI that follows Android UI best practices and guidelines, but at the same time, it's super rigid and limited when the app needs a more complex UI customization level.
 
 In this post, we'll learn how to adapt, customize and extend Compose Material Theme in order to fulfill your app UI requirement and get rid of material limitations. 
 
@@ -155,7 +155,7 @@ Remember, a theme is a semantic resource set, so we could also need dimensions, 
 
 ## Defining dimensions in our theme
 
-I usually define dimensions in my theme since many of them have a meaning for me.
+Dimensions are something that we usually define in our theme since many of them have a meaning in our app context.
 Examples are list items' padding, a "small size", and a container margin.
 
 We can use a similar approach here and define a dimension class:
