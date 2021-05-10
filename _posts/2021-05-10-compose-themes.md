@@ -7,6 +7,8 @@ category: development
 author_id: mirland
 show: true
 featured_image: /images/extending-material-theme-in-jetpack-compose/banner.jpeg
+social_image: /images/extending-material-theme-in-jetpack-compose/banner_social.jpeg
+twitter_image: /images/extending-material-theme-in-jetpack-compose/banner_twitter.jpeg
 permalink: /blog/extending-material-theme-in-jetpack-compose/
 ---
 

@@ -81,6 +81,14 @@ Also make sure your blogpost has `permalink: /:title/` in the blog post's front 
 Next time you build or serve the locally the blog it will be sent to medium as draft story.
 
 
+## Social Images
+
+Social images can be defined using `social_image` and  `twitter_image` post variables.
+- `social_image` dimensions have to be 1200x627 pixels
+- `twitter_image` have to respect proportions 2:1, e.g. 1600x800 pixels
+
+If these variables are not defined, `featured_image` is used by defalut.
+
 ## What to do if the CSS changes aren't applied when releasing?
 Sometimes changes to the CSS aren't applied once the page is released to GitHub Pages, this means the old CSS will be used causing different problems that can't be reproduced locally.
 
