@@ -11,11 +11,11 @@ permalink: /blog/extending-material-theme-in-jetpack-compose/
 ---
 
 Building Android UIs with a consistent look and feel is easier than ever by using the new [Jetpack Compose] framework and setting up [themes](https://developer.android.com/jetpack/compose/themes).
-Compose offers a Material theme implementation that makes it easy to use Material style throughout the whole app. 
+Compose offers a Material theme implementation that makes it easy to use Material style throughout the whole app.
 
 As you may already know, Material allows us to have a uniform UI that follows Android UI best practices and guidelines, but at the same time, it's super rigid and limited when the app needs a more complex UI customization level.
 
-In this post, we'll learn how to adapt, customize and extend Compose Material Theme in order to fulfill your app UI requirements and get rid of material limitations. 
+In this post, we'll learn how to adapt, customize and extend Compose Material Theme in order to fulfill your app UI requirements and get rid of material limitations.
 
 # What's an application theme?
 [Android Theme] is just a collection of resources that are useful throughout a given application.
@@ -214,13 +214,15 @@ Then, you have to add the `AppDims` to your `AppTheme` just like we did with the
 Check out [the complete code in Gong repo](https://github.com/xmartlabs/gong/blob/b0b617e/app/src/main/java/com/xmartlabs/gong/ui/theme/AppDims.kt).
 
 # Conclusion
-UI/UX is one of the most important aspects of a mobile app.
-Material helps in that regard by ensuring every Android app follows Android's UI practices and its overall guidelines. 
-Themes allow consistency throughout your application, especially if it's configured at the beginning of the app development.
+I don't have to convince you about the importance of having a good UX/UI in an app, most of the time we use top-tier apps that provide a world-class experience and we end up expecting this UI/UX quality everywhere.
 
-However, we saw that Material themes lack flexibility, and if designers don't stick 100% to their guidelines, you may be in trouble as you will have to maintain many separate theme components not handled directly by your app theme.
+Compose is coming to transform the way we build Android apps, it's a whole new approach that drastically simplifies and accelerates UI development on Android.
 
-In this post, we teach you how to overcome all these issues by extending the Material theme while making it flexible to adapt it to your product.
+Theming the application using Material Theme helps when it comes to encapsulating and reutilizing styles and assets.
+There is nothing worse than having a huge app that is a mess regarding theme and assets management and configuration.
+
+In this blog post, we present concepts and ideas to leverage compose, app theming, and Material and if your app still needs more customization, be able to extend material capabilities.
+The benefits are clear, we end up having a clean code base, drastically reducing style (redundant) configuration code, and having full control over the whole app style from a single source of truth, the application-wide theming.
 
 
 [`AppShapes`]: https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppShapes.kt
