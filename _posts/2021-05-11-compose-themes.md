@@ -24,7 +24,7 @@ In this post, we'll learn how to adapt, customize and extend Compose Material Th
 Each resource has a semantic name such as `colorPrimary` that can be used as a reference from different places on the app.
 
 Most Android apps already follow [Material Design Guidelines], that's the reason Jetpack Compose provides the `MaterialTheme` implementation, which is a systematic way to customize Material Design to better reflect your app style and branding.
-Material Theme comprises [color], [typography], and [shape] attributes.
+Material Theme comprises [color], [typography], and [shape] attributes that can be tweaked to get custom style variations of the components.
 
 ### Sounds good, but is it perfect?
 Material does a great job making sure every app follows Android UI guidelines, but it clearly lacks flexibility.
