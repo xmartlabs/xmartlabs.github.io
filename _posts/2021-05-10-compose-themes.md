@@ -223,7 +223,8 @@ Compose is coming to transform the way we build Android apps, it's a whole new a
 Theming the application using Material Theme helps when it comes to encapsulating and reutilizing styles and assets.
 There is nothing worse than having a huge app that is a mess regarding theme and assets management and configuration.
 
-In this blog post, we present concepts and ideas to leverage compose, app theming, and Material and if your app still needs more customization, be able to extend material capabilities.
+This blog post presents concepts and ideas to leverage compose, app theming, and Material.
+If your app still needs more customization, you'll be able to extend Material capabilities to derive full benefit from them.
 The benefits are clear, we end up having a clean code base, drastically reducing style (redundant) configuration code, and having full control over the whole app style from a single source of truth, the application-wide theming.
 
 
