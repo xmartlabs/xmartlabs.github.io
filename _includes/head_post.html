@@ -11,10 +11,24 @@
     <meta name="robots" content="noindex">
     {% endif %}
   {% endif %}
-  {% if page.featured_image %}
-    <meta name="image" property="og:image" content="https://blog.xmartlabs.com{{ page.featured_image }}">
-    <meta name="twitter:image" content="https://blog.xmartlabs.com{{ page.featured_image }}">
+  
+  <!-- Social Images -->
+  <!-- Ratio 2:1 -->
+  {% if page.twitter_image %}
+    <meta name="twitter:image" content="{{ site.url_blog }}{{ page.twitter_image }}">
+  {% elsif page.social_image %}
+    <meta name="twitter:image" content="{{ site.url_blog }}{{ page.social_image }}">
+  {% elsif page.featured_image %}
+    <meta name="twitter:image" content="{{ site.url_blog }}{{ page.featured_image }}">
   {% endif %}
+
+  <!-- 1200 pixels x 627 pixels -->
+  {% if page.social_image %}
+    <meta name="image" property="og:image" content="{{ site.url_blog }}{{ page.social_image }}">
+  {% elsif page.featured_image %}
+    <meta name="image" property="og:image" content="{{ site.url_blog }}{{ page.featured_image }}">
+  {% endif %}
+
   {% if page.author_id %}
   <meta name="author" content="{{ site.data.authors[page.author_id].display_name }}">
   {% endif %}
