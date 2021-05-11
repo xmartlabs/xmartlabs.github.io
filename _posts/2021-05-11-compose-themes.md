@@ -23,7 +23,7 @@ In this post, we'll learn how to adapt, customize and extend Compose Material Th
 [Android Theme] is just a collection of resources that are useful throughout a given application.
 Each resource has a semantic name such as `colorPrimary` that can be used as a reference from different places on the app.
 
-Most Android apps already follow [Material Design Guidelines], that's the reason Jetpack Compose provides the `MaterialTheme` implementation for Compose apps, which is a systematic way to customize Material Design to better reflect your app style and branding.
+Most Android apps already follow [Material Design Guidelines], that's the reason Jetpack Compose provides the `MaterialTheme` implementation, which is a systematic way to customize Material Design to better reflect your app style and branding.
 Material Theme comprises [color], [typography], and [shape] attributes.
 
 ### Sounds good, but is it perfect?
@@ -40,7 +40,7 @@ For example, a text link color or a subheader background color are common cases 
 
 An important comment here is that all of these colors should be defined in your color palette because they could change depending on the system's configuration (light or dark mode) or your app's state.
 
-Suppose that we want to define a `subtitleTextColor`, in this case, Google recommends a way to do that:
+Let's suppose we want to define a `subtitleTextColor`, in this case, Google recommends a way to do that:
 
 ```kotlin
 @get:Composable
@@ -100,7 +100,7 @@ fun appColors(colorPalette: AppColorPalette, darkTheme: Boolean): AppColors =
     }
 ```
 
-Note that, by using this approach, you may also define a colorblind-friendly palette, improving your app's accessibility.
+Note that, by using this approach, we could also define a colorblind-friendly palette, improving the app's accessibility.
 
 Given a color palette and the UI mode, the `appColors` method returns an `AppColors` instance.
 The complete implementation of these classes can be found [in Xmartlabs Gong template project code](https://github.com/xmartlabs/gong/blob/b0b617e/app/src/main/java/com/xmartlabs/gong/ui/theme/AppColors.kt).
@@ -148,7 +148,7 @@ The full implementation of these classes can be found [here](https://github.com/
 To extend these classes, we can follow the same idea.
 We create an [`AppShapes`] class and an [`AppTypographies`] class the same way and declare custom theme properties.
 
-I will not explain the code because it's , you can also find it on [Gong repo](https://github.com/xmartlabs/gong/tree/b0b617e/app/src/main/java/com/xmartlabs/gong/ui/theme) and if you have any questions, don't forget to comment!
+I will not explain the code because it's almost identical, you can also find it on [Gong repo](https://github.com/xmartlabs/gong/tree/b0b617e/app/src/main/java/com/xmartlabs/gong/ui/theme) and if you have any questions, don't forget to comment!
 
 # Adding custom resources to your theme
 
@@ -218,14 +218,14 @@ Check out [the complete code in Gong repo](https://github.com/xmartlabs/gong/blo
 # Conclusion
 I don't have to convince you about the importance of having a good UX/UI in an app, most of the time we use top-tier apps that provide a world-class experience and we end up expecting this UI/UX quality everywhere.
 
-Compose is coming to transform the way we build Android apps, it's a whole new approach that drastically simplifies and accelerates UI development on Android.
+Compose is coming to transform the way we build Android apps, it's a whole new approach that drastically simplifies and accelerates UI development.
 
 Theming the application using Material Theme helps when it comes to encapsulating and reutilizing styles and assets.
-There is nothing worse than having a huge app that is a mess regarding theme and assets management and configuration.
+There is nothing worse than having a huge app that is a mess regarding the theme, assets management, and configuration.
 
 This blog post presents concepts and ideas to leverage compose, app theming, and Material.
 If your app still needs more customization, you'll be able to extend Material capabilities to derive full benefit from them.
-The benefits are clear, we end up having a clean code base, drastically reducing style (redundant) configuration code, and having full control over the whole app style from a single source of truth, the application-wide theming.
+The benefits are clear, we end up having a clean code base, drastically reducing redundant style configuration code, and having full control over the whole app style from a single source of truth, the application-wide theming.
 
 
 [`AppShapes`]: https://github.com/xmartlabs/gong/blob/b0b617e56403c1f499704111acad89093aa3c9d6/app/src/main/java/com/xmartlabs/gong/ui/theme/AppShapes.kt
